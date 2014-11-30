@@ -14,6 +14,7 @@
 		1C5B79C51A1F9A5200C73EAB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C5B79C31A1F9A5200C73EAB /* LaunchScreen.xib */; };
 		1C5B79D11A1F9A5200C73EAB /* iOSUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79D01A1F9A5200C73EAB /* iOSUtilsTests.swift */; };
 		1C5B79DB1A1F9A7600C73EAB /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79DA1A1F9A7600C73EAB /* Buttons.swift */; };
+		1C69A8E71A2B8AD000F0144E /* ExpandingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A8E61A2B8AD000F0144E /* ExpandingTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		1C5B79CF1A1F9A5200C73EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5B79D01A1F9A5200C73EAB /* iOSUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSUtilsTests.swift; sourceTree = "<group>"; };
 		1C5B79DA1A1F9A7600C73EAB /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		1C69A8E61A2B8AD000F0144E /* ExpandingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandingTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				1C5B79BC1A1F9A5200C73EAB /* ViewController.swift */,
 				1C5B79BE1A1F9A5200C73EAB /* Main.storyboard */,
 				1C5B79DA1A1F9A7600C73EAB /* Buttons.swift */,
+				1C69A8E61A2B8AD000F0144E /* ExpandingTextView.swift */,
 				1C5B79C11A1F9A5200C73EAB /* Images.xcassets */,
 				1C5B79C31A1F9A5200C73EAB /* LaunchScreen.xib */,
 				1C5B79B81A1F9A5200C73EAB /* Supporting Files */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C69A8E71A2B8AD000F0144E /* ExpandingTextView.swift in Sources */,
 				1C5B79DB1A1F9A7600C73EAB /* Buttons.swift in Sources */,
 				1C5B79BD1A1F9A5200C73EAB /* ViewController.swift in Sources */,
 				1C5B79BB1A1F9A5200C73EAB /* AppDelegate.swift in Sources */,
@@ -411,6 +415,7 @@
 				1C5B79D61A1F9A5200C73EAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1C5B79D71A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "iOSUtilsTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				1C5B79D91A1F9A5200C73EAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

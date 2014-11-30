@@ -13,12 +13,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var bouncyButtonView: BouncyButtonView!
     @IBOutlet weak var bouncyButtonPOP: BouncyButtonView!
     
+    @IBOutlet weak var textView: ExpandingTextView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         var onTouchUpBlock = {(button: BouncyButtonView) -> Bool in
+            
+            self.textView.resignFirstResponder()
             
             // POP the button before returning to normal
             if button.isEqual(self.bouncyButtonPOP) {

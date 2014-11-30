@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C68k" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi9-Oz-osb" customClass="BouncyButtonView" customModule="iOSUtils" customModuleProvider="target">
-                                <rect key="frame" x="200" y="88" width="200" height="100"/>
+                                <rect key="frame" x="200" y="120" width="200" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Bouncy Button View" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBw-5j-9ol">
-                                        <rect key="frame" x="8" y="8" width="184" height="21"/>
+                                        <rect key="frame" x="8" y="8" width="184" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="test_proile" translatesAutoresizingMaskIntoConstraints="NO" id="Vbe-4S-Zrw">
-                                        <rect key="frame" x="50" y="36" width="100" height="56"/>
+                                        <rect key="frame" x="50" y="36.5" width="100" height="55.5"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,9 +40,17 @@
                                     <constraint firstItem="UBw-5j-9ol" firstAttribute="top" secondItem="gi9-Oz-osb" secondAttribute="top" constant="8" id="vNJ-E5-0pa"/>
                                     <constraint firstAttribute="width" constant="200" id="x02-Rb-hcE"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shrinkscale">
+                                        <real key="value" value="0.94999999999999996"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="popScale">
+                                        <real key="value" value="1.2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlv-YQ-kSc" customClass="BouncyButtonView" customModule="iOSUtils" customModuleProvider="target">
-                                <rect key="frame" x="200" y="232" width="200" height="100"/>
+                                <rect key="frame" x="200" y="264" width="200" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Bouncy Button View + POP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LB2-IS-MFz">
                                         <rect key="frame" x="8" y="8" width="184" height="41"/>
@@ -65,23 +73,67 @@
                                     <constraint firstAttribute="height" constant="100" id="igC-UE-1Ff"/>
                                     <constraint firstAttribute="trailing" secondItem="LB2-IS-MFz" secondAttribute="trailing" constant="8" id="ue4-zp-S0B"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shrinkscale">
+                                        <real key="value" value="0.94999999999999996"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="popScale">
+                                        <real key="value" value="1.2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDV-HB-ueU">
+                                <rect key="frame" x="200" y="70" width="200" height="45"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oc3-sJ-lui" customClass="ExpandingTextView" customModule="iOSUtils" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="190" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="placeholder"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.80000000000000004" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="oc3-sJ-lui" firstAttribute="leading" secondItem="oDV-HB-ueU" secondAttribute="leading" constant="5" id="LfQ-zd-eDo"/>
+                                    <constraint firstItem="oc3-sJ-lui" firstAttribute="top" secondItem="oDV-HB-ueU" secondAttribute="top" constant="5" id="fXC-4b-1ct"/>
+                                    <constraint firstAttribute="height" constant="45" placeholder="YES" id="gjh-io-ZwY"/>
+                                    <constraint firstAttribute="trailing" secondItem="oc3-sJ-lui" secondAttribute="trailing" constant="5" id="gpQ-lY-IKX"/>
+                                    <constraint firstAttribute="width" constant="200" id="jIh-bl-Asd"/>
+                                    <constraint firstAttribute="bottom" secondItem="oc3-sJ-lui" secondAttribute="bottom" constant="5" id="sZE-mY-DWc"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="oDV-HB-ueU" secondAttribute="centerX" id="2Xi-Tc-uku"/>
                             <constraint firstItem="tlv-YQ-kSc" firstAttribute="top" secondItem="gi9-Oz-osb" secondAttribute="bottom" constant="44" id="392-7Q-1Tx"/>
                             <constraint firstAttribute="centerX" secondItem="tlv-YQ-kSc" secondAttribute="centerX" id="4op-4C-53Q"/>
-                            <constraint firstItem="gi9-Oz-osb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="68" id="EQX-lC-zZ0"/>
+                            <constraint firstItem="gi9-Oz-osb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="EQX-lC-zZ0"/>
                             <constraint firstAttribute="centerX" secondItem="gi9-Oz-osb" secondAttribute="centerX" id="RS0-GC-Ye0"/>
+                            <constraint firstItem="gi9-Oz-osb" firstAttribute="top" secondItem="oDV-HB-ueU" secondAttribute="bottom" constant="5" id="nYz-3S-aPu"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bouncyButtonPOP" destination="tlv-YQ-kSc" id="aT6-3I-9CS"/>
                         <outlet property="bouncyButtonView" destination="gi9-Oz-osb" id="wvd-jA-SOe"/>
+                        <outlet property="textView" destination="oc3-sJ-lui" id="ufx-MQ-Ncu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="356" y="329"/>
         </scene>
     </scenes>
     <resources>

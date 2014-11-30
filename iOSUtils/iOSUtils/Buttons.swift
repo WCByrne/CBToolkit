@@ -29,23 +29,31 @@ typealias BouncyButtonActionBlock = (button: BouncyButtonView) -> Bool
         
     }
     
+    func validTouches(touches: NSSet) -> Bool {
+        return CGRectContainsPoint(CGRectInset(self.bounds, -12, -12), touches.allObjects[0].locationInView(self))
+    }
+    
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
 
+        if touches.count > 1 { return }
+        
         if onTouchDownBlock != nil {
             onTouchDownBlock!(button: self)
         }
-        
         if !shouldAnimate { return }
-        
-        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
-            self.transform = CGAffineTransformMakeScale(CGFloat(self.shrinkscale), CGFloat(self.shrinkscale))
-        }, completion: nil)
+        animateShrink()
     }
     
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         
+        if touches.count > 1 { return }
+        
+        if !validTouches(touches) {
+            animateToResting()
+            return
+        }
         
         var shouldPop: Bool = false
         if onTouchUpBlock != nil {
@@ -58,31 +66,53 @@ typealias BouncyButtonActionBlock = (button: BouncyButtonView) -> Bool
         }
         
         if !shouldAnimate { return }
+        animateToResting()
+    }
+    
+    
+    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
         
-        UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
-            self.transform = CGAffineTransformIdentity
-            }, completion: nil)
+        if touches.count > 1 { return }
+        if validTouches(touches) {
+            animateShrink()
+        }
+        else {
+            animateToResting()
+        }
     }
     
     
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+        println("touches cancelled")
+        animateToResting()
+    }
+    
+    
+    private func animateShrink() {
         UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 5, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(self.shrinkscale, self.shrinkscale)
+            }, completion: nil)
+    }
+    
+    
+    private func animateToResting() {
+        UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.25, initialSpringVelocity: 5, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformIdentity
             }, completion: nil)
     }
     
     
-    
     func popAnimation() {
         
-        UIView.animateWithDuration(0.23, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(0.26, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)
             }) { (finished) -> Void in
                 self.shouldAnimate = true
-                UIView.animateWithDuration(0.7, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+                UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.2, initialSpringVelocity: 6, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
                     self.transform = CGAffineTransformMakeScale(1, 1)
                     }, completion: nil)
         }
+
     }
 }
 
