@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var colorChangeButton: CBButton!
+    @IBOutlet weak var colorChangeButton: CBButtonView!
     
     @IBOutlet weak var progressView: CBProgressView!
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 
 
     
-    @IBAction func buttonOneSelected(sender: CBButton) {
+    @IBAction func buttonOneSelected(sender: CBButtonView) {
         
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             if sender.selected {
@@ -40,12 +40,10 @@ class ViewController: UIViewController {
                 sender.layer.backgroundColor = UIColor.whiteColor().CGColor
             }
         })
-       
-        
     }
     
     
-    @IBAction func selectedCircleButton(sender: CBButton) {
+    @IBAction func selectedCircleButton(sender: CBButtonView) {
         
         if sender.selected {
             progressView.setProgress(1, animated: true)
@@ -59,10 +57,6 @@ class ViewController: UIViewController {
             progressView.setProgress(0, animated: false)
             progressView.setLineWidth(3, animated: false)
         }
-        
-        
-
-        
     }
     
     
