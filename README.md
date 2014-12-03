@@ -5,8 +5,7 @@ CBToolkit
 CBToolkit is a collection of simple UI features for iOS. They are easily customizable and easy to implement. 
 
 
-<img src="CBToolkitVideo.gif">
-
+<img src="/CBToolkitVideo.gif">
 
 <h1>CBButton</h1>
 
