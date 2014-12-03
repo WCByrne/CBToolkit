@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C170C0F1A2EE5C700E8C8C2 /* CBProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C170C0E1A2EE5C700E8C8C2 /* CBProgressView.swift */; };
 		1C5B79BB1A1F9A5200C73EAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79BA1A1F9A5200C73EAB /* AppDelegate.swift */; };
-		1C5B79BD1A1F9A5200C73EAB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79BC1A1F9A5200C73EAB /* ViewController.swift */; };
+		1C5B79BD1A1F9A5200C73EAB /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79BC1A1F9A5200C73EAB /* TestController.swift */; };
 		1C5B79C01A1F9A5200C73EAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5B79BE1A1F9A5200C73EAB /* Main.storyboard */; };
 		1C5B79C21A1F9A5200C73EAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C5B79C11A1F9A5200C73EAB /* Images.xcassets */; };
 		1C5B79C51A1F9A5200C73EAB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C5B79C31A1F9A5200C73EAB /* LaunchScreen.xib */; };
 		1C5B79D11A1F9A5200C73EAB /* iOSUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79D01A1F9A5200C73EAB /* iOSUtilsTests.swift */; };
-		1C5B79DB1A1F9A7600C73EAB /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79DA1A1F9A7600C73EAB /* Buttons.swift */; };
-		1C69A8E71A2B8AD000F0144E /* ExpandingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A8E61A2B8AD000F0144E /* ExpandingTextView.swift */; };
+		1C5B79DB1A1F9A7600C73EAB /* CBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5B79DA1A1F9A7600C73EAB /* CBButton.swift */; };
+		1C69A8E71A2B8AD000F0144E /* CBTextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A8E61A2B8AD000F0144E /* CBTextViews.swift */; };
+		1CE2AAB21A2E399F0003BAFD /* CBViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2AAB11A2E399F0003BAFD /* CBViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,18 +30,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C170C0E1A2EE5C700E8C8C2 /* CBProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgressView.swift; sourceTree = "<group>"; };
 		1C5B79B51A1F9A5200C73EAB /* iOSUtils.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSUtils.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5B79B91A1F9A5200C73EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5B79BA1A1F9A5200C73EAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1C5B79BC1A1F9A5200C73EAB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1C5B79BC1A1F9A5200C73EAB /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		1C5B79BF1A1F9A5200C73EAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C5B79C11A1F9A5200C73EAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1C5B79C41A1F9A5200C73EAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1C5B79CA1A1F9A5200C73EAB /* iOSUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5B79CF1A1F9A5200C73EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5B79D01A1F9A5200C73EAB /* iOSUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSUtilsTests.swift; sourceTree = "<group>"; };
-		1C5B79DA1A1F9A7600C73EAB /* Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
-		1C69A8E61A2B8AD000F0144E /* ExpandingTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandingTextView.swift; sourceTree = "<group>"; };
+		1C5B79DA1A1F9A7600C73EAB /* CBButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBButton.swift; sourceTree = "<group>"; };
+		1C69A8E61A2B8AD000F0144E /* CBTextViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTextViews.swift; sourceTree = "<group>"; };
+		1CE2AAB11A2E399F0003BAFD /* CBViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,10 +86,12 @@
 			isa = PBXGroup;
 			children = (
 				1C5B79BA1A1F9A5200C73EAB /* AppDelegate.swift */,
-				1C5B79BC1A1F9A5200C73EAB /* ViewController.swift */,
+				1C5B79BC1A1F9A5200C73EAB /* TestController.swift */,
 				1C5B79BE1A1F9A5200C73EAB /* Main.storyboard */,
-				1C5B79DA1A1F9A7600C73EAB /* Buttons.swift */,
-				1C69A8E61A2B8AD000F0144E /* ExpandingTextView.swift */,
+				1C5B79DA1A1F9A7600C73EAB /* CBButton.swift */,
+				1C69A8E61A2B8AD000F0144E /* CBTextViews.swift */,
+				1CE2AAB11A2E399F0003BAFD /* CBViews.swift */,
+				1C170C0E1A2EE5C700E8C8C2 /* CBProgressView.swift */,
 				1C5B79C11A1F9A5200C73EAB /* Images.xcassets */,
 				1C5B79C31A1F9A5200C73EAB /* LaunchScreen.xib */,
 				1C5B79B81A1F9A5200C73EAB /* Supporting Files */,
@@ -218,9 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C69A8E71A2B8AD000F0144E /* ExpandingTextView.swift in Sources */,
-				1C5B79DB1A1F9A7600C73EAB /* Buttons.swift in Sources */,
-				1C5B79BD1A1F9A5200C73EAB /* ViewController.swift in Sources */,
+				1C170C0F1A2EE5C700E8C8C2 /* CBProgressView.swift in Sources */,
+				1CE2AAB21A2E399F0003BAFD /* CBViews.swift in Sources */,
+				1C69A8E71A2B8AD000F0144E /* CBTextViews.swift in Sources */,
+				1C5B79DB1A1F9A7600C73EAB /* CBButton.swift in Sources */,
+				1C5B79BD1A1F9A5200C73EAB /* TestController.swift in Sources */,
 				1C5B79BB1A1F9A5200C73EAB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

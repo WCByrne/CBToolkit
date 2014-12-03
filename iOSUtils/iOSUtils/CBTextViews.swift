@@ -10,15 +10,58 @@ import Foundation
 import UIKit
 
 
-protocol ExpandingTextViewDelegate {
-    func expendingTextViewDidChangeSize(textView: ExpandingTextView)
+
+
+@IBDesignable class SFTextField : UITextField {
+    
+    @IBInspectable var textInset: CGFloat = 0
+    @IBInspectable var cornerRadius: CGFloat = 0 {
+        didSet {
+            self.layer.cornerRadius = cornerRadius
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet { self.layer.borderWidth = borderWidth }
+    }
+    @IBInspectable var borderColor: UIColor! = UIColor(white: 1, alpha: 0.5) {
+        didSet { self.layer.borderColor = borderColor.CGColor }
+    }
+    
+    @IBInspectable var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
+        didSet {
+            if (placeholder != nil) {
+                attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName : font])
+            }
+        }
+    }
+    
+    override var placeholder: String? {
+        didSet {
+            attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName : font])
+        }
+    }
+    
+    
+    override func editingRectForBounds(bounds: CGRect) -> CGRect {
+        return CGRectInset(bounds, textInset, 0)
+    }
+    
+    override func textRectForBounds(bounds: CGRect) -> CGRect {
+        return CGRectInset(bounds, textInset, 0)
+        
+    }
+    
 }
 
 
 
-@IBDesignable class ExpandingTextView: UITextView {
-    
-    var sizeDelegate: ExpandingTextViewDelegate?
+
+
+
+
+
+@IBDesignable class CBTextView: UITextView {
     
     @IBInspectable var minimumHeight: CGFloat = 35
     @IBInspectable var maximumHeight: CGFloat = 100
@@ -68,10 +111,11 @@ protocol ExpandingTextViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
-    
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
+    }
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     override func willMoveToSuperview(newSuperview: UIView?) {
@@ -100,29 +144,17 @@ protocol ExpandingTextViewDelegate {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        
         self.textDidChange()
     }
     
-    
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    
-    
-    
-    
+
     
     func didBeginEditing() {
         if self.text == placeholder {
             self.text = ""
         }
-        
         self.textColor = normalTextColor
     }
-    
     
     
     func didEndEditing() {
@@ -149,17 +181,6 @@ protocol ExpandingTextViewDelegate {
         
         self.layoutIfNeeded()
         self.superview?.layoutIfNeeded()
-        
-        if self.delegate != nil {
-            self.sizeDelegate?.expendingTextViewDidChangeSize(self)
-        }
     }
-    
-    
-    
-    
-    
-    
-    
     
 }
