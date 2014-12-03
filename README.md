@@ -1,23 +1,43 @@
-iOS-Utils
+CBToolkit
 =========
 
 
-iOS-Utils is a collection of simple UI features for iOS. They are easily customizable and easy to implement. 
+CBToolkit is a collection of simple UI features for iOS. They are easily customizable and easy to implement. 
 
 
-BouncyButtonView
-
-This is a simple take on UIButton with the flexibility to use any UIView. Set the class of a UIView in a storyboard or XIB to BouncyButtonView and it will react to touches. You can customize the shrink scale directly from the IB. 
-
-Handing touches is done via completion blocks. Add onTouchUp and onTouchDown blocks as needed. 
-
-The onTouchUp block must return a boolean to indicate if the button should Pop. This is good for things such as a like button to give some cool feedback. 
-
-You can also customize the popScale in IB. Generally, the bigger the view the closer shrinkScale and popScale should be to 1.
+<img src="CBToolkitVideo.gif">
 
 
+<h1>CBButton</h1>
 
-ExpandingTextView
+• Bouncy
+• Pop When Selected
+• Damping
+• Shrink Scale
+• Pop Scale
+• Corner Radius
+• Border color/width
+
+A highly customizable button that can be used with any UIView. Just change the class in IB to CBButton.
+
+You can connect IBActions just like any UIButton to handle selection events. 
+
+Turn bounce on/off or change the damping right in IB. You can also customize the popScale in IB. Generally, the bigger the view the closer shrinkScale and popScale should be to 1.
+
+
+
+<h1>CBViews</h1>
+
+CBView - Rounded corners
+CBShadowView - Shadow
+CBBorderView - Optional borders for each side of a view with insets.
+
+Add shadows or rounded corners to views right in IB. No more outlets just to adjust these simple settings. CBView gives your easy rounded corner capability and CBShadowView, shadows. Due to the need to clip to bounds for corner radius these are seperate type. For a RoundedView with a shadow embed CBView inside a CBShadowView.
+
+CBBorderView can be used to put borders on specific sides of a view. (See the dark top border on composer area in the video.)
+
+
+<h1>CBTextView</h1>
 
 A very easy to use UITextView subclass that works like the Messages app. As text changes the height adjusts to fit the text. Your project should use autoLayout.
 
@@ -32,10 +52,7 @@ Customizable Settings
 • borderColor
 • cornerRadius
 
-
-
 Note: to help your layouts in IB, set a height constraint on your textViews container view and select 'remove at runtime'.
-
 
 Things to do
 Better handle placeholder text. - If the place holder text is entered by the user it will get cleared on reFocus. 
