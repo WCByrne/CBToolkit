@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CgQ-P1-OQs" customClass="CBView" customModule="iOSUtils" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CgQ-P1-OQs" customClass="CBShadowView" customModule="iOSUtils" customModuleProvider="target">
                                 <rect key="frame" x="199" y="90" width="200" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi9-Oz-osb" customClass="CBButton" customModule="iOSUtils" customModuleProvider="target">
@@ -129,9 +129,15 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="popWhenSelected" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="popWhenSelected" value="NO"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                         <color key="value" red="0.78569811580000004" green="0.0" blue="0.088839456440000006" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shrinkscale">
+                                        <real key="value" value="0.96999999999999997"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="popScale">
+                                        <real key="value" value="1.3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>

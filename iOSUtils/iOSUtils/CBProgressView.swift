@@ -92,14 +92,14 @@ import UIKit
             if (animated) {
                 var animation = CABasicAnimation(keyPath: "strokeEnd")
                 animation.fromValue = self.progress == 0 ? 0 : nil;
-                animation.toValue = NSNumber(float: Float(progress + startPosition))
+                animation.toValue = NSNumber(float: Float(progress))
                 animation.duration = 1;
                 self.progressLayer.strokeEnd = progress + startPosition;
                 self.progressLayer.addAnimation(animation, forKey: "animation")
             } else {
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
-                self.progressLayer.strokeEnd = progress + startPosition;
+                self.progressLayer.strokeEnd = progress;
                 CATransaction.commit()
             }
         } else {

@@ -87,7 +87,7 @@ import UIKit
     
     func popAnimation() {
         
-        UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 0.5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)
             }) { (finished) -> Void in
                 UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: self.damping, initialSpringVelocity: 5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in

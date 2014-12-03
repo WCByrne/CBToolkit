@@ -31,14 +31,6 @@ class ViewController: UIViewController {
     
     @IBAction func buttonOneSelected(sender: CBButton) {
         
-        if sender.selected {
-            progressView.setLineWidth(3, animated: false)
-            progressView.setProgress(1, animated: true)
-        }
-        else {
-            progressView.setProgress(0, animated: false)
-        }
-        
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             if sender.selected {
                 
@@ -53,8 +45,24 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func selectedCircleButton(sender: AnyObject) {
-        progressView.setLineWidth(0, animated: true)
+    @IBAction func selectedCircleButton(sender: CBButton) {
+        
+        if sender.selected {
+            progressView.setProgress(1, animated: true)
+            var delay = dispatch_time(DISPATCH_TIME_NOW, Int64(0.85 * Double(NSEC_PER_SEC)))
+            dispatch_after(delay, dispatch_get_main_queue(), {
+                    sender.popAnimation()
+                    self.progressView.setLineWidth(0, animated: true)
+            });
+        }
+        else {
+            progressView.setProgress(0, animated: false)
+            progressView.setLineWidth(3, animated: false)
+        }
+        
+        
+
+        
     }
     
     

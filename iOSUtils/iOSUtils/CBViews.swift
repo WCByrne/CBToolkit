@@ -12,7 +12,30 @@ import UIKit
 
 
 
+
 @IBDesignable class CBView: UIView {
+    
+    @IBInspectable var cornerRadius: CGFloat = 0 {
+        didSet { self.layer.cornerRadius = cornerRadius }
+    }
+    @IBInspectable var borderWidth: CGFloat = 0 {
+        didSet { self.layer.borderWidth = borderWidth }
+    }
+    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
+        didSet { self.layer.borderColor = borderColor.CGColor }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.clipsToBounds = true
+    }
+    
+}
+
+
+
+
+@IBDesignable class CBShadowView: UIView {
 
     
     @IBInspectable var shadowColor: UIColor = UIColor.blackColor() {
@@ -59,31 +82,14 @@ import UIKit
     override func layoutSubviews() {
         super.layoutSubviews()
         
-//        if useShadowPath {
-//            self.layer.shadowPath = UIBezierPath(rect: self.frame).CGPath
-//        }
+        if useShadowPath {
+            self.layer.shadowPath = UIBezierPath(rect: self.frame).CGPath
+        }
     }
 }
 
 
-@IBDesignable class CBRoundedView: UIView {
-    
-    @IBInspectable var cornerRadius: CGFloat = 0 {
-        didSet { self.layer.cornerRadius = cornerRadius }
-    }
-    @IBInspectable var borderWidth: CGFloat = 0 {
-        didSet { self.layer.borderWidth = borderWidth }
-    }
-    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
-        didSet { self.layer.borderColor = borderColor.CGColor }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.clipsToBounds = true
-    }
 
-}
 
 
 
