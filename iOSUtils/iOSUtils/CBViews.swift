@@ -1,9 +1,9 @@
 //
-//  BorderViews.swift
-//  MobileMenu
+//  CBViews.swift
+//  CBToolkit
 //
 //  Created by Wes Byrne on 10/22/14.
-//  Copyright (c) 2014 Type 2 Designs. All rights reserved.
+//  Copyright (c) 2014 WCBMedia. All rights reserved.
 //
 
 import Foundation

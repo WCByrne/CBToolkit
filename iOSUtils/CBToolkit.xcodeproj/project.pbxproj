@@ -31,14 +31,14 @@
 
 /* Begin PBXFileReference section */
 		1C170C0E1A2EE5C700E8C8C2 /* CBProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgressView.swift; sourceTree = "<group>"; };
-		1C5B79B51A1F9A5200C73EAB /* iOSUtils.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSUtils.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C5B79B51A1F9A5200C73EAB /* CBToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5B79B91A1F9A5200C73EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5B79BA1A1F9A5200C73EAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C5B79BC1A1F9A5200C73EAB /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		1C5B79BF1A1F9A5200C73EAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1C5B79C11A1F9A5200C73EAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1C5B79C41A1F9A5200C73EAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		1C5B79CA1A1F9A5200C73EAB /* iOSUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C5B79CA1A1F9A5200C73EAB /* CBToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBToolkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5B79CF1A1F9A5200C73EAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5B79D01A1F9A5200C73EAB /* iOSUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSUtilsTests.swift; sourceTree = "<group>"; };
 		1C5B79DA1A1F9A7600C73EAB /* CBButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBButton.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 		1C5B79AC1A1F9A5200C73EAB = {
 			isa = PBXGroup;
 			children = (
-				1C5B79B71A1F9A5200C73EAB /* iOSUtils */,
+				1C5B79B71A1F9A5200C73EAB /* CBToolkit */,
 				1C5B79CD1A1F9A5200C73EAB /* iOSUtilsTests */,
 				1C5B79B61A1F9A5200C73EAB /* Products */,
 			);
@@ -76,26 +76,24 @@
 		1C5B79B61A1F9A5200C73EAB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1C5B79B51A1F9A5200C73EAB /* iOSUtils.app */,
-				1C5B79CA1A1F9A5200C73EAB /* iOSUtilsTests.xctest */,
+				1C5B79B51A1F9A5200C73EAB /* CBToolkit.app */,
+				1C5B79CA1A1F9A5200C73EAB /* CBToolkitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1C5B79B71A1F9A5200C73EAB /* iOSUtils */ = {
+		1C5B79B71A1F9A5200C73EAB /* CBToolkit */ = {
 			isa = PBXGroup;
 			children = (
-				1C5B79BA1A1F9A5200C73EAB /* AppDelegate.swift */,
-				1C5B79BC1A1F9A5200C73EAB /* TestController.swift */,
-				1C5B79BE1A1F9A5200C73EAB /* Main.storyboard */,
+				1C61B4741A2F6B8100CF5480 /* Test */,
 				1C5B79DA1A1F9A7600C73EAB /* CBButton.swift */,
 				1C69A8E61A2B8AD000F0144E /* CBTextViews.swift */,
 				1CE2AAB11A2E399F0003BAFD /* CBViews.swift */,
 				1C170C0E1A2EE5C700E8C8C2 /* CBProgressView.swift */,
 				1C5B79C11A1F9A5200C73EAB /* Images.xcassets */,
-				1C5B79C31A1F9A5200C73EAB /* LaunchScreen.xib */,
 				1C5B79B81A1F9A5200C73EAB /* Supporting Files */,
 			);
+			name = CBToolkit;
 			path = iOSUtils;
 			sourceTree = "<group>";
 		};
@@ -124,12 +122,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		1C61B4741A2F6B8100CF5480 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				1C5B79C31A1F9A5200C73EAB /* LaunchScreen.xib */,
+				1C5B79BA1A1F9A5200C73EAB /* AppDelegate.swift */,
+				1C5B79BC1A1F9A5200C73EAB /* TestController.swift */,
+				1C5B79BE1A1F9A5200C73EAB /* Main.storyboard */,
+			);
+			name = Test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1C5B79B41A1F9A5200C73EAB /* iOSUtils */ = {
+		1C5B79B41A1F9A5200C73EAB /* CBToolkit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C5B79D41A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "iOSUtils" */;
+			buildConfigurationList = 1C5B79D41A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "CBToolkit" */;
 			buildPhases = (
 				1C5B79B11A1F9A5200C73EAB /* Sources */,
 				1C5B79B21A1F9A5200C73EAB /* Frameworks */,
@@ -139,14 +148,14 @@
 			);
 			dependencies = (
 			);
-			name = iOSUtils;
+			name = CBToolkit;
 			productName = iOSUtils;
-			productReference = 1C5B79B51A1F9A5200C73EAB /* iOSUtils.app */;
+			productReference = 1C5B79B51A1F9A5200C73EAB /* CBToolkit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1C5B79C91A1F9A5200C73EAB /* iOSUtilsTests */ = {
+		1C5B79C91A1F9A5200C73EAB /* CBToolkitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C5B79D71A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "iOSUtilsTests" */;
+			buildConfigurationList = 1C5B79D71A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "CBToolkitTests" */;
 			buildPhases = (
 				1C5B79C61A1F9A5200C73EAB /* Sources */,
 				1C5B79C71A1F9A5200C73EAB /* Frameworks */,
@@ -157,9 +166,9 @@
 			dependencies = (
 				1C5B79CC1A1F9A5200C73EAB /* PBXTargetDependency */,
 			);
-			name = iOSUtilsTests;
+			name = CBToolkitTests;
 			productName = iOSUtilsTests;
-			productReference = 1C5B79CA1A1F9A5200C73EAB /* iOSUtilsTests.xctest */;
+			productReference = 1C5B79CA1A1F9A5200C73EAB /* CBToolkitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -180,7 +189,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1C5B79B01A1F9A5200C73EAB /* Build configuration list for PBXProject "iOSUtils" */;
+			buildConfigurationList = 1C5B79B01A1F9A5200C73EAB /* Build configuration list for PBXProject "CBToolkit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -193,8 +202,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1C5B79B41A1F9A5200C73EAB /* iOSUtils */,
-				1C5B79C91A1F9A5200C73EAB /* iOSUtilsTests */,
+				1C5B79B41A1F9A5200C73EAB /* CBToolkit */,
+				1C5B79C91A1F9A5200C73EAB /* CBToolkitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -246,7 +255,7 @@
 /* Begin PBXTargetDependency section */
 		1C5B79CC1A1F9A5200C73EAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1C5B79B41A1F9A5200C73EAB /* iOSUtils */;
+			target = 1C5B79B41A1F9A5200C73EAB /* CBToolkit */;
 			targetProxy = 1C5B79CB1A1F9A5200C73EAB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -356,7 +365,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = iOSUtils/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CBToolkit;
 			};
 			name = Debug;
 		};
@@ -366,7 +375,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = iOSUtils/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CBToolkit;
 			};
 			name = Release;
 		};
@@ -384,7 +393,7 @@
 				);
 				INFOPLIST_FILE = iOSUtilsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CBToolkitTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSUtils.app/iOSUtils";
 			};
 			name = Debug;
@@ -399,7 +408,7 @@
 				);
 				INFOPLIST_FILE = iOSUtilsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CBToolkitTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOSUtils.app/iOSUtils";
 			};
 			name = Release;
@@ -407,7 +416,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1C5B79B01A1F9A5200C73EAB /* Build configuration list for PBXProject "iOSUtils" */ = {
+		1C5B79B01A1F9A5200C73EAB /* Build configuration list for PBXProject "CBToolkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C5B79D21A1F9A5200C73EAB /* Debug */,
@@ -416,7 +425,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C5B79D41A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "iOSUtils" */ = {
+		1C5B79D41A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "CBToolkit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C5B79D51A1F9A5200C73EAB /* Debug */,
@@ -425,7 +434,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1C5B79D71A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "iOSUtilsTests" */ = {
+		1C5B79D71A1F9A5200C73EAB /* Build configuration list for PBXNativeTarget "CBToolkitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1C5B79D81A1F9A5200C73EAB /* Debug */,

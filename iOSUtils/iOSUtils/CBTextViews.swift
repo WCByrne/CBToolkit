@@ -1,6 +1,6 @@
 //
-//  ExpandingTextView.swift
-//  iOSUtils
+//  CBTextViews.swift
+//  CBToolkit
 //
 //  Created by Wes Byrne on 11/30/14.
 //  Copyright (c) 2014 WCBMedia. All rights reserved.

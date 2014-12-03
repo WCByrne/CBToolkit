@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1C5B79B41A1F9A5200C73EAB"
-               BuildableName = "iOSUtils.app"
-               BlueprintName = "iOSUtils"
-               ReferencedContainer = "container:iOSUtils.xcodeproj">
+               BuildableName = "CBToolkit.app"
+               BlueprintName = "CBToolkit"
+               ReferencedContainer = "container:CBToolkit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1C5B79C91A1F9A5200C73EAB"
-               BuildableName = "iOSUtilsTests.xctest"
-               BlueprintName = "iOSUtilsTests"
-               ReferencedContainer = "container:iOSUtils.xcodeproj">
+               BuildableName = "CBToolkitTests.xctest"
+               BlueprintName = "CBToolkitTests"
+               ReferencedContainer = "container:CBToolkit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1C5B79C91A1F9A5200C73EAB"
-               BuildableName = "iOSUtilsTests.xctest"
-               BlueprintName = "iOSUtilsTests"
-               ReferencedContainer = "container:iOSUtils.xcodeproj">
+               BuildableName = "CBToolkitTests.xctest"
+               BlueprintName = "CBToolkitTests"
+               ReferencedContainer = "container:CBToolkit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1C5B79B41A1F9A5200C73EAB"
-            BuildableName = "iOSUtils.app"
-            BlueprintName = "iOSUtils"
-            ReferencedContainer = "container:iOSUtils.xcodeproj">
+            BuildableName = "CBToolkit.app"
+            BlueprintName = "CBToolkit"
+            ReferencedContainer = "container:CBToolkit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1C5B79B41A1F9A5200C73EAB"
-            BuildableName = "iOSUtils.app"
-            BlueprintName = "iOSUtils"
-            ReferencedContainer = "container:iOSUtils.xcodeproj">
+            BuildableName = "CBToolkit.app"
+            BlueprintName = "CBToolkit"
+            ReferencedContainer = "container:CBToolkit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1C5B79B41A1F9A5200C73EAB"
-            BuildableName = "iOSUtils.app"
-            BlueprintName = "iOSUtils"
-            ReferencedContainer = "container:iOSUtils.xcodeproj">
+            BuildableName = "CBToolkit.app"
+            BlueprintName = "CBToolkit"
+            ReferencedContainer = "container:CBToolkit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

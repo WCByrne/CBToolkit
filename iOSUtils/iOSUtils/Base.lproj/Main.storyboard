@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iOSUtils" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CBToolkit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -16,10 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CgQ-P1-OQs" customClass="CBShadowView" customModule="iOSUtils" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CgQ-P1-OQs" customClass="CBShadowView" customModule="CBToolkit" customModuleProvider="target">
                                 <rect key="frame" x="199" y="90" width="200" height="100"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi9-Oz-osb" customClass="CBButton" customModule="iOSUtils" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gi9-Oz-osb" customClass="CBButton" customModule="CBToolkit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBw-5j-9ol">
@@ -79,7 +79,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlv-YQ-kSc" customClass="CBButton" customModule="iOSUtils" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlv-YQ-kSc" customClass="CBButton" customModule="CBToolkit" customModuleProvider="target">
                                 <rect key="frame" x="250" y="240" width="100" height="100"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_proile" translatesAutoresizingMaskIntoConstraints="NO" id="8PE-mS-zhO">
@@ -89,7 +89,7 @@
                                             <constraint firstAttribute="height" constant="70" id="ca2-LD-K77"/>
                                         </constraints>
                                     </imageView>
-                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yeT-G9-Cbp" customClass="CBProgressView" customModule="iOSUtils" customModuleProvider="target">
+                                    <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="yeT-G9-Cbp" customClass="CBProgressView" customModule="CBToolkit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
@@ -144,10 +144,10 @@
                                     <action selector="selectedCircleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Opw-yD-yJB"/>
                                 </connections>
                             </view>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDV-HB-ueU" customClass="CBBorderView" customModule="iOSUtils" customModuleProvider="target">
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDV-HB-ueU" customClass="CBBorderView" customModule="CBToolkit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="555" width="600" height="45"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oc3-sJ-lui" customClass="CBTextView" customModule="iOSUtils" customModuleProvider="target">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oc3-sJ-lui" customClass="CBTextView" customModule="CBToolkit" customModuleProvider="target">
                                         <rect key="frame" x="5" y="5" width="590" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>

@@ -1,6 +1,6 @@
 //
 //  CBControls.swift
-//  iOSUtils
+//  CBToolkit
 //
 //  Created by Wes Byrne on 12/3/14.
 //  Copyright (c) 2014 WCBMedia. All rights reserved.
