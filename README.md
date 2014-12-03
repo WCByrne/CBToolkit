@@ -9,13 +9,13 @@ CBToolkit is a collection of simple UI features for iOS. They are easily customi
 
 <h1>CBButton</h1>
 
-• Bouncy </br>
-• Pop When Selected </br>
-• Damping </br>
-• Shrink Scale </br>
-• Pop Scale </br>
-• Corner Radius </br>
-• Border color/width </br>
+* Bouncy
+* Pop When Selected 
+* Damping
+* Shrink Scale
+* Pop Scale
+* Corner Radius
+* Border color/width
 
 
 A highly customizable button that can be used with any UIView. Just change the class in IB to CBButton.
@@ -28,9 +28,9 @@ Turn bounce on/off or change the damping right in IB. You can also customize the
 
 <h1>CBViews</h1>
 
-• CBView - Rounded corners </br>
-• CBShadowView - Shadow </br>
-• CBBorderView - Optional borders for each side of a view with insets.
+* CBView - Rounded corners </br>
+* CBShadowView - Shadow </br>
+* CBBorderView - Optional borders for each side of a view with insets.
 
 Add shadows or rounded corners to views right in IB. No more outlets just to adjust these simple settings. CBView gives your easy rounded corner capability and CBShadowView, shadows. Due to the need to clip to bounds for corner radius these are seperate type. For a RoundedView with a shadow embed CBView inside a CBShadowView.
 
@@ -44,13 +44,13 @@ A very easy to use UITextView subclass that works like the Messages app. As text
 I recommend putting the textView in a UIView. Set the textView with the desired constraints to each side of the container. The container should have a given width or attached left and right to it's parent. Make sure the container does not define it's own height. 
 
 Customizable Settings
-• minimumHeight </br>
-• maximumHeight </br>
-• placeholderText </br>
-• placeholderColor </br>
-• normalTextColor </br>
-• borderColor </br>
-• cornerRadius
+* minimumHeight </br>
+* maximumHeight </br>
+* placeholderText </br>
+* placeholderColor </br>
+* normalTextColor </br>
+* borderColor </br>
+* cornerRadius
 
 Note: to help your layouts in IB, set a height constraint on your textViews container view and select 'remove at runtime'.
 
