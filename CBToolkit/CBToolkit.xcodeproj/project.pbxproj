@@ -7,20 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C22B4E41A42139300433125 /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22B4E31A42139300433125 /* CBImageView.swift */; };
+		1C22B4E61A42144000433125 /* CBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22B4E51A42144000433125 /* CBTextField.swift */; };
+		1C24F8891A5B21EE00050D21 /* CBDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C24F8881A5B21EE00050D21 /* CBDateUtils.swift */; };
 		1C5003391A2F799E002D191D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5003381A2F799E002D191D /* AppDelegate.swift */; };
 		1C5003401A2F799E002D191D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C50033F1A2F799E002D191D /* Images.xcassets */; };
 		1C5003431A2F799E002D191D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C5003411A2F799E002D191D /* LaunchScreen.xib */; };
-		1C50034F1A2F799F002D191D /* CBToolkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50034E1A2F799F002D191D /* CBToolkitTests.swift */; };
 		1C50035C1A2F79C8002D191D /* CBButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5003581A2F79C8002D191D /* CBButton.swift */; };
 		1C50035D1A2F79C8002D191D /* CBTextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5003591A2F79C8002D191D /* CBTextViews.swift */; };
 		1C50035E1A2F79C8002D191D /* CBViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50035A1A2F79C8002D191D /* CBViews.swift */; };
 		1C50035F1A2F79C8002D191D /* CBProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C50035B1A2F79C8002D191D /* CBProgressView.swift */; };
 		1C5003611A2F79D1002D191D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C5003601A2F79D1002D191D /* Main.storyboard */; };
 		1C5003631A2F79D9002D191D /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5003621A2F79D9002D191D /* TestController.swift */; };
+		1C5003A11A2F8DEB002D191D /* CBToolkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5003A01A2F8DEB002D191D /* CBToolkitTests.swift */; };
+		1C75C0491A423266001696A4 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1C75C0481A423266001696A4 /* Info.plist */; };
+		1C7999E01A33FF080020D7C5 /* CBPhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7999DF1A33FF080020D7C5 /* CBPhotoFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1C5003491A2F799F002D191D /* PBXContainerItemProxy */ = {
+		1C5003A21A2F8DEB002D191D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1C50032B1A2F799E002D191D /* Project object */;
 			proxyType = 1;
@@ -29,21 +34,38 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1C50038E1A2F8CC2002D191D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		1C22B4E31A42139300433125 /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
+		1C22B4E51A42144000433125 /* CBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTextField.swift; sourceTree = "<group>"; };
+		1C24F8881A5B21EE00050D21 /* CBDateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDateUtils.swift; sourceTree = "<group>"; };
 		1C5003331A2F799E002D191D /* CBToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C5003371A2F799E002D191D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1C5003381A2F799E002D191D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C50033F1A2F799E002D191D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1C5003421A2F799E002D191D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		1C5003481A2F799F002D191D /* CBToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBToolkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1C50034D1A2F799F002D191D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1C50034E1A2F799F002D191D /* CBToolkitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBToolkitTests.swift; sourceTree = "<group>"; };
 		1C5003581A2F79C8002D191D /* CBButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBButton.swift; sourceTree = "<group>"; };
 		1C5003591A2F79C8002D191D /* CBTextViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTextViews.swift; sourceTree = "<group>"; };
 		1C50035A1A2F79C8002D191D /* CBViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBViews.swift; sourceTree = "<group>"; };
 		1C50035B1A2F79C8002D191D /* CBProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgressView.swift; sourceTree = "<group>"; };
 		1C5003601A2F79D1002D191D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		1C5003621A2F79D9002D191D /* TestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
+		1C50039C1A2F8DEB002D191D /* CBToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBToolkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C50039F1A2F8DEB002D191D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C5003A01A2F8DEB002D191D /* CBToolkitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBToolkitTests.swift; sourceTree = "<group>"; };
+		1C75C0481A423266001696A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C7999DF1A33FF080020D7C5 /* CBPhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhotoFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +76,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C5003451A2F799F002D191D /* Frameworks */ = {
+		1C5003991A2F8DEB002D191D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -68,7 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				1C5003351A2F799E002D191D /* CBToolkit */,
-				1C50034B1A2F799F002D191D /* CBToolkitTests */,
+				1C50039D1A2F8DEB002D191D /* CBToolkitTests */,
 				1C5003341A2F799E002D191D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				1C5003331A2F799E002D191D /* CBToolkit.app */,
-				1C5003481A2F799F002D191D /* CBToolkitTests.xctest */,
+				1C50039C1A2F8DEB002D191D /* CBToolkitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,7 +111,6 @@
 				1C5003411A2F799E002D191D /* LaunchScreen.xib */,
 				1C5003601A2F79D1002D191D /* Main.storyboard */,
 				1C5003621A2F79D9002D191D /* TestController.swift */,
-				1C5003641A2F79E3002D191D /* Toolkit */,
 				1C5003361A2F799E002D191D /* Supporting Files */,
 			);
 			path = CBToolkit;
@@ -98,38 +119,43 @@
 		1C5003361A2F799E002D191D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1C5003641A2F79E3002D191D /* CBToolkit */,
 				1C50033F1A2F799E002D191D /* Images.xcassets */,
-				1C5003371A2F799E002D191D /* Info.plist */,
+				1C75C0481A423266001696A4 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		1C50034B1A2F799F002D191D /* CBToolkitTests */ = {
+		1C5003641A2F79E3002D191D /* CBToolkit */ = {
 			isa = PBXGroup;
 			children = (
-				1C50034E1A2F799F002D191D /* CBToolkitTests.swift */,
-				1C50034C1A2F799F002D191D /* Supporting Files */,
+				1C5003581A2F79C8002D191D /* CBButton.swift */,
+				1C22B4E51A42144000433125 /* CBTextField.swift */,
+				1C5003591A2F79C8002D191D /* CBTextViews.swift */,
+				1C50035A1A2F79C8002D191D /* CBViews.swift */,
+				1C50035B1A2F79C8002D191D /* CBProgressView.swift */,
+				1C7999DF1A33FF080020D7C5 /* CBPhotoFetcher.swift */,
+				1C22B4E31A42139300433125 /* CBImageView.swift */,
+				1C24F8881A5B21EE00050D21 /* CBDateUtils.swift */,
+			);
+			name = CBToolkit;
+			sourceTree = "<group>";
+		};
+		1C50039D1A2F8DEB002D191D /* CBToolkitTests */ = {
+			isa = PBXGroup;
+			children = (
+				1C5003A01A2F8DEB002D191D /* CBToolkitTests.swift */,
+				1C50039E1A2F8DEB002D191D /* Supporting Files */,
 			);
 			path = CBToolkitTests;
 			sourceTree = "<group>";
 		};
-		1C50034C1A2F799F002D191D /* Supporting Files */ = {
+		1C50039E1A2F8DEB002D191D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1C50034D1A2F799F002D191D /* Info.plist */,
+				1C50039F1A2F8DEB002D191D /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1C5003641A2F79E3002D191D /* Toolkit */ = {
-			isa = PBXGroup;
-			children = (
-				1C5003581A2F79C8002D191D /* CBButton.swift */,
-				1C5003591A2F79C8002D191D /* CBTextViews.swift */,
-				1C50035A1A2F79C8002D191D /* CBViews.swift */,
-				1C50035B1A2F79C8002D191D /* CBProgressView.swift */,
-			);
-			name = Toolkit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +168,7 @@
 				1C50032F1A2F799E002D191D /* Sources */,
 				1C5003301A2F799E002D191D /* Frameworks */,
 				1C5003311A2F799E002D191D /* Resources */,
+				1C50038E1A2F8CC2002D191D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,22 +179,22 @@
 			productReference = 1C5003331A2F799E002D191D /* CBToolkit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1C5003471A2F799F002D191D /* CBToolkitTests */ = {
+		1C50039B1A2F8DEB002D191D /* CBToolkitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1C5003551A2F799F002D191D /* Build configuration list for PBXNativeTarget "CBToolkitTests" */;
+			buildConfigurationList = 1C5003A41A2F8DEB002D191D /* Build configuration list for PBXNativeTarget "CBToolkitTests" */;
 			buildPhases = (
-				1C5003441A2F799F002D191D /* Sources */,
-				1C5003451A2F799F002D191D /* Frameworks */,
-				1C5003461A2F799F002D191D /* Resources */,
+				1C5003981A2F8DEB002D191D /* Sources */,
+				1C5003991A2F8DEB002D191D /* Frameworks */,
+				1C50039A1A2F8DEB002D191D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1C50034A1A2F799F002D191D /* PBXTargetDependency */,
+				1C5003A31A2F8DEB002D191D /* PBXTargetDependency */,
 			);
 			name = CBToolkitTests;
 			productName = CBToolkitTests;
-			productReference = 1C5003481A2F799F002D191D /* CBToolkitTests.xctest */;
+			productReference = 1C50039C1A2F8DEB002D191D /* CBToolkitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +209,7 @@
 					1C5003321A2F799E002D191D = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					1C5003471A2F799F002D191D = {
+					1C50039B1A2F8DEB002D191D = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 1C5003321A2F799E002D191D;
 					};
@@ -202,7 +229,7 @@
 			projectRoot = "";
 			targets = (
 				1C5003321A2F799E002D191D /* CBToolkit */,
-				1C5003471A2F799F002D191D /* CBToolkitTests */,
+				1C50039B1A2F8DEB002D191D /* CBToolkitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -214,11 +241,12 @@
 			files = (
 				1C5003611A2F79D1002D191D /* Main.storyboard in Resources */,
 				1C5003431A2F799E002D191D /* LaunchScreen.xib in Resources */,
+				1C75C0491A423266001696A4 /* Info.plist in Resources */,
 				1C5003401A2F799E002D191D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C5003461A2F799F002D191D /* Resources */ = {
+		1C50039A1A2F8DEB002D191D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -232,30 +260,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C24F8891A5B21EE00050D21 /* CBDateUtils.swift in Sources */,
 				1C50035C1A2F79C8002D191D /* CBButton.swift in Sources */,
 				1C5003391A2F799E002D191D /* AppDelegate.swift in Sources */,
 				1C50035F1A2F79C8002D191D /* CBProgressView.swift in Sources */,
 				1C5003631A2F79D9002D191D /* TestController.swift in Sources */,
 				1C50035D1A2F79C8002D191D /* CBTextViews.swift in Sources */,
+				1C7999E01A33FF080020D7C5 /* CBPhotoFetcher.swift in Sources */,
 				1C50035E1A2F79C8002D191D /* CBViews.swift in Sources */,
+				1C22B4E41A42139300433125 /* CBImageView.swift in Sources */,
+				1C22B4E61A42144000433125 /* CBTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C5003441A2F799F002D191D /* Sources */ = {
+		1C5003981A2F8DEB002D191D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1C50034F1A2F799F002D191D /* CBToolkitTests.swift in Sources */,
+				1C5003A11A2F8DEB002D191D /* CBToolkitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1C50034A1A2F799F002D191D /* PBXTargetDependency */ = {
+		1C5003A31A2F8DEB002D191D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1C5003321A2F799E002D191D /* CBToolkit */;
-			targetProxy = 1C5003491A2F799F002D191D /* PBXContainerItemProxy */;
+			targetProxy = 1C5003A21A2F8DEB002D191D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -355,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CBToolkit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -365,12 +398,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CBToolkit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
-		1C5003561A2F799F002D191D /* Debug */ = {
+		1C5003A51A2F8DEB002D191D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -389,7 +423,7 @@
 			};
 			name = Debug;
 		};
-		1C5003571A2F799F002D191D /* Release */ = {
+		1C5003A61A2F8DEB002D191D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -423,14 +457,16 @@
 				1C5003541A2F799F002D191D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		1C5003551A2F799F002D191D /* Build configuration list for PBXNativeTarget "CBToolkitTests" */ = {
+		1C5003A41A2F8DEB002D191D /* Build configuration list for PBXNativeTarget "CBToolkitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1C5003561A2F799F002D191D /* Debug */,
-				1C5003571A2F799F002D191D /* Release */,
+				1C5003A51A2F8DEB002D191D /* Debug */,
+				1C5003A61A2F8DEB002D191D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

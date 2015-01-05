@@ -12,7 +12,6 @@ import UIKit
 
 
 
-
 @IBDesignable class CBView: UIView {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
@@ -36,7 +35,7 @@ import UIKit
 
 
 @IBDesignable class CBShadowView: UIView {
-
+    
     
     @IBInspectable var shadowColor: UIColor = UIColor.blackColor() {
         didSet { self.layer.shadowColor = shadowColor.CGColor }
@@ -96,8 +95,6 @@ import UIKit
 
 
 
-
-
 @IBDesignable class CBBorderView: UIView {
     
     @IBInspectable var topBorder: Bool = false
@@ -142,6 +139,59 @@ import UIKit
             CGContextAddLineToPoint(context, self.bounds.size.width - rightInset, self.frame.size.height);
             CGContextStrokePath(context);
         }
+    }
+}
+
+
+
+
+
+@IBDesignable class CBGradientView: CBBorderView {
+    
+    @IBInspectable var topColor: UIColor! = UIColor(white: 0, alpha: 0.2)
+    @IBInspectable var middleColor: UIColor?
+    @IBInspectable var bottomColor: UIColor! = UIColor(white: 0, alpha: 0.0)
+    
+    @IBInspectable var topLocation: CGFloat = 0.25
+    @IBInspectable var middleLocation: CGFloat = 0.5
+    @IBInspectable var bottomLocation: CGFloat = 0.75
+    
+     override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
+        
+        var context = UIGraphicsGetCurrentContext();
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB();
+        var locations: [CGFloat]!
+        
+        if (middleColor == nil) {
+            locations = [topLocation, bottomLocation];
+        }
+        else {
+            locations = [topLocation, middleLocation, bottomLocation];
+        }
+        
+        var colors: [UIColor]!
+        if (middleColor != nil) {
+            colors = [topColor, middleColor!, bottomColor];
+        }
+        else {
+            colors = [topColor, bottomColor];
+        }
+        
+        let gradientColors = colors.map {(color: UIColor!) -> AnyObject! in return color.CGColor as AnyObject! } as NSArray
+        let gradient = CGGradientCreateWithColors(colorSpace, gradientColors, locations);
+        
+        var startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+        var endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+        
+        CGContextSaveGState(context);
+        CGContextAddRect(context, rect);
+        CGContextClip(context);
+        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+        CGContextRestoreGState(context);
+        
+        
     }
 }
 

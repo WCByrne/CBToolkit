@@ -12,49 +12,6 @@ import UIKit
 
 
 
-@IBDesignable class SFTextField : UITextField {
-    
-    @IBInspectable var textInset: CGFloat = 0
-    @IBInspectable var cornerRadius: CGFloat = 0 {
-        didSet {
-            self.layer.cornerRadius = cornerRadius
-        }
-    }
-    
-    @IBInspectable var borderWidth: CGFloat = 0 {
-        didSet { self.layer.borderWidth = borderWidth }
-    }
-    @IBInspectable var borderColor: UIColor! = UIColor(white: 1, alpha: 0.5) {
-        didSet { self.layer.borderColor = borderColor.CGColor }
-    }
-    
-    @IBInspectable var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
-        didSet {
-            if (placeholder != nil) {
-                attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName : font])
-            }
-        }
-    }
-    
-    override var placeholder: String? {
-        didSet {
-            attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName : font])
-        }
-    }
-    
-    
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, textInset, 0)
-    }
-    
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, textInset, 0)
-        
-    }
-    
-}
-
-
 
 
 
@@ -63,7 +20,26 @@ import UIKit
 
 @IBDesignable class CBTextView: UITextView {
     
-    @IBInspectable var minimumHeight: CGFloat = 35
+    @IBInspectable var autoExpand: Bool  = false {
+        didSet {
+            if autoExpand {
+                if heightConstraint == nil {
+                    heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: minimumHeight)
+                    self.addConstraint(heightConstraint!)
+                    self.layoutIfNeeded()
+                }
+            }
+            else if heightConstraint != nil {
+                self.removeConstraint(self.heightConstraint!)
+                self.heightConstraint = nil
+            }
+        }
+    }
+    @IBInspectable var minimumHeight: CGFloat = 35 {
+        didSet {
+            self.textDidChange()
+        }
+    }
     @IBInspectable var maximumHeight: CGFloat = 100
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
@@ -102,6 +78,16 @@ import UIKit
     }
     
     var heightConstraint: NSLayoutConstraint?
+    var currentText: String! {
+        get {
+            if self.text == self.placeholder {
+                return ""
+            }
+            return self.text
+        }
+    }
+    
+    
     
     /********************************************************************************
     / Initialization
@@ -118,19 +104,19 @@ import UIKit
         super.init(coder: aDecoder)
     }
     
-    override func willMoveToSuperview(newSuperview: UIView?) {
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.setTranslatesAutoresizingMaskIntoConstraints(false)
         
+    }
+    
+    override func willMoveToSuperview(newSuperview: UIView?) {
+        super.willMoveToSuperview(newSuperview)
         if newSuperview == nil {
             NSNotificationCenter.defaultCenter().removeObserver(self)
         }
         else {
-            
-            self.setTranslatesAutoresizingMaskIntoConstraints(false)
-            if heightConstraint == nil {
-                heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: minimumHeight)
-                self.addConstraint(heightConstraint!)
-            }
-            
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange", name: UITextViewTextDidChangeNotification, object: self)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBeginEditing", name: UITextViewTextDidBeginEditingNotification, object: self)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEndEditing", name: UITextViewTextDidEndEditingNotification, object: self)
@@ -138,6 +124,9 @@ import UIKit
             if self.text.isEmpty {
                 self.text = placeholder
                 self.textColor = placeholderColor
+            }
+            else {
+                self.textColor = normalTextColor
             }
         }
     }
@@ -147,7 +136,7 @@ import UIKit
         self.textDidChange()
     }
     
-
+    
     
     func didBeginEditing() {
         if self.text == placeholder {
@@ -164,19 +153,26 @@ import UIKit
         }
     }
     
-    
     func textDidChange() {
         
         var size = self.contentSize
-        
-        if size.height > maximumHeight {
-            heightConstraint!.constant = maximumHeight
-        }
-        else if size.height < minimumHeight {
-            heightConstraint!.constant = minimumHeight
+        if text == placeholder {
+            self.textColor = self.placeholderColor
         }
         else {
-            heightConstraint!.constant = size.height
+            self.textColor = self.normalTextColor
+        }
+        
+        if !autoExpand || self.heightConstraint == nil { return }
+        
+        if size.height >= maximumHeight {
+            heightConstraint!.constant = maximumHeight
+        }
+        else if size.height <= minimumHeight {
+            heightConstraint?.constant = minimumHeight
+        }
+        else {
+            heightConstraint?.constant = size.height
         }
         
         self.layoutIfNeeded()

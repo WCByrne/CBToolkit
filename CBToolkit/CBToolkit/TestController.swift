@@ -16,6 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textView: CBTextView!
     
+    @IBOutlet weak var testView: UIView!
+    @IBOutlet weak var activityIndicator: CBActivityIndicator!
+    
+    var date: NSDate = NSDate(timeIntervalSinceNow: -60*60*24*8)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +29,8 @@ class ViewController: UIViewController {
         
         colorChangeButton.backgroundColor = UIColor.clearColor()
         colorChangeButton.layer.backgroundColor = UIColor.whiteColor().CGColor
+        
+        textView.text = date.relativeDayFromNow(CBRelativeDateStyle.FutureWeek, includeTime: true)
         
     }
 
@@ -40,6 +47,17 @@ class ViewController: UIViewController {
                 sender.layer.backgroundColor = UIColor.whiteColor().CGColor
             }
         })
+        
+        if activityIndicator.animating {
+            activityIndicator.stopAnimating()
+        }
+        else {
+            activityIndicator.startAnimating()
+        }
+
+        date = date.dateByAddingTimeInterval(60*5)
+        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.SurroundingWeeks)
+        
     }
     
     
@@ -57,6 +75,9 @@ class ViewController: UIViewController {
             progressView.setProgress(0, animated: false)
             progressView.setLineWidth(3, animated: false)
         }
+        
+        date = date.dateByAddingTimeInterval(60*60)
+        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.TodayOnly)
     }
     
     
@@ -66,6 +87,9 @@ class ViewController: UIViewController {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         self.textView.resignFirstResponder()
+        
+        date = date.dateByAddingTimeInterval(60*60*6)
+        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.SurroundingWeeks)
     }
     
     

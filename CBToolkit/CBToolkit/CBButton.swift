@@ -17,7 +17,7 @@ import UIKit
     
     @IBInspectable var damping: CGFloat = 0.3
     
-    @IBInspectable var shrinkscale: CGFloat = 0.9
+    @IBInspectable var shrinkscale: CGFloat = 0.95
     @IBInspectable var popScale: CGFloat = 1.2
     
     
