@@ -60,6 +60,9 @@ class CBPhoneNumber {
         if baseString.length == 0 {
             return baseString
         }
+        else if baseString.length > 11 {
+            return baseString
+        }
         
         var  prefix: String? = baseString.substringToIndex(1)
         var string: NSString! = baseString
@@ -68,10 +71,6 @@ class CBPhoneNumber {
         }
         else {
             string = baseString.substringFromIndex(1)
-        }
-        
-        if string.length > 10 {
-            string = baseString.substringToIndex(10)
         }
         
         let length = string.length
