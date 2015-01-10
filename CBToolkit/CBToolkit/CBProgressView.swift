@@ -12,17 +12,8 @@ import UIKit
 
 
 @IBDesignable class CBProgressView : UIControl {
-
     
-    let progressLayer: CAShapeLayer = CAShapeLayer()
-    
-//    @IBInspectable var progressColor: UIColor = UIColor.blueColor() {
-//        didSet {
-//            progressLayer.strokeColor = progressColor.CGColor
-//            self.setNeedsDisplay()
-//        }
-//    }
-    
+    private let progressLayer: CAShapeLayer = CAShapeLayer()
     
     @IBInspectable var lineWidth: CGFloat = 2 {
         didSet { progressLayer.lineWidth = lineWidth }
@@ -123,7 +114,7 @@ import UIKit
 
 class CBActivityIndicator : UIControl {
     
-    let progressLayer: CAShapeLayer = CAShapeLayer()
+    private let progressLayer: CAShapeLayer = CAShapeLayer()
     
     
     @IBInspectable var animating: Bool = false

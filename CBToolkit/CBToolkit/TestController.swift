@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var colorChangeButton: CBButtonView!
     
@@ -30,7 +30,8 @@ class ViewController: UIViewController {
         colorChangeButton.backgroundColor = UIColor.clearColor()
         colorChangeButton.layer.backgroundColor = UIColor.whiteColor().CGColor
         
-        textView.text = date.relativeDayFromNow(CBRelativeDateStyle.FutureWeek, includeTime: true)
+//        textView.text = date.relativeDayFromNow(CBRelativeDateStyle.FutureWeek, includeTime: true)
+        textView.delegate = self
         
     }
 
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
         }
 
         date = date.dateByAddingTimeInterval(60*5)
-        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.SurroundingWeeks)
+//        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.SurroundingWeeks)
         
     }
     
@@ -77,7 +78,26 @@ class ViewController: UIViewController {
         }
         
         date = date.dateByAddingTimeInterval(60*60)
-        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.TodayOnly)
+//        textView.text = date.relativeTimeFromNow(CBRelativeDateStyle.TodayOnly)
+    }
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        
+        var phone = CBPhoneNumber(string: textView.text)
+        
+        if range.length == 1 &&  text.isEmpty {
+            phone.removeLastCharacter()
+        }
+        else {
+            var newText = NSString(string: textView.text)
+            newText = newText.stringByReplacingCharactersInRange(range, withString: text)
+            phone = CBPhoneNumber(string: newText)
+        }
+
+        if phone.isPatiallyValid() {
+            textView.text = phone.formattedNumber()
+        }
+        
+        return false
     }
     
     

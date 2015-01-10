@@ -10,6 +10,7 @@
 		1C22B4E41A42139300433125 /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22B4E31A42139300433125 /* CBImageView.swift */; };
 		1C22B4E61A42144000433125 /* CBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C22B4E51A42144000433125 /* CBTextField.swift */; };
 		1C24F8891A5B21EE00050D21 /* CBDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C24F8881A5B21EE00050D21 /* CBDateUtils.swift */; };
+		1C3309481A60990D001034F6 /* CBPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3309471A60990D001034F6 /* CBPhoneNumber.swift */; };
 		1C5003391A2F799E002D191D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5003381A2F799E002D191D /* AppDelegate.swift */; };
 		1C5003401A2F799E002D191D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C50033F1A2F799E002D191D /* Images.xcassets */; };
 		1C5003431A2F799E002D191D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C5003411A2F799E002D191D /* LaunchScreen.xib */; };
@@ -51,6 +52,7 @@
 		1C22B4E31A42139300433125 /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
 		1C22B4E51A42144000433125 /* CBTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBTextField.swift; sourceTree = "<group>"; };
 		1C24F8881A5B21EE00050D21 /* CBDateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDateUtils.swift; sourceTree = "<group>"; };
+		1C3309471A60990D001034F6 /* CBPhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhoneNumber.swift; sourceTree = "<group>"; };
 		1C5003331A2F799E002D191D /* CBToolkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBToolkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C5003381A2F799E002D191D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1C50033F1A2F799E002D191D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				1C7999DF1A33FF080020D7C5 /* CBPhotoFetcher.swift */,
 				1C22B4E31A42139300433125 /* CBImageView.swift */,
 				1C24F8881A5B21EE00050D21 /* CBDateUtils.swift */,
+				1C3309471A60990D001034F6 /* CBPhoneNumber.swift */,
 			);
 			name = CBToolkit;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C24F8891A5B21EE00050D21 /* CBDateUtils.swift in Sources */,
+				1C3309481A60990D001034F6 /* CBPhoneNumber.swift in Sources */,
 				1C50035C1A2F79C8002D191D /* CBButton.swift in Sources */,
 				1C5003391A2F799E002D191D /* AppDelegate.swift in Sources */,
 				1C50035F1A2F79C8002D191D /* CBProgressView.swift in Sources */,
