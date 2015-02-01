@@ -12,15 +12,9 @@ import UIKit
 
 
 
-
-
-
-
-
-
-@IBDesignable class CBTextView: UITextView {
+@IBDesignable public class CBTextView: UITextView {
     
-    @IBInspectable var autoExpand: Bool  = false {
+    @IBInspectable public var autoExpand: Bool  = false {
         didSet {
             if autoExpand {
                 if heightConstraint == nil {
@@ -35,24 +29,26 @@ import UIKit
             }
         }
     }
-    @IBInspectable var minimumHeight: CGFloat = 35 {
+    @IBInspectable public var minimumHeight: CGFloat = 35 {
+        
+        
         didSet {
             self.textDidChange()
         }
     }
-    @IBInspectable var maximumHeight: CGFloat = 100
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable public var maximumHeight: CGFloat = 100
+    @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
-    @IBInspectable var borderColor: UIColor = UIColor.clearColor() {
+    @IBInspectable public var borderColor: UIColor = UIColor.clearColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
     
-    @IBInspectable var placeholderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable public var placeholderColor: UIColor = UIColor.lightGrayColor() {
         didSet {
             if self.text == placeholder {
                 self.textColor = placeholderColor
@@ -60,7 +56,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var normalTextColor: UIColor = UIColor.darkGrayColor() {
+    @IBInspectable public var normalTextColor: UIColor = UIColor.darkGrayColor() {
         didSet {
             if self.text != placeholder {
                 self.textColor = normalTextColor
@@ -68,7 +64,7 @@ import UIKit
         }
     }
     
-    @IBInspectable var placeholder: String = "" {
+    @IBInspectable public var placeholder: String = "" {
         didSet {
             if self.text.isEmpty {
                 self.text = placeholder
@@ -77,8 +73,8 @@ import UIKit
         }
     }
     
-    var heightConstraint: NSLayoutConstraint?
-    var currentText: String! {
+    public var heightConstraint: NSLayoutConstraint?
+    public var currentText: String! {
         get {
             if self.text == self.placeholder {
                 return ""
@@ -100,18 +96,18 @@ import UIKit
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
     }
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
         
     }
     
-    override func willMoveToSuperview(newSuperview: UIView?) {
+    override public func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
         if newSuperview == nil {
             NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -131,14 +127,16 @@ import UIKit
         }
     }
     
-    override func didMoveToSuperview() {
+    override public func didMoveToSuperview() {
         super.didMoveToSuperview()
-        self.textDidChange()
+        if self.superview != nil {
+            self.textDidChange()
+        }
     }
     
     
     
-    func didBeginEditing() {
+     public func didBeginEditing() {
         if self.text == placeholder {
             self.text = ""
         }
@@ -146,16 +144,21 @@ import UIKit
     }
     
     
-    func didEndEditing() {
+     public func didEndEditing() {
         if self.text.isEmpty {
             self.text = placeholder
             self.textColor = placeholderColor
         }
     }
     
-    func textDidChange() {
+     public func textDidChange() {
         
         var size = self.contentSize
+        
+        if self.text.isEmpty && !self.isFirstResponder() {
+            self.text = placeholder
+        }
+        
         if text == placeholder {
             self.textColor = self.placeholderColor
         }

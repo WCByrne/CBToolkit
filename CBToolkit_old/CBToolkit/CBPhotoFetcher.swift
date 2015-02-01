@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 
-public typealias ImageFetchCallback = (image: UIImage?, error: NSError?)->Void
+typealias ImageFetchCallback = (image: UIImage?, error: NSError?)->Void
 
 
-public class CBPhotoFetcher: NSObject {
+class CBPhotoFetcher: NSObject {
     
     private var imageCache: NSCache! = NSCache()
     private var pendingFetches: [String: [ImageFetchCallback]]! = [:]
@@ -31,21 +31,21 @@ public class CBPhotoFetcher: NSObject {
     
     
     
-    public func clearCache() {
+    func clearCache() {
         imageCache.removeAllObjects()
     }
     
-    public func cancelAll() {
+    func cancelAll() {
         pendingFetches.removeAll(keepCapacity: false)
     }
     
     // Clears any callbacks for the url
     // The image will continue to load and cache for next time
-    public func cancelFetchForUrl(url: String) {
+    func cancelFetchForUrl(url: String) {
         pendingFetches.removeValueForKey(url)
     }
     
-    public func fetchImageAtURL(imgUrl: String, completion: ImageFetchCallback!) {
+    func fetchImageAtURL(imgUrl: String, completion: ImageFetchCallback!) {
         
         assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
         

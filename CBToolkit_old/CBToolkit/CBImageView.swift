@@ -10,26 +10,26 @@ import Foundation
 import UIKit
 
 
-@IBDesignable public class CBImageView : UIImageView {
+@IBDesignable class CBImageView : UIImageView {
     
     
     // The corner radius of the view. Animateable
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
     
     /// the width of the image views layer border. Animateable
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
     
     /// The color of the border. Animateable
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
     /// Tint the image with the views tintColor property
-    @IBInspectable public var tinted: Bool = false {
+    @IBInspectable var tinted: Bool = false {
         didSet {
             if self.image != nil {
                 self.image = self.image?.imageWithRenderingMode(tinted ? UIImageRenderingMode.AlwaysTemplate : UIImageRenderingMode.Automatic)
@@ -37,12 +37,12 @@ import UIKit
         }
     }
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true
     }
     
-    @IBInspectable public var placeholderImage: UIImage? {
+    @IBInspectable var placeholderImage: UIImage? {
         didSet {
             if self.image == nil && placeholderImage != nil {
                 if tinted {
@@ -55,7 +55,7 @@ import UIKit
         }
     }
     
-    override public var image: UIImage? {
+    override var image: UIImage? {
         didSet {
             if image == nil && self.placeholderImage != nil {
                 if tinted {
@@ -73,7 +73,7 @@ import UIKit
     Set a new image respecting tinting if needed
     :param: newImage An image to display in this image view
     */
-     public func setImage(newImage: UIImage?) {
+    func setImage(newImage: UIImage?) {
         if image == nil || tinted == false {
             self.image = nil
         }

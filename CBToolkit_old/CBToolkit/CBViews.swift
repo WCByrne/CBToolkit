@@ -12,19 +12,19 @@ import UIKit
 
 
 
-@IBDesignable public class CBView: UIView {
+@IBDesignable class CBView: UIView {
     
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true
     }
@@ -34,41 +34,41 @@ import UIKit
 
 
 
-@IBDesignable public class CBShadowView: UIView {
+@IBDesignable class CBShadowView: UIView {
     
     
-    @IBInspectable public var shadowColor: UIColor = UIColor.blackColor() {
+    @IBInspectable var shadowColor: UIColor = UIColor.blackColor() {
         didSet { self.layer.shadowColor = shadowColor.CGColor }
     }
     
-    @IBInspectable public var shadowRadius: CGFloat = 0 {
+    @IBInspectable var shadowRadius: CGFloat = 0 {
         didSet { self.layer.shadowRadius = shadowRadius }
     }
     
-    @IBInspectable public var shadowOpacity: Float = 0 {
+    @IBInspectable var shadowOpacity: Float = 0 {
         didSet { self.layer.shadowOpacity = shadowOpacity }
     }
-    @IBInspectable public var shadowOffset: CGSize = CGSizeZero {
+    @IBInspectable var shadowOffset: CGSize = CGSizeZero {
         didSet { self.layer.shadowOffset = shadowOffset }
     }
     
-    @IBInspectable public var shouldRasterize: Bool = false {
+    @IBInspectable var shouldRasterize: Bool = false {
         didSet {
             self.layer.shouldRasterize = shouldRasterize
             self.layer.rasterizationScale = UIScreen.mainScreen().scale
         }
     }
     
-    @IBInspectable public var useShadowPath: Bool = false
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable var useShadowPath: Bool = false
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         self.layer.shadowColor = shadowColor.CGColor
@@ -78,7 +78,7 @@ import UIKit
     }
     
     
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         
         if useShadowPath {
@@ -95,23 +95,23 @@ import UIKit
 
 
 
-@IBDesignable public class CBBorderView: UIView {
+@IBDesignable class CBBorderView: UIView {
     
-    @IBInspectable public var topBorder: Bool = false
-    @IBInspectable public var bottomBorder: Bool = false
-    @IBInspectable public var leftBorder: Bool = false
-    @IBInspectable public var rightBorder: Bool = false
+    @IBInspectable var topBorder: Bool = false
+    @IBInspectable var bottomBorder: Bool = false
+    @IBInspectable var leftBorder: Bool = false
+    @IBInspectable var rightBorder: Bool = false
     
-    @IBInspectable public var leftInset: CGFloat = 0
-    @IBInspectable public var rightInset: CGFloat = 0
-    @IBInspectable public var topInset: CGFloat = 0
-    @IBInspectable public var bottomInset: CGFloat = 0
+    @IBInspectable var leftInset: CGFloat = 0
+    @IBInspectable var rightInset: CGFloat = 0
+    @IBInspectable var topInset: CGFloat = 0
+    @IBInspectable var bottomInset: CGFloat = 0
     
-    @IBInspectable public var borderWidth: CGFloat = 1
-    @IBInspectable public var borderColor: UIColor = UIColor.whiteColor()
+    @IBInspectable var borderWidth: CGFloat = 1
+    @IBInspectable var borderColor: UIColor = UIColor.whiteColor()
 
     
-    override public func drawRect(rect: CGRect) {
+    override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         var context = UIGraphicsGetCurrentContext();
@@ -146,17 +146,17 @@ import UIKit
 
 
 
-@IBDesignable public class CBGradientView: CBBorderView {
+@IBDesignable class CBGradientView: CBBorderView {
     
-    @IBInspectable public var topColor: UIColor! = UIColor(white: 0, alpha: 1)
-    @IBInspectable public var middleColor: UIColor?
-    @IBInspectable public var bottomColor: UIColor! = UIColor(white: 0.2, alpha: 1)
+    @IBInspectable var topColor: UIColor! = UIColor(white: 0, alpha: 1)
+    @IBInspectable var middleColor: UIColor?
+    @IBInspectable var bottomColor: UIColor! = UIColor(white: 0.2, alpha: 1)
     
-    @IBInspectable public var topLocation: CGFloat = 0
-    @IBInspectable public var middleLocation: CGFloat = 0.5
-    @IBInspectable public var bottomLocation: CGFloat = 1
+    @IBInspectable var topLocation: CGFloat = 0
+    @IBInspectable var middleLocation: CGFloat = 0.5
+    @IBInspectable var bottomLocation: CGFloat = 1
     
-     override public func drawRect(rect: CGRect) {
+     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         var context = UIGraphicsGetCurrentContext();

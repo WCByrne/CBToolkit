@@ -105,28 +105,6 @@ extension NSDate {
     }
     
     
-    
-    
-    /*!
-    Get the weekday for the date. Sunday == 1, Saturday == 7
-    :returns: An Int for the day of the week sunday == 1, saturday == 7
-    */
-    func weekday() -> Int {
-        var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
-        return comps.weekday
-    }
-    
-    
-    func secondsSinceMidnight() -> Int {
-        var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
-        return ((comps.hour * 60) + comps.minute) * 60
-    }
-    
-    
-    
-    
-    
-    
     /*!
     Determines if the supplied date is on the same calendar day as the reciever. This is useful to create 'today' labels.
     :param: compareDate A date to compare the calendar of the reciever to.

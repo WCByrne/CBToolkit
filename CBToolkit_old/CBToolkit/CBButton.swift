@@ -10,29 +10,29 @@ import Foundation
 import UIKit
 
 
-@IBDesignable public class CBButtonView: UIControl {
+@IBDesignable class CBButtonView: UIControl {
     
-    @IBInspectable public var bouncy: Bool = true
-    @IBInspectable public var popWhenSelected: Bool = false
+    @IBInspectable var bouncy: Bool = true
+    @IBInspectable var popWhenSelected: Bool = false
     
-    @IBInspectable public var damping: CGFloat = 0.3
+    @IBInspectable var damping: CGFloat = 0.3
     
-    @IBInspectable public var shrinkscale: CGFloat = 0.95
-    @IBInspectable public var popScale: CGFloat = 1.2
+    @IBInspectable var shrinkscale: CGFloat = 0.95
+    @IBInspectable var popScale: CGFloat = 1.2
     
     
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
     
-    override public var highlighted: Bool {
+    override var highlighted: Bool {
         didSet {
             if bouncy == true {
                 if highlighted {
@@ -45,7 +45,7 @@ import UIKit
         }
     }
     
-    override public var selected: Bool {
+    override var selected: Bool {
         didSet {
             if bouncy {
                 if selected {
@@ -61,7 +61,7 @@ import UIKit
     }
     
     
-    override public func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         if self.touchInside {
             self.selected = !self.selected
         }
@@ -84,7 +84,7 @@ import UIKit
     }
     
     
-    public func popAnimation() {
+    func popAnimation() {
         
         UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)
@@ -101,28 +101,28 @@ import UIKit
 
 
 
-@IBDesignable public class CBButton: UIButton {
+@IBDesignable class CBButton: UIButton {
     
-    @IBInspectable public var bouncy: Bool = true
-    @IBInspectable public var popWhenSelected: Bool = false
+    @IBInspectable var bouncy: Bool = true
+    @IBInspectable var popWhenSelected: Bool = false
     
-    @IBInspectable public var damping: CGFloat = 0.3
+    @IBInspectable var damping: CGFloat = 0.3
     
-    @IBInspectable public var shrinkscale: CGFloat = 0.9
-    @IBInspectable public var popScale: CGFloat = 1.2
+    @IBInspectable var shrinkscale: CGFloat = 0.9
+    @IBInspectable var popScale: CGFloat = 1.2
     
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
     
-    override public var highlighted: Bool {
+    override var highlighted: Bool {
         didSet {
             if bouncy == true {
                 if highlighted {
@@ -135,7 +135,7 @@ import UIKit
         }
     }
     
-    override public var selected: Bool {
+    override var selected: Bool {
         didSet {
             if bouncy {
                 if selected {
@@ -166,7 +166,7 @@ import UIKit
     }
     
     
-    public func popAnimation() {
+    func popAnimation() {
         
         UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)

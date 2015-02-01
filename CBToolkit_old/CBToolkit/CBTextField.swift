@@ -11,29 +11,29 @@ import UIKit
 
 
 
-@IBDesignable public class CBTextField : UITextField {
+@IBDesignable class CBTextField : UITextField {
     
-    @IBInspectable public var textInset: CGPoint = CGPointZero
-    @IBInspectable public var hideCaret: Bool = false
-    @IBInspectable public var cornerRadius: CGFloat = 0 {
+    @IBInspectable var textInset: CGPoint = CGPointZero
+    @IBInspectable var hideCaret: Bool = false
+    @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
     
     
-    @IBInspectable public var bottomBorder: Bool = false {
+    @IBInspectable var bottomBorder: Bool = false {
         didSet {
             self.layer.borderWidth = 0
             self.layer.borderColor = UIColor.clearColor().CGColor
         }
     }
-    @IBInspectable public var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
             if bottomBorder == false {
                 self.layer.borderWidth = borderWidth
             }
         }
     }
-    @IBInspectable public var borderColor: UIColor! = UIColor(white: 0, alpha: 0.5) {
+    @IBInspectable var borderColor: UIColor! = UIColor(white: 0, alpha: 0.5) {
         didSet {
             if bottomBorder == false {
                 self.layer.borderColor = borderColor.CGColor
@@ -41,7 +41,7 @@ import UIKit
         }
     }
     
-    @IBInspectable public var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
+    @IBInspectable var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
         didSet {
             if (placeholder != nil) {
                 attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName : font])
@@ -50,7 +50,7 @@ import UIKit
         }
     }
     
-    override public var placeholder: String? {
+    override var placeholder: String? {
         didSet {
             if placeholder != nil {
                 attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor,
@@ -61,7 +61,7 @@ import UIKit
     }
     
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true
         
@@ -71,22 +71,22 @@ import UIKit
     }
     
         
-    override public func caretRectForPosition(position: UITextPosition!) -> CGRect {
+    override func caretRectForPosition(position: UITextPosition!) -> CGRect {
         if (hideCaret) { return CGRectZero }
         return super.caretRectForPosition(position)
     }
     
     
     // Text inset
-    override public func editingRectForBounds(bounds: CGRect) -> CGRect {
+    override func editingRectForBounds(bounds: CGRect) -> CGRect {
         return CGRectInset(bounds, textInset.x, textInset.y)
     }
     
-    override public func textRectForBounds(bounds: CGRect) -> CGRect {
+    override func textRectForBounds(bounds: CGRect) -> CGRect {
         return CGRectInset(bounds, textInset.x, textInset.y)
     }
     
-    override public func drawRect(rect: CGRect) {
+    override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         if (bottomBorder) {

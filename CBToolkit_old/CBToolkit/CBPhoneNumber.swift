@@ -7,31 +7,19 @@
 //
 
 import Foundation
-import UIKit
 
- public class CBPhoneNumber {
+
+class CBPhoneNumber {
     
     private var baseString: NSString! = NSString()
-    public var numericString: String! {
+    var numericString: String! {
         get {
             return baseString
         }
     }
     
-    public var isPartiallyValid: Bool {
-        get {
-            return baseString.length <= 11
-        }
-    }
-    
-    
-    public var isValid : Bool {
-        let length = baseString.length
-        return (length == 7 || length >= 10)
-    }
-    
 
-    public init(string : String?) {
+    init(string : String?) {
         if string != nil {
             var string = NSString(string: string!)
             
@@ -41,21 +29,33 @@ import UIKit
     }
     
     
-     public func appendString(string: String!) {
+    func appendString(string: String!) {
         var comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
         var addedString = comps.componentsJoinedByString("")
         baseString = baseString.stringByAppendingString(addedString)
     }
     
     
-     public func removeLastCharacter() {
+    func removeLastCharacter() {
         if baseString.length > 0 {
             baseString = baseString.substringToIndex(baseString.length-1)
         }
     }
     
     
-     public func formattedNumber() -> String! {
+    func isPatiallyValid() -> Bool {
+        return baseString.length <= 11
+        
+    }
+    
+    
+    func isValid() -> Bool {
+        let length = baseString.length
+        return (length == 7 || length >= 10)
+    }
+    
+    
+    func formattedNumber() -> String! {
         
         if baseString.length == 0 {
             return baseString
@@ -115,21 +115,6 @@ import UIKit
         }
         
         return string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-    }
-    
-    
-    
-    public func callNumber() -> Bool {
-        
-        var phoneURL : NSURL = NSURL(string:"telprompt:\(baseString)")!
-        
-        if UIApplication.sharedApplication().canOpenURL(phoneURL) {
-            UIApplication.sharedApplication().openURL(phoneURL)
-            return true
-        }
-        
-        return false
-        
     }
     
     

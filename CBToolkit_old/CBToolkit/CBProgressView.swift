@@ -11,22 +11,22 @@ import UIKit
 
 
 
-@IBDesignable public class CBProgressView : UIControl {
+@IBDesignable class CBProgressView : UIControl {
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
     
-    @IBInspectable public var lineWidth: CGFloat = 2 {
+    @IBInspectable var lineWidth: CGFloat = 2 {
         didSet { progressLayer.lineWidth = lineWidth }
     }
     
-    @IBInspectable public var startPosition: CGFloat = 0 {
+    @IBInspectable var startPosition: CGFloat = 0 {
         didSet { progressLayer.strokeStart = startPosition }
     }
     
-    @IBInspectable public var progress: CGFloat = 0.5
+    @IBInspectable var progress: CGFloat = 0.5
     
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         progressLayer.strokeColor = tintColor.CGColor
@@ -39,7 +39,7 @@ import UIKit
     }
     
     
-    override public func layoutSubviews() {
+    override func layoutSubviews() {
         super.layoutSubviews()
         progressLayer.frame = CGRectInset(self.bounds, 0, 0)
         updatePath()
@@ -54,14 +54,14 @@ import UIKit
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
     }
     
-    override public func tintColorDidChange() {
+    override func tintColorDidChange() {
         super.tintColorDidChange()
         
         self.progressLayer.strokeColor = tintColor.CGColor
     }
     
     
-     public func setLineWidth(width: CGFloat, animated: Bool) {
+    func setLineWidth(width: CGFloat, animated: Bool) {
         var animation: CABasicAnimation?
         if animated {
             animation = CABasicAnimation(keyPath: "lineWidth")
@@ -80,7 +80,7 @@ import UIKit
     
     
     
-     public func setProgress(progress: CGFloat, animated: Bool) {
+    func setProgress(progress: CGFloat, animated: Bool) {
         if (progress > 0) {
             if (animated) {
                 var animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -112,32 +112,32 @@ import UIKit
 
 
 
- @IBDesignable public class CBActivityIndicator : UIControl {
+class CBActivityIndicator : UIControl {
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
     
     
-    @IBInspectable public var animating: Bool = false
-    @IBInspectable public var hidesWhenStopped: Bool = true
+    @IBInspectable var animating: Bool = false
+    @IBInspectable var hidesWhenStopped: Bool = true
     
-    @IBInspectable public var lineWidth: CGFloat = 2 {
+    @IBInspectable var lineWidth: CGFloat = 2 {
         didSet { progressLayer.lineWidth = lineWidth }
     }
     
-    @IBInspectable public var rotateDuration: CGFloat = 1 {
+    @IBInspectable var rotateDuration: CGFloat = 1 {
         didSet {
             if progressLayer.animationForKey("spin") != nil {
                 progressLayer.animationForKey("spin").duration = CFTimeInterval(rotateDuration)
             }
         }
     }
-    @IBInspectable public var indicatorSize: CGFloat = 0.5 {
+    @IBInspectable var indicatorSize: CGFloat = 0.5 {
         didSet { self.progressLayer.strokeEnd = indicatorSize }
     }
     
     
     
-    override public func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
         
         self.backgroundColor = UIColor.clearColor()
@@ -161,7 +161,7 @@ import UIKit
     }
     
     
-     public func startAnimating() {
+    func startAnimating() {
         self.progressLayer.removeAllAnimations()
         
         animating = true
@@ -186,7 +186,7 @@ import UIKit
     }
     
     
-     public func stopAnimating() {
+    func stopAnimating() {
         animating = false
  
         if hidesWhenStopped {
@@ -209,7 +209,7 @@ import UIKit
     
     
     
-    override public func tintColorDidChange() {
+    override func tintColorDidChange() {
         super.tintColorDidChange()
         self.progressLayer.strokeColor = tintColor.CGColor
     }

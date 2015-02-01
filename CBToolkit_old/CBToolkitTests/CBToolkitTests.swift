@@ -2,8 +2,8 @@
 //  CBToolkitTests.swift
 //  CBToolkitTests
 //
-//  Created by Wes Byrne on 1/31/15.
-//  Copyright (c) 2015 WCBMedia. All rights reserved.
+//  Created by Wes Byrne on 12/17/14.
+//  Copyright (c) 2014 WCBMedia. All rights reserved.
 //
 
 import UIKit
