@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
     s.name              = "CBToolkit"
     s.version           = "0.0.1"
     s.summary           = "A UI Toolkit for iOS"
-    s.homepage          = "https://github.com/WCByrne/CBToolki"
+    s.homepage          = "https://github.com/WCByrne/CBToolkit"
     s.license           = "MIT"
   
     s.author            = { "wes" => "wesburn@me.com" }
