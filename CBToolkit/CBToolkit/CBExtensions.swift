@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-extension UIViewController {
+public extension UIViewController {
     
     func isModal() -> Bool {
         if self.navigationController == nil {

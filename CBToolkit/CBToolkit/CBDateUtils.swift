@@ -10,7 +10,7 @@ import Foundation
 
 
 
-struct CBRelativeDateStyle {
+public struct CBRelativeDateStyle {
     static let TodayOnly: String = "todayOnly"
     static let SurroundingDays: String = "surroundingOnly"
     static let FutureWeek : String = "futureWeek"
@@ -22,7 +22,7 @@ struct CBRelativeDateStyle {
 
 
 
-extension NSDate {
+public extension NSDate {
     
     
     /*!
