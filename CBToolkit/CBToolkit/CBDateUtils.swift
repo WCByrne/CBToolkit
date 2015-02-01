@@ -31,7 +31,7 @@ public extension NSDate {
     :returns: A new NSDate representing the start of the day for the supplied date
     */
     
-    class func startOfDate(date: NSDate) -> NSDate {
+    class public func startOfDate(date: NSDate) -> NSDate! {
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: date)
         return cal.dateFromComponents(comps)!
@@ -44,7 +44,7 @@ public extension NSDate {
     :returns: A new NSDate representing the end of the day for the suppied date.
     */
     
-    class func endOfDay(date: NSDate) -> NSDate {
+    class public func endOfDay(date: NSDate) -> NSDate! {
         var endDate = date.dateByAddingTimeInterval(60*60*24)
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: date)
@@ -52,13 +52,13 @@ public extension NSDate {
     }
     
     
-    class func startOfWeek(date: NSDate) -> NSDate {
+    class public func startOfWeek(date: NSDate) -> NSDate! {
         var nextWeek = date.dateByAddingTimeInterval(60*60*24*7)
         return NSDate.endOfWeek(nextWeek)
     }
     
     
-    class func endOfWeek(date: NSDate) -> NSDate {
+    class public func endOfWeek(date: NSDate) -> NSDate! {
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.CalendarCalendarUnit |
             NSCalendarUnit.TimeZoneCalendarUnit |
@@ -85,7 +85,7 @@ public extension NSDate {
     :returns: Returns a new NSDate set the the next whole hour from the provided date.
     */
     
-    class func dateForNextHour(date: NSDate) -> NSDate {
+    class public func dateForNextHour(date: NSDate) -> NSDate! {
         
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.CalendarCalendarUnit |
@@ -111,13 +111,13 @@ public extension NSDate {
     Get the weekday for the date. Sunday == 1, Saturday == 7
     :returns: An Int for the day of the week sunday == 1, saturday == 7
     */
-    func weekday() -> Int {
+     public func weekday() -> Int {
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
         return comps.weekday
     }
     
     
-    func secondsSinceMidnight() -> Int {
+     public func secondsSinceMidnight() -> Int {
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
         return ((comps.hour * 60) + comps.minute) * 60
     }
@@ -134,7 +134,7 @@ public extension NSDate {
     */
     
     
-    func isSameDayAsDate(compareDate: NSDate) -> Bool {
+     public func isSameDayAsDate(compareDate: NSDate) -> Bool {
         
         // If they are more than 24 hrs different it can't be the same day
         var timeDiff = self.timeIntervalSinceDate(compareDate)
@@ -154,7 +154,7 @@ public extension NSDate {
     :returns: A boolean indicating if the reciever is sometime today
     */
     
-    func isToday() -> Bool {
+     public func isToday() -> Bool {
         return self.isSameDayAsDate(NSDate())
     }
     
@@ -163,7 +163,7 @@ public extension NSDate {
     :returns: A boolean indicating if the reciever is sometime yesterday
     */
 
-    func isYesterday() -> Bool {
+     public func isYesterday() -> Bool {
         var sometimeYesterday = NSDate(timeIntervalSinceNow: -60*60*24)
         return self.isSameDayAsDate(sometimeYesterday)
     }
@@ -173,7 +173,7 @@ public extension NSDate {
     :returns: A boolean indicating if the reciever is someitme tomorrow
     */
     
-    func isTomorrow() -> Bool {
+     public func isTomorrow() -> Bool {
         var sometimeTomorrow  = NSDate(timeIntervalSinceNow: 60*60*24)
         return self.isSameDayAsDate(sometimeTomorrow)
     }
@@ -181,7 +181,7 @@ public extension NSDate {
     
     
     
-    func relativeTimeFromNow(style: String) -> String {
+     public func relativeTimeFromNow(style: String) -> String {
         
         var timeSinceNow = self.timeIntervalSinceNow
         var formattedString: String = ""
@@ -267,7 +267,7 @@ public extension NSDate {
     
     
     
-    func relativeDayFromNow(style: String, includeTime: Bool) -> String {
+     public func relativeDayFromNow(style: String, includeTime: Bool) -> String {
         
         var timeSinceNow = self.timeIntervalSinceNow
         var formattedString: String = ""
