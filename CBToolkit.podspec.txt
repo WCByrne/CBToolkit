@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
         :git => 'https://github.com/WCByrne/CBToolkit.git',
         :tag => s.version.to_s
     }
-    s.source_files      = ‘CBToolki/*.{swift}’
+    s.source_files      = ‘CBToolkit/CBToolkit/*.{swift}’
     s.requires_arc      = true
 
 end
