@@ -18,7 +18,7 @@ public class CBPhotoFetcher: NSObject {
     private var imageCache: NSCache! = NSCache()
     private var pendingFetches: [String: [ImageFetchCallback]]! = [:]
     
-    class var sharedFetcher : CBPhotoFetcher {
+    public class var sharedFetcher : CBPhotoFetcher {
         struct Static {
             static let instance : CBPhotoFetcher = CBPhotoFetcher()
         }
