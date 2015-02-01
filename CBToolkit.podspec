@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
     }
 
     s.platform          = :ios, '8.0'
-    s.source_files      = 'CBToolkit/CBToolkit/*.{swift}'
+    s.source_files      = 'CBToolkit/CBToolkit/*.swift'
     s.requires_arc      = true
 
 
