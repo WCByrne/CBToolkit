@@ -319,7 +319,7 @@ public extension NSDate {
     }
     
     
-    private func timeString() -> String {
+    public func timeString() -> String {
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
         var hours = comps.hour
         var amPm = "am"
@@ -344,7 +344,7 @@ public extension NSDate {
     
     
     
-    private func weekdayForIndex(index: NSInteger) -> String {
+    public func weekdayForIndex(index: NSInteger) -> String {
         
         assert(index <= 7, "CBDateUtils Error:  Index for day of week is invalid")
         
@@ -370,7 +370,7 @@ public extension NSDate {
     }
     
     
-    private func  monthStringForIndex(index : NSInteger) -> String {
+    public func  monthStringForIndex(index : NSInteger) -> String {
         
         assert(index <= 12, "CBDateUtils Error:  Index for day of week is invalid")
         
