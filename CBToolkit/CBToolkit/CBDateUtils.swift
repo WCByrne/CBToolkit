@@ -107,6 +107,15 @@ public class CBDate : NSDate {
     
     
     
+    public class func dateWithHour(hour: Int, minute: Int) -> NSDate! {
+        var cal = NSCalendar.currentCalendar()
+        cal.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        return cal.dateBySettingHour(hour, minute: minute, second: 0, ofDate: NSDate(), options: NSCalendarOptions.MatchFirst)!
+    }
+    
+    
+    
+    
     /*!
     Get the weekday for the date. Sunday == 1, Saturday == 7
     :returns: An Int for the day of the week sunday == 1, saturday == 7
