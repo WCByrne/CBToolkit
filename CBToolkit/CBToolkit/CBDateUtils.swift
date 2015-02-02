@@ -22,7 +22,7 @@ public struct CBRelativeDateStyle {
 
 
 
-public extension NSDate {
+public class CBDate : NSDate {
     
     
     /*!
@@ -54,7 +54,7 @@ public extension NSDate {
     
     class public func startOfWeek(date: NSDate) -> NSDate! {
         var nextWeek = date.dateByAddingTimeInterval(60*60*24*7)
-        return NSDate.endOfWeek(nextWeek)
+        return CBDate.endOfWeek(nextWeek)
     }
     
     
