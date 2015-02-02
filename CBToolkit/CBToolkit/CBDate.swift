@@ -352,7 +352,6 @@ public class CBDate : NSDate {
     }
     
     
-    
     public class func weekdayForIndex(index: NSInteger) -> String {
         
         assert(index <= 7, "CBDateUtils Error:  Index for day of week is invalid")
@@ -374,14 +373,47 @@ public class CBDate : NSDate {
             return "Saturday";
             
         default:
-            return "Error";
+            println("Weekday for index invalid but returning closest day")
+            if index > 7 {
+                return "Saturday"
+            }
+            else {
+                return "Sunday"
+            }
         }
     }
     
     
-    public class func  monthStringForIndex(index : NSInteger) -> String {
+    public class func weekdayShortforIndex(index: NSInteger) -> String {
         
-        assert(index <= 12, "CBDateUtils Error:  Index for day of week is invalid")
+        switch (index) {
+        case 1:
+            return "Sunday";
+        case 2:
+            return "Monday";
+        case 3:
+            return "Tuesday";
+        case 4:
+            return "Wednesday";
+        case 5:
+            return "Thursday";
+        case 6:
+            return "Friday";
+        case 7:
+            return "Saturday";
+            
+        default:
+            if index > 7 {
+                return "Saturday"
+            }
+            else {
+                return "Sunday"
+            }
+        }
+    }
+
+    
+    public class func  monthStringForIndex(index : NSInteger) -> String {
         
         switch (index) {
         case 1:
@@ -410,7 +442,10 @@ public class CBDate : NSDate {
             return "December";
             
         default:
-            return "Error";
+            if index < 1 {
+                return "January"
+            }
+            return "December"
         }
     }
 

@@ -17,7 +17,7 @@
 		1CDBB0191A7D8A8B00D7677B /* CBProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01A1A7D8A8B00D7677B /* CBPhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB01C1A7D8A8B00D7677B /* CBDateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDateUtils.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01D1A7D8A8B00D7677B /* CBPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB0671A7DD82A00D7677B /* CBViews.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00E1A7D8A8B00D7677B /* CBViews.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB0791A7DDCE400D7677B /* CBExtensions.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00A1A7D8A8B00D7677B /* CBExtensions.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,7 +27,7 @@
 		1CDBB07D1A7DDCF700D7677B /* CBProgressView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB07E1A7DDCFA00D7677B /* CBPhotoFetcher.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB07F1A7DDCFD00D7677B /* CBImageView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB0801A7DDCFF00D7677B /* CBDateUtils.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDateUtils.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CDBB0801A7DDCFF00D7677B /* CBDate.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB0811A7DDD0100D7677B /* CBPhoneNumber.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -56,7 +56,7 @@
 		1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBProgressView.swift; sourceTree = "<group>"; };
 		1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhotoFetcher.swift; sourceTree = "<group>"; };
 		1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
-		1CDBB0121A7D8A8B00D7677B /* CBDateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDateUtils.swift; sourceTree = "<group>"; };
+		1CDBB0121A7D8A8B00D7677B /* CBDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDate.swift; sourceTree = "<group>"; };
 		1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhoneNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +109,7 @@
 				1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */,
 				1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */,
 				1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */,
-				1CDBB0121A7D8A8B00D7677B /* CBDateUtils.swift */,
+				1CDBB0121A7D8A8B00D7677B /* CBDate.swift */,
 				1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */,
 				1CDBAFF11A7D8A7200D7677B /* Supporting Files */,
 			);
@@ -152,7 +152,7 @@
 				1CDBB07D1A7DDCF700D7677B /* CBProgressView.swift in Headers */,
 				1CDBB0791A7DDCE400D7677B /* CBExtensions.swift in Headers */,
 				1CDBB07E1A7DDCFA00D7677B /* CBPhotoFetcher.swift in Headers */,
-				1CDBB0801A7DDCFF00D7677B /* CBDateUtils.swift in Headers */,
+				1CDBB0801A7DDCFF00D7677B /* CBDate.swift in Headers */,
 				1CDBB07A1A7DDCE600D7677B /* CBButton.swift in Headers */,
 				1CDBB0811A7DDD0100D7677B /* CBPhoneNumber.swift in Headers */,
 				1CDBB07F1A7DDCFD00D7677B /* CBImageView.swift in Headers */,
@@ -264,7 +264,7 @@
 				1CDBB0151A7D8A8B00D7677B /* CBButton.swift in Sources */,
 				1CDBB0141A7D8A8B00D7677B /* CBExtensions.swift in Sources */,
 				1CDBB01A1A7D8A8B00D7677B /* CBPhotoFetcher.swift in Sources */,
-				1CDBB01C1A7D8A8B00D7677B /* CBDateUtils.swift in Sources */,
+				1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */,
 				1CDBB0161A7D8A8B00D7677B /* CBTextField.swift in Sources */,
 				1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */,
 			);
