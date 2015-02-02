@@ -31,7 +31,7 @@ public class CBDate : NSDate {
     :returns: A new NSDate representing the start of the day for the supplied date
     */
     
-    class public func startOfDate(date: NSDate) -> NSDate! {
+    class public func startOfDay(date: NSDate) -> NSDate! {
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.YearCalendarUnit | NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: date)
         return cal.dateFromComponents(comps)!
