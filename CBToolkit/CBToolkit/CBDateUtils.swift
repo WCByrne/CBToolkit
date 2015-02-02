@@ -252,7 +252,7 @@ public class CBDate : NSDate {
             
             if showWeekday {
                 var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
-                formattedString = "\(weekdayForIndex(comps.weekday)) at \(timeString())"
+                formattedString = "\(CBDate.weekdayForIndex(comps.weekday)) at \(timeString())"
             }
             else {
                 formattedString = "\(dateString()) at \(timeString())"
@@ -294,7 +294,7 @@ public class CBDate : NSDate {
                 
                 if showWeekday {
                     var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
-                    formattedString = "\(weekdayForIndex(comps.weekday))"
+                    formattedString = "\(CBDate.weekdayForIndex(comps.weekday))"
                 }
             }
         }
@@ -314,7 +314,7 @@ public class CBDate : NSDate {
     
     private func dateString() -> String {
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: self)
-        return "\(monthStringForIndex(comps.month)) \(comps.day)"
+        return "\(CBDate.monthStringForIndex(comps.month)) \(comps.day)"
         
     }
     
@@ -344,7 +344,7 @@ public class CBDate : NSDate {
     
     
     
-    public func weekdayForIndex(index: NSInteger) -> String {
+    public class func weekdayForIndex(index: NSInteger) -> String {
         
         assert(index <= 7, "CBDateUtils Error:  Index for day of week is invalid")
         
@@ -370,7 +370,7 @@ public class CBDate : NSDate {
     }
     
     
-    public func  monthStringForIndex(index : NSInteger) -> String {
+    public class func  monthStringForIndex(index : NSInteger) -> String {
         
         assert(index <= 12, "CBDateUtils Error:  Index for day of week is invalid")
         
