@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C32284A1A8009DB00F6EAD2 /* CBExtensions.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00A1A7D8A8B00D7677B /* CBExtensions.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C32284B1A8009DB00F6EAD2 /* CBButton.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00B1A7D8A8B00D7677B /* CBButton.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C32284C1A8009DB00F6EAD2 /* CBTextField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00C1A7D8A8B00D7677B /* CBTextField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C32284D1A8009DB00F6EAD2 /* CBTextView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00D1A7D8A8B00D7677B /* CBTextView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C32284E1A8009DB00F6EAD2 /* CBViews.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00E1A7D8A8B00D7677B /* CBViews.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C32284F1A8009DB00F6EAD2 /* CBProgressView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C3228501A8009DB00F6EAD2 /* CBPhotoFetcher.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C3228511A8009DB00F6EAD2 /* CBImageView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C3228521A8009DB00F6EAD2 /* CBDate.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		1C3228531A8009DB00F6EAD2 /* CBPhoneNumber.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBAFFA1A7D8A7200D7677B /* CBToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CDBAFEE1A7D8A7200D7677B /* CBToolkit.framework */; };
 		1CDBB0011A7D8A7200D7677B /* CBToolkitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0001A7D8A7200D7677B /* CBToolkitTests.swift */; };
 		1CDBB0141A7D8A8B00D7677B /* CBExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB00A1A7D8A8B00D7677B /* CBExtensions.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -19,16 +29,6 @@
 		1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01D1A7D8A8B00D7677B /* CBPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB0671A7DD82A00D7677B /* CBViews.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00E1A7D8A8B00D7677B /* CBViews.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB0791A7DDCE400D7677B /* CBExtensions.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00A1A7D8A8B00D7677B /* CBExtensions.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB07A1A7DDCE600D7677B /* CBButton.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00B1A7D8A8B00D7677B /* CBButton.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB07B1A7DDCEA00D7677B /* CBTextField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00C1A7D8A8B00D7677B /* CBTextField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB07C1A7DDCF100D7677B /* CBTextView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00D1A7D8A8B00D7677B /* CBTextView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB07D1A7DDCF700D7677B /* CBProgressView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB07E1A7DDCFA00D7677B /* CBPhotoFetcher.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB07F1A7DDCFD00D7677B /* CBImageView.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB0801A7DDCFF00D7677B /* CBDate.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
-		1CDBB0811A7DDD0100D7677B /* CBPhoneNumber.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,16 +148,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CDBB0671A7DD82A00D7677B /* CBViews.swift in Headers */,
-				1CDBB07D1A7DDCF700D7677B /* CBProgressView.swift in Headers */,
-				1CDBB0791A7DDCE400D7677B /* CBExtensions.swift in Headers */,
-				1CDBB07E1A7DDCFA00D7677B /* CBPhotoFetcher.swift in Headers */,
-				1CDBB0801A7DDCFF00D7677B /* CBDate.swift in Headers */,
-				1CDBB07A1A7DDCE600D7677B /* CBButton.swift in Headers */,
-				1CDBB0811A7DDD0100D7677B /* CBPhoneNumber.swift in Headers */,
-				1CDBB07F1A7DDCFD00D7677B /* CBImageView.swift in Headers */,
-				1CDBB07B1A7DDCEA00D7677B /* CBTextField.swift in Headers */,
-				1CDBB07C1A7DDCF100D7677B /* CBTextView.swift in Headers */,
+				1C32284A1A8009DB00F6EAD2 /* CBExtensions.swift in Headers */,
+				1C32284B1A8009DB00F6EAD2 /* CBButton.swift in Headers */,
+				1C32284C1A8009DB00F6EAD2 /* CBTextField.swift in Headers */,
+				1C32284D1A8009DB00F6EAD2 /* CBTextView.swift in Headers */,
+				1C32284E1A8009DB00F6EAD2 /* CBViews.swift in Headers */,
+				1C32284F1A8009DB00F6EAD2 /* CBProgressView.swift in Headers */,
+				1C3228501A8009DB00F6EAD2 /* CBPhotoFetcher.swift in Headers */,
+				1C3228511A8009DB00F6EAD2 /* CBImageView.swift in Headers */,
+				1C3228521A8009DB00F6EAD2 /* CBDate.swift in Headers */,
+				1C3228531A8009DB00F6EAD2 /* CBPhoneNumber.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,8 +382,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CBToolkit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -399,8 +401,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = CBToolkit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

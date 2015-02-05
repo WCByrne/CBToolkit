@@ -11,18 +11,18 @@ import Foundation
 
 
 public struct CBRelativeDateStyle {
-    static let TodayOnly: String = "todayOnly"
-    static let SurroundingDays: String = "surroundingOnly"
-    static let FutureWeek : String = "futureWeek"
-    static let PastWeek : String = "pastWeek"
-    static let SurroundingWeeks: String = "surroundingWeek"
+    public static let TodayOnly: String = "todayOnly"
+    public static let SurroundingDays: String = "surroundingOnly"
+    public static let FutureWeek : String = "futureWeek"
+    public static let PastWeek : String = "pastWeek"
+    public static let SurroundingWeeks: String = "surroundingWeek"
 }
 
 
 
 
 
-public class CBDate : NSDate {
+public extension NSDate  {
     
     
     /*!
@@ -53,12 +53,7 @@ public class CBDate : NSDate {
     
     
     class public func startOfWeek(date: NSDate) -> NSDate! {
-        var nextWeek = date.dateByAddingTimeInterval(60*60*24*7)
-        return CBDate.endOfWeek(nextWeek)
-    }
-    
-    
-    class public func endOfWeek(date: NSDate) -> NSDate! {
+        
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.CalendarCalendarUnit |
             NSCalendarUnit.TimeZoneCalendarUnit |
@@ -75,6 +70,13 @@ public class CBDate : NSDate {
         comps.hour = 0
         
         return cal.dateFromComponents(comps)!
+    }
+    
+    
+    class public func endOfWeek(date: NSDate) -> NSDate! {
+        var nextWeek = date.dateByAddingTimeInterval(60*60*24*7)
+        return NSDate.startOfWeek(nextWeek)
+        
     }
     
     
@@ -189,6 +191,12 @@ public class CBDate : NSDate {
     
     
     
+    /*!
+    Creates a string describing the time the date occured relative to now. ex. 'in 1 hour' or '10 minutes ago'.
+    
+    :param: style       A string value of one of the CBRelativeDataStyle values
+    :returns: A string representation of the date relative to now.
+    */
     
      public func relativeTimeFromNow(style: String) -> String {
         
@@ -261,7 +269,7 @@ public class CBDate : NSDate {
             
             if showWeekday {
                 var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
-                formattedString = "\(CBDate.weekdayForIndex(comps.weekday)) at \(timeString())"
+                formattedString = "\(NSDate.weekdayForIndex(comps.weekday)) at \(timeString())"
             }
             else {
                 formattedString = "\(dateString()) at \(timeString())"
@@ -274,6 +282,14 @@ public class CBDate : NSDate {
     
     
     
+    /*!
+    Creates a string describing the when the data occured relative to now. ex. Tomorrow at 2:30pm. If the date is more than a week away the date will be used
+    
+    :param: style       A string value of one of the CBRelativeDataStyle values
+    :param: includeTime Option to include the time in the string or not.
+    
+    :returns: A string representation of the date relative to now.
+    */
     
     
      public func relativeDayFromNow(style: String, includeTime: Bool) -> String {
@@ -303,7 +319,7 @@ public class CBDate : NSDate {
                 
                 if showWeekday {
                     var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
-                    formattedString = "\(CBDate.weekdayForIndex(comps.weekday))"
+                    formattedString = "\(NSDate.weekdayForIndex(comps.weekday))"
                 }
             }
         }
@@ -323,7 +339,7 @@ public class CBDate : NSDate {
     
     private func dateString() -> String {
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.MonthCalendarUnit | NSCalendarUnit.DayCalendarUnit, fromDate: self)
-        return "\(CBDate.monthStringForIndex(comps.month)) \(comps.day)"
+        return "\(NSDate.monthStringForIndex(comps.month)) \(comps.day)"
         
     }
     
@@ -388,26 +404,26 @@ public class CBDate : NSDate {
         
         switch (index) {
         case 1:
-            return "Sunday";
+            return "Sun";
         case 2:
-            return "Monday";
+            return "Mon";
         case 3:
-            return "Tuesday";
+            return "Tue";
         case 4:
-            return "Wednesday";
+            return "Wed";
         case 5:
-            return "Thursday";
+            return "Thur";
         case 6:
-            return "Friday";
+            return "Fri";
         case 7:
-            return "Saturday";
+            return "Sat";
             
         default:
             if index > 7 {
-                return "Saturday"
+                return "Sat"
             }
             else {
-                return "Sunday"
+                return "Sun"
             }
         }
     }

@@ -12,6 +12,7 @@ import UIKit
 
 @IBDesignable public class CBImageView : UIImageView {
     
+    private var imageURL: String?
     
     // The corner radius of the view. Animateable
     @IBInspectable public var cornerRadius: CGFloat = 0 {
@@ -80,8 +81,35 @@ import UIKit
         else if image != nil {
             self.image = newImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         }
+    }
+    
+    
+    
+    public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?) {
         
+        imageURL = imgURL
         
+        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error) -> Void in
+            if imgURL != self.imageURL {
+                return
+            }
+            if image != nil {
+                if completion == nil {
+                    self.image = image
+                }
+                else {
+                    completion!(image:image, error:nil)
+                }
+            }
+            else {
+                if completion == nil {
+                    self.image = nil
+                }
+                else {
+                    completion!(image: nil, error: error)
+                }
+            }
+        })
     }
     
     

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 
-public typealias ImageFetchCallback = (image: UIImage?, error: NSError?)->Void
+public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?)->Void
 
 
 public class CBPhotoFetcher: NSObject {
     
     private var imageCache: NSCache! = NSCache()
-    private var pendingFetches: [String: [ImageFetchCallback]]! = [:]
+    private var pendingFetches: [String: [CBImageFetchCallback]]! = [:]
     
     public class var sharedFetcher : CBPhotoFetcher {
         struct Static {
@@ -45,7 +45,7 @@ public class CBPhotoFetcher: NSObject {
         pendingFetches.removeValueForKey(url)
     }
     
-    public func fetchImageAtURL(imgUrl: String, completion: ImageFetchCallback!) {
+    public func fetchImageAtURL(imgUrl: String, completion: CBImageFetchCallback!) {
         
         assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
         
@@ -60,9 +60,17 @@ public class CBPhotoFetcher: NSObject {
             return
         }
         
+        
+        var url = NSURL(string: imgUrl)
+        if url == nil {
+            println("Error creating URL for image url: \(imgUrl)")
+            completion(image: nil, error: NSError(domain: "SmartReader", code: 0, userInfo: nil))
+            return
+        }
+        
         pendingFetches[imgUrl] = [completion]
         
-        var request = NSURLRequest(URL: NSURL(string: imgUrl)!)
+        var request = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             var image: UIImage? = nil
             var urlStr = request.URL.absoluteString!

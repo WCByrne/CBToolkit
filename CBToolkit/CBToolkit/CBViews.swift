@@ -71,10 +71,24 @@ import UIKit
     override public func awakeFromNib() {
         super.awakeFromNib()
         
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
+        
         self.layer.shadowColor = shadowColor.CGColor
         self.layer.shadowRadius = shadowRadius
         self.layer.shadowOpacity = shadowOpacity
         self.layer.shadowOffset = shadowOffset
+        if shouldRasterize == true {
+            self.layer.shouldRasterize = true
+            self.layer.rasterizationScale = UIScreen.mainScreen().scale
+        }
+        
+        if useShadowPath {
+            var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
+            self.layer.shadowPath = UIBezierPath(rect: rect).CGPath
+        }
+
+        
     }
     
     
@@ -82,7 +96,8 @@ import UIKit
         super.layoutSubviews()
         
         if useShadowPath {
-            self.layer.shadowPath = UIBezierPath(rect: self.frame).CGPath
+            var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
+            self.layer.shadowPath = UIBezierPath(rect: rect).CGPath
         }
     }
 }
