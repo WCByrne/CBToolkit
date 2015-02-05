@@ -129,6 +129,9 @@ public extension NSDate  {
     
     
      public func secondsSinceMidnight() -> Int {
+        
+        
+        
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
         return ((comps.hour * 60) + comps.minute) * 60
     }
