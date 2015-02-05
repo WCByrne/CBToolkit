@@ -129,14 +129,17 @@ public extension NSDate  {
     
     
      public func secondsSinceMidnight() -> Int {
-        
-        
-        
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
         return ((comps.hour * 60) + comps.minute) * 60
     }
     
-    
+    public func absoluteSecondsFromMidnight() -> Int {
+        var cal = NSCalendar.currentCalendar()
+        cal.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        var comps = cal.components(NSCalendarUnit.HourCalendarUnit | NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
+        return ((comps.hour * 60) + comps.minute) * 60
+        
+    }
     
     
     
