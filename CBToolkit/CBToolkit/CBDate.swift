@@ -111,10 +111,53 @@ public extension NSDate  {
     
     public class func dateWithHour(hour: Int, minute: Int) -> NSDate! {
         var cal = NSCalendar.currentCalendar()
+        return cal.dateBySettingHour(hour, minute: minute, second: 0, ofDate: NSDate(), options: NSCalendarOptions.MatchFirst)!
+    }
+    
+    
+    public class func dateWithHour(hour: Int, minute: Int, inTimezone: NSTimeZone?) -> NSDate! {
+        var tz = inTimezone ?? NSTimeZone.localTimeZone()
+        
+        var cal = NSCalendar.currentCalendar()
         cal.timeZone = NSTimeZone(forSecondsFromGMT: 0)
         return cal.dateBySettingHour(hour, minute: minute, second: 0, ofDate: NSDate(), options: NSCalendarOptions.MatchFirst)!
     }
     
+    public class func dateWithHour(hour: Int, minute: Int, weekday: Int, inTimezone: NSTimeZone) -> NSDate! {
+        
+        var tz = inTimezone ?? NSTimeZone.localTimeZone()
+        
+        var cal = NSCalendar.currentCalendar()
+        cal.timeZone = tz
+        
+        var comps = NSDate.currentComps(tz)
+        comps.hour  = hour
+        comps.minute = minute
+        comps.weekday = weekday
+        comps.second = 0
+        
+        return cal.dateFromComponents(comps)!
+    }
+    
+    
+    
+    public class func currentComps(inTimezone: NSTimeZone?) -> NSDateComponents! {
+        
+        var tz = inTimezone ?? NSTimeZone.localTimeZone()
+        var cal = NSCalendar.currentCalendar()
+        cal.timeZone = tz
+        var comps = cal.components(NSCalendarUnit.CalendarCalendarUnit |
+            NSCalendarUnit.YearCalendarUnit |
+            NSCalendarUnit.MonthCalendarUnit |
+            NSCalendarUnit.WeekdayCalendarUnit |
+            NSCalendarUnit.WeekOfYearCalendarUnit |
+            NSCalendarUnit.WeekOfMonthCalendarUnit |
+            NSCalendarUnit.HourCalendarUnit |
+            NSCalendarUnit.MinuteCalendarUnit |
+            NSCalendarUnit.SecondCalendarUnit, fromDate: NSDate())
+        
+        return comps
+    }
     
     
     
@@ -125,6 +168,23 @@ public extension NSDate  {
      public func weekday() -> Int {
         var comps = NSCalendar.currentCalendar().components(NSCalendarUnit.WeekdayCalendarUnit, fromDate: self)
         return comps.weekday
+    }
+    
+    
+    public func hourInTimeZone(inTimezone: NSTimeZone?) -> Int {
+        let tz: NSTimeZone = inTimezone ?? NSTimeZone.localTimeZone()
+        var cal = NSCalendar.currentCalendar()
+        cal.timeZone = tz
+        var comps = cal.components(NSCalendarUnit.HourCalendarUnit, fromDate: self)
+        return comps.hour
+    }
+    
+    public func minuteInTimeZone(inTimezone: NSTimeZone?) -> Int {
+        let tz: NSTimeZone = inTimezone ?? NSTimeZone.localTimeZone()
+        var cal = NSCalendar.currentCalendar()
+        cal.timeZone = tz
+        var comps = cal.components(NSCalendarUnit.MinuteCalendarUnit, fromDate: self)
+        return comps.minute
     }
     
     
@@ -375,8 +435,6 @@ public extension NSDate  {
     
     
     public class func weekdayForIndex(index: NSInteger) -> String {
-        
-        assert(index <= 7, "CBDateUtils Error:  Index for day of week is invalid")
         
         switch (index) {
         case 1:
