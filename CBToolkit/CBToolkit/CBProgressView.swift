@@ -14,6 +14,7 @@ import UIKit
 @IBDesignable public class CBProgressView : UIControl {
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
+    private let backgroundLayer: CAShapeLayer = CAShapeLayer()
     
     @IBInspectable public var lineWidth: CGFloat = 2 {
         didSet { progressLayer.lineWidth = lineWidth }
@@ -36,12 +37,22 @@ import UIKit
         progressLayer.lineWidth = lineWidth
         self.layer.addSublayer(progressLayer)
         
+        backgroundLayer.strokeColor = UIColor(white: 1, alpha: 0.2).CGColor
+        backgroundLayer.strokeStart = 0
+        backgroundLayer.strokeEnd = 1
+        backgroundLayer.fillColor = nil
+        backgroundLayer.lineWidth = lineWidth
+        self.layer.addSublayer(backgroundLayer)
+        
+        self.backgroundColor = UIColor.clearColor()
+        
     }
     
     
     override public func layoutSubviews() {
         super.layoutSubviews()
         progressLayer.frame = CGRectInset(self.bounds, 0, 0)
+        backgroundLayer.frame = CGRectInset(self.bounds, 0, 0)
         updatePath()
     }
     
@@ -52,6 +63,7 @@ import UIKit
         var endAngle = startAngle + CGFloat(2 * M_PI)
         
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
+        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
     }
     
     override public func tintColorDidChange() {
@@ -70,6 +82,7 @@ import UIKit
             animation!.duration = 0.5;
             
         }
+        self.backgroundLayer.lineWidth = width
         self.progressLayer.lineWidth = width
         self.lineWidth = width
         if animation != nil {
