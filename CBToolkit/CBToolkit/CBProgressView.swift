@@ -23,8 +23,10 @@ import UIKit
     @IBInspectable public var startPosition: CGFloat = 0 {
         didSet { progressLayer.strokeStart = startPosition }
     }
-    
     @IBInspectable public var progress: CGFloat = 0.5
+    @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
+        didSet { backgroundLayer.strokeColor = trackColor.CGColor }
+    }
     
     
     override public func awakeFromNib() {
@@ -37,7 +39,7 @@ import UIKit
         progressLayer.lineWidth = lineWidth
         self.layer.addSublayer(progressLayer)
         
-        backgroundLayer.strokeColor = UIColor(white: 1, alpha: 0.2).CGColor
+        backgroundLayer.strokeColor = trackColor.CGColor
         backgroundLayer.strokeStart = 0
         backgroundLayer.strokeEnd = 1
         backgroundLayer.fillColor = nil
