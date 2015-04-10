@@ -73,14 +73,14 @@ public class CBPhotoFetcher: NSObject {
         var request = NSURLRequest(URL: url!)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
             var image: UIImage? = nil
-            var urlStr = request.URL.absoluteString!
+            var urlStr = request.URL!.absoluteString!
             
             if (error == nil) {
                 image = UIImage(data: data)
                 self.imageCache.setObject(image!, forKey: urlStr)
             }
             
-            var callbacks = self.pendingFetches[urlStr]?
+            var callbacks = self.pendingFetches[urlStr]
             if (callbacks == nil) {
                 println("callback not found after fetch for url: \(urlStr)")
                 return

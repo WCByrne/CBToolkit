@@ -14,7 +14,7 @@ import UIKit
     private var baseString: NSString! = NSString()
     public var numericString: String! {
         get {
-            return baseString
+            return baseString as! String
         }
     }
     
@@ -58,10 +58,10 @@ import UIKit
      public func formattedNumber() -> String! {
         
         if baseString.length == 0 {
-            return baseString
+            return baseString as! String
         }
         else if baseString.length > 11 {
-            return baseString
+            return baseString as! String
         }
         
         var  prefix: String? = baseString.substringToIndex(1)

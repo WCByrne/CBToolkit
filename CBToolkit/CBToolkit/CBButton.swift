@@ -60,8 +60,7 @@ import UIKit
         }
     }
     
-    
-    override public func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
         if self.touchInside {
             self.selected = !self.selected
         }

@@ -74,14 +74,14 @@ import UIKit
     Set a new image respecting tinting if needed
     :param: newImage An image to display in this image view
     */
-     public func setImage(newImage: UIImage?) {
-        if image == nil || tinted == false {
-            self.image = nil
-        }
-        else if image != nil {
-            self.image = newImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        }
-    }
+//     public func setImage(newImage: UIImage?) {
+//        if image == nil || tinted == false {
+//            self.image = nil
+//        }
+//        else if image != nil {
+//            self.image = newImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+//        }
+//    }
     
     
     
