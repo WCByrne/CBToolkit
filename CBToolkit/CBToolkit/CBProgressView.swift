@@ -23,15 +23,32 @@ import UIKit
     @IBInspectable public var startPosition: CGFloat = 0 {
         didSet { progressLayer.strokeStart = startPosition }
     }
-    @IBInspectable public var progress: CGFloat = 0.5
+    
+    var _progress : CGFloat = 0
+    @IBInspectable public var progress: CGFloat = 0 {
+        didSet { self.setProgress(progress, animated: false) }
+    }
+    
     @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
         didSet { backgroundLayer.strokeColor = trackColor.CGColor }
     }
     
     
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        self.prepareView()
+    }
+
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.prepareView()
+    }
+    
+    func prepareView() {
         progressLayer.strokeColor = tintColor.CGColor
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
@@ -47,15 +64,21 @@ import UIKit
         self.layer.addSublayer(backgroundLayer)
         
         self.backgroundColor = UIColor.clearColor()
-        
     }
     
+    public override func willMoveToSuperview(newSuperview: UIView?) {
+        if newSuperview != nil {
+            self.updatePath()
+        }
+    }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
-        progressLayer.frame = CGRectInset(self.bounds, 0, 0)
-        backgroundLayer.frame = CGRectInset(self.bounds, 0, 0)
-        updatePath()
+        if progressLayer.frame.size != self.frame.size {
+            progressLayer.frame = CGRectInset(self.bounds, 0, 0)
+            backgroundLayer.frame = CGRectInset(self.bounds, 0, 0)
+            updatePath()
+        }
     }
     
     private func updatePath() {
@@ -112,10 +135,9 @@ import UIKit
             }
         } else {
             self.progressLayer.removeAllAnimations()
-            self.progressLayer.strokeEnd = 0.0
+            progressLayer.strokeEnd = 0.0
         }
-        
-        self.progress = progress;
+        _progress = progress;
     }
 }
 
@@ -151,10 +173,21 @@ import UIKit
     }
     
     
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        self.prepareView()
+    }
+
+    required public init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.prepareView()
+    }
+    
+    func prepareView() {
         self.backgroundColor = UIColor.clearColor()
         
         progressLayer.strokeColor = tintColor.CGColor
@@ -175,6 +208,20 @@ import UIKit
         }
     }
     
+    public override func willMoveToSuperview(newSuperview: UIView?) {
+        if newSuperview != nil {
+            self.drawPath()
+        }
+    }
+    
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        if progressLayer.frame.size != self.frame.size {
+            progressLayer.frame = CGRectInset(self.bounds, 0, 0)
+            drawPath()
+        }
+    }
     
      public func startAnimating() {
         self.progressLayer.removeAllAnimations()
