@@ -40,7 +40,6 @@ import UIKit
         }
     }
     
-    
      public func appendString(string: String!) {
         var comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
         var addedString = comps.componentsJoinedByString("")

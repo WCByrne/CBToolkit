@@ -31,4 +31,25 @@ public extension UIViewController {
     
     
     
+    
+}
+
+
+
+
+
+public extension UIAlertController {
+    
+    public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String!) -> UIAlertController  {
+        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: nil))
+        return alert
+    }
+    
+    public func show(viewController: UIViewController) {
+        viewController.presentViewController(self, animated: true, completion: nil)
+    }
+    
+    
+    
 }
