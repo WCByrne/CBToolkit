@@ -96,21 +96,11 @@ import UIKit
             if imgURL != self.imageURL {
                 return
             }
-            if image != nil {
-                if completion == nil {
-                    self.image = image
-                }
-                else {
-                    completion!(image:image, error:nil)
-                }
+            if completion == nil {
+                self.image = image
             }
             else {
-                if completion == nil {
-                    self.image = nil
-                }
-                else {
-                    completion!(image: nil, error: error)
-                }
+                completion!(image: image, error: error)
             }
         })
     }
