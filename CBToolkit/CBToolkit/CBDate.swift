@@ -47,7 +47,7 @@ public extension NSDate  {
     class public func endOfDay(date: NSDate) -> NSDate! {
         var endDate = date.dateByAddingTimeInterval(60*60*24)
         var cal = NSCalendar.currentCalendar()
-        var comps = cal.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitWeekOfMonth | NSCalendarUnit.CalendarUnitDay, fromDate: date)
+        var comps = cal.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay, fromDate: endDate)
         return cal.dateFromComponents(comps)!
     }
     

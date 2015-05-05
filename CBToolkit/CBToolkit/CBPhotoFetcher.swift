@@ -77,30 +77,6 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
             completion(image: nil, error: NSError(domain: "SmartReader", code: 0, userInfo: nil))
             return
         }
-        
-//        pendingFetches[imgUrl] = [completion]
-//        
-//        var request = NSURLRequest(URL: url!)
-//        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response, data, error) -> Void in
-//            var image: UIImage? = nil
-//            var urlStr = request.URL!.absoluteString!
-//            
-//            if (error == nil) {
-//                image = UIImage(data: data)
-//                self.imageCache.setObject(image!, forKey: urlStr)
-//            }
-//            
-//            var callbacks = self.pendingFetches[urlStr]
-//            if (callbacks == nil) {
-//                println("callback not found after fetch for url: \(urlStr)")
-//                return
-//            }
-//            
-//            for cb in callbacks! {
-//                cb(image: image, error: error)
-//            }
-//            self.pendingFetches.removeValueForKey(urlStr)
-//        }
     }
     
     func fetchRequestDidFinish(url: String, image: UIImage?) {
