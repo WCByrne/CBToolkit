@@ -19,6 +19,12 @@ import UIKit
         didSet { self.layer.cornerRadius = cornerRadius }
     }
     
+    @IBInspectable public var circleCrop : Bool = false {
+        didSet {
+            self.layoutSubviews()
+        }
+    }
+    
     /// the width of the image views layer border. Animateable
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
@@ -56,6 +62,14 @@ import UIKit
         }
     }
     
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if (self.circleCrop) {
+            var sSide = min(self.frame.size.width, self.frame.size.height)
+            self.cornerRadius = sSide/2
+        }
+    }
     
     
     override public var image: UIImage? {
