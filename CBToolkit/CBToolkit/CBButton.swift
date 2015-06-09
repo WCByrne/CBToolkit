@@ -24,6 +24,11 @@ import UIKit
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
+    @IBInspectable public var circleCrop : Bool = false {
+        didSet {
+            self.layoutSubviews()
+        }
+    }
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
@@ -57,6 +62,14 @@ import UIKit
                     }
                 }
             }
+        }
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if (self.circleCrop) {
+            var sSide = min(self.frame.size.width, self.frame.size.height)
+            self.cornerRadius = sSide/2
         }
     }
     
@@ -113,6 +126,12 @@ import UIKit
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
+    
+    @IBInspectable public var circleCrop : Bool = false {
+        didSet {
+            self.layoutSubviews()
+        }
+    }
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
@@ -149,6 +168,13 @@ import UIKit
         }
     }
     
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if (self.circleCrop) {
+            var sSide = min(self.frame.size.width, self.frame.size.height)
+            self.cornerRadius = sSide/2
+        }
+    }
     
     private func animateShrink() {
         UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
