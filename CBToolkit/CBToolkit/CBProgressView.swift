@@ -49,19 +49,19 @@ import UIKit
     }
     
     func prepareView() {
-        progressLayer.strokeColor = tintColor.CGColor
-        progressLayer.strokeStart = 0
-        progressLayer.strokeEnd = progress
-        progressLayer.fillColor = nil
-        progressLayer.lineWidth = lineWidth
-        self.layer.addSublayer(progressLayer)
-        
         backgroundLayer.strokeColor = trackColor.CGColor
         backgroundLayer.strokeStart = 0
         backgroundLayer.strokeEnd = 1
         backgroundLayer.fillColor = nil
         backgroundLayer.lineWidth = lineWidth
         self.layer.addSublayer(backgroundLayer)
+        
+        progressLayer.strokeColor = tintColor.CGColor
+        progressLayer.strokeStart = 0
+        progressLayer.strokeEnd = progress
+        progressLayer.fillColor = nil
+        progressLayer.lineWidth = lineWidth
+        self.layer.addSublayer(progressLayer)
         
         self.backgroundColor = UIColor.clearColor()
     }
