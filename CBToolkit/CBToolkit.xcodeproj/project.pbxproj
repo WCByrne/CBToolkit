@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C13DC871B3F776900CD0236 /* CBCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C13DC861B3F776900CD0236 /* CBCollectionViewLayout.swift */; };
 		1C32284A1A8009DB00F6EAD2 /* CBExtensions.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00A1A7D8A8B00D7677B /* CBExtensions.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C32284B1A8009DB00F6EAD2 /* CBButton.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00B1A7D8A8B00D7677B /* CBButton.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1C32284C1A8009DB00F6EAD2 /* CBTextField.swift in Headers */ = {isa = PBXBuildFile; fileRef = 1CDBB00C1A7D8A8B00D7677B /* CBTextField.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C13DC861B3F776900CD0236 /* CBCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBCollectionViewLayout.swift; sourceTree = "<group>"; };
 		1CDBAFEE1A7D8A7200D7677B /* CBToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBToolkit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CDBAFF21A7D8A7200D7677B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1CDBAFF31A7D8A7200D7677B /* CBToolkit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBToolkit.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */,
 				1CDBB0121A7D8A8B00D7677B /* CBDate.swift */,
 				1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */,
+				1C13DC861B3F776900CD0236 /* CBCollectionViewLayout.swift */,
 				1CDBAFF11A7D8A7200D7677B /* Supporting Files */,
 			);
 			path = CBToolkit;
@@ -265,6 +268,7 @@
 				1CDBB0141A7D8A8B00D7677B /* CBExtensions.swift in Sources */,
 				1CDBB01A1A7D8A8B00D7677B /* CBPhotoFetcher.swift in Sources */,
 				1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */,
+				1C13DC871B3F776900CD0236 /* CBCollectionViewLayout.swift in Sources */,
 				1CDBB0161A7D8A8B00D7677B /* CBTextField.swift in Sources */,
 				1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */,
 			);

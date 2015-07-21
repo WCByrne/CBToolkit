@@ -48,6 +48,20 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         inProgress.removeValueForKey(url)
     }
     
+    public func prefetchURL(imgUrl: String!) {
+        if let cachedImage = imageCache.objectForKey(imgUrl) as? UIImage  {
+            return
+        }
+        if let request = inProgress[imgUrl] {
+            return
+        }
+        
+        var request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
+        inProgress[imgUrl] = request
+        request.delegate = self
+        request.start()
+    }
+    
     public func fetchImageAtURL(imgUrl: String!, completion: CBImageFetchCallback!, progressBlock: CBProgressBlock? = nil) {
         assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
         
@@ -61,22 +75,14 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         if let request = inProgress[imgUrl] {
             request.completionBlocks.append(completion)
             if progressBlock != nil { request.progressBlocks.append(progressBlock!) }
+            progressBlock?(progress: request.progress)
             return
         }
-        
         
         var request = CBImageFetchRequest(imageURL: imgUrl, completion: completion, progress: progressBlock)
         inProgress[imgUrl] = request
         request.delegate = self
         request.start()
-        
-        
-        var url = NSURL(string: imgUrl)
-        if url == nil {
-            println("Error creating URL for image url: \(imgUrl)")
-            completion(image: nil, error: NSError(domain: "SmartReader", code: 0, userInfo: nil))
-            return
-        }
     }
     
     func fetchRequestDidFinish(url: String, image: UIImage?) {
@@ -89,12 +95,7 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         }
     }
     
-    
-    
-    
 }
-
-
 
 
 protocol CBImageFetchRequestDelegate {
@@ -110,15 +111,16 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     
     var imgData : NSMutableData!
     var expectedSize : Int!
+    var progress: Float = 0
     
     var delegate : CBImageFetchRequestDelegate!
     var con : NSURLConnection?
     
-    init(imageURL: String!, completion: CBImageFetchCallback!, progress: CBProgressBlock? ) {
+    init(imageURL: String!, completion: CBImageFetchCallback?, progress: CBProgressBlock? ) {
         super.init()
         
         baseURL = imageURL
-        completionBlocks = [completion]
+        if completion != nil { completionBlocks = [completion!] }
         if progress != nil { progressBlocks = [progress!] }
     }
     
@@ -155,7 +157,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     
     func connection(connection: NSURLConnection, didReceiveData data: NSData) {
         imgData.appendData(data)
-        var progress = Float(imgData.length) / Float(expectedSize)
+        progress = Float(imgData.length) / Float(expectedSize)
         
         for pBlock in progressBlocks {
             pBlock(progress: progress)
