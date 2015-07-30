@@ -188,7 +188,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     override init() {
         super.init()
     }
-    convenience init(collectionView: UICollectionView!) {
+    convenience public init(collectionView: UICollectionView!) {
         self.init()
         collectionView.collectionViewLayout = self
     }
