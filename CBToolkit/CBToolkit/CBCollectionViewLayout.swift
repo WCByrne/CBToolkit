@@ -185,7 +185,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     private var unionRects = NSMutableArray()
     private let unionSize = 20
     
-    override init() {
+    override public init() {
         super.init()
     }
     convenience public init(collectionView: UICollectionView!) {
