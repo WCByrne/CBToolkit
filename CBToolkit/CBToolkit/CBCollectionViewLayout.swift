@@ -16,7 +16,7 @@ extension CGPoint  {
 }
 
 
-@objc protocol CBCollectionViewDelegateLayout: UICollectionViewDelegate {
+@objc public protocol CBCollectionViewDelegateLayout: UICollectionViewDelegate {
     
     optional func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         heightForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat
@@ -63,7 +63,7 @@ extension CGPoint  {
         didFinishMovingCellFrom originalIndexPath: NSIndexPath, finalIndexPath: NSIndexPath)
 }
 
-@objc protocol CBCollectionViewDataSource: UICollectionViewDataSource {
+@objc public protocol CBCollectionViewDataSource: UICollectionViewDataSource {
     optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         canMoveItemAtIndexPath indexPath: NSIndexPath) -> Bool
     optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
@@ -71,55 +71,55 @@ extension CGPoint  {
 }
 
 
-enum CBCollectionViewLayoutItemRenderDirection : NSInteger {
+public enum CBCollectionViewLayoutItemRenderDirection : NSInteger {
     case ShortestFirst
     case LeftToRight
     case RightToLeft
 }
 
-struct CBCollectionViewLayoutElementKind {
+public struct CBCollectionViewLayoutElementKind {
     static let SectionHeader: String = "CBCollectionElementKindSectionHeader"
     static let SectionFooter: String = "CBCollectionElementKindSectionFooter"
 }
 
-class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelegate {
+public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelegate {
     
-    var columnCount : NSInteger = 2 {
+    public var columnCount : NSInteger = 2 {
     didSet{
         invalidateLayout()
     }}
     
-    var minimumColumnSpacing : CGFloat = 8 {
+    public var minimumColumnSpacing : CGFloat = 8 {
     didSet{
         invalidateLayout()
     }}
     
-    var minimumInteritemSpacing : CGFloat = 8 {
+    public var minimumInteritemSpacing : CGFloat = 8 {
     didSet{
         invalidateLayout()
     }}
     
-    var headerHeight : CGFloat = 0.0 {
+    public var headerHeight : CGFloat = 0.0 {
     didSet{
         invalidateLayout()
     }}
 
-    var footerHeight : CGFloat = 0.0 {
+    public var footerHeight : CGFloat = 0.0 {
     didSet{
         invalidateLayout()
     }}
     
-    var defaultItemHeight : CGFloat = 50 {
+    public var defaultItemHeight : CGFloat = 50 {
     didSet{
         invalidateLayout()
     }}
 
-    var sectionInset : UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8) {
+    public var sectionInset : UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8) {
     didSet{
         invalidateLayout()
     }}
     
-    var itemRenderDirection : CBCollectionViewLayoutItemRenderDirection = .LeftToRight {
+    public var itemRenderDirection : CBCollectionViewLayoutItemRenderDirection = .LeftToRight {
     didSet{
         invalidateLayout()
     }}
@@ -142,7 +142,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
     private var initialPosition : CGPoint! = CGPointZero
     private var selectedIndexPath  : NSIndexPath?
     private var targetIndexPath: NSIndexPath?
-    var dragEnabled : Bool = false {
+    public var dragEnabled : Bool = false {
         didSet {
             if longPressGesture == nil {
                 longPressGesture = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
@@ -174,16 +174,16 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
     
     
 //  private property and method above.
-    weak var delegate : CBCollectionViewDelegateLayout?{ get{ return self.collectionView!.delegate as? CBCollectionViewDelegateLayout }}
-    weak var dataSource : CBCollectionViewDataSource? { get { return self.collectionView!.dataSource as? CBCollectionViewDataSource }}
+    private weak var delegate : CBCollectionViewDelegateLayout?{ get{ return self.collectionView!.delegate as? CBCollectionViewDelegateLayout }}
+    private weak var dataSource : CBCollectionViewDataSource? { get { return self.collectionView!.dataSource as? CBCollectionViewDataSource }}
     
-    var columnHeights : [[CGFloat]]! = []
-    var sectionItemAttributes = NSMutableArray()
-    var allItemAttributes = NSMutableArray()
-    var headersAttributes = NSMutableDictionary()
-    var footersAttributes = NSMutableDictionary()
-    var unionRects = NSMutableArray()
-    let unionSize = 20
+    private var columnHeights : [[CGFloat]]! = []
+    private var sectionItemAttributes = NSMutableArray()
+    private var allItemAttributes = NSMutableArray()
+    private var headersAttributes = NSMutableDictionary()
+    private var footersAttributes = NSMutableDictionary()
+    private var unionRects = NSMutableArray()
+    private let unionSize = 20
     
     override init() {
         super.init()
@@ -193,17 +193,17 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         collectionView.collectionViewLayout = self
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required public init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isEqual(panGesture) { return selectedIndexPath != nil }
         return true
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isEqual(longPressGesture) {
             return otherGestureRecognizer.isEqual(panGesture)
         }
@@ -317,7 +317,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         return floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(colCount))
     }
     
-    override func prepareLayout(){
+    override public func prepareLayout(){
         super.prepareLayout()
         
         let numberOfSections = self.collectionView!.numberOfSections()
@@ -437,7 +437,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         }
     }
     
-    override func collectionViewContentSize() -> CGSize{
+    override public func collectionViewContentSize() -> CGSize{
         var numberOfSections = self.collectionView!.numberOfSections()
         if numberOfSections == 0{
             return CGSizeZero
@@ -448,7 +448,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         return  contentSize
     }
     
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes!{
+    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes!{
         if indexPath.section >= self.sectionItemAttributes.count{
             return nil
         }
@@ -459,7 +459,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         return list.objectAtIndex(indexPath.item) as! UICollectionViewLayoutAttributes
     }
     
-    override func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
+    override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
         var attribute = UICollectionViewLayoutAttributes()
         if elementKind == CBCollectionViewLayoutElementKind.SectionHeader {
             attribute = self.headersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
@@ -469,7 +469,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         return attribute
     }
     
-    override func layoutAttributesForElementsInRect (rect : CGRect) -> [AnyObject] {
+    override public func layoutAttributesForElementsInRect (rect : CGRect) -> [AnyObject] {
         var i = 0
         var begin = 0, end = self.unionRects.count
         var attrs = NSMutableArray()
@@ -495,7 +495,7 @@ class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelega
         return Array(attrs)
     }
     
-    override func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
+    override public func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
         var oldBounds = self.collectionView!.bounds
         if CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds){
             return true
