@@ -10,6 +10,50 @@ import Foundation
 import UIKit
 
 
+@IBDesignable public class CBLabel : UILabel {
+    
+    @IBInspectable public var cornerRadius: CGFloat = 0 {
+        didSet { self.layer.cornerRadius = cornerRadius }
+    }
+    @IBInspectable public var circleCrop : Bool = false {
+        didSet {
+            self.layoutSubviews()
+        }
+    }
+    @IBInspectable public var borderWidth: CGFloat = 0 {
+        didSet { self.layer.borderWidth = borderWidth }
+    }
+    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+        didSet { self.layer.borderColor = borderColor.CGColor }
+    }
+    
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        self.clipsToBounds = true
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if (self.circleCrop) {
+            var sSide = min(self.frame.size.width, self.frame.size.height)
+            self.cornerRadius = sSide/2
+        }
+    }
+    
+    @IBInspectable public var tint : Bool = false {
+        didSet {
+            if tint {
+                self.textColor = self.tintColor
+            }
+        }
+    }
+    public override func tintColorDidChange() {
+        super.tintColorDidChange()
+        self.textColor = self.tintColor
+    }
+    
+}
+
 
 @IBDesignable public class CBTextField : UITextField {
     
