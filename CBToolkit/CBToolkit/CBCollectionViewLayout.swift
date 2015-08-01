@@ -197,7 +197,6 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isEqual(panGesture) { return selectedIndexPath != nil }
         return true

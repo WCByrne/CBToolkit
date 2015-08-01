@@ -10,12 +10,12 @@ import Foundation
 
 
 
-public struct CBRelativeDateStyle {
-    public static let TodayOnly: String = "todayOnly"
-    public static let SurroundingDays: String = "surroundingOnly"
-    public static let FutureWeek : String = "futureWeek"
-    public static let PastWeek : String = "pastWeek"
-    public static let SurroundingWeeks: String = "surroundingWeek"
+public enum CBRelativeDateStyle: NSNumber {
+    case TodayOnly
+    case SurroundingDays
+    case FutureWeek
+    case PastWeek
+    case SurroundingWeeks
 }
 
 
@@ -265,7 +265,7 @@ public extension NSDate  {
     :returns: A string representation of the date relative to now.
     */
     
-     public func relativeTimeFromNow(style: String) -> String {
+     public func relativeTimeFromNow(style: CBRelativeDateStyle) -> String {
         
         var timeSinceNow = self.timeIntervalSinceNow
         var formattedString: String = ""
@@ -359,7 +359,7 @@ public extension NSDate  {
     */
     
     
-     public func relativeDayFromNow(style: String, includeTime: Bool) -> String {
+     public func relativeDayFromNow(style: CBRelativeDateStyle, includeTime: Bool) -> String {
         
         var timeSinceNow = self.timeIntervalSinceNow
         var formattedString: String = ""
