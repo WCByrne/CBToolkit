@@ -95,12 +95,13 @@ import UIKit
             }, completion: nil)
     }
     
-    
     public func popAnimation() {
-        
+        var rBounce = bouncy
+        if bouncy { bouncy = false }
         UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)
             }) { (finished) -> Void in
+                self.bouncy = rBounce
                 UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: self.damping, initialSpringVelocity: 5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
                     self.transform = CGAffineTransformMakeScale(1, 1)
                     }, completion: nil)
@@ -190,12 +191,13 @@ import UIKit
             }, completion: nil)
     }
     
-    
     public func popAnimation() {
-        
+        var rBounce = bouncy
+        if bouncy { bouncy = false }
         UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 0.3, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)
             }) { (finished) -> Void in
+                self.bouncy = rBounce
                 UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: self.damping, initialSpringVelocity: 5, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
                     self.transform = CGAffineTransformMakeScale(1, 1)
                     }, completion: nil)

@@ -78,8 +78,8 @@ public enum CBCollectionViewLayoutItemRenderDirection : NSInteger {
 }
 
 public struct CBCollectionViewLayoutElementKind {
-    static let SectionHeader: String = "CBCollectionElementKindSectionHeader"
-    static let SectionFooter: String = "CBCollectionElementKindSectionFooter"
+    public static let SectionHeader: String = "CBCollectionElementKindSectionHeader"
+    public static let SectionFooter: String = "CBCollectionElementKindSectionFooter"
 }
 
 public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelegate {
