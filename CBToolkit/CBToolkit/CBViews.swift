@@ -11,7 +11,7 @@ import UIKit
 
 
 
-
+/// CBView
 @IBDesignable public class CBView: UIView {
     
     @IBInspectable public var cornerRadius: CGFloat = 0 {
@@ -29,26 +29,8 @@ import UIKit
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        self.clipsToBounds = true
-    }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        if (self.circleCrop) {
-            var sSide = min(self.frame.size.width, self.frame.size.height)
-            self.cornerRadius = sSide/2
-        }
-    }
-}
-
-
-
-
-@IBDesignable public class CBShadowView: UIView {
-    
-    
+    // Shadows
     @IBInspectable public var shadowColor: UIColor = UIColor.blackColor() {
         didSet { self.layer.shadowColor = shadowColor.CGColor }
     }
@@ -72,19 +54,9 @@ import UIKit
     }
     
     @IBInspectable public var useShadowPath: Bool = false
-    @IBInspectable public var borderWidth: CGFloat = 0 {
-        didSet { self.layer.borderWidth = borderWidth }
-    }
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
-        didSet { self.layer.borderColor = borderColor.CGColor }
-    }
-    
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.layer.masksToBounds = false
-        self.clipsToBounds = false
         
         self.layer.shadowColor = shadowColor.CGColor
         self.layer.shadowRadius = shadowRadius
@@ -95,15 +67,70 @@ import UIKit
             self.layer.rasterizationScale = UIScreen.mainScreen().scale
         }
         
+    }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        if (self.circleCrop) {
+            var sSide = min(self.frame.size.width, self.frame.size.height)
+            self.cornerRadius = sSide/2
+        }
+        
         if useShadowPath {
             var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
             self.layer.shadowPath = UIBezierPath(rect: rect).CGPath
         }
-
-        
     }
-    
-    
+}
+
+
+
+/* Deprecated
+    Shadows have been incorperated into CBView
+*/
+@IBDesignable public class CBShadowView: UIView {
+    @IBInspectable public var shadowColor: UIColor = UIColor.blackColor() {
+        didSet { self.layer.shadowColor = shadowColor.CGColor }
+    }
+    @IBInspectable public var shadowRadius: CGFloat = 0 {
+        didSet { self.layer.shadowRadius = shadowRadius }
+    }
+    @IBInspectable public var shadowOpacity: Float = 0 {
+        didSet { self.layer.shadowOpacity = shadowOpacity }
+    }
+    @IBInspectable public var shadowOffset: CGSize = CGSizeZero {
+        didSet { self.layer.shadowOffset = shadowOffset }
+    }
+    @IBInspectable public var shouldRasterize: Bool = false {
+        didSet {
+            self.layer.shouldRasterize = shouldRasterize
+            self.layer.rasterizationScale = UIScreen.mainScreen().scale
+        }
+    }
+    @IBInspectable public var useShadowPath: Bool = false
+    @IBInspectable public var borderWidth: CGFloat = 0 {
+        didSet { self.layer.borderWidth = borderWidth }
+    }
+    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
+        didSet { self.layer.borderColor = borderColor.CGColor }
+    }
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        self.layer.masksToBounds = false
+        self.clipsToBounds = false
+        self.layer.shadowColor = shadowColor.CGColor
+        self.layer.shadowRadius = shadowRadius
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowOffset = shadowOffset
+        if shouldRasterize == true {
+            self.layer.shouldRasterize = true
+            self.layer.rasterizationScale = UIScreen.mainScreen().scale
+        }
+        if useShadowPath {
+            var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
+            self.layer.shadowPath = UIBezierPath(rect: rect).CGPath
+        }
+    }
     override public func layoutSubviews() {
         super.layoutSubviews()
         

@@ -36,6 +36,12 @@ import UIKit
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
+    @IBInspectable public var tintSubviews: Bool = false {
+        didSet {
+            self.tintColorDidChange()
+        }
+    }
+    
     
     override public var highlighted: Bool {
         didSet {
@@ -70,6 +76,15 @@ import UIKit
         if (self.circleCrop) {
             var sSide = min(self.frame.size.width, self.frame.size.height)
             self.cornerRadius = sSide/2
+        }
+    }
+    
+    public override func tintColorDidChange() {
+        super.tintColorDidChange()
+        if tintSubviews {
+            for view in self.subviews as! [UIView] {
+                view.tintColor = self.tintColor
+            }
         }
     }
     

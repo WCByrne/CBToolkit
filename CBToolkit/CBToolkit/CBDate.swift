@@ -10,7 +10,7 @@ import Foundation
 
 
 
-public enum CBRelativeDateStyle: NSNumber {
+public enum CBRelativeDateStyle: Int {
     case TodayOnly
     case SurroundingDays
     case FutureWeek
@@ -256,6 +256,33 @@ public extension NSDate  {
         return self.isSameDayAsDate(sometimeTomorrow)
     }
     
+    /**
+    A short string representation of the seconds, minutes, days, weeks, and years since the date.
+    
+    :returns: The string representting how many *s ago the date occured.
+    */
+    public func timeAgo() -> String! {
+        var sinceNow = self.timeIntervalSinceNow
+        
+        if sinceNow > -60 {
+            return "\(-sinceNow)s"
+        }
+        else if sinceNow > -60*60 {
+            return "\(Int(-sinceNow/60))m"
+        }
+        else if sinceNow > -60*60*24 {
+            return "\(Int(-sinceNow/60/60))h"
+        }
+        else if sinceNow > -60*60*24*30 {
+            return "\(Int(-sinceNow/60/60/24))d"
+        }
+        else if sinceNow > -60*60*24*365 {
+            return "\(Int(-sinceNow/60/60/24/7))w"
+        }
+        else {
+            return "\(Int(-sinceNow/60/60/24/365))y"
+        }
+    }
     
     
     /*!

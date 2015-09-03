@@ -30,6 +30,8 @@
 		1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01D1A7D8A8B00D7677B /* CBPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEEBE0381B98801200F18093 /* CBImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0371B98801200F18093 /* CBImageEditor.swift */; };
+		DEEBE03A1B98822900F18093 /* CBSliderCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
 		1CDBB0121A7D8A8B00D7677B /* CBDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDate.swift; sourceTree = "<group>"; };
 		1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhoneNumber.swift; sourceTree = "<group>"; };
+		DEEBE0371B98801200F18093 /* CBImageEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageEditor.swift; sourceTree = "<group>"; };
+		DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSliderCollectionViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				1CDBB0121A7D8A8B00D7677B /* CBDate.swift */,
 				1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */,
 				1C13DC861B3F776900CD0236 /* CBCollectionViewLayout.swift */,
+				DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */,
+				DEEBE0371B98801200F18093 /* CBImageEditor.swift */,
 				1CDBAFF11A7D8A7200D7677B /* Supporting Files */,
 			);
 			path = CBToolkit;
@@ -267,8 +273,10 @@
 				1CDBB0151A7D8A8B00D7677B /* CBButton.swift in Sources */,
 				1CDBB0141A7D8A8B00D7677B /* CBExtensions.swift in Sources */,
 				1CDBB01A1A7D8A8B00D7677B /* CBPhotoFetcher.swift in Sources */,
+				DEEBE03A1B98822900F18093 /* CBSliderCollectionViewLayout.swift in Sources */,
 				1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */,
 				1C13DC871B3F776900CD0236 /* CBCollectionViewLayout.swift in Sources */,
+				DEEBE0381B98801200F18093 /* CBImageEditor.swift in Sources */,
 				1CDBB0161A7D8A8B00D7677B /* CBTextField.swift in Sources */,
 				1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */,
 			);
