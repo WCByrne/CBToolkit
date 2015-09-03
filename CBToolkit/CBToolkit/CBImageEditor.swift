@@ -8,10 +8,8 @@
 
 import Foundation
 import UIKit
-import CBToolkit
 
-
-@objc public protocol CBImageEditorDelegate {
+public protocol CBImageEditorDelegate {
     func imageEditor(editor: CBImageEditor!, didFinishEditingImage original: UIImage!, editedImage: UIImage!)
     func imageEditorDidCancel(editor: CBImageEditor!)
 }
@@ -65,6 +63,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     
     public var finalSize: CGSize?
     
+    public  var headerView: UIView!
     public var titleLabel: UILabel!
     public var saveButton: CBButton!
     public var cancelButton: CBButton!
@@ -136,7 +135,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         // Title, Save, & Cancel
         
-        var headerView = UIView(frame: CGRectZero)
+        headerView = UIView(frame: CGRectZero)
         headerView.setTranslatesAutoresizingMaskIntoConstraints(false)
         headerView.backgroundColor = UIColor(white: 0.5, alpha: 0.1)
         self.view.addSubview(headerView)
@@ -178,7 +177,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         saveButton.setTitle("Save", forState: UIControlState.Normal)
         saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
         saveButton.tintColor = UIColor.redColor()
-        saveButton.addTarget(self, action: "saveSelected", forControlEvents: UIControlEvents.TouchUpInside)
+        saveButton.addTarget(self, action: "finish", forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(saveButton)
         
         saveButton.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 44))
@@ -393,6 +392,29 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
     }
     
+    func cancel() {
+        self.delegate.imageEditorDidCancel(self)
+    }
+    
+    public func finish() {
+        var rect = self.view.convertRect(cropRect, toView: imageView)
+        
+        var scale = (originalImage.size.width/imageView.frame.size.width)
+        var center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
+        
+        rect.origin.x = (rect.origin.x * scale) * scrollView.zoomScale
+        rect.origin.y = (rect.origin.y * scale) * scrollView.zoomScale
+        rect.size.width = (rect.size.width * scale) * scrollView.zoomScale
+        rect.size.height = (rect.size.height * scale) * scrollView.zoomScale
+        
+        var croppedImage = originalImage.crop(rect)
+        if finalSize != nil {
+            croppedImage = croppedImage.resize(finalSize!, contentMode: CBImageContentMode.AspectFit)
+        }
+        
+        self.delegate.imageEditor(self, didFinishEditingImage: self.originalImage, editedImage: editingImage)
+    }
+    
     
     public func setSquareCrop() {
         if ratioConstraint != nil {
@@ -441,33 +463,10 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         horizontalButton.backgroundColor = UIColor.clearColor()
     }
     
-    private func cancel() {
-        self.delegate.imageEditorDidCancel(self)
-    }
-
+    
     public func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-
-    private func saveSelected() {
-        var rect = self.view.convertRect(cropRect, toView: imageView)
-        
-        var scale = (originalImage.size.width/imageView.frame.size.width)
-        var center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
-        
-        rect.origin.x = (rect.origin.x * scale) * scrollView.zoomScale
-        rect.origin.y = (rect.origin.y * scale) * scrollView.zoomScale
-        rect.size.width = (rect.size.width * scale) * scrollView.zoomScale
-        rect.size.height = (rect.size.height * scale) * scrollView.zoomScale
-        
-        var croppedImage = originalImage.crop(rect)
-        if finalSize != nil {
-            croppedImage = croppedImage.resize(finalSize!, contentMode: CBImageContentMode.AspectFit)
-        }
-        
-        self.delegate.imageEditor(self, didFinishEditingImage: self.originalImage, editedImage: editingImage)
-    }
-    
     
     
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
