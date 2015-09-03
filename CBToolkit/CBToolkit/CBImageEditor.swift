@@ -42,6 +42,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     private var originalImage: UIImage!
     private var editingImage: UIImage!
     private var filters: [FilterData]! = []
+    private var imageContext: CIContext = CIContext(options: nil)
     
     public var delegate: CBImageEditorDelegate!
     public var cropRatio: CGSize! = CGSize(width: 1, height: 1)
@@ -100,10 +101,12 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         self.view.addSubview(scrollView)
         
         
+        var isPad = UI_USER_INTERFACE_IDIOM() == .Pad
+        
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 10))
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.LessThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: -10))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.LessThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -62))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 62))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.LessThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: isPad ? -70 : -62))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: isPad ? 70 : 62))
         
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
@@ -320,7 +323,9 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             params[kCIInputImageKey] = image
             var ciFilter = CIFilter(name: filter.key, withInputParameters: params)
             var outImage = ciFilter.outputImage
-            filter.previewImage = UIImage(CIImage: outImage, scale: 2, orientation: UIImageOrientation.Up)
+            var cgImage = imageContext.createCGImage(outImage, fromRect: outImage.extent())
+            var img = UIImage(CGImage: cgImage)
+            filter.previewImage = img
             filterCV.reloadItemsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)])
         }
     }
@@ -503,8 +508,10 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
                 params[kCIInputImageKey] = image
                 var ciFilter = CIFilter(name: filter.key, withInputParameters: params)
                 var outImage = ciFilter.outputImage
-                filter.image = UIImage(CIImage: outImage, scale: 4, orientation: UIImageOrientation.Up)
-                editingImage = filter.image
+                var cgImage = imageContext.createCGImage(outImage, fromRect: outImage.extent())
+                var img = UIImage(CGImage: cgImage)
+                filter.image = img
+                editingImage = img
             }
         }
         imageView.image = editingImage

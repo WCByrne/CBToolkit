@@ -112,13 +112,83 @@ public extension UIImage {
         return normalizedImage;
     }
     
+    public func roundCorners(radius: Int) -> UIImage {
+        var image = self.imageWithAlpha()
+        var context = CGBitmapContextCreate(nil,
+            Int(image.size.width),
+            Int(image.size.height),
+            CGImageGetBitsPerComponent(image.CGImage),
+            0,
+            CGImageGetColorSpace(image.CGImage),
+            CGImageGetBitmapInfo(image.CGImage));
+        
+        // Create a clipping path with rounded corners
+        CGContextBeginPath(context);
+        self.addRoundedRectToPath(CGRectMake(0, 0, image.size.width, image.size.height), context: context, ovalWidth: CGFloat(radius), ovalHeight: CGFloat(radius))
+        
+        CGContextClosePath(context)
+        CGContextClip(context)
+        CGContextDrawImage(context, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage)
+        var clippedImage = CGBitmapContextCreateImage(context)
+        var roundedImage = UIImage(CGImage: clippedImage)
+        return roundedImage!;
+    }
+    
+    private func addRoundedRectToPath(rect:CGRect, context:CGContextRef, ovalWidth:CGFloat, ovalHeight:CGFloat) {
+        if (ovalWidth == 0 || ovalHeight == 0) {
+            CGContextAddRect(context, rect);
+            return;
+        }
+        CGContextSaveGState(context);
+        CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+        CGContextScaleCTM(context, ovalWidth, ovalHeight);
+        var fw: CGFloat = CGRectGetWidth(rect) / ovalWidth;
+        var fh: CGFloat = CGRectGetHeight(rect) / ovalHeight;
+        CGContextMoveToPoint(context, fw, fh/2);
+        CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
+        CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
+        CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1);
+        CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
+        CGContextClosePath(context);
+        CGContextRestoreGState(context);
+    }
+
+    
+    
+    private func hasAlpha() -> Bool {
+        var alpha = CGImageGetAlphaInfo(self.CGImage);
+        return (alpha == CGImageAlphaInfo.First ||
+            alpha == CGImageAlphaInfo.Last ||
+            alpha == CGImageAlphaInfo.PremultipliedFirst ||
+            alpha == CGImageAlphaInfo.PremultipliedLast);
+    }
+    
+    private func imageWithAlpha() -> UIImage {
+        if self.hasAlpha() {
+            return self;
+        }
+        var imageRef = self.CGImage;
+        var width = CGImageGetWidth(imageRef);
+        var height = CGImageGetHeight(imageRef);
+        var offscreenContext = CGBitmapContextCreate(nil,
+            width,
+            height,
+            8,
+            0,
+            CGImageGetColorSpace(imageRef),
+             CGBitmapInfo.ByteOrderDefault | CGBitmapInfo.AlphaInfoMask);
+        
+        CGContextDrawImage(offscreenContext, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), imageRef)
+        var imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext)
+        var imageWithAlpha = UIImage(CGImage:imageRefWithAlpha)
+        return imageWithAlpha!;
+    }
+    
     
     private func resize(newSize: CGSize, transpose: Bool, transform: CGAffineTransform) -> UIImage {
         var newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
         var transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
         var imageRef = self.CGImage;
-        
-        // Build a context that's the same dimensions as the new size
         var bitmap = CGBitmapContextCreate(nil,
             Int(newRect.size.width),
             Int(newRect.size.height),
@@ -134,7 +204,6 @@ public extension UIImage {
         var newImage = UIImage(CGImage: newImageRef, scale: 3, orientation: UIImageOrientation.Up)!
         return newImage
     }
-    
     
     
     private func orientationTransforForSize(newSize: CGSize) -> CGAffineTransform {
