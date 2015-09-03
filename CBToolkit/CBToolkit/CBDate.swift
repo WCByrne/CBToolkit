@@ -265,7 +265,7 @@ public extension NSDate  {
         var sinceNow = self.timeIntervalSinceNow
         
         if sinceNow > -60 {
-            return "\(-sinceNow)s"
+            return "\(Int(-sinceNow))s"
         }
         else if sinceNow > -60*60 {
             return "\(Int(-sinceNow/60))m"

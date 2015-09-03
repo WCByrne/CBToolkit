@@ -412,12 +412,12 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         rect.size.width = (rect.size.width * scale) * scrollView.zoomScale
         rect.size.height = (rect.size.height * scale) * scrollView.zoomScale
         
-        var croppedImage = originalImage.crop(rect)
+        var croppedImage = editingImage.crop(rect)
         if finalSize != nil {
             croppedImage = croppedImage.resize(finalSize!, contentMode: CBImageContentMode.AspectFit)
         }
         
-        self.delegate.imageEditor(self, didFinishEditingImage: self.originalImage, editedImage: editingImage)
+        self.delegate.imageEditor(self, didFinishEditingImage: self.originalImage, editedImage: croppedImage)
     }
     
     
