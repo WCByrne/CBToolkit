@@ -78,10 +78,12 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     private var headerHeight: NSLayoutConstraint!
     private var filterHeightConstraint: NSLayoutConstraint!
     
-    
     public init(image: UIImage!, style: UIBlurEffectStyle) {
         super.init(nibName: nil, bundle: nil)
         self.originalImage = image
+        if image.size.width > 3000 || image.size.height > 3000 {
+            self.originalImage = image.resize(CGSizeMake(3000, 3000), contentMode: CBImageContentMode.AspectFit)
+        }
         
         self.view.backgroundColor = UIColor(white: 0.2, alpha: 1)
         self.view.clipsToBounds = true
@@ -151,7 +153,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         titleLabel = UILabel(frame: CGRectZero)
         titleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        titleLabel.font = UIFont(name: "Avenir-Medium", size: 24)
+        titleLabel.font = UIFont(name: "Avenir-Medium", size: 22)
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.text = "Adjust your Photo"
@@ -165,8 +167,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         cancelButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
         cancelButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
-        cancelButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 20)
-        cancelButton.tintColor = UIColor.redColor()
+        cancelButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 18)
+        cancelButton.tintColor = UIColor(white: 0.9, alpha: 1)
         cancelButton.addTarget(self, action: "cancel", forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(cancelButton)
         
@@ -178,8 +180,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         saveButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
         saveButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         saveButton.setTitle("Save", forState: UIControlState.Normal)
-        saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 20)
-        saveButton.tintColor = UIColor.redColor()
+        saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
+        saveButton.tintColor = UIColor(white: 0.9, alpha: 1)
         saveButton.addTarget(self, action: "finish", forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(saveButton)
         
@@ -416,7 +418,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         if finalSize != nil {
             croppedImage = croppedImage.resize(finalSize!, contentMode: CBImageContentMode.AspectFit)
         }
-        
+
         self.delegate.imageEditor(self, didFinishEditingImage: self.originalImage, editedImage: croppedImage)
     }
     

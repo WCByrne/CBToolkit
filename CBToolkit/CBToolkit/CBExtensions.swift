@@ -170,13 +170,14 @@ public extension UIImage {
         var imageRef = self.CGImage;
         var width = CGImageGetWidth(imageRef);
         var height = CGImageGetHeight(imageRef);
+        var bInfo = CGBitmapInfo(CGBitmapInfo.AlphaInfoMask.rawValue)
         var offscreenContext = CGBitmapContextCreate(nil,
             width,
             height,
             8,
             0,
             CGImageGetColorSpace(imageRef),
-             CGBitmapInfo.ByteOrderDefault | CGBitmapInfo.AlphaInfoMask);
+             CGBitmapInfo.ByteOrderDefault | bInfo);
         
         CGContextDrawImage(offscreenContext, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), imageRef)
         var imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext)
