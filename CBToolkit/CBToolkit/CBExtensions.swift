@@ -152,8 +152,6 @@ public extension UIImage {
         CGContextClosePath(context);
         CGContextRestoreGState(context);
     }
-
-    
     
     private func hasAlpha() -> Bool {
         var alpha = CGImageGetAlphaInfo(self.CGImage);
@@ -170,7 +168,7 @@ public extension UIImage {
         var imageRef = self.CGImage;
         var width = CGImageGetWidth(imageRef);
         var height = CGImageGetHeight(imageRef);
-        var bInfo = CGBitmapInfo(CGBitmapInfo.AlphaInfoMask.rawValue)
+        var bInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.rawValue)
         var offscreenContext = CGBitmapContextCreate(nil,
             width,
             height,

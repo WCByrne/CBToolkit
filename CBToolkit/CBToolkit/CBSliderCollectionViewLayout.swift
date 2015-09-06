@@ -114,6 +114,10 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         return attributes as [AnyObject]
     }
     
+    public override func prepareForAnimatedBoundsChange(oldBounds: CGRect) {
+        super.prepareForAnimatedBoundsChange(oldBounds)
+        collectionView!.contentOffset = CGPointMake(CGFloat(currentIndex) * collectionView!.frame.size.width, 0)
+    }
     override public func finalizeAnimatedBoundsChange() {
         super.finalizeAnimatedBoundsChange()
         collectionView!.contentOffset = CGPointMake(CGFloat(currentIndex) * collectionView!.frame.size.width, 0)
