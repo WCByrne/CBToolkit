@@ -18,18 +18,18 @@ Create CBToolkit views progamatically just like anything else.
 
 Forget about writing the tedious layer.[attribute] code when you want to give your buttons a little style. Round those corners, add a border, event drop some shadow all from the storyboard/IB inspector.
 
-* cornerRadius : Round the corners of the view to whatever radius you wish
-* circleCrop: Let autolayout do the work, CornerRadius will be set to 50% anytime your view changes size
+* `cornerRadius` : Round the corners of the view to whatever radius you wish
+* `circleCrop`: Let autolayout do the work, CornerRadius will be set to 50% anytime your view changes size
 
-* borderWidth: Well, set the width of the border
-* borderColor: And the color of the border
+* `borderWidth`: Well, set the width of the border
+* `borderColor`: And the color of the border
 
-* shadowColor: Set the color of the layer shadow
-* shadowRadius: Set the shadow radius
-* shadowOpacity: Set the opacity of the shadow 
-* shadowOffset: Translate the shadow relative to the view
-* shouldRasterize: Rasterize the layer for better performance, screen scale is handled as well
-* useShadowPath: For square views, useShadowPath greatly improves performace. corner radius is also taken into account.
+* `shadowColor`: Set the color of the layer shadow
+* `shadowRadius`: Set the shadow radius
+* `shadowOpacity`: Set the opacity of the shadow 
+* `shadowOffset`: Translate the shadow relative to the view
+* `shouldRasterize`: Rasterize the layer for better performance, screen scale is handled as well
+* `useShadowPath`: For square views, useShadowPath greatly improves performace. corner radius is also taken into account.
 
 For More information on any of these attributes, checkout the CALayer documentation
 
