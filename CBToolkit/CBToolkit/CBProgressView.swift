@@ -17,7 +17,10 @@ import UIKit
     private let backgroundLayer: CAShapeLayer = CAShapeLayer()
     
     @IBInspectable public var lineWidth: CGFloat = 2 {
-        didSet { progressLayer.lineWidth = lineWidth }
+        didSet {
+            progressLayer.lineWidth = lineWidth
+            self.updatePath()
+        }
     }
     
     @IBInspectable public var startPosition: CGFloat = 0 {
@@ -104,14 +107,14 @@ import UIKit
             animation = CABasicAnimation(keyPath: "lineWidth")
             animation!.fromValue = lineWidth
             animation!.toValue = NSNumber(float: Float(width))
-            animation!.duration = 0.5;
-            
+            animation!.duration = 0.2;
         }
         self.backgroundLayer.lineWidth = width
         self.progressLayer.lineWidth = width
         self.lineWidth = width
         if animation != nil {
-            self.progressLayer.addAnimation(animation, forKey: "animation")
+            self.backgroundLayer.addAnimation(animation, forKey: "lineWidthAnimation")
+            self.progressLayer.addAnimation(animation, forKey: "lineWidthAnimation")
         }
         
     }
@@ -119,24 +122,20 @@ import UIKit
     
     
      public func setProgress(progress: CGFloat, animated: Bool) {
-        if (progress > 0) {
             if (animated) {
                 var animation = CABasicAnimation(keyPath: "strokeEnd")
-                animation.fromValue = self.progress == 0 ? 0 : nil;
+                animation.fromValue = NSNumber(float: Float(self._progress));
                 animation.toValue = NSNumber(float: Float(progress))
-                animation.duration = 1;
+                var change = Float(abs(self._progress - progress))
+                animation.duration = CFTimeInterval(change*2);
                 self.progressLayer.strokeEnd = progress + startPosition;
-                self.progressLayer.addAnimation(animation, forKey: "animation")
+                self.progressLayer.addAnimation(animation, forKey: "progressAnimation")
             } else {
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
                 self.progressLayer.strokeEnd = progress;
                 CATransaction.commit()
             }
-        } else {
-            self.progressLayer.removeAllAnimations()
-            progressLayer.strokeEnd = 0.0
-        }
         _progress = progress;
     }
 }
@@ -152,20 +151,33 @@ import UIKit
  @IBDesignable public class CBActivityIndicator : UIControl {
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
-    
+    private let backgroundLayer: CAShapeLayer = CAShapeLayer()
     
     @IBInspectable public var animating: Bool = false
     @IBInspectable public var hidesWhenStopped: Bool = true
     
+    @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
+        didSet { backgroundLayer.strokeColor = trackColor.CGColor }
+    }
+    
     @IBInspectable public var lineWidth: CGFloat = 2 {
-        didSet { progressLayer.lineWidth = lineWidth }
+        didSet {
+            progressLayer.lineWidth = lineWidth
+            backgroundLayer.lineWidth = lineWidth
+            self.drawPath()
+        }
     }
     
     @IBInspectable public var rotateDuration: CGFloat = 1 {
         didSet {
-            if progressLayer.animationForKey("spin") != nil {
-                progressLayer.animationForKey("spin").duration = CFTimeInterval(rotateDuration)
+            if self.animating {
+                self.stopAnimating()
+                self.startAnimating()
             }
+//            if progressLayer.animationForKey("spin") != nil {
+//                
+//                progressLayer.animationForKey("spin").duration = CFTimeInterval(rotateDuration)
+//            }
         }
     }
     @IBInspectable public var indicatorSize: CGFloat = 0.5 {
@@ -189,6 +201,13 @@ import UIKit
     
     func prepareView() {
         self.backgroundColor = UIColor.clearColor()
+        
+        backgroundLayer.strokeColor = trackColor.CGColor
+        backgroundLayer.strokeStart = 0
+        backgroundLayer.strokeEnd = 1
+        backgroundLayer.fillColor = nil
+        backgroundLayer.lineWidth = lineWidth
+        self.layer.addSublayer(backgroundLayer)
         
         progressLayer.strokeColor = tintColor.CGColor
         progressLayer.strokeStart = 0
@@ -287,6 +306,7 @@ import UIKit
         var endAngle: CGFloat = startAngle + 6.28318531 * indicatorSize
         
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
+        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
         
         progressLayer.anchorPoint = CGPointMake(0.5, 0.5)
         self.progressLayer.frame = self.bounds

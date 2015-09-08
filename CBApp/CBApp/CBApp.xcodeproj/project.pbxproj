@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C9C5A611B9E11D20004657A /* CBToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9C5A601B9E11D20004657A /* CBToolkit.framework */; };
+		1C9C5A621B9E11D20004657A /* CBToolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9C5A601B9E11D20004657A /* CBToolkit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1C9C5A651B9E15F80004657A /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A641B9E15F80004657A /* ButtonCell.swift */; };
+		1C9C5A671B9E269A0004657A /* LoadersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A661B9E269A0004657A /* LoadersCell.swift */; };
+		1C9C5A691B9E45C50004657A /* ViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A681B9E45C50004657A /* ViewCell.swift */; };
+		1C9C5A6B1B9E4BED0004657A /* CVLayoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A6A1B9E4BED0004657A /* CVLayoutCell.swift */; };
 		DEEBE04A1B9892B600F18093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0491B9892B600F18093 /* AppDelegate.swift */; };
 		DEEBE04C1B9892B600F18093 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE04B1B9892B600F18093 /* ViewController.swift */; };
 		DEEBE04F1B9892B600F18093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE04D1B9892B600F18093 /* Main.storyboard */; };
 		DEEBE0511B9892B600F18093 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE0501B9892B600F18093 /* Images.xcassets */; };
 		DEEBE0541B9892B600F18093 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE0521B9892B600F18093 /* LaunchScreen.xib */; };
 		DEEBE0601B9892B600F18093 /* CBAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE05F1B9892B600F18093 /* CBAppTests.swift */; };
-		DEEBE06A1B9894B000F18093 /* CBToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEEBE0691B9894B000F18093 /* CBToolkit.framework */; };
-		DEEBE06B1B9894B000F18093 /* CBToolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DEEBE0691B9894B000F18093 /* CBToolkit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,13 +32,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		DEEBE06C1B9894B000F18093 /* Embed Frameworks */ = {
+		1C9C5A631B9E11D20004657A /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DEEBE06B1B9894B000F18093 /* CBToolkit.framework in Embed Frameworks */,
+				1C9C5A621B9E11D20004657A /* CBToolkit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +46,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C9C5A601B9E11D20004657A /* CBToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CBToolkit.framework; path = "/Users/mbyrne/Library/Developer/Xcode/DerivedData/CBApp-bzbbgtqelaavfiakdntzxueaecwu/Build/Products/Debug-iphoneos/CBToolkit.framework"; sourceTree = "<absolute>"; };
+		1C9C5A641B9E15F80004657A /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		1C9C5A661B9E269A0004657A /* LoadersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadersCell.swift; sourceTree = "<group>"; };
+		1C9C5A681B9E45C50004657A /* ViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCell.swift; sourceTree = "<group>"; };
+		1C9C5A6A1B9E4BED0004657A /* CVLayoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVLayoutCell.swift; sourceTree = "<group>"; };
 		DEEBE0441B9892B600F18093 /* CBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEEBE0481B9892B600F18093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEEBE0491B9892B600F18093 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +61,6 @@
 		DEEBE0591B9892B600F18093 /* CBAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEEBE05E1B9892B600F18093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEEBE05F1B9892B600F18093 /* CBAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBAppTests.swift; sourceTree = "<group>"; };
-		DEEBE0691B9894B000F18093 /* CBToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CBToolkit.framework; path = "/Users/Wes/Library/Developer/Xcode/DerivedData/CBApp-bmwlnkbuhfprbthftiawagqgaroj/Build/Products/Debug-iphoneos/CBToolkit.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEEBE06A1B9894B000F18093 /* CBToolkit.framework in Frameworks */,
+				1C9C5A611B9E11D20004657A /* CBToolkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +85,7 @@
 		DEEBE03B1B9892B600F18093 = {
 			isa = PBXGroup;
 			children = (
-				DEEBE0691B9894B000F18093 /* CBToolkit.framework */,
+				1C9C5A601B9E11D20004657A /* CBToolkit.framework */,
 				DEEBE0461B9892B600F18093 /* CBApp */,
 				DEEBE05C1B9892B600F18093 /* CBAppTests */,
 				DEEBE0451B9892B600F18093 /* Products */,
@@ -98,6 +106,10 @@
 			children = (
 				DEEBE0491B9892B600F18093 /* AppDelegate.swift */,
 				DEEBE04B1B9892B600F18093 /* ViewController.swift */,
+				1C9C5A641B9E15F80004657A /* ButtonCell.swift */,
+				1C9C5A681B9E45C50004657A /* ViewCell.swift */,
+				1C9C5A661B9E269A0004657A /* LoadersCell.swift */,
+				1C9C5A6A1B9E4BED0004657A /* CVLayoutCell.swift */,
 				DEEBE04D1B9892B600F18093 /* Main.storyboard */,
 				DEEBE0501B9892B600F18093 /* Images.xcassets */,
 				DEEBE0521B9892B600F18093 /* LaunchScreen.xib */,
@@ -141,7 +153,7 @@
 				DEEBE0401B9892B600F18093 /* Sources */,
 				DEEBE0411B9892B600F18093 /* Frameworks */,
 				DEEBE0421B9892B600F18093 /* Resources */,
-				DEEBE06C1B9894B000F18093 /* Embed Frameworks */,
+				1C9C5A631B9E11D20004657A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -232,8 +244,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C9C5A6B1B9E4BED0004657A /* CVLayoutCell.swift in Sources */,
 				DEEBE04C1B9892B600F18093 /* ViewController.swift in Sources */,
 				DEEBE04A1B9892B600F18093 /* AppDelegate.swift in Sources */,
+				1C9C5A671B9E269A0004657A /* LoadersCell.swift in Sources */,
+				1C9C5A651B9E15F80004657A /* ButtonCell.swift in Sources */,
+				1C9C5A691B9E45C50004657A /* ViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +381,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CBApp-bmwlnkbuhfprbthftiawagqgaroj/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CBApp-bzbbgtqelaavfiakdntzxueaecwu/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = CBApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -379,6 +396,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CBApp-bmwlnkbuhfprbthftiawagqgaroj/Build/Products/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CBApp-bzbbgtqelaavfiakdntzxueaecwu/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = CBApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -78,14 +78,15 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     private var headerHeight: NSLayoutConstraint!
     private var filterHeightConstraint: NSLayoutConstraint!
     
-    public init(image: UIImage!, style: UIBlurEffectStyle) {
+    public init(image: UIImage!, style: UIBlurEffectStyle, delegate: CBImageEditorDelegate) {
         super.init(nibName: nil, bundle: nil)
+        self.delegate = delegate
         self.originalImage = image
         if image.size.width > 3000 || image.size.height > 3000 {
             self.originalImage = image.resize(CGSizeMake(3000, 3000), contentMode: CBImageContentMode.AspectFit)
         }
         
-        self.view.backgroundColor = UIColor(white: 0.2, alpha: 1)
+        self.view.backgroundColor = style == UIBlurEffectStyle.Dark ? UIColor(white: 0.2, alpha: 1) : UIColor(white: 0.9, alpha: 1)
         self.view.clipsToBounds = true
         
         scrollView = UIScrollView(frame: cropRect)
@@ -99,7 +100,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         scrollView.showsVerticalScrollIndicator = false
         scrollView.bouncesZoom = true
         scrollView.maximumZoomScale = 2
-        scrollView.backgroundColor = UIColor.darkGrayColor()
+        scrollView.backgroundColor = UIColor.clearColor()
         self.view.addSubview(scrollView)
         
         
@@ -154,7 +155,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         titleLabel = UILabel(frame: CGRectZero)
         titleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
         titleLabel.font = UIFont(name: "Avenir-Medium", size: 22)
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textColor = style == UIBlurEffectStyle.Dark ? UIColor.whiteColor() : UIColor.blackColor()
         titleLabel.textAlignment = NSTextAlignment.Center
         titleLabel.text = "Adjust your Photo"
         headerView.addSubview(titleLabel)
@@ -168,7 +169,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         cancelButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
         cancelButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 18)
-        cancelButton.tintColor = UIColor(white: 0.9, alpha: 1)
+        cancelButton.tintColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 0.9 : 0.1, alpha: 1)
         cancelButton.addTarget(self, action: "cancel", forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(cancelButton)
         
@@ -181,7 +182,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         saveButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         saveButton.setTitle("Save", forState: UIControlState.Normal)
         saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
-        saveButton.tintColor = UIColor(white: 0.9, alpha: 1)
+        saveButton.tintColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 0.9 : 0.1, alpha: 1)
         saveButton.addTarget(self, action: "finish", forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(saveButton)
         
@@ -215,7 +216,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         verticalButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         verticalButton.addTarget(self, action: "setVerticalCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(verticalButton)
-        verticalButton.layer.borderColor = UIColor(white: 1, alpha: 0.6).CGColor
+        verticalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
         verticalButton.layer.borderWidth = 2
         
         self.view.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 8))
@@ -227,7 +228,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         horizontalButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         horizontalButton.addTarget(self, action: "setHorizontalCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(horizontalButton)
-        horizontalButton.layer.borderColor = UIColor(white: 1, alpha: 0.6).CGColor
+        horizontalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
         horizontalButton.layer.borderWidth = 2
         
         self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: verticalButton, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 8))
@@ -239,7 +240,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         squareButton.setTranslatesAutoresizingMaskIntoConstraints(false)
         squareButton.addTarget(self, action: "setSquareCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(squareButton)
-        squareButton.layer.borderColor = UIColor(white: 1, alpha: 0.6).CGColor
+        squareButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
         squareButton.layer.borderWidth = 2
         
         self.view.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: horizontalButton, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 8))
@@ -317,19 +318,26 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             FilterData(key: "CIPhotoEffectTonal", previewImage: thumb, name: "B&W"),
             FilterData(key: "CIPhotoEffectNoir", previewImage: thumb, name: "Noir"),
         ]
-        
-        var i = 0
-        for filter in filters {
-            var image = CIImage(CGImage: filter.previewImage!.CGImage)
-            var params = filter.params
-            params[kCIInputImageKey] = image
-            var ciFilter = CIFilter(name: filter.key, withInputParameters: params)
-            var outImage = ciFilter.outputImage
-            var cgImage = imageContext.createCGImage(outImage, fromRect: outImage.extent())
-            var img = UIImage(CGImage: cgImage)
-            filter.previewImage = img
-            filterCV.reloadItemsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)])
-        }
+        NSOperationQueue().addOperationWithBlock({ () -> Void in
+            var i = 0
+            for filter in self.filters {
+
+                var image = CIImage(CGImage: filter.previewImage!.CGImage)
+                var params = filter.params
+                params[kCIInputImageKey] = image
+                var ciFilter = CIFilter(name: filter.key, withInputParameters: params)
+                var outImage = ciFilter.outputImage
+                var cgImage = self.imageContext.createCGImage(outImage, fromRect: outImage.extent())
+                var img = UIImage(CGImage: cgImage)
+                filter.previewImage = img
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.filterCV.reloadItemsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)])
+                })
+
+                i++
+            }
+        })
     }
 
     // Hides the status bar and shrinks the custom navBar on landscape for iPhone
@@ -433,7 +441,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
                 self.view.layoutIfNeeded()
         }, completion: nil)
         
-        squareButton.backgroundColor = UIColor.whiteColor()
+        squareButton.backgroundColor = squareButton.borderColor
         verticalButton.backgroundColor = UIColor.clearColor()
         horizontalButton.backgroundColor = UIColor.clearColor()
         
@@ -451,7 +459,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         squareButton.backgroundColor = UIColor.clearColor()
         verticalButton.backgroundColor = UIColor.clearColor()
-        horizontalButton.backgroundColor = UIColor.whiteColor()
+        horizontalButton.backgroundColor = horizontalButton.borderColor
     }
     
     public func setVerticalCrop() {
@@ -466,7 +474,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             }, completion: nil)
         
         squareButton.backgroundColor = UIColor.clearColor()
-        verticalButton.backgroundColor = UIColor.whiteColor()
+        verticalButton.backgroundColor = verticalButton.borderColor
         horizontalButton.backgroundColor = UIColor.clearColor()
     }
     

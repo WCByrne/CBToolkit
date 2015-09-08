@@ -39,8 +39,7 @@ extension CGPoint  {
     // Between to items in the same column
     optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat
-    
-    
+
     optional func collectionview(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumColumnSpacingForSectionAtIndex: NSInteger) -> CGFloat
     

@@ -27,6 +27,19 @@ import UIKit
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
+    @IBInspectable public var layerShadowColor: UIColor = UIColor.blackColor() {
+        didSet { self.layer.shadowColor = layerShadowColor.CGColor }
+    }
+    @IBInspectable public var layerShadowRadius: CGFloat = 0 {
+        didSet { self.layer.shadowRadius = layerShadowRadius }
+    }
+    @IBInspectable public var layerShadowOpacity: Float = 0 {
+        didSet { self.layer.shadowOpacity = layerShadowOpacity }
+    }
+    @IBInspectable public var layerShadowOffset: CGSize = CGSizeZero {
+        didSet { self.layer.shadowOffset = layerShadowOffset }
+    }
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true

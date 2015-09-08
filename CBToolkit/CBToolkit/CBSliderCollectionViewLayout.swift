@@ -60,7 +60,7 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         autoScrollTimer = nil
     }
     
-    private func animateScroll() {
+    internal func animateScroll() {
         if self.collectionView?.numberOfSections() == 0 { return }
         else if self.collectionView?.numberOfItemsInSection(0) == 0 { return }
         currentIndex++
