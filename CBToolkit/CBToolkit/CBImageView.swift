@@ -35,6 +35,8 @@ import UIKit
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
+    public var onLoadTransition: UIViewAnimationOptions = UIViewAnimationOptions.TransitionNone
+    
     /// Tint the image with the views tintColor property
     @IBInspectable public var tinted: Bool = false {
         didSet {
@@ -74,6 +76,7 @@ import UIKit
     
     override public var image: UIImage? {
         didSet {
+            self.layer.removeAllAnimations()
             if image == nil && self.placeholderImage != nil {
                 if tinted {
                     self.image = placeholderImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
@@ -103,18 +106,23 @@ import UIKit
     
     
     public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?) {
-        
         imageURL = imgURL
-        
-        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error) -> Void in
+        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error, requestTime) -> Void in
             if imgURL != self.imageURL {
                 return
             }
             if completion == nil {
-                self.image = image
+                if self.onLoadTransition == UIViewAnimationOptions.TransitionNone {
+                    self.image = image
+                }
+                else {
+                    UIView.transitionWithView(self, duration: 0.3, options: self.onLoadTransition, animations: { () -> Void in
+                        self.image = image
+                    }, completion: nil)
+                }
             }
             else {
-                completion!(image: image, error: error)
+                completion!(image: image, error: error, requestTime: requestTime)
             }
         })
     }

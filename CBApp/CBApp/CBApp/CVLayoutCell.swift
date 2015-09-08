@@ -78,6 +78,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         
         var imgIndex = indexPath.row % imgURLs.count
         var url = imgURLs[imgIndex]
+        cell.imageView.onLoadTransition = UIViewAnimationOptions.TransitionCrossDissolve
         cell.imageView.loadImageAtURL(url, completion: nil)
         
         return cell
@@ -86,7 +87,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var imgIndex = indexPath.row % imgURLs.count
         var url = imgURLs[imgIndex]
-        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(url, completion: { (image, error) -> Void in
+        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(url, completion: { (image, error, requestTime) -> Void in
             if image != nil {
                 self.delegate?.openImageEditor(image!)
             }
@@ -97,6 +98,11 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
 
 class GalleryCell : UICollectionViewCell {
     @IBOutlet weak var imageView: CBImageView!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView.image = nil
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="15A216g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -86,7 +86,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lRX-SP-vKE" customClass="CBView" customModule="CBToolkit">
-                                                    <rect key="frame" x="129" y="150.5" width="70" height="70"/>
+                                                    <rect key="frame" x="129" y="151" width="70" height="70"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -473,7 +473,7 @@
                                                             </connections>
                                                         </switch>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Right" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utn-A1-IWF">
-                                                            <rect key="frame" x="110" y="8" width="29.5" height="16"/>
+                                                            <rect key="frame" x="110" y="8" width="30" height="16"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -950,7 +950,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create a button with a custom arrangment of subviews then just link to an IBAction." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LH3-9V-KCY">
-                                                    <rect key="frame" x="8" y="537" width="314" height="33.5"/>
+                                                    <rect key="frame" x="8" y="537" width="314" height="34"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
@@ -1206,7 +1206,7 @@
                                                     <rect key="frame" x="8" y="286" width="314" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Duration" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8Y-57-giN">
-                                                            <rect key="frame" x="8" y="0.0" width="58.5" height="40"/>
+                                                            <rect key="frame" x="8" y="0.0" width="59" height="40"/>
                                                             <animations/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="75" id="PiG-He-sKX"/>
@@ -1216,7 +1216,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="U1A-Bc-Clp">
-                                                            <rect key="frame" x="88" y="0.0" width="219.5" height="41"/>
+                                                            <rect key="frame" x="88" y="0.0" width="220" height="41"/>
                                                             <animations/>
                                                             <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="maximumTrackTintColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
@@ -1392,7 +1392,7 @@
                                                     </connections>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An example usave of CBProgressView. Tap the image." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQz-9M-NLl">
-                                                    <rect key="frame" x="8" y="524" width="314" height="33.5"/>
+                                                    <rect key="frame" x="8" y="524" width="314" height="34"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>

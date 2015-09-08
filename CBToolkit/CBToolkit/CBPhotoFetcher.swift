@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?)->Void
+public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?, requestTime: NSTimeInterval)->Void
 public typealias CBProgressBlock = (progress: Float)->Void
 
 
@@ -28,15 +28,6 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
     
     override init() {
         super.init()
-        var progressView = CBProgressView()
-        CBPhotoFetcher.sharedFetcher.fetchImageAtURL("[imgURL]", completion: { (image, error) -> Void in
-            if image != nil {
-                
-            }
-        }) { (progress) -> Void in
-            progressView.setProgress(CGFloat(progress), animated: true)
-            return
-        }
     }
     
     
@@ -46,6 +37,13 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
     
     public func cancelAll() {
         inProgress.removeAll(keepCapacity: false)
+    }
+    
+    public func cacheForURL(imgUrl: String) -> UIImage? {
+        if let cachedImage = imageCache.objectForKey(imgUrl) as? UIImage  {
+            return cachedImage
+        }
+        return nil
     }
     
     // Clears any callbacks for the url
@@ -76,7 +74,7 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         
         // The image is chached
         if let cachedImage = imageCache.objectForKey(imgUrl) as? UIImage  {
-            completion(image: cachedImage, error: nil)
+            completion(image: cachedImage, error: nil, requestTime: 0)
             return
         }
         
@@ -121,6 +119,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     var imgData : NSMutableData!
     var expectedSize : Int!
     var progress: Float = 0
+    var startDate = NSDate()
     
     var delegate : CBImageFetchRequestDelegate!
     var con : NSURLConnection?
@@ -138,7 +137,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         if url == nil {
             var err = NSError(domain: "CBToolkit", code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid url for image download"])
             for cBlock in completionBlocks {
-                cBlock(image: nil, error: err)
+                cBlock(image: nil, error: err, requestTime: 0)
             }
             self.delegate.fetchRequestDidFinish(baseURL, image: nil)
             return
@@ -158,7 +157,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         for cBlock in completionBlocks {
-            cBlock(image: nil, error: error)
+            cBlock(image: nil, error: error, requestTime: startDate.timeIntervalSinceNow)
         }
         delegate.fetchRequestDidFinish(baseURL, image: nil)
     }
@@ -182,7 +181,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
             error = NSError(domain: "CBToolkit", code: 2, userInfo: [NSLocalizedDescriptionKey : "Could not procress image data into image."])
         }
         for cBlock in completionBlocks {
-            cBlock(image: img, error: error)
+            cBlock(image: img, error: error, requestTime: startDate.timeIntervalSinceNow)
         }
         delegate.fetchRequestDidFinish(baseURL, image: img)
     }
