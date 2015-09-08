@@ -452,7 +452,7 @@ public extension NSDate  {
         
         var minutes = comps.minute
         var minStr = "\(minutes)"
-        if minutes < 12 {
+        if minutes < 10 {
             minStr = "0\(minutes)"
         }
         

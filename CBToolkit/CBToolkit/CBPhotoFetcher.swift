@@ -46,6 +46,14 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         return nil
     }
     
+    public func clearCacheForURL(imgURL: String) {
+        imageCache.removeObjectForKey(imgURL)
+    }
+    
+    public func insertCacheImage(imgURL: String!, image: UIImage!) {
+        imageCache.setObject(image, forKey: imgURL)
+    }
+    
     // Clears any callbacks for the url
     // The image will continue to load and cache for next time
     public func cancelFetchForUrl(url: String) {

@@ -44,6 +44,9 @@ public extension UIView {
             self.setTranslatesAutoresizingMaskIntoConstraints(false)
             return (top, right, bottom, left)
         }
+        else {
+            println("CBToolkit Warning: Attempt to add contraints to match parent but the view had not superview.")
+        }
         return nil
     }
 }
@@ -77,7 +80,7 @@ public extension UIImage {
     
     public func crop(frame: CGRect) -> UIImage {
         var  imageRef = CGImageCreateWithImageInRect(self.CGImage, frame);
-        return UIImage(CGImage: imageRef, scale: 3, orientation: self.imageOrientation)!
+        return UIImage(CGImage: imageRef)!
     }
     
     public func thumbnail(size: Int) ->UIImage {
@@ -200,7 +203,7 @@ public extension UIImage {
         CGContextSetInterpolationQuality(bitmap, kCGInterpolationMedium);
         CGContextDrawImage(bitmap, transpose ? transposedRect : newRect, imageRef);
         var newImageRef = CGBitmapContextCreateImage(bitmap)!
-        var newImage = UIImage(CGImage: newImageRef, scale: 3, orientation: UIImageOrientation.Up)!
+        var newImage = UIImage(CGImage: newImageRef)!
         return newImage
     }
     
