@@ -57,6 +57,26 @@ Ever wanted a button with more than an image to the left and text to the right? 
 
 
 
+<h1>CBImageView</h1>
+
+Just a UIImage with some practical updates. You'll never use a UIImage again.
+
+* `cornerRadius`: Round your images right from the storyboard.
+* `circleCrop`: Let autolayout do the work, CornerRadius will be set to 50% anytime your view changes size
+* `borderColor`: The color of the border
+* `borderWidth`: The width of the border
+* `tinted`: Render the image as a template image to use the built in tint color
+* `placeholderImage`: Set an image to be used anytime the image property is set to nil.
+
+* `loadImageAtURL:completion:`: Load a remote image into the image view in one line. A nil callback will automatically set the image to the imageView.
+
+
+TODO: 
+* Better placeholder support for scaling
+* Automatic loading animaitions
+
+
+
 
 
 <h1>Special CBViews</h1>
@@ -73,6 +93,7 @@ Draw a gradient as a background or an overlay with zero code.
 * `topColor`: The first color in the gradient
 * `middleColor`: The second color in the gradient
 * `bottomColor`: The third color in the gradient
+
 * `topLocation`: The percentage point of the top color from top to bottom
 * `middleLocation`: The percentage point of the middle color from top to bottom
 * `bottomLocation`: The percentage point of the bottom color from top to bottom
@@ -113,6 +134,22 @@ func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICo
 ````
 
 
+
+<h1>CBTextField</h1>
+
+Nothing to special here except great looking text fields.
+
+* `hideCaret` : Hide the text caret while editing
+* `textInset`: Inset the text to add padding
+* `placeholderColor`: The color of the placeholder text
+* `bottomBorder`: Draw a border on the bottom of the textField instead of the normal layer border using the borderWidth and borderColor.
+
+* `cornerRadius` : Round the corners of the view to whatever radius you wish
+* `borderWidth`: Well, set the width of the border
+* `borderColor`: And the color of the border
+
+
+
 <h1>CBTextView</h1>
 
 A very easy to use UITextView subclass that works like the Messages app. As text changes the height adjusts to fit the text. Your project should use autoLayout.
@@ -120,18 +157,69 @@ A very easy to use UITextView subclass that works like the Messages app. As text
 I recommend putting the textView in a UIView. Set the textView with the desired constraints to each side of the container. The container should have a given width or attached left and right to it's parent. Make sure the container does not define it's own height. 
 
 Customizable Settings
-* minimumHeight </br>
-* maximumHeight </br>
-* placeholderText </br>
-* placeholderColor </br>
-* normalTextColor </br>
-* borderColor </br>
-* cornerRadius
+* `minimumHeight`: The minimum height of the textView
+* `maximumHeight` The max height the textView should expand to
+* `placeholderText`: Placeholder text that will be cleared on focus
+* `placeholderColor`: The color of the placholder text if any
+* `normalTextColor`: The color for normal text input (not the placeholder)
+* `borderColor`: The color of the layer border
+* `borderWidth`: The width of the layer border
+* `cornerRadius`: the corner radius of the view
+* `currentText` : Returns the text only if it is not equal to the placeholder
 
 Note: to help your layouts in IB, set a height constraint on your textViews container view and select 'remove at runtime'.
 
 Things to do
-Better handle placeholder text. - If the place holder text is entered by the user it will get cleared on reFocus. 
+Better handle placeholder text.
 
 
+
+
+
+
+<h1>CBDate (NSDate extention)</h1>
+
+CBDate provides a number of helpful extensions to the standard NSDate class.
+
+* `startOfDate:`: Returns a date for the beginning in the day for the given date (or now if nil)
+* `endOfDay:`: Returns a date for the last second in the day for the given date (or now if nil)
+* `startOfWeek:`: Returns a date for the beginning of the week for the given date (or now if nil)
+* `endOfWeek:`: Returns a date for the last second in the week for the given date (or now if nil)
+* `dateForNextHour:`: Returns a date for the next hour that will occur from the given date (or now if nil)
+
+<b>Relativity</b>
+* `isSameDayAsDate:`: Determine if two dates fall on the dame calendar day.
+* `isToday:`: Detmine if the date is today
+* `isYesterday:`: Determine if the date occured yesterday
+
+<b>Formatting</b>
+* `timeAgo:`: The time since the date occured in the appropriate duration (seconds, minutes, hours, days, weeks, years). ex. '34s', '18m', '1d', 2w
+* `relativeTimeFromNow:`: The relative time from now in words. (ex. now, moments ago) See CBRelativeDateStyle for options
+* `relativeDayFromNow:`: The relative day from now in words optionally including the time. (ex. today, tomorrow, Wednesday) See CBRelativeDateStyle for options
+* `timeString`: The time in 12hr format including am/pm values
+
+
+
+
+<h1>CBPhotoFetcher</h1>
+
+Downloading images is no hassle. Just pass your url and get the image. `CBPhotoFetcher` handles multiple callbacks for the same URL, progress, and caching images. 
+
+CBImageView uses CBPotoFetcher internally to load images
+
+````
+        var progressView = CBProgressView()
+        ...
+        var imgURL = "www.myWebsite.com/images/kitty"
+        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error) -> Void in
+            if image != nil {
+                
+            }
+        }) { (progress) -> Void in
+            progressView.setProgress(CGFloat(progress), animated: true)
+            return
+        }
+````
+
+TODO: Disk storage of images for caching between loads.
 

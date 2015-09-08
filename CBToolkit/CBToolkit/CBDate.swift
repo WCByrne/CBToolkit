@@ -31,9 +31,9 @@ public extension NSDate  {
     :returns: A new NSDate representing the start of the day for the supplied date
     */
     
-    class public func startOfDay(date: NSDate) -> NSDate! {
+    class public func startOfDay(date: NSDate? = NSDate()) -> NSDate! {
         var cal = NSCalendar.currentCalendar()
-        var comps = cal.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay, fromDate: date)
+        var comps = cal.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay, fromDate: date!)
         return cal.dateFromComponents(comps)!
     }
     
@@ -44,15 +44,15 @@ public extension NSDate  {
     :returns: A new NSDate representing the end of the day for the suppied date.
     */
     
-    class public func endOfDay(date: NSDate) -> NSDate! {
-        var endDate = date.dateByAddingTimeInterval(60*60*24)
+    class public func endOfDay(date: NSDate? = NSDate()) -> NSDate! {
+        var endDate = date!.dateByAddingTimeInterval(60*60*24)
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay, fromDate: endDate)
         return cal.dateFromComponents(comps)!
     }
     
     
-    class public func startOfWeek(date: NSDate) -> NSDate! {
+    class public func startOfWeek(date: NSDate? = NSDate()) -> NSDate! {
         
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.CalendarUnitCalendar |
@@ -63,7 +63,7 @@ public extension NSDate  {
             NSCalendarUnit.CalendarUnitWeekday |
             NSCalendarUnit.CalendarUnitHour |
             NSCalendarUnit.CalendarUnitMinute |
-            NSCalendarUnit.CalendarUnitSecond, fromDate: date.dateByAddingTimeInterval(60*60))
+            NSCalendarUnit.CalendarUnitSecond, fromDate: date!.dateByAddingTimeInterval(60*60))
         
         comps.weekday = 1
         comps.second = 0
@@ -74,10 +74,9 @@ public extension NSDate  {
     }
     
     
-    class public func endOfWeek(date: NSDate) -> NSDate! {
-        var nextWeek = date.dateByAddingTimeInterval(60*60*24*7)
-        return NSDate.startOfWeek(nextWeek)
-        
+    class public func endOfWeek(date: NSDate? = NSDate()) -> NSDate! {
+        var nextWeek = date!.dateByAddingTimeInterval(60*60*24*7)
+        return NSDate.startOfWeek(date: nextWeek).dateByAddingTimeInterval(-1)
     }
     
     
@@ -88,7 +87,7 @@ public extension NSDate  {
     :returns: Returns a new NSDate set the the next whole hour from the provided date.
     */
     
-    class public func dateForNextHour(date: NSDate) -> NSDate! {
+    class public func dateForNextHour(date: NSDate? = NSDate()) -> NSDate! {
         
         var cal = NSCalendar.currentCalendar()
         var comps = cal.components(NSCalendarUnit.CalendarUnitCalendar |
@@ -99,7 +98,7 @@ public extension NSDate  {
             NSCalendarUnit.CalendarUnitWeekday |
             NSCalendarUnit.CalendarUnitHour |
             NSCalendarUnit.CalendarUnitMinute |
-            NSCalendarUnit.CalendarUnitSecond, fromDate: date.dateByAddingTimeInterval(60*60))
+            NSCalendarUnit.CalendarUnitSecond, fromDate: date!.dateByAddingTimeInterval(60*60))
         
         comps.second = 0
         comps.minute = 0
@@ -371,7 +370,6 @@ public extension NSDate  {
         }
         
         return formattedString
-        
     }
     
     

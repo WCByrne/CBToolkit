@@ -28,6 +28,15 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
     
     override init() {
         super.init()
+        var progressView = CBProgressView()
+        CBPhotoFetcher.sharedFetcher.fetchImageAtURL("[imgURL]", completion: { (image, error) -> Void in
+            if image != nil {
+                
+            }
+        }) { (progress) -> Void in
+            progressView.setProgress(CGFloat(progress), animated: true)
+            return
+        }
     }
     
     
