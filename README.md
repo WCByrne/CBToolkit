@@ -20,10 +20,8 @@ Forget about writing the tedious layer.[attribute] code when you want to give yo
 
 * `cornerRadius` : Round the corners of the view to whatever radius you wish
 * `circleCrop`: Let autolayout do the work, CornerRadius will be set to 50% anytime your view changes size
-
 * `borderWidth`: Well, set the width of the border
 * `borderColor`: And the color of the border
-
 * `shadowColor`: Set the color of the layer shadow
 * `shadowRadius`: Set the shadow radius
 * `shadowOpacity`: Set the opacity of the shadow 
@@ -42,16 +40,16 @@ Interactive and fun UIs are all the rage. They really do bring a new level of in
 
 To handle selections, do the same things you would wiht your UIButton. It's just a subclass!
 
-* Bouncy: Enable bouncy animation when the button is touched.
-* Pop When Selected: If true, the popAnimation will run automatically when selected is set to true.
-* Damping: The spring damping to apply the bounce animation
-* Shrink Scale: The percentage to scale down towhen selected from the initial value (0-1)
-* Pop Scale: The percentage to scale up to when the popAnimation is run (1+)
+* `bouncy`: Enable bouncy animation when the button is touched.
+* `popWhenSelected`: If true, the popAnimation will run automatically when selected is set to true.
+* `damping`: The spring damping to apply the bounce animation
+* `shrinkScale`: The percentage to scale down towhen selected from the initial value (0-1)
+* `popScale`: The percentage to scale up to when the popAnimation is run (1+)
 
-* cornerRadius : Round the corners of the view to whatever radius you wish
-* circleCrop: Let autolayout do the work, CornerRadius will be set to 50% anytime your view changes size
-* borderWidth: Well, set the width of the border
-* borderColor: And the color of the border
+* `cornerRadius` : Round the corners of the view to whatever radius you wish
+* `circleCrop`: Let autolayout do the work, CornerRadius will be set to 50% anytime your view changes size
+* `borderWidth`: Well, set the width of the border
+* `borderColor`: And the color of the border
 
 <h2>CBButtonView</h2>
 
@@ -65,20 +63,19 @@ Ever wanted a button with more than an image to the left and text to the right? 
 <h2>CBBorderView</h2>
 Add borders to each side of a view as needed. 
 
-* leftBorder, rightBorder, topBorder, bottomBorder: Turn each side on and off individually
-* borderColor: The color of each side's border.
-* borderWidth: The width for each side's border
+* `leftBorder`, rightBorder, topBorder, bottomBorder: Turn each side on and off individually
+* `borderColor`: The color of each side's border.
+* `borderWidth`: The width for each side's border
 
 <h2>CBGradientView</h2>
 Draw a gradient as a background or an overlay with zero code.
 
-* topColor: The first color in the gradient
-* middleColor: The second color in the gradient
-* bottomColor: The third color in the gradient
-
-* topLocation: The percentage point of the top color from top to bottom
-* middleLocation: The percentage point of the middle color from top to bottom
-* bottomLocation: The percentage point of the bottom color from top to bottom
+* `topColor`: The first color in the gradient
+* `middleColor`: The second color in the gradient
+* `bottomColor`: The third color in the gradient
+* `topLocation`: The percentage point of the top color from top to bottom
+* `middleLocation`: The percentage point of the middle color from top to bottom
+* `bottomLocation`: The percentage point of the bottom color from top to bottom
 
 Note: when using a clear color with CBGradientView the color before the opacity is set will make a difference. So if your top color with white(alpha 1) and bottom is black(alpha 0), the middle will appear greyish.
 

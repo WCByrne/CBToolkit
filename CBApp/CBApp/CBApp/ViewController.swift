@@ -44,7 +44,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ViewCell", forIndexPath: indexPath) as! UICollectionViewCell
-            
             return cell
         }
         else if indexPath.row == 1 {
