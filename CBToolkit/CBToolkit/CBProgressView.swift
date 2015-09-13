@@ -42,7 +42,7 @@ import UIKit
         self.prepareView()
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -85,10 +85,10 @@ import UIKit
     }
     
     private func updatePath() {
-        var center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-        var radius = (self.bounds.size.width / 2) - lineWidth/2
-        var startAngle = CGFloat(2 * M_PI * Double(startPosition) - M_PI_2)
-        var endAngle = startAngle + CGFloat(2 * M_PI)
+        let center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+        let radius = (self.bounds.size.width / 2) - lineWidth/2
+        let startAngle = CGFloat(2 * M_PI * Double(startPosition) - M_PI_2)
+        let endAngle = startAngle + CGFloat(2 * M_PI)
         
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
         self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
@@ -113,8 +113,8 @@ import UIKit
         self.progressLayer.lineWidth = width
         self.lineWidth = width
         if animation != nil {
-            self.backgroundLayer.addAnimation(animation, forKey: "lineWidthAnimation")
-            self.progressLayer.addAnimation(animation, forKey: "lineWidthAnimation")
+            self.backgroundLayer.addAnimation(animation!, forKey: "lineWidthAnimation")
+            self.progressLayer.addAnimation(animation!, forKey: "lineWidthAnimation")
         }
         
     }
@@ -123,10 +123,10 @@ import UIKit
     
      public func setProgress(progress: CGFloat, animated: Bool) {
             if (animated) {
-                var animation = CABasicAnimation(keyPath: "strokeEnd")
+                let animation = CABasicAnimation(keyPath: "strokeEnd")
                 animation.fromValue = NSNumber(float: Float(self._progress));
                 animation.toValue = NSNumber(float: Float(progress))
-                var change = Float(abs(self._progress - progress))
+                let change = Float(abs(self._progress - progress))
                 animation.duration = CFTimeInterval(change*2);
                 self.progressLayer.strokeEnd = progress + startPosition;
                 self.progressLayer.addAnimation(animation, forKey: "progressAnimation")
@@ -190,7 +190,7 @@ import UIKit
         self.prepareView()
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -246,7 +246,7 @@ import UIKit
         self.progressLayer.removeAllAnimations()
         
         animating = true
-        var anim = CABasicAnimation(keyPath: "transform.rotation.z")
+        let anim = CABasicAnimation(keyPath: "transform.rotation.z")
         anim.duration = CFTimeInterval(rotateDuration)
         anim.removedOnCompletion = false
         anim.fromValue = NSNumber(float: 0)
@@ -256,7 +256,7 @@ import UIKit
         
         if hidesWhenStopped {
             progressLayer.strokeStart = 0
-            var anim = CABasicAnimation(keyPath: "strokeEnd")
+            let anim = CABasicAnimation(keyPath: "strokeEnd")
             anim.fromValue = NSNumber(int: 0)
             anim.toValue = NSNumber(int: 1)
             anim.duration = CFTimeInterval(0.5)
@@ -271,7 +271,7 @@ import UIKit
         animating = false
  
         if hidesWhenStopped {
-            var anim = CABasicAnimation(keyPath: "strokeStart")
+            let anim = CABasicAnimation(keyPath: "strokeStart")
             anim.fromValue = NSNumber(int: 0)
             anim.toValue = NSNumber(int: 1)
             anim.duration = CFTimeInterval(0.5)
@@ -280,7 +280,7 @@ import UIKit
             progressLayer.addAnimation(anim, forKey: "hide")
         }
         else {
-            var rotation = self.progressLayer.presentationLayer().rotation
+            let rotation = self.progressLayer.presentationLayer()!.rotation
             self.progressLayer.removeAllAnimations()
             self.progressLayer.setValue(rotation, forKey: "transform.rotation.z")
         }
@@ -300,10 +300,10 @@ import UIKit
     
     
     private func drawPath() {
-        var center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-        var radius = (self.bounds.size.width / 2) - lineWidth/2
-        var startAngle : CGFloat = CGFloat(0) - CGFloat(M_PI_2)
-        var endAngle: CGFloat = startAngle + 6.28318531 * indicatorSize
+        let center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+        let radius = (self.bounds.size.width / 2) - lineWidth/2
+        let startAngle : CGFloat = CGFloat(0) - CGFloat(M_PI_2)
+        let endAngle: CGFloat = startAngle + 6.28318531 * indicatorSize
         
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
         self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath

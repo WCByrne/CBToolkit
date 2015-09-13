@@ -75,7 +75,7 @@ import UIKit
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {
-            var sSide = min(self.frame.size.width, self.frame.size.height)
+            let sSide = min(self.frame.size.width, self.frame.size.height)
             self.cornerRadius = sSide/2
         }
     }
@@ -83,13 +83,13 @@ import UIKit
     public override func tintColorDidChange() {
         super.tintColorDidChange()
         if tintSubviews {
-            for view in self.subviews as! [UIView] {
+            for view in self.subviews {
                 view.tintColor = self.tintColor
             }
         }
     }
     
-    public override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if self.touchInside {
             self.selected = !self.selected
         }
@@ -98,14 +98,14 @@ import UIKit
     
     
     private func animateShrink() {
-        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: [UIViewAnimationOptions.AllowUserInteraction, UIViewAnimationOptions.BeginFromCurrentState], animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.shrinkscale, self.shrinkscale)
             }, completion: nil)
     }
     
     
     private func animateToResting() {
-        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(1, delay: 0.1, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: [UIViewAnimationOptions.AllowUserInteraction, UIViewAnimationOptions.BeginFromCurrentState], animations: { () -> Void in
             self.transform = CGAffineTransformIdentity
             }, completion: nil)
     }
@@ -183,29 +183,29 @@ import UIKit
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {
-            var sSide = min(self.frame.size.width, self.frame.size.height)
+            let sSide = min(self.frame.size.width, self.frame.size.height)
             self.cornerRadius = sSide/2
         }
     }
     
     private func animateShrink() {
-        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: [UIViewAnimationOptions.AllowUserInteraction, UIViewAnimationOptions.BeginFromCurrentState], animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.shrinkscale, self.shrinkscale)
             }, completion: nil)
     }
     
     
     private func animateToResting() {
-        UIView.animateWithDuration(0.8, delay: 0.1, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: UIViewAnimationOptions.AllowUserInteraction | UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        UIView.animateWithDuration(0.8, delay: 0.1, usingSpringWithDamping: damping, initialSpringVelocity: 4, options: [UIViewAnimationOptions.AllowUserInteraction, UIViewAnimationOptions.BeginFromCurrentState], animations: { () -> Void in
             self.transform = CGAffineTransformIdentity
             }, completion: nil)
     }
     
     public func popAnimation() {
-        UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.CurveEaseOut | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(0.26, delay: 0.15, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: [UIViewAnimationOptions.CurveEaseOut, UIViewAnimationOptions.AllowUserInteraction], animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(self.popScale, self.popScale)
             }) { (finished) -> Void in
-                UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: self.damping, initialSpringVelocity: 5, options: UIViewAnimationOptions.CurveEaseInOut | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+                UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: self.damping, initialSpringVelocity: 5, options: [UIViewAnimationOptions.CurveEaseInOut, UIViewAnimationOptions.AllowUserInteraction], animations: { () -> Void in
                     self.transform = CGAffineTransformMakeScale(1, 1)
                     }, completion: nil)
         }

@@ -90,7 +90,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         self.view.clipsToBounds = true
         
         scrollView = UIScrollView(frame: cropRect)
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.center = self.view.center
         scrollView.alwaysBounceHorizontal = true
         scrollView.alwaysBounceVertical = true
@@ -104,7 +104,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         self.view.addSubview(scrollView)
         
         
-        var isPad = UI_USER_INTERFACE_IDIOM() == .Pad
+        let isPad = UI_USER_INTERFACE_IDIOM() == .Pad
         
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 10))
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.LessThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: -10))
@@ -114,7 +114,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
         
-        var widthConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
         widthConstraint.priority = 250
         self.view.addConstraint(widthConstraint)
         
@@ -124,9 +124,9 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         imageView.contentMode = UIViewContentMode.ScaleToFill
         scrollView.addSubview(imageView)
         
-        var effect =  UIBlurEffect(style: style)
+        let effect =  UIBlurEffect(style: style)
         blurView = UIVisualEffectView(effect: effect)
-        blurView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        blurView.translatesAutoresizingMaskIntoConstraints = false
         blurView.frame = self.view.frame
         blurView.userInteractionEnabled = false
         blurView.alpha = 0.95
@@ -142,7 +142,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         // Title, Save, & Cancel
         
         headerView = UIView(frame: CGRectZero)
-        headerView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        headerView.translatesAutoresizingMaskIntoConstraints = false
         headerView.backgroundColor = UIColor(white: 0.5, alpha: 0.1)
         self.view.addSubview(headerView)
         
@@ -153,7 +153,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         headerView.addConstraint(headerHeight)
         
         titleLabel = UILabel(frame: CGRectZero)
-        titleLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont(name: "Avenir-Medium", size: 22)
         titleLabel.textColor = style == UIBlurEffectStyle.Dark ? UIColor.whiteColor() : UIColor.blackColor()
         titleLabel.textAlignment = NSTextAlignment.Center
@@ -165,8 +165,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: titleLabel, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
         titleLabel.setContentCompressionResistancePriority(250, forAxis: UILayoutConstraintAxis.Horizontal)
         
-        cancelButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
-        cancelButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        cancelButton = CBButton(type: UIButtonType.System)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
         cancelButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 18)
         cancelButton.tintColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 0.9 : 0.1, alpha: 1)
@@ -178,8 +178,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         headerView.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: headerView, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 8))
         headerView.addConstraint(NSLayoutConstraint(item:  headerView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: cancelButton, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
         
-        saveButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
-        saveButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        saveButton = UIButton(type: UIButtonType.System) as! CBButton
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.setTitle("Save", forState: UIControlState.Normal)
         saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
         saveButton.tintColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 0.9 : 0.1, alpha: 1)
@@ -192,15 +192,15 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: saveButton, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
         
         
-        var cvLayout = UICollectionViewFlowLayout()
+        let cvLayout = UICollectionViewFlowLayout()
         cvLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         cvLayout.minimumInteritemSpacing = 4
         cvLayout.minimumLineSpacing = 4
         filterCV = UICollectionView(frame: CGRectZero, collectionViewLayout: cvLayout)
         filterCV.registerClass(CropperFilterCell.self, forCellWithReuseIdentifier: "CropperFilterCell")
         filterCV.backgroundColor = UIColor(white: 0.5, alpha: 0.1)
-        filterCV.setTranslatesAutoresizingMaskIntoConstraints(false)
-        print(filterCV.collectionViewLayout)
+        filterCV.translatesAutoresizingMaskIntoConstraints = false
+        print(filterCV.collectionViewLayout, terminator: "")
         filterCV.delegate = self
         filterCV.dataSource = self
         
@@ -212,8 +212,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         filterHeightConstraint = NSLayoutConstraint(item: filterCV, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 60 )
         filterCV.addConstraint(filterHeightConstraint)
         
-        verticalButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
-        verticalButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        verticalButton = UIButton(type: UIButtonType.System) as! CBButton
+        verticalButton.translatesAutoresizingMaskIntoConstraints = false
         verticalButton.addTarget(self, action: "setVerticalCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(verticalButton)
         verticalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
@@ -224,8 +224,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 18))
         verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 26))
         
-        horizontalButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
-        horizontalButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        horizontalButton = UIButton(type: UIButtonType.System) as! CBButton
+        horizontalButton.translatesAutoresizingMaskIntoConstraints = false
         horizontalButton.addTarget(self, action: "setHorizontalCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(horizontalButton)
         horizontalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
@@ -236,8 +236,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         horizontalButton.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 18))
         self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: verticalButton, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
         
-        squareButton = CBButton.buttonWithType(UIButtonType.System) as! CBButton
-        squareButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        squareButton = UIButton(type: UIButtonType.System) as! CBButton
+        squareButton.translatesAutoresizingMaskIntoConstraints = false
         squareButton.addTarget(self, action: "setSquareCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(squareButton)
         squareButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
@@ -261,7 +261,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -307,7 +307,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     
     private func processFilters() {
         // Filters
-        var thumb = originalImage.thumbnail(200)
+        let thumb = originalImage.thumbnail(200)
         filters = [
             FilterData(key: "CIVignette", previewImage: thumb, name: "Vignette", params: [kCIInputIntensityKey : NSNumber(float: 1)]),
             FilterData(key: "CIPhotoEffectChrome", previewImage: thumb, name: "Chrome"),
@@ -322,13 +322,13 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             var i = 0
             for filter in self.filters {
 
-                var image = CIImage(CGImage: filter.previewImage!.CGImage)
-                var params = filter.params
+                let image = CIImage(CGImage: filter.previewImage!.CGImage!)
+                var params = filter.params as! [String:AnyObject]
                 params[kCIInputImageKey] = image
-                var ciFilter = CIFilter(name: filter.key, withInputParameters: params)
-                var outImage = ciFilter.outputImage
-                var cgImage = self.imageContext.createCGImage(outImage, fromRect: outImage.extent())
-                var img = UIImage(CGImage: cgImage)
+                let ciFilter = CIFilter(name: filter.key, withInputParameters: params)
+                let outImage = ciFilter!.outputImage
+                let cgImage = self.imageContext.createCGImage(outImage!, fromRect: outImage!.extent)
+                let img = UIImage(CGImage: cgImage)
                 filter.previewImage = img
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -343,7 +343,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     // Hides the status bar and shrinks the custom navBar on landscape for iPhone
     override public func willAnimateRotationToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if UI_USER_INTERFACE_IDIOM() != .Pad {
-            var h : CGFloat = toInterfaceOrientation != UIInterfaceOrientation.Portrait ? 44 : 64
+            let h : CGFloat = toInterfaceOrientation != UIInterfaceOrientation.Portrait ? 44 : 64
             headerHeight.constant = h
             UIApplication.sharedApplication().setStatusBarHidden(h == 44, withAnimation: UIStatusBarAnimation.Fade)
         }
@@ -353,7 +353,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        var shortSide = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height : self.view.frame.size.width
+//        var shortSide = self.view.frame.size.width > self.view.frame.size.height ? self.view.frame.size.height : self.view.frame.size.width
         scrollView.setZoomScale(1.0, animated: true)
         
         cropRect = scrollView.frame
@@ -362,8 +362,8 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         imageRect.origin.y = 0
         
         // horizontal image
-        var yDif = originalImage.size.height/cropRect.size.height
-        var xDif = originalImage.size.width/cropRect.size.width
+        let yDif = originalImage.size.height/cropRect.size.height
+        let xDif = originalImage.size.width/cropRect.size.width
         
         if (yDif < xDif) {
             imageRect.size.width = originalImage.size.width * (cropRect.size.height/originalImage.size.height)
@@ -386,19 +386,19 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         blurView.layer.frame = blurView.bounds
         
-        var path = UIBezierPath(rect: self.view.bounds)
-        var innerPath = UIBezierPath(roundedRect: cropRect, cornerRadius: circleCrop ? cropRect.size.width/2 : 0)
+        let path = UIBezierPath(rect: self.view.bounds)
+        let innerPath = UIBezierPath(roundedRect: cropRect, cornerRadius: circleCrop ? cropRect.size.width/2 : 0)
         path.appendPath(innerPath)
         path.usesEvenOddFillRule = true
         
         if layerMask == nil {
-            var fillLayer = CAShapeLayer()
+            let fillLayer = CAShapeLayer()
             fillLayer.path = path.CGPath
             fillLayer.fillRule = kCAFillRuleEvenOdd
             blurView.layer.mask = fillLayer
         }
         else {
-            var anim = CABasicAnimation(keyPath: "path")
+            let anim = CABasicAnimation(keyPath: "path")
             anim.duration = 1
             anim.fromValue = layerMask!.path
             anim.toValue = path.CGPath
@@ -414,9 +414,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     public func finish() {
         var rect = self.view.convertRect(cropRect, toView: imageView)
         
-        var scale = (originalImage.size.width/imageView.frame.size.width)
-        var center = CGPointMake(CGRectGetMidX(rect), CGRectGetMidY(rect))
-        
+        let scale = (originalImage.size.width/imageView.frame.size.width)
         rect.origin.x = (rect.origin.x * scale) * scrollView.zoomScale
         rect.origin.y = (rect.origin.y * scale) * scrollView.zoomScale
         rect.size.width = (rect.size.width * scale) * scrollView.zoomScale
@@ -437,7 +435,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
         ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         self.view.addConstraint(ratioConstraint!)
-        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.CurveEaseInOut, UIViewAnimationOptions.AllowUserInteraction], animations: { () -> Void in
                 self.view.layoutIfNeeded()
         }, completion: nil)
         
@@ -453,7 +451,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
         ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Height, multiplier: horizontalRatio.width/horizontalRatio.height, constant: 0)
         self.view.addConstraint(ratioConstraint!)
-        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.CurveEaseInOut, UIViewAnimationOptions.AllowUserInteraction], animations: { () -> Void in
             self.view.layoutIfNeeded()
             }, completion: nil)
         
@@ -469,7 +467,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
         ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: scrollView, attribute: NSLayoutAttribute.Height, multiplier: verticalRatio.width/verticalRatio.height, constant: 0)
         self.view.addConstraint(ratioConstraint!)
-        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseInOut | UIViewAnimationOptions.AllowUserInteraction, animations: { () -> Void in
+        UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.CurveEaseInOut, UIViewAnimationOptions.AllowUserInteraction], animations: { () -> Void in
             self.view.layoutIfNeeded()
             }, completion: nil)
         
@@ -494,7 +492,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         return CGSizeMake(54, 54)
     }
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("CropperFilterCell", forIndexPath: indexPath) as! CropperFilterCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CropperFilterCell", forIndexPath: indexPath) as! CropperFilterCell
         if indexPath.row == 0 {
             cell.imageView.image = originalImage
         }
@@ -508,18 +506,18 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             editingImage = originalImage
         }
         else {
-            var filter = filters[indexPath.row - 1]
+            let filter = filters[indexPath.row - 1]
             if filter.image != nil {
                 editingImage = filter.image
             }
             else {
-                var image = CIImage(CGImage: originalImage.CGImage)
-                var params = filter.params
+                let image = CIImage(CGImage: originalImage.CGImage!)
+                var params = filter.params as! [String:AnyObject]
                 params[kCIInputImageKey] = image
-                var ciFilter = CIFilter(name: filter.key, withInputParameters: params)
-                var outImage = ciFilter.outputImage
-                var cgImage = imageContext.createCGImage(outImage, fromRect: outImage.extent())
-                var img = UIImage(CGImage: cgImage)
+                let ciFilter = CIFilter(name: filter.key, withInputParameters: params)
+                let outImage = ciFilter!.outputImage
+                let cgImage = imageContext.createCGImage(outImage!, fromRect: outImage!.extent)
+                let img = UIImage(CGImage: cgImage)
                 filter.image = img
                 editingImage = img
             }
@@ -545,7 +543,7 @@ class CropperFilterCell : UICollectionViewCell {
         self.addSubview(imageView)
         imageView.addConstraintsToMatchParent()
     }
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 

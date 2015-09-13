@@ -64,14 +64,13 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
     }
     
     public func prefetchURL(imgUrl: String!) {
-        if let cachedImage = imageCache.objectForKey(imgUrl) as? UIImage  {
+        if imageCache.objectForKey(imgUrl) != nil  {
             return
         }
-        if let request = inProgress[imgUrl] {
+        if inProgress[imgUrl] != nil {
             return
         }
-        
-        var request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
+        let request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
         inProgress[imgUrl] = request
         request.delegate = self
         request.start()
@@ -94,7 +93,7 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
             return
         }
         
-        var request = CBImageFetchRequest(imageURL: imgUrl, completion: completion, progress: progressBlock)
+        let request = CBImageFetchRequest(imageURL: imgUrl, completion: completion, progress: progressBlock)
         inProgress[imgUrl] = request
         request.delegate = self
         request.start()
@@ -141,9 +140,9 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     }
     
     func start() {
-        var url = NSURL(string: baseURL)
+        let url = NSURL(string: baseURL)
         if url == nil {
-            var err = NSError(domain: "CBToolkit", code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid url for image download"])
+            let err = NSError(domain: "CBToolkit", code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid url for image download"])
             for cBlock in completionBlocks {
                 cBlock(image: nil, error: err, requestTime: 0)
             }
@@ -151,7 +150,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
             return
         }
         
-        var request = NSMutableURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 30)
+        let request = NSMutableURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 30)
         request.HTTPMethod = "GET"
         con = NSURLConnection(request: request, delegate: self, startImmediately: false)
         con!.start()
@@ -168,6 +167,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
             cBlock(image: nil, error: error, requestTime: startDate.timeIntervalSinceNow)
         }
         delegate.fetchRequestDidFinish(baseURL, image: nil)
+                        debugPrint("CBPhotoFetcher: Fetch error – \(error.localizedDescription)")
     }
     
     
@@ -183,7 +183,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     
     func connectionDidFinishLoading(connection: NSURLConnection) {
         
-        var img = UIImage(data: imgData)
+        let img = UIImage(data: imgData)
         var error : NSError? = nil
         if img == nil {
             error = NSError(domain: "CBToolkit", code: 2, userInfo: [NSLocalizedDescriptionKey : "Could not procress image data into image."])
@@ -195,10 +195,10 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     }
     
     func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        var res = response as! NSHTTPURLResponse
-        var lengthStr = res.allHeaderFields["Content-Length"] as! String
+        let res = response as! NSHTTPURLResponse
+        let lengthStr = res.allHeaderFields["Content-Length"] as! String
         
-        var numFormatter = NSNumberFormatter()
+        let numFormatter = NSNumberFormatter()
         expectedSize = numFormatter.numberFromString(lengthStr)!.unsignedIntegerValue
         imgData = NSMutableData(capacity: expectedSize)
         

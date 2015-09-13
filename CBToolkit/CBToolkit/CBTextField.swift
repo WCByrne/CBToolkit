@@ -48,7 +48,7 @@ import UIKit
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {
-            var sSide = min(self.frame.size.width, self.frame.size.height)
+            let sSide = min(self.frame.size.width, self.frame.size.height)
             self.cornerRadius = sSide/2
         }
     }
@@ -101,7 +101,8 @@ import UIKit
     @IBInspectable public var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
         didSet {
             if (placeholder != nil) {
-                attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor, NSFontAttributeName : font])
+                let attrs: [String:AnyObject]  = [NSForegroundColorAttributeName: self.placeholderColor, NSFontAttributeName : self.font!]
+                attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: attrs)
             }
             self.setNeedsDisplay()
         }
@@ -111,7 +112,7 @@ import UIKit
         didSet {
             if placeholder != nil {
                 attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSForegroundColorAttributeName: placeholderColor,
-                    NSFontAttributeName : self.font])
+                    NSFontAttributeName : self.font!])
             }
             self.setNeedsDisplay()
         }
@@ -128,7 +129,7 @@ import UIKit
     }
     
         
-    override public func caretRectForPosition(position: UITextPosition!) -> CGRect {
+    override public func caretRectForPosition(position: UITextPosition) -> CGRect {
         if (hideCaret) { return CGRectZero }
         return super.caretRectForPosition(position)
     }
@@ -147,7 +148,7 @@ import UIKit
         super.drawRect(rect)
         
         if (bottomBorder) {
-            var context = UIGraphicsGetCurrentContext();
+            let context = UIGraphicsGetCurrentContext();
             
             CGContextSetLineWidth(context, borderWidth);
             CGContextSetStrokeColorWithColor(context, borderColor.CGColor)

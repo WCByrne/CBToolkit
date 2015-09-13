@@ -30,8 +30,6 @@ import UIKit
         }
     }
     @IBInspectable public var minimumHeight: CGFloat = 35 {
-        
-        
         didSet {
             self.textDidChange()
         }
@@ -92,14 +90,14 @@ import UIKit
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
     }
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     
     override public func awakeFromNib() {
         super.awakeFromNib()
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.translatesAutoresizingMaskIntoConstraints = false
         
     }
     
@@ -149,7 +147,7 @@ import UIKit
     
      public func textDidChange() {
         
-        var size = self.contentSize
+        let size = self.contentSize
         
         if self.text.isEmpty && !self.isFirstResponder() {
             self.text = placeholder

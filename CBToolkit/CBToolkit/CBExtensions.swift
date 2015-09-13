@@ -36,16 +36,16 @@ public extension UIViewController {
 public extension UIView {
     func addConstraintsToMatchParent() -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         if let sv = self.superview {
-            var top = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-            var right = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
-            var bottom = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
-            var left = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+            let top = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+            let right = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: 0)
+            let bottom = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
+            let left = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
             sv.addConstraints([top, bottom, right, left])
-            self.setTranslatesAutoresizingMaskIntoConstraints(false)
+            self.translatesAutoresizingMaskIntoConstraints = false
             return (top, right, bottom, left)
         }
         else {
-            println("CBToolkit Warning: Attempt to add contraints to match parent but the view had not superview.")
+            print("CBToolkit Warning: Attempt to add contraints to match parent but the view had not superview.")
         }
         return nil
     }
@@ -58,7 +58,7 @@ public extension UIView {
 public extension UIAlertController {
     
     public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String!) -> UIAlertController  {
-        var alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: nil))
         return alert
     }
@@ -79,8 +79,8 @@ public enum CBImageContentMode: Int {
 public extension UIImage {
     
     public func crop(frame: CGRect) -> UIImage {
-        var  imageRef = CGImageCreateWithImageInRect(self.CGImage, frame);
-        return UIImage(CGImage: imageRef)!
+        let  imageRef = CGImageCreateWithImageInRect(self.CGImage, frame);
+        return UIImage(CGImage: imageRef!)
     }
     
     public func thumbnail(size: Int) ->UIImage {
@@ -88,7 +88,7 @@ public extension UIImage {
     }
     
     public func resize(bounds: CGSize) -> UIImage {
-        var drawTransposed  = (
+        let drawTransposed  = (
             self.imageOrientation == .Left ||
                 self.imageOrientation == .LeftMirrored ||
                 self.imageOrientation == .Right ||
@@ -98,11 +98,11 @@ public extension UIImage {
     }
     
     public func resize(bounds: CGSize,  contentMode: CBImageContentMode!) -> UIImage {
-        var horizontalRatio = bounds.width / self.size.width;
-        var verticalRatio = bounds.height / self.size.height;
-        var ratio = contentMode == .AspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
+        let horizontalRatio = bounds.width / self.size.width;
+        let verticalRatio = bounds.height / self.size.height;
+        let ratio = contentMode == .AspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
         
-        var newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
+        let newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
         return self.resize(newSize)
     }
     
@@ -110,20 +110,20 @@ public extension UIImage {
         if (self.imageOrientation == UIImageOrientation.Up) { return self }
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale);
         self.drawInRect(CGRectMake(0,0, self.size.width, self.size.height))
-        var normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
+        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         return normalizedImage;
     }
     
     public func roundCorners(radius: Int) -> UIImage {
-        var image = self.imageWithAlpha()
-        var context = CGBitmapContextCreate(nil,
+        let image = self.imageWithAlpha()
+        let context = CGBitmapContextCreate(nil,
             Int(image.size.width),
             Int(image.size.height),
             CGImageGetBitsPerComponent(image.CGImage),
             0,
             CGImageGetColorSpace(image.CGImage),
-            CGImageGetBitmapInfo(image.CGImage));
+            CGImageGetBitmapInfo(image.CGImage).rawValue)!;
         
         // Create a clipping path with rounded corners
         CGContextBeginPath(context);
@@ -132,9 +132,9 @@ public extension UIImage {
         CGContextClosePath(context)
         CGContextClip(context)
         CGContextDrawImage(context, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage)
-        var clippedImage = CGBitmapContextCreateImage(context)
-        var roundedImage = UIImage(CGImage: clippedImage)
-        return roundedImage!;
+        let clippedImage = CGBitmapContextCreateImage(context)
+        let roundedImage = UIImage(CGImage: clippedImage!)
+        return roundedImage;
     }
     
     private func addRoundedRectToPath(rect:CGRect, context:CGContextRef, ovalWidth:CGFloat, ovalHeight:CGFloat) {
@@ -145,8 +145,8 @@ public extension UIImage {
         CGContextSaveGState(context);
         CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
         CGContextScaleCTM(context, ovalWidth, ovalHeight);
-        var fw: CGFloat = CGRectGetWidth(rect) / ovalWidth;
-        var fh: CGFloat = CGRectGetHeight(rect) / ovalHeight;
+        let fw: CGFloat = CGRectGetWidth(rect) / ovalWidth;
+        let fh: CGFloat = CGRectGetHeight(rect) / ovalHeight;
         CGContextMoveToPoint(context, fw, fh/2);
         CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
         CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
@@ -157,7 +157,7 @@ public extension UIImage {
     }
     
     private func hasAlpha() -> Bool {
-        var alpha = CGImageGetAlphaInfo(self.CGImage);
+        let alpha = CGImageGetAlphaInfo(self.CGImage);
         return (alpha == CGImageAlphaInfo.First ||
             alpha == CGImageAlphaInfo.Last ||
             alpha == CGImageAlphaInfo.PremultipliedFirst ||
@@ -168,42 +168,42 @@ public extension UIImage {
         if self.hasAlpha() {
             return self;
         }
-        var imageRef = self.CGImage;
-        var width = CGImageGetWidth(imageRef);
-        var height = CGImageGetHeight(imageRef);
-        var bInfo = CGBitmapInfo(CGImageAlphaInfo.PremultipliedFirst.rawValue)
-        var offscreenContext = CGBitmapContextCreate(nil,
+        let imageRef = self.CGImage;
+        let width = CGImageGetWidth(imageRef);
+        let height = CGImageGetHeight(imageRef);
+        let bInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
+        let offscreenContext = CGBitmapContextCreate(nil,
             width,
             height,
             8,
             0,
             CGImageGetColorSpace(imageRef),
-             CGBitmapInfo.ByteOrderDefault | bInfo);
+             CGBitmapInfo.ByteOrderDefault.union(bInfo).rawValue);
         
         CGContextDrawImage(offscreenContext, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), imageRef)
-        var imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext)
-        var imageWithAlpha = UIImage(CGImage:imageRefWithAlpha)
-        return imageWithAlpha!;
+        let imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext)
+        let imageWithAlpha = UIImage(CGImage:imageRefWithAlpha!)
+        return imageWithAlpha;
     }
     
     
     private func resize(newSize: CGSize, transpose: Bool, transform: CGAffineTransform) -> UIImage {
-        var newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
-        var transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
-        var imageRef = self.CGImage;
-        var bitmap = CGBitmapContextCreate(nil,
+        let newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
+        let transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
+        let imageRef = self.CGImage;
+        let bitmap = CGBitmapContextCreate(nil,
             Int(newRect.size.width),
             Int(newRect.size.height),
             CGImageGetBitsPerComponent(imageRef),
             0,
             CGImageGetColorSpace(imageRef),
-            CGImageGetBitmapInfo(imageRef));
+            CGImageGetBitmapInfo(imageRef).rawValue);
         
         CGContextConcatCTM(bitmap, transform);
-        CGContextSetInterpolationQuality(bitmap, kCGInterpolationMedium);
+        CGContextSetInterpolationQuality(bitmap, CGInterpolationQuality.Medium);
         CGContextDrawImage(bitmap, transpose ? transposedRect : newRect, imageRef);
-        var newImageRef = CGBitmapContextCreateImage(bitmap)!
-        var newImage = UIImage(CGImage: newImageRef)!
+        let newImageRef = CGBitmapContextCreateImage(bitmap)!
+        let newImage = UIImage(CGImage: newImageRef)
         return newImage
     }
     

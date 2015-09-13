@@ -38,7 +38,7 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         collectionView.collectionViewLayout = self;
     }
     
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -77,7 +77,7 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         
         var contentWidth: CGFloat = 0
         for section in 0...collectionView!.numberOfSections()-1 {
-            var numItems = collectionView!.numberOfItemsInSection(section)
+            let numItems = collectionView!.numberOfItemsInSection(section)
             contentWidth = contentWidth + (CGFloat(numItems) * minimumLineSpacing) + (CGFloat(numItems) * collectionView!.frame.size.width)
         }
         
@@ -96,22 +96,22 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         super.prepareLayout()
     }
     
-    override public func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
-        var attributes = NSMutableArray()
+    override public func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var attributes : [UICollectionViewLayoutAttributes] = []
         if let numSections = collectionView?.numberOfSections() {
             if numSections > 0 {
                 for section in 0...numSections-1 {
                     let numItems = collectionView!.numberOfItemsInSection(section)
                     if numItems > 0 {
                         for row in 0...numItems-1 {
-                            var indexPath = NSIndexPath(forRow: row, inSection: section)
-                            attributes.addObject(layoutAttributesForItemAtIndexPath(indexPath))
+                            let indexPath = NSIndexPath(forRow: row, inSection: section)
+                            attributes.append(layoutAttributesForItemAtIndexPath(indexPath)!)
                         }
                     }
                 }
             }
         }
-        return attributes as [AnyObject]
+        return attributes
     }
     
     public override func prepareForAnimatedBoundsChange(oldBounds: CGRect) {
@@ -124,23 +124,23 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
     }
     
     
-    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
-        var attrs = super.layoutAttributesForItemAtIndexPath(indexPath)
+    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+        let attrs = super.layoutAttributesForItemAtIndexPath(indexPath)!
         
-        var height: CGFloat = collectionView!.frame.size.height
-        var width: CGFloat = collectionView!.frame.size.width
+        let height: CGFloat = collectionView!.frame.size.height
+        let width: CGFloat = collectionView!.frame.size.width
         
         var x: CGFloat = 0
-        var y: CGFloat = 0
+        let y: CGFloat = 0
         
         if indexPath.section > 0 {
             for section in 0...indexPath.section-1 {
-                var numItems = CGFloat(collectionView!.numberOfItemsInSection(section))
+                let numItems = CGFloat(collectionView!.numberOfItemsInSection(section))
                 x = x + (numItems * width) + (numItems * minimumLineSpacing) + sectionInset.right
             }
         }
         
-        var row = CGFloat(indexPath.row)
+        let row = CGFloat(indexPath.row)
         x = x + (row * width) + (row * minimumLineSpacing)
         
         attrs.size.height = height

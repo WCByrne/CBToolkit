@@ -14,7 +14,7 @@ import UIKit
     private var baseString: NSString! = NSString()
     public var numericString: String! {
         get {
-            return baseString as! String
+            return baseString as String
         }
     }
     
@@ -33,16 +33,16 @@ import UIKit
 
     public init(string : String?) {
         if string != nil {
-            var string = NSString(string: string!)
+            let string = NSString(string: string!)
             
-            var comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
+            let comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
             baseString = comps.componentsJoinedByString("")
         }
     }
     
      public func appendString(string: String!) {
-        var comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
-        var addedString = comps.componentsJoinedByString("")
+        let comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
+        let addedString = comps.componentsJoinedByString("")
         baseString = baseString.stringByAppendingString(addedString)
     }
     
@@ -57,10 +57,10 @@ import UIKit
      public func formattedNumber() -> String! {
         
         if baseString.length == 0 {
-            return baseString as! String
+            return baseString as String
         }
         else if baseString.length > 11 {
-            return baseString as! String
+            return baseString as String
         }
         
         var  prefix: String? = baseString.substringToIndex(1)
@@ -79,7 +79,7 @@ import UIKit
             }
         }
         else if length <= 7  {
-            var firstThree = string.substringToIndex(3)
+            let firstThree = string.substringToIndex(3)
             var partial = string.substringWithRange(NSMakeRange(3, length-3)) as NSString
             
             if prefix != nil{
@@ -94,17 +94,17 @@ import UIKit
             }
         }
         else if length <= 10 {
-            var areaCode = string.substringToIndex(3)
-            var firstThree = string.substringWithRange(NSMakeRange(3, 3))
-            var lastFour = string.substringWithRange(NSMakeRange(6, length-6))
+            let areaCode = string.substringToIndex(3)
+            let firstThree = string.substringWithRange(NSMakeRange(3, 3))
+            let lastFour = string.substringWithRange(NSMakeRange(6, length-6))
             
             string = "(\(areaCode)) \(firstThree)-\(lastFour)"
         }
         else {
-            var prefix = string.substringToIndex(length-10)
-            var areaCode = string.substringWithRange(NSMakeRange(length-10, 3))
-            var firstThree = string.substringWithRange(NSMakeRange(length-7, 3))
-            var lastFour = string.substringWithRange(NSMakeRange(length-4, 4))
+            let prefix = string.substringToIndex(length-10)
+            let areaCode = string.substringWithRange(NSMakeRange(length-10, 3))
+            let firstThree = string.substringWithRange(NSMakeRange(length-7, 3))
+            let lastFour = string.substringWithRange(NSMakeRange(length-4, 4))
             
             string = "+\(prefix) (\(areaCode)) \(firstThree)-\(lastFour)"
         }
@@ -120,7 +120,7 @@ import UIKit
     
     public func callNumber() -> Bool {
         
-        var phoneURL : NSURL = NSURL(string:"telprompt:\(baseString)")!
+        let phoneURL : NSURL = NSURL(string:"telprompt:\(baseString)")!
         
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
             UIApplication.sharedApplication().openURL(phoneURL)

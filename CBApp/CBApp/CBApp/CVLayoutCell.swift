@@ -34,7 +34,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        var layout = CBCollectionViewLayout(collectionView: contentCollectionView)
+        let layout = CBCollectionViewLayout(collectionView: contentCollectionView)
         layout.minimumColumnSpacing = 2
         layout.minimumInteritemSpacing = 2
         layout.itemRenderDirection = CBCollectionViewLayoutItemRenderDirection.ShortestFirst
@@ -74,10 +74,10 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! GalleryCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! GalleryCell
         
-        var imgIndex = indexPath.row % imgURLs.count
-        var url = imgURLs[imgIndex]
+        let imgIndex = indexPath.row % imgURLs.count
+        let url = imgURLs[imgIndex]
         cell.imageView.onLoadTransition = UIViewAnimationOptions.TransitionCrossDissolve
         cell.imageView.loadImageAtURL(url, completion: nil)
         
@@ -85,8 +85,8 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        var imgIndex = indexPath.row % imgURLs.count
-        var url = imgURLs[imgIndex]
+        let imgIndex = indexPath.row % imgURLs.count
+        let url = imgURLs[imgIndex]
         CBPhotoFetcher.sharedFetcher.fetchImageAtURL(url, completion: { (image, error, requestTime) -> Void in
             if image != nil {
                 self.delegate?.openImageEditor(image!)

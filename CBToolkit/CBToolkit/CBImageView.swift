@@ -68,7 +68,7 @@ import UIKit
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {
-            var sSide = min(self.frame.size.width, self.frame.size.height)
+            let sSide = min(self.frame.size.width, self.frame.size.height)
             self.cornerRadius = sSide/2
         }
     }
@@ -102,8 +102,6 @@ import UIKit
             self.image = newImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         }
     }
-    
-    
     
     public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?) {
         imageURL = imgURL

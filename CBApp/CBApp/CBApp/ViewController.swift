@@ -17,7 +17,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        var layout = CBSliderCollectionViewLayout(collectionView: contentCollectionView)
+        CBSliderCollectionViewLayout(collectionView: contentCollectionView)
         contentCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
     }
@@ -28,7 +28,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     @IBAction func toggleAutoScroll(sender: CBButton) {
-        var layout = contentCollectionView.collectionViewLayout as! CBSliderCollectionViewLayout
+        let layout = contentCollectionView.collectionViewLayout as! CBSliderCollectionViewLayout
         layout.autoScroll = !layout.autoScroll
         sender.tintColor = layout.autoScroll ? nil : UIColor(white: 0, alpha: 0.3)
     }
@@ -43,20 +43,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         if indexPath.row == 0 {
-            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ViewCell", forIndexPath: indexPath) as! UICollectionViewCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ViewCell", forIndexPath: indexPath) 
             return cell
         }
         else if indexPath.row == 1 {
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("ButtonCell", forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ButtonCell", forIndexPath: indexPath) 
         
         return cell
         }
         else if indexPath.row == 2 {
-            var cell = collectionView.dequeueReusableCellWithReuseIdentifier("LoadersCell", forIndexPath: indexPath) as! UICollectionViewCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LoadersCell", forIndexPath: indexPath) 
 
             return cell
         }
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier("CVLayoutCell", forIndexPath: indexPath) as! CVLayoutCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CVLayoutCell", forIndexPath: indexPath) as! CVLayoutCell
         cell.delegate = self
         return cell
     }
@@ -71,7 +71,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     func openImageEditor(image: UIImage) {
-        var editor = CBImageEditor(image: image, style: UIBlurEffectStyle.Light, delegate: self)
+        let editor = CBImageEditor(image: image, style: UIBlurEffectStyle.Light, delegate: self)
         self.presentViewController(editor, animated: true, completion: nil)
     }
     

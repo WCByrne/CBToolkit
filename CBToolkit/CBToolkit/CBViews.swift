@@ -72,11 +72,11 @@ import UIKit
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {
-            var sSide = min(self.frame.size.width, self.frame.size.height)
+            let sSide = min(self.frame.size.width, self.frame.size.height)
             self.cornerRadius = sSide/2
         }
         if useShadowPath {
-            var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
+            let rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
             self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.cornerRadius).CGPath
         }
     }
@@ -101,7 +101,7 @@ import UIKit
     override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        var context = UIGraphicsGetCurrentContext();
+        let context = UIGraphicsGetCurrentContext();
         
         CGContextSetLineWidth(context, CGFloat(borderWidth));
         CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
@@ -146,7 +146,7 @@ import UIKit
      override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        var context = UIGraphicsGetCurrentContext();
+        let context = UIGraphicsGetCurrentContext();
         
         let colorSpace = CGColorSpaceCreateDeviceRGB();
         var locations: [CGFloat]!
@@ -161,19 +161,17 @@ import UIKit
             colors = [topColor, middleColor!, bottomColor];
         }
         
-        let gradientColors = colors.map {(color: UIColor!) -> AnyObject! in return color.CGColor as AnyObject! } as NSArray
-        let gradient = CGGradientCreateWithColors(colorSpace, gradientColors, locations);
+        let mGradientColors = colors.map {(color: UIColor!) -> AnyObject! in return color.CGColor as AnyObject! } as NSArray
+        let mGradient = CGGradientCreateWithColors(colorSpace, mGradientColors, locations);
         
-        var startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-        var endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+        let mStartPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+        let mEndPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
         
         CGContextSaveGState(context);
         CGContextAddRect(context, rect);
         CGContextClip(context);
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
+        CGContextDrawLinearGradient(context, mGradient, mStartPoint, mEndPoint, CGGradientDrawingOptions(rawValue: 0))
         CGContextRestoreGState(context);
-        
-        
     }
 }
 
@@ -222,7 +220,7 @@ Shadows have been incorperated into CBView
             self.layer.rasterizationScale = UIScreen.mainScreen().scale
         }
         if useShadowPath {
-            var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
+            let rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
             self.layer.shadowPath = UIBezierPath(rect: rect).CGPath
         }
     }
@@ -230,7 +228,7 @@ Shadows have been incorperated into CBView
         super.layoutSubviews()
         
         if useShadowPath {
-            var rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
+            let rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
             self.layer.shadowPath = UIBezierPath(rect: rect).CGPath
         }
     }
