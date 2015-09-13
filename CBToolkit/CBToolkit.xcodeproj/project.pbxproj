@@ -215,6 +215,7 @@
 		1CDBAFE51A7D8A7200D7677B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = WCBMedia;
 				TargetAttributes = {

@@ -260,26 +260,26 @@ public extension NSDate  {
     
     :returns: The string representting how many *s ago the date occured.
     */
-    public func timeAgo() -> String! {
-        var sinceNow = self.timeIntervalSinceNow
+    public func aggregateTimeSinceNow() -> String! {
+        var sinceNow = abs(self.timeIntervalSinceNow)
         
-        if sinceNow > -60 {
-            return "\(Int(-sinceNow))s"
+        if sinceNow < 60 {
+            return "\(Int(sinceNow))s"
         }
-        else if sinceNow > -60*60 {
-            return "\(Int(-sinceNow/60))m"
+        else if sinceNow < 60*60 {
+            return "\(Int(sinceNow/60))m"
         }
-        else if sinceNow > -60*60*24 {
-            return "\(Int(-sinceNow/60/60))h"
+        else if sinceNow < 60*60*24 {
+            return "\(Int(sinceNow/60/60))h"
         }
-        else if sinceNow > -60*60*24*30 {
-            return "\(Int(-sinceNow/60/60/24))d"
+        else if sinceNow < 60*60*24*30 {
+            return "\(Int(sinceNow/60/60/24))d"
         }
-        else if sinceNow > -60*60*24*365 {
-            return "\(Int(-sinceNow/60/60/24/7))w"
+        else if sinceNow < 60*60*24*365 {
+            return "\(Int(sinceNow/60/60/24/7))w"
         }
         else {
-            return "\(Int(-sinceNow/60/60/24/365))y"
+            return "\(Int(sinceNow/60/60/24/365))y"
         }
     }
     
