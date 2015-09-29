@@ -386,8 +386,9 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
                 let xOffset = sectionInsets.left + (itemWidth + colSpacing) * CGFloat(columnIndex)
                 let yOffset = self.columnHeights[section][columnIndex]
                 var itemHeight : CGFloat = 0
-                if let size = self.delegate?.collectionView?(self.collectionView!, layout: self, aspectRatioForItemAtIndexPath: indexPath) {
-                    let h = size.height * (itemWidth/size.width)
+                let aSize = self.delegate?.collectionView?(self.collectionView!, layout: self, aspectRatioForItemAtIndexPath: indexPath)
+                if aSize != nil && CGSizeEqualToSize(aSize!, CGSizeZero) {
+                    let h = aSize!.height * (itemWidth/aSize!.width)
                     itemHeight = floor(h)
                 }
                 else {
