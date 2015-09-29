@@ -178,7 +178,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         headerView.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: headerView, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 8))
         headerView.addConstraint(NSLayoutConstraint(item:  headerView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: cancelButton, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
         
-        saveButton = UIButton(type: UIButtonType.System) as! CBButton
+        saveButton = CBButton(type: UIButtonType.System)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.setTitle("Save", forState: UIControlState.Normal)
         saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
@@ -212,7 +212,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         filterHeightConstraint = NSLayoutConstraint(item: filterCV, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 60 )
         filterCV.addConstraint(filterHeightConstraint)
         
-        verticalButton = UIButton(type: UIButtonType.System) as! CBButton
+        verticalButton = CBButton(type: UIButtonType.System)
         verticalButton.translatesAutoresizingMaskIntoConstraints = false
         verticalButton.addTarget(self, action: "setVerticalCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(verticalButton)
@@ -224,7 +224,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 18))
         verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 26))
         
-        horizontalButton = UIButton(type: UIButtonType.System) as! CBButton
+        horizontalButton = CBButton(type: UIButtonType.System)
         horizontalButton.translatesAutoresizingMaskIntoConstraints = false
         horizontalButton.addTarget(self, action: "setHorizontalCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(horizontalButton)
@@ -236,7 +236,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         horizontalButton.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 18))
         self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: verticalButton, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
         
-        squareButton = UIButton(type: UIButtonType.System) as! CBButton
+        squareButton = CBButton(type: UIButtonType.System)
         squareButton.translatesAutoresizingMaskIntoConstraints = false
         squareButton.addTarget(self, action: "setSquareCrop", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(squareButton)

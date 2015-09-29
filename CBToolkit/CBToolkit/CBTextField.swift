@@ -40,11 +40,6 @@ import UIKit
         didSet { self.layer.shadowOffset = layerShadowOffset }
     }
     
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        self.clipsToBounds = true
-    }
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {

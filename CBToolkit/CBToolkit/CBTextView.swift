@@ -19,6 +19,7 @@ import UIKit
             if autoExpand {
                 if heightConstraint == nil {
                     heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: minimumHeight)
+                    heightConstraint!.priority = 1000
                     self.addConstraint(heightConstraint!)
                     self.layoutIfNeeded()
                 }
@@ -45,31 +46,35 @@ import UIKit
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
-    
     @IBInspectable public var placeholderColor: UIColor = UIColor.lightGrayColor() {
         didSet {
-            if self.text == placeholder {
-                self.textColor = placeholderColor
-            }
+            self.placeholderTextView?.textColor = placeholderColor
         }
     }
     
-    @IBInspectable public var normalTextColor: UIColor = UIColor.darkGrayColor() {
-        didSet {
-            if self.text != placeholder {
-                self.textColor = normalTextColor
-            }
-        }
-    }
+    //    @IBInspectable public var normalTextColor: UIColor = UIColor.darkGrayColor() {
+    //        didSet {
+    //            if self.text != placeholder {
+    //                self.textColor = normalTextColor
+    //            }
+    //        }
+    //    }
     
     @IBInspectable public var placeholder: String = "" {
         didSet {
             if self.text.isEmpty {
-                self.text = placeholder
-                self.textColor = placeholderColor
+                self.placeholderTextView?.text = placeholder
             }
         }
     }
+    
+    public override var textContainerInset: UIEdgeInsets {
+        didSet {
+            placeholderTextView?.textContainerInset = textContainerInset
+        }
+    }
+    
+    private var placeholderTextView : UITextView?
     
     public var heightConstraint: NSLayoutConstraint?
     public var currentText: String! {
@@ -89,16 +94,31 @@ import UIKit
     
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
-    }
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        setup()
     }
     
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
     
     override public func awakeFromNib() {
         super.awakeFromNib()
+        setup()
+    }
+    
+    func setup() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        
+        if placeholderTextView == nil {
+            placeholderTextView = UITextView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+            self.addSubview(placeholderTextView!)
+            placeholderTextView?.font = self.font
+            placeholderTextView?.userInteractionEnabled = false
+            placeholderTextView?.textColor = placeholderColor
+            placeholderTextView?.textContainerInset = self.textContainerInset
+            placeholderTextView?.text = self.placeholder
+            placeholderTextView?.backgroundColor = UIColor.clearColor()
+        }
     }
     
     override public func willMoveToSuperview(newSuperview: UIView?) {
@@ -108,16 +128,7 @@ import UIKit
         }
         else {
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange", name: UITextViewTextDidChangeNotification, object: self)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didBeginEditing", name: UITextViewTextDidBeginEditingNotification, object: self)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "didEndEditing", name: UITextViewTextDidEndEditingNotification, object: self)
-            
-            if self.text.isEmpty {
-                self.text = placeholder
-                self.textColor = placeholderColor
-            }
-            else {
-                self.textColor = normalTextColor
-            }
+            self.superview?.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
@@ -128,36 +139,13 @@ import UIKit
         }
     }
     
-    
-    
-     public func didBeginEditing() {
-        if self.text == placeholder {
-            self.text = ""
-        }
-        self.textColor = normalTextColor
-    }
-    
-    
-     public func didEndEditing() {
-        if self.text.isEmpty {
-            self.text = placeholder
-            self.textColor = placeholderColor
-        }
-    }
-    
-     public func textDidChange() {
-        
+    public func textDidChange() {
         let size = self.contentSize
         
-        if self.text.isEmpty && !self.isFirstResponder() {
-            self.text = placeholder
-        }
-        
-        if text == placeholder {
-            self.textColor = self.placeholderColor
-        }
-        else {
-            self.textColor = self.normalTextColor
+        if placeholderTextView?.alpha != (self.text.isEmpty ? 1 : 0) {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                self.placeholderTextView?.alpha = self.text.isEmpty ? 1 : 0
+            })
         }
         
         if !autoExpand || self.heightConstraint == nil { return }
@@ -172,8 +160,13 @@ import UIKit
             heightConstraint?.constant = size.height
         }
         
+        //        UIView.animateWithDuration(0.1) { () -> Void in
         self.layoutIfNeeded()
         self.superview?.layoutIfNeeded()
+        if size.height > self.minimumHeight && size.height < self.maximumHeight {
+            self.contentOffset = CGPointMake(0, 8)
+        }
+        //        }
     }
     
 }
