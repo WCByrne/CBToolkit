@@ -124,7 +124,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     }}
     
     private var _itemWidth : CGFloat = 0
-    var itemWidth : CGFloat {
+    public var itemWidth : CGFloat {
         get {
             return _itemWidth
         }

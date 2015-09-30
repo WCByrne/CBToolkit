@@ -77,12 +77,19 @@ import UIKit
     private var placeholderTextView : UITextView?
     
     public var heightConstraint: NSLayoutConstraint?
+    
+    /*!
+    * @Deprecated
+    */
     public var currentText: String! {
         get {
-            if self.text == self.placeholder {
-                return ""
-            }
-            return self.text
+            return text
+        }
+    }
+    
+    override public var text: String! {
+        didSet {
+            self.textDidChange()
         }
     }
     
@@ -121,21 +128,10 @@ import UIKit
         }
     }
     
-    override public func willMoveToSuperview(newSuperview: UIView?) {
-        super.willMoveToSuperview(newSuperview)
-        if newSuperview == nil {
-            NSNotificationCenter.defaultCenter().removeObserver(self)
-        }
-        else {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange", name: UITextViewTextDidChangeNotification, object: self)
-            self.superview?.translatesAutoresizingMaskIntoConstraints = false
-        }
-    }
-    
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
         if self.superview != nil {
-            self.textDidChange()
+            self.superview?.translatesAutoresizingMaskIntoConstraints = false
         }
     }
     
