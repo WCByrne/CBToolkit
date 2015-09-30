@@ -188,7 +188,6 @@ public extension NSDate  {
     
     
      public func isSameDayAsDate(compareDate: NSDate) -> Bool {
-        
         // If they are more than 24 hrs different it can't be the same day
         let timeDiff = self.timeIntervalSinceDate(compareDate)
         if timeDiff > 60*60*24 || timeDiff < -60*60*25 {
@@ -202,12 +201,26 @@ public extension NSDate  {
         return (currentComps.day == compareComps.day)
     }
     
+    public func isSameWeekAsDate(compareDate: NSDate) -> Bool {
+        let cal = NSCalendar.currentCalendar()
+        let currentComps = cal.components([NSCalendarUnit.WeekOfYear, NSCalendarUnit.Year], fromDate: self)
+        let compareComps = cal.components([NSCalendarUnit.WeekOfYear, .Year], fromDate: compareDate)
+        return (currentComps.year == compareComps.year && currentComps.weekOfYear == compareComps.weekOfYear)
+    }
+    
+    public func isSameMonthAsDate(compareDate: NSDate) -> Bool {
+        let cal = NSCalendar.currentCalendar()
+        let currentComps = cal.components([NSCalendarUnit.Month, NSCalendarUnit.Year], fromDate: self)
+        let compareComps = cal.components([NSCalendarUnit.Month, .Year], fromDate: compareDate)
+        return (currentComps.year == compareComps.year && currentComps.weekOfYear == compareComps.weekOfYear)
+    }
+    
     /*!
     Determines if the reciever is on the same calendar day for the current time
     :returns: A boolean indicating if the reciever is sometime today
     */
     
-     public func isToday() -> Bool {
+    public func isToday() -> Bool {
         return self.isSameDayAsDate(NSDate())
     }
     
@@ -230,6 +243,37 @@ public extension NSDate  {
         let sometimeTomorrow  = NSDate(timeIntervalSinceNow: 60*60*24)
         return self.isSameDayAsDate(sometimeTomorrow)
     }
+    
+    /*!
+    Determines if the reciever is on a calendar day within the current week
+    :returns: A boolean indicating if the reciever is sometime next week
+    */
+    
+    public func isThisWeek() -> Bool {
+        return self.isSameWeekAsDate(NSDate())
+    }
+    
+    /*!
+    Determines if the reciever is on a calendar day within next week from now
+    :returns: A boolean indicating if the reciever is sometime next week
+    */
+    
+    public func isNextWeek() -> Bool {
+        let sometimeNextWeek  = NSDate(timeIntervalSinceNow: 60*60*24*7)
+        return self.isSameWeekAsDate(sometimeNextWeek)
+    }
+    
+    /*!
+    Determines if the reciever is on a calendar day within previous week from now
+    :returns: A boolean indicating if the reciever is sometime the previous week
+    */
+    
+    public func isLastWeek() -> Bool {
+        let sometimeLastWeek  = NSDate(timeIntervalSinceNow: -60*60*24*7)
+        return self.isSameWeekAsDate(sometimeLastWeek)
+    }
+    
+    
     
     /**
     A short string representation of the seconds, minutes, days, weeks, and years since the date.

@@ -380,8 +380,6 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             for var idx = 0; idx < itemCount; idx++ {
                 let indexPath = NSIndexPath(forItem: idx, inSection: section)
                 
-//                let cell = self.collectionView?.cellForItemAtIndexPath(indexPath)
-                
                 let columnIndex = self.nextColumnIndexForItem(indexPath)
                 let xOffset = sectionInsets.left + (itemWidth + colSpacing) * CGFloat(columnIndex)
                 let yOffset = self.columnHeights[section][columnIndex]
