@@ -128,10 +128,21 @@ import UIKit
         }
     }
     
+    override public func willMoveToSuperview(newSuperview: UIView?) {
+        super.willMoveToSuperview(newSuperview)
+        if newSuperview == nil {
+            NSNotificationCenter.defaultCenter().removeObserver(self)
+        }
+        else {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange", name: UITextViewTextDidChangeNotification, object: self)
+            self.superview?.translatesAutoresizingMaskIntoConstraints = false
+        }
+    }
+    
     override public func didMoveToSuperview() {
         super.didMoveToSuperview()
         if self.superview != nil {
-            self.superview?.translatesAutoresizingMaskIntoConstraints = false
+            self.textDidChange()
         }
     }
     
