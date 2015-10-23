@@ -18,4 +18,4 @@ Pod::Spec.new do |s|
     s.frameworks        = 'UIKit', 'QuartzCore'
 
 
-end
+end 
