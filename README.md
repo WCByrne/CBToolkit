@@ -13,7 +13,7 @@ Download or clone the files and drop CBToolkit/CBToolkit into your project. Your
 <b>CocoaPods</b>
 CBToolkit is now available on cocoapods 
 
-Add `pod 'CBToolkit', '~> 0.0' to your podfile and run pod update.
+Add `pod 'CBToolkit', '~> 0.0'` to your podfile and run pod update.
 
 <h2>Using the views</h2>
 CBToolkit is designed to help you creat great UIs without extra code. Thanks to IBDesignables many visual effects can me set right in the storyboard. Simple drop the appropriate UIKit element (UIView, UIButton, UIImageView...) into your view controller and change the class to the CB- equivilent.
@@ -25,6 +25,7 @@ And if you really have the urge to type, you can always create CBToolkit views p
 
 <h1>Docs</h1>
 [View the full docs](https://github.com/WCByrne/CBToolkit/wiki)
+<br />
 [Example app video](https://www.youtube.com/watch?v=AZnW26m93jc)
 
 
