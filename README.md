@@ -27,6 +27,8 @@ And if you really have the urge to type, you can always create CBToolkit views p
 <br />
 [Example app video](https://www.youtube.com/watch?v=AZnW26m93jc)
 
+An example app is included in the repository to show you how some examples of how you can use CBToolkit in your app.
+
 
 <h1>Views</h1>
 
