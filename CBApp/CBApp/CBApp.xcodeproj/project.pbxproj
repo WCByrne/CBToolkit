@@ -386,6 +386,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CBApp-bzbbgtqelaavfiakdntzxueaecwu/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = CBApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -401,6 +402,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CBApp-bzbbgtqelaavfiakdntzxueaecwu/Build/Products/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = CBApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
