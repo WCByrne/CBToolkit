@@ -30,7 +30,6 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         super.init()
     }
     
-    
     public func clearCache() {
         imageCache.removeAllObjects()
     }
@@ -199,7 +198,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         let lengthStr = res.allHeaderFields["Content-Length"] as! String
         
         let numFormatter = NSNumberFormatter()
-        expectedSize = numFormatter.numberFromString(lengthStr)!.unsignedIntegerValue
+        expectedSize = numFormatter.numberFromString(lengthStr)!.integerValue
         imgData = NSMutableData(capacity: expectedSize)
         
     }

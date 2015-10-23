@@ -528,7 +528,6 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
 
 
 
-
 class CropperFilterCell : UICollectionViewCell {
     
     var imageView: CBImageView!

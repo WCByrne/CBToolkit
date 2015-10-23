@@ -38,4 +38,27 @@ class ButtonCell : UICollectionViewCell {
         popScaleLabel.text = "\(sender.value)"
         popButton.popAnimation()
     }
+    @IBAction func iconButtonSelected(sender: CBIconButton) {
+        if (sender.iconType == .Hamburger) {
+            sender.setIcon(CBIconType.Close, animated: true)
+        }
+        else if (sender.iconType == .Close) {
+            sender.setIcon(CBIconType.Add, animated: true)
+        }
+        else if (sender.iconType == .Add) {
+            sender.setIcon(CBIconType.AngleLeft, animated: true)
+        }
+        else if (sender.iconType == .AngleLeft) {
+            sender.setIcon(CBIconType.AngleRight, animated: true)
+        }
+        else if (sender.iconType == .AngleRight) {
+            sender.setIcon(CBIconType.ArrowLeft, animated: true)
+        }
+        else if (sender.iconType == .ArrowLeft) {
+            sender.setIcon(CBIconType.ArrowRight, animated: true)
+        }
+        else {
+            sender.setIcon(CBIconType.Hamburger, animated: true)
+        }
+    }
 }

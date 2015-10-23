@@ -18,9 +18,27 @@ extension CGPoint  {
 
 @objc public protocol CBCollectionViewDelegateLayout: UICollectionViewDelegate {
     
+    /**
+     The height for the item at the given indexPath (Priority 2)
+     
+     - parameter collectionView:       The collection view the item is in
+     - parameter collectionViewLayout: The CollectionViewLayout
+     - parameter indexPath:            The indexPath for the item
+     
+     - returns: The height for the item
+     */
     optional func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         heightForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat
     
+    /**
+     The aspect ration for the item at the given indexPath (Priority 1). Width and height must be greater than 0.
+     
+     - parameter collectionView:       The collection view the item is in
+     - parameter collectionViewLayout: The CollectionViewLayout
+     - parameter indexPath:            The indexPath for the item
+     
+     - returns: The aspect ration for the item
+     */
     optional func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
         aspectRatioForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
     

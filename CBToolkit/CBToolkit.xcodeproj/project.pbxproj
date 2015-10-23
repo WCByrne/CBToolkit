@@ -30,6 +30,7 @@
 		1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01D1A7D8A8B00D7677B /* CBPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE3BD2371BD9C0900061EBE5 /* CBIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BD2361BD9C0900061EBE5 /* CBIconButton.swift */; };
 		DEEBE0381B98801200F18093 /* CBImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0371B98801200F18093 /* CBImageEditor.swift */; };
 		DEEBE03A1B98822900F18093 /* CBSliderCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
 		1CDBB0121A7D8A8B00D7677B /* CBDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDate.swift; sourceTree = "<group>"; };
 		1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhoneNumber.swift; sourceTree = "<group>"; };
+		DE3BD2361BD9C0900061EBE5 /* CBIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBIconButton.swift; sourceTree = "<group>"; };
 		DEEBE0371B98801200F18093 /* CBImageEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageEditor.swift; sourceTree = "<group>"; };
 		DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSliderCollectionViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +111,7 @@
 				1CDBAFF31A7D8A7200D7677B /* CBToolkit.h */,
 				1CDBB00A1A7D8A8B00D7677B /* CBExtensions.swift */,
 				1CDBB00B1A7D8A8B00D7677B /* CBButton.swift */,
+				DE3BD2361BD9C0900061EBE5 /* CBIconButton.swift */,
 				1CDBB00C1A7D8A8B00D7677B /* CBTextField.swift */,
 				1CDBB00D1A7D8A8B00D7677B /* CBTextView.swift */,
 				1CDBB00E1A7D8A8B00D7677B /* CBViews.swift */,
@@ -281,6 +284,7 @@
 				DEEBE0381B98801200F18093 /* CBImageEditor.swift in Sources */,
 				1CDBB0161A7D8A8B00D7677B /* CBTextField.swift in Sources */,
 				1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */,
+				DE3BD2371BD9C0900061EBE5 /* CBIconButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

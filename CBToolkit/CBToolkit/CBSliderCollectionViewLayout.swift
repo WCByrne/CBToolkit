@@ -11,7 +11,10 @@ import UIKit
 
 /// A very simple full size 'slider' CollectionViewLayout for horizontal sliding
 public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
+    /// The currently displayed row in the collectionView. This must be set to handle autoscrolling.
     public var currentIndex: Int = 0
+    
+    /// Start and stop the collection view autoscroll.
     public var autoScroll: Bool = false {
         didSet {
             if autoScroll {
@@ -22,8 +25,9 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
             }
         }
     }
+    /// The delay between scroll animations
     public var autoScrollDelay: NSTimeInterval = 5
-    public var autoScrollTimer: NSTimer?
+    private var autoScrollTimer: NSTimer?
     
     public override init() {
         super.init()

@@ -19,12 +19,6 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
         CBSliderCollectionViewLayout(collectionView: contentCollectionView)
         contentCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func toggleAutoScroll(sender: CBButton) {

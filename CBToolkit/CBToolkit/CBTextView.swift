@@ -9,16 +9,15 @@
 import Foundation
 import UIKit
 
-
-
-
+/// An expanding text view that adjusts it's height to contain the text that is entered.
 @IBDesignable public class CBTextView: UITextView {
     
+    /// Weather the text view should expand to fit the text staying within the limits of mimumumHeight and maximumHeight
     @IBInspectable public var autoExpand: Bool  = false {
         didSet {
             if autoExpand {
                 if heightConstraint == nil {
-                    heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: minimumHeight)
+                    _heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: minimumHeight)
                     heightConstraint!.priority = 1000
                     self.addConstraint(heightConstraint!)
                     self.layoutIfNeeded()
@@ -26,15 +25,15 @@ import UIKit
             }
             else if heightConstraint != nil {
                 self.removeConstraint(self.heightConstraint!)
-                self.heightConstraint = nil
+                self._heightConstraint = nil
             }
         }
     }
+    /// The minimum height the text view should shrink to if the text does not expand it
     @IBInspectable public var minimumHeight: CGFloat = 35 {
-        didSet {
-            self.textDidChange()
-        }
+        didSet { self.textDidChange() }
     }
+    /// The maximum height the text view should grow to as text is entered
     @IBInspectable public var maximumHeight: CGFloat = 100
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
@@ -45,47 +44,27 @@ import UIKit
     @IBInspectable public var borderColor: UIColor = UIColor.clearColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
-    
+    /// The color of the placeholder text
     @IBInspectable public var placeholderColor: UIColor = UIColor.lightGrayColor() {
-        didSet {
-            self.placeholderTextView?.textColor = placeholderColor
-        }
+        didSet { self.placeholderTextView?.textColor = placeholderColor }
     }
-    
-    //    @IBInspectable public var normalTextColor: UIColor = UIColor.darkGrayColor() {
-    //        didSet {
-    //            if self.text != placeholder {
-    //                self.textColor = normalTextColor
-    //            }
-    //        }
-    //    }
-    
+    /// The placeholder text to display if no text is entered
     @IBInspectable public var placeholder: String = "" {
         didSet {
-            if self.text.isEmpty {
-                self.placeholderTextView?.text = placeholder
-            }
+            if self.text.isEmpty { self.placeholderTextView?.text = placeholder }
         }
     }
     
+    /// The inset of the the text
     public override var textContainerInset: UIEdgeInsets {
-        didSet {
-            placeholderTextView?.textContainerInset = textContainerInset
-        }
+        didSet { placeholderTextView?.textContainerInset = textContainerInset }
     }
     
+    /// The views internal height constraint used to adjust it's height based on the text
+    public var heightConstraint: NSLayoutConstraint? { get { return _heightConstraint }}
+
+    private var _heightConstraint: NSLayoutConstraint?
     private var placeholderTextView : UITextView?
-    
-    public var heightConstraint: NSLayoutConstraint?
-    
-    /*!
-    * @Deprecated
-    */
-    public var currentText: String! {
-        get {
-            return text
-        }
-    }
     
     override public var text: String! {
         didSet {

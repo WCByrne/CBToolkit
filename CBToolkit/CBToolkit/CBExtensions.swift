@@ -11,7 +11,12 @@ import UIKit
 
 
 public extension UIViewController {
+    
+    /**
+     Detect if the view controller was presented modally or is part of a UINavigationController stack
      
+     - returns: True if the view controller is not part of a UINavigationController stack
+     */
     func isModal() -> Bool {
         if self.navigationController == nil {
             return true
@@ -19,14 +24,25 @@ public extension UIViewController {
         return self.navigationController!.viewControllers.count == 1
     }
     
+    /**
+     Detects the presentation mode of of the view controller and pops it off the navigation stack or dismisses the modal view
+     
+     - parameter animated: If the dismiss should be animated
+     */
     func popOrDismiss(animated: Bool) {
         if self.isModal() {
             self.dismissViewControllerAnimated(animated, completion: nil)
         }
         else {
-            self.navigationController!.popViewControllerAnimated(animated)
+            self.navigationController?.popViewControllerAnimated(animated)
         }   
     }
+    
+    /**
+     Add constraints to the view controllers view to match its parent view. This is helpful when using child view controllers.
+     
+     - returns: The top, right, bottom, and left contraints
+     */
     func addConstraintsToMatchParent() -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         return self.view.addConstraintsToMatchParent()
     }
@@ -34,6 +50,13 @@ public extension UIViewController {
 
 
 public extension UIView {
+    
+    /**
+     Add NSLayoutContraints to the reciever to match it'parent optionally provided insets for each side. If the view does not have a superview, no constraints are added.
+     
+     - parameter insets: Insets to apply to the constraints for Top, Right, Bottom, and Left.
+     - returns: The Top, Right, Bottom, and Top constraint added to the view.
+     */
     func addConstraintsToMatchParent(insets: UIEdgeInsets? = nil) -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         if let sv = self.superview {
             let top = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: insets?.top ?? 0)
@@ -57,12 +80,26 @@ public extension UIView {
 
 public extension UIAlertController {
     
+    /**
+     Create an alert with the given properties.
+     
+     - parameter title:   The title of the alert
+     - parameter message: The message of the alert
+     - parameter button:  A cancel button title
+     
+     - returns: The UIAlertController initialized with the provided properties.
+     */
     public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String!) -> UIAlertController  {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: nil))
         return alert
     }
     
+    /**
+     A shorthand call to present a UIAlertController in a given UIViewController
+     
+     - parameter viewController: The UIViewController to present the UIAlertController in.
+     */
     public func show(viewController: UIViewController) {
         viewController.presentViewController(self, animated: true, completion: nil)
     }

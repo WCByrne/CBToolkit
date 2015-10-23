@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -30,7 +31,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ViewCell" id="Bku-9W-nos" customClass="ViewCell" customModule="CBApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="0.0" y="-15" width="330" height="630"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="330" height="630"/>
@@ -472,7 +473,7 @@
                                                                 <action selector="leftBorder:" destination="Bku-9W-nos" eventType="valueChanged" id="Tjf-sz-DDc"/>
                                                             </connections>
                                                         </switch>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Right" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utn-A1-IWF">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Right" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utn-A1-IWF">
                                                             <rect key="frame" x="110" y="8" width="30" height="16"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
@@ -486,7 +487,7 @@
                                                                 <action selector="rightBorder:" destination="Bku-9W-nos" eventType="valueChanged" id="Epw-oK-Wjx"/>
                                                             </connections>
                                                         </switch>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-fa-5OH">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Top" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-fa-5OH">
                                                             <rect key="frame" x="49" y="8" width="21" height="16"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
@@ -594,7 +595,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ButtonCell" id="PiS-sF-vIY" customClass="ButtonCell" customModule="CBApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="340" y="-15" width="330" height="630"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="330" height="630"/>
@@ -650,7 +651,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeK-1W-A6W" customClass="CBButton" customModule="CBToolkit">
-                                                    <rect key="frame" x="85" y="144" width="160" height="35"/>
+                                                    <rect key="frame" x="55" y="144" width="160" height="35"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.95000000000000007" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -671,6 +672,18 @@
                                                             <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT1-Yd-nHU" customClass="CBIconButton" customModule="CBToolkit">
+                                                    <rect key="frame" x="235" y="147" width="30" height="30"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="Xjz-Zk-wp3"/>
+                                                        <constraint firstAttribute="height" constant="30" id="lWw-3F-tdA"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="iconButtonSelected:" destination="PiS-sF-vIY" eventType="touchUpInside" id="v1C-ah-VbE"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4PO-13-tPL" customClass="CBBorderView" customModule="CBToolkit">
                                                     <rect key="frame" x="8" y="184" width="314" height="40"/>
@@ -965,7 +978,7 @@
                                         <constraints>
                                             <constraint firstItem="1Z8-eq-dM3" firstAttribute="trailing" secondItem="PiS-sF-vIY" secondAttribute="trailingMargin" id="1dg-mN-A3Z"/>
                                             <constraint firstItem="pGx-Ys-mJ9" firstAttribute="top" secondItem="05C-aZ-EWJ" secondAttribute="bottom" constant="16" id="3Cd-Md-Hm0"/>
-                                            <constraint firstAttribute="centerX" secondItem="TeK-1W-A6W" secondAttribute="centerX" id="5dX-aa-AK3"/>
+                                            <constraint firstAttribute="centerX" secondItem="TeK-1W-A6W" secondAttribute="centerX" constant="30" id="5dX-aa-AK3"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="pGx-Ys-mJ9" secondAttribute="trailing" id="5e2-Mw-Z4i"/>
                                             <constraint firstItem="4PO-13-tPL" firstAttribute="trailing" secondItem="PiS-sF-vIY" secondAttribute="trailingMargin" id="7Ye-0c-YLj"/>
                                             <constraint firstItem="LH3-9V-KCY" firstAttribute="top" secondItem="YOQ-c3-DGI" secondAttribute="bottom" constant="8" id="9ov-9b-8fa"/>
@@ -979,6 +992,7 @@
                                             <constraint firstAttribute="bottom" secondItem="yrR-ds-RVh" secondAttribute="bottom" id="KaV-Wb-4TJ"/>
                                             <constraint firstItem="4PO-13-tPL" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="leadingMargin" id="LNg-Hb-AHJ"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="LH3-9V-KCY" secondAttribute="trailing" id="Mzs-hf-zfg"/>
+                                            <constraint firstItem="xT1-Yd-nHU" firstAttribute="centerY" secondItem="TeK-1W-A6W" secondAttribute="centerY" id="Nqm-Zt-1Fh"/>
                                             <constraint firstItem="YOQ-c3-DGI" firstAttribute="top" secondItem="tX5-4F-Jlp" secondAttribute="bottom" constant="12" id="S9v-Gl-w8a"/>
                                             <constraint firstAttribute="centerX" secondItem="LTb-sf-eM8" secondAttribute="trailing" id="TSD-1r-6SC"/>
                                             <constraint firstItem="1Z8-eq-dM3" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="leadingMargin" id="VS0-vv-409"/>
@@ -991,6 +1005,7 @@
                                             <constraint firstAttribute="trailingMargin" secondItem="05C-aZ-EWJ" secondAttribute="trailing" constant="8" id="ieZ-Le-9Qx"/>
                                             <constraint firstItem="ELd-I5-WkB" firstAttribute="top" secondItem="Kbb-Ls-9fb" secondAttribute="bottom" constant="2" id="lnt-DG-Zle"/>
                                             <constraint firstItem="LH3-9V-KCY" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="leadingMargin" id="t27-hY-CeI"/>
+                                            <constraint firstItem="xT1-Yd-nHU" firstAttribute="leading" secondItem="TeK-1W-A6W" secondAttribute="trailing" constant="20" id="uXE-O4-8jb"/>
                                             <constraint firstItem="gwT-E9-DmS" firstAttribute="leading" secondItem="Kbb-Ls-9fb" secondAttribute="trailing" constant="2" id="v8N-nB-P2D"/>
                                             <constraint firstItem="tX5-4F-Jlp" firstAttribute="top" secondItem="LTb-sf-eM8" secondAttribute="bottom" constant="16" id="vlQ-Fu-4KC"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="tX5-4F-Jlp" secondAttribute="trailing" id="vvF-qz-5bp"/>
@@ -1005,7 +1020,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LoadersCell" id="mNb-Wu-TKS" customClass="LoadersCell" customModule="CBApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="680" y="-15" width="330" height="630"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="330" height="630"/>
@@ -1448,7 +1463,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CVLayoutCell" id="uw9-c8-gXS" customClass="CVLayoutCell" customModule="CBApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <rect key="frame" x="1020" y="-15" width="330" height="630"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="330" height="630"/>
@@ -1466,7 +1481,7 @@
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="GalleryCell" id="Hn6-2v-nZh" customClass="GalleryCell" customModule="CBApp" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <rect key="frame" x="71" y="0.0" width="188" height="162"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="188" height="162"/>

@@ -64,7 +64,6 @@ import UIKit
         }
     }
     
-    
     public override func layoutSubviews() {
         super.layoutSubviews()
         if (self.circleCrop) {
@@ -72,7 +71,6 @@ import UIKit
             self.cornerRadius = sSide/2
         }
     }
-    
     
     override public var image: UIImage? {
         didSet {

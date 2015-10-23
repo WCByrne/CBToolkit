@@ -9,28 +9,33 @@
 import Foundation
 import UIKit
 
- public class CBPhoneNumber {
+
+/// A utitility class for validating and formatting phone numbers
+public class CBPhoneNumber {
     
     private var baseString: NSString! = NSString()
+    /// The numeric string of the phone number
     public var numericString: String! {
-        get {
-            return baseString as String
-        }
+        get { return baseString as String }
     }
     
+    /// Returns true if the phone number is a partially valid phone number
     public var isPartiallyValid: Bool {
-        get {
-            return baseString.length <= 11
-        }
+        get { return baseString.length <= 1 }
     }
     
-    
+    /// True if the phone number is valid length phone number
     public var isValid : Bool {
         let length = baseString.length
         return (length == 7 || length >= 10)
     }
     
-
+    /**
+     Initialize a CBPhoneNumber with a string. Non numberic characters will be removed.
+     
+     - parameter string: A string containing a phone number
+     - returns: A new CBPhoneNumber
+     */
     public init(string : String?) {
         if string != nil {
             let string = NSString(string: string!)
@@ -40,21 +45,33 @@ import UIKit
         }
     }
     
-     public func appendString(string: String!) {
+    /**
+     Append a string to the phone number. Non numberic characters will be removed.
+     
+     - parameter string: The string to append.
+     */
+    public func appendString(string: String!) {
         let comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
         let addedString = comps.componentsJoinedByString("")
         baseString = baseString.stringByAppendingString(addedString)
     }
     
     
-     public func removeLastCharacter() {
+    /**
+     Remove the last number from the phone number
+     */
+    public func removeLastCharacter() {
         if baseString.length > 0 {
             baseString = baseString.substringToIndex(baseString.length-1)
         }
     }
     
-    
-     public func formattedNumber() -> String! {
+    /**
+     A formatted phone number for the available string
+     
+     - returns: A formatted phone number. This can be partial
+     */
+    public func formattedNumber() -> String! {
         
         if baseString.length == 0 {
             return baseString as String
@@ -117,18 +134,18 @@ import UIKit
     }
     
     
-    
+    /**
+     Invoke the system to call the phone number.
+     
+     - returns: True if the system can call the number otherwise false.
+     */
     public func callNumber() -> Bool {
-        
         let phoneURL : NSURL = NSURL(string:"telprompt:\(baseString)")!
-        
         if UIApplication.sharedApplication().canOpenURL(phoneURL) {
             UIApplication.sharedApplication().openURL(phoneURL)
             return true
         }
-        
         return false
-        
     }
     
     
