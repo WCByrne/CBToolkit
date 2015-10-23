@@ -7,12 +7,11 @@ Meet your new UI. CBToolkit brings your UI to life and thanks to xCodes IB tools
 <img src="/CBIconButton.gif">
 
 <h2>Adding to your project</h2>
-<b>Manual</b>
+<b>Manual</b><br />
 Download or clone the files and drop CBToolkit/CBToolkit into your project. Your good to go.
 
-<b>CocoaPods</b>
+<b>CocoaPods</b><br />
 CBToolkit is now available on cocoapods 
-
 Add `pod 'CBToolkit', '~> 0.0'` to your podfile and run pod update.
 
 <h2>Using the views</h2>
