@@ -173,7 +173,10 @@ import UIKit
         }
     }
     @IBInspectable public var indicatorSize: CGFloat = 0.5 {
-        didSet { self.progressLayer.strokeEnd = indicatorSize }
+        didSet {
+
+            self.progressLayer.strokeEnd = indicatorSize
+        }
     }
     
     override public init(frame: CGRect) {
@@ -245,13 +248,19 @@ import UIKit
         progressLayer.addAnimation(anim, forKey: "spin")
         
         if hidesWhenStopped {
-            progressLayer.strokeStart = 0
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            self.progressLayer.strokeStart = 0
+            self.progressLayer.strokeEnd = 0
+            CATransaction.commit()
+            
             let anim = CABasicAnimation(keyPath: "strokeEnd")
             anim.fromValue = NSNumber(int: 0)
-            anim.toValue = NSNumber(int: 1)
+            anim.toValue = NSNumber(float: Float(indicatorSize))
             anim.duration = CFTimeInterval(0.5)
             anim.removedOnCompletion = false
-            progressLayer.strokeEnd = 1
+            self.progressLayer.strokeEnd = self.indicatorSize
+            progressLayer.strokeEnd = self.indicatorSize
             progressLayer.addAnimation(anim, forKey: "show")
         }
     }
@@ -262,10 +271,10 @@ import UIKit
         if hidesWhenStopped {
             let anim = CABasicAnimation(keyPath: "strokeStart")
             anim.fromValue = NSNumber(int: 0)
-            anim.toValue = NSNumber(int: 1)
+            anim.toValue = NSNumber(float: Float(self.indicatorSize))
             anim.duration = CFTimeInterval(0.5)
             anim.removedOnCompletion = false
-            progressLayer.strokeStart = 1
+            progressLayer.strokeStart = self.indicatorSize
             progressLayer.addAnimation(anim, forKey: "hide")
         }
         else {
@@ -312,7 +321,7 @@ import UIKit
         let startAngle : CGFloat = CGFloat(0) - CGFloat(M_PI_2)
         let endAngle: CGFloat = startAngle + 6.28318531 * indicatorSize
         
-        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
+        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
         self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
         
         progressLayer.anchorPoint = CGPointMake(0.5, 0.5)

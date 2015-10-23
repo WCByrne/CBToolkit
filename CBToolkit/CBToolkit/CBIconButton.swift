@@ -34,13 +34,6 @@ public enum CBIconType : NSInteger {
 }
 
 
-/*
-Test Code
-
-
-*/
-
-
 /// Display an icon (CBIconType), drawn and animated with core animation.
 @IBDesignable public class CBIconButton : CBButton {
     
@@ -247,26 +240,5 @@ Test Code
         path.lineWidth = barWidth
         path.lineCapStyle = CGLineCap.Round
         return path.CGPath
-    }
-}
-
-
-extension Int {
-    var degreesToRadians : CGFloat {
-        return CGFloat(self) * CGFloat(M_PI) / 180.0
-    }
-}
-extension CAShapeLayer {
-    func setPathAnimated(path: CGPath) {
-        self.path = path
-        let anim = CABasicAnimation(keyPath: "path")
-        anim.duration = 0.2
-        anim.fromValue = self.presentationLayer()?.valueForKeyPath("path")
-        anim.toValue = path
-        anim.fillMode = kCAFillModeBoth
-        anim.additive = true
-        anim.removedOnCompletion = false
-        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        self.addAnimation(anim, forKey: "animatePath")
     }
 }

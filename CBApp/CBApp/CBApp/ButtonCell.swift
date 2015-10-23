@@ -38,7 +38,24 @@ class ButtonCell : UICollectionViewCell {
         popScaleLabel.text = "\(sender.value)"
         popButton.popAnimation()
     }
+    
+    var randomize = false;
+    var iconTypes : [CBIconType] = [.Hamburger, .Close, .Add, .AngleLeft, .AngleRight, .ArrowLeft, .ArrowRight];
+    
     @IBAction func iconButtonSelected(sender: CBIconButton) {
+        
+        if randomize {
+            let icon = sender.iconType
+            var newIcon = sender.iconType
+            while icon == newIcon {
+                let rand = Int.random(0, high: iconTypes.count - 1)
+                newIcon = iconTypes[rand]
+            }
+            sender.setIcon(newIcon, animated: true)
+            return
+        }
+        
+        
         if (sender.iconType == .Hamburger) {
             sender.setIcon(CBIconType.Close, animated: true)
         }
@@ -59,6 +76,7 @@ class ButtonCell : UICollectionViewCell {
         }
         else {
             sender.setIcon(CBIconType.Hamburger, animated: true)
+            randomize = true
         }
     }
 }

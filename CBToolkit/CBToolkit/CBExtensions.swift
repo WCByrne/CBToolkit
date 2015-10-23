@@ -106,6 +106,32 @@ public extension UIAlertController {
 }
 
 
+public extension Int {
+    public var degreesToRadians : CGFloat {
+        return CGFloat(self) * CGFloat(M_PI) / 180.0
+    }
+    
+    public static func random(low: Int, high: Int) -> Int {
+        return low + Int(arc4random_uniform(UInt32(high - low + 1)))
+    }
+}
+
+
+public extension CAShapeLayer {
+    public func setPathAnimated(path: CGPath) {
+        self.path = path
+        let anim = CABasicAnimation(keyPath: "path")
+        anim.duration = 0.2
+        anim.fromValue = self.presentationLayer()?.valueForKeyPath("path")
+        anim.toValue = path
+        anim.fillMode = kCAFillModeBoth
+        anim.additive = true
+        anim.removedOnCompletion = false
+        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        self.addAnimation(anim, forKey: "animatePath")
+    }
+}
+
 
 public enum CBImageContentMode: Int {
     case AspectFill
