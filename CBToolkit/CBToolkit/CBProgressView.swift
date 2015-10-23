@@ -318,8 +318,6 @@ import UIKit
     private func drawPath() {
         let center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
         let radius = (self.bounds.size.width / 2) - lineWidth/2
-        let startAngle : CGFloat = CGFloat(0) - CGFloat(M_PI_2)
-        let endAngle: CGFloat = startAngle + 6.28318531 * indicatorSize
         
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
         self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath

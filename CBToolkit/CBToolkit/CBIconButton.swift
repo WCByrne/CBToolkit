@@ -40,7 +40,13 @@ public enum CBIconType : NSInteger {
     /// The color of the icon while the button is highlighted
     @IBInspectable public var highlightTintColor: UIColor?
     /// The size of the icon within the button. The icon is always centered
-    @IBInspectable public var iconSize : CGSize  = CGSize(width: 24, height: 24)
+    @IBInspectable public var iconSize : CGSize  = CGSize(width: 24, height: 24) {
+        didSet {
+            if !CGSizeEqualToSize(oldValue, iconSize) {
+                self.setIcon(self.iconType, animated: true)
+            }
+        }
+    }
     /// The width of each of the bars used to create the icons
     @IBInspectable public var barWidth : CGFloat = 2 {
         didSet {
@@ -51,7 +57,7 @@ public enum CBIconType : NSInteger {
     }
     /// If CBIconType.None is set, the button will be disabled. Otherwise it is enabled.
     @IBInspectable public var autoDisable: Bool = true
-
+    
     /// The icon currently displayed in the button (read only)
     public var iconType: CBIconType { get { return _type }}
     
@@ -65,6 +71,13 @@ public enum CBIconType : NSInteger {
             var rect = CGRect(x: (refSize.width/2) - iconSize.width/2, y: (refSize.width/2) - iconSize.width/2, width: iconSize.width, height: iconSize.height)
             rect = CGRectInset(rect, barWidth/2, barWidth/2)
             return rect
+        }
+    }
+    override public var bounds : CGRect {
+        didSet {
+            if !CGRectEqualToRect(oldValue, self.bounds) {
+                self.setIcon(self.iconType, animated: true)
+            }
         }
     }
     
@@ -82,7 +95,7 @@ public enum CBIconType : NSInteger {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         for bar in [bar1, bar2, bar3] {
@@ -211,7 +224,7 @@ public enum CBIconType : NSInteger {
         var pt1 = pointAtPosition(p1)
         var pt2 = pointAtPosition(p2)
         
-        let adjust = sqrt(max(iconSize.width, iconSize.height))
+        let adjust = sqrt(min(iconSize.width, iconSize.height))/2
         
         if p1 < 3 && p2 < 3 {
             pt1.y = pt1.y + adjust
