@@ -17,7 +17,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        CBSliderCollectionViewLayout(collectionView: contentCollectionView)
+        _ = CBSliderCollectionViewLayout(collectionView: contentCollectionView)
         contentCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
