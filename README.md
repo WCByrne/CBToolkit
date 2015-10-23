@@ -6,12 +6,21 @@ Meet your new UI. CBToolkit brings your UI to life and thanks to xCodes IB tools
 
 <img src="/CBIconButton.gif">
 
-<h1>Using CBToolkit</h1>
-Drop the project into your workspace and add the library to your main project's embeded libraries. 
+<h2>Adding to your project</h2>
+<b>Manual</b>
+Download or clone the files and drop CBToolkit/CBToolkit into your project. Your good to go.
 
-Most of the views can be used by adding the ancestor (UIView or UIButton) into the storyboard and simply changing the class to CB***. Open the attributes inspector and you will see the available attributes. 
+<b>CocoaPods</b>
+CBToolkit is now available on cocoapods 
 
-Create CBToolkit views progamatically just like anything else. 
+Add `pod 'CBToolkit', '~> 0.0' to your podfile and run pod update.
+
+<h2>Using the views</h2>
+CBToolkit is designed to help you creat great UIs without extra code. Thanks to IBDesignables many visual effects can me set right in the storyboard. Simple drop the appropriate UIKit element (UIView, UIButton, UIImageView...) into your view controller and change the class to the CB- equivilent.
+
+For example, to add a `CBProgressView` just drop in a UIVIew, open the attributes inspector in the right utilities panel and set the class to CBProgressView. The custom properties will now be available right along side the standard backgroundColor and such.
+
+And if you really have the urge to type, you can always create CBToolkit views progamatically just like anything else. 
 
 
 <h1>CBView</h1>
