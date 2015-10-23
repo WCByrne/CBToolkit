@@ -614,40 +614,17 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buttons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05C-aZ-EWJ">
-                                                    <rect key="frame" x="16" y="52" width="298" height="42"/>
+                                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buttons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05C-aZ-EWJ">
+                                                    <rect key="frame" x="16" y="108" width="298" height="42"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT1-Yd-nHU" customClass="CBIconButton" customModule="CBToolkit">
-                                                    <rect key="frame" x="245" y="48" width="50" height="50"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="Xjz-Zk-wp3"/>
-                                                        <constraint firstAttribute="height" constant="50" id="lWw-3F-tdA"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="size" keyPath="iconSize">
-                                                            <size key="value" width="40" height="40"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="highlightTintColor">
-                                                            <color key="value" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                    <connections>
-                                                        <action selector="iconButtonSelected:" destination="PiS-sF-vIY" eventType="touchUpInside" id="v1C-ah-VbE"/>
-                                                    </connections>
-                                                </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGx-Ys-mJ9" customClass="CBBorderView" customModule="CBToolkit">
-                                                    <rect key="frame" x="8" y="110" width="314" height="22"/>
+                                                    <rect key="frame" x="8" y="166" width="314" height="22"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBButton" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh2-xt-dYq">
+                                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBButton" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh2-xt-dYq">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -674,7 +651,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeK-1W-A6W" customClass="CBButton" customModule="CBToolkit">
-                                                    <rect key="frame" x="55" y="144" width="160" height="35"/>
+                                                    <rect key="frame" x="55" y="200" width="160" height="35"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.95000000000000007" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -789,7 +766,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTb-sf-eM8" customClass="CBButton" customModule="CBToolkit">
-                                                    <rect key="frame" x="65" y="283" width="100" height="100"/>
+                                                    <rect key="frame" x="65" y="339" width="100" height="100"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.94999999999999996" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -980,6 +957,29 @@
                                                     <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT1-Yd-nHU" customClass="CBIconButton" customModule="CBToolkit">
+                                                    <rect key="frame" x="165" y="59" width="100" height="100"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="Xjz-Zk-wp3"/>
+                                                        <constraint firstAttribute="height" constant="100" id="lWw-3F-tdA"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="size" keyPath="iconSize">
+                                                            <size key="value" width="80" height="80"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
+                                                            <real key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="highlightTintColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="iconButtonSelected:" destination="PiS-sF-vIY" eventType="touchUpInside" id="v1C-ah-VbE"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -996,7 +996,7 @@
                                             <constraint firstItem="gwT-E9-DmS" firstAttribute="bottom" secondItem="Kbb-Ls-9fb" secondAttribute="bottom" id="DET-XU-eN1"/>
                                             <constraint firstItem="ELd-I5-WkB" firstAttribute="leading" secondItem="Kbb-Ls-9fb" secondAttribute="leading" constant="-3" id="DPc-J5-KBL"/>
                                             <constraint firstItem="TeK-1W-A6W" firstAttribute="top" secondItem="pGx-Ys-mJ9" secondAttribute="bottom" constant="12" id="Fb9-Ff-DQs"/>
-                                            <constraint firstItem="05C-aZ-EWJ" firstAttribute="top" secondItem="PiS-sF-vIY" secondAttribute="topMargin" constant="44" id="Fr1-XZ-wWv"/>
+                                            <constraint firstItem="05C-aZ-EWJ" firstAttribute="top" secondItem="PiS-sF-vIY" secondAttribute="topMargin" constant="100" id="Fr1-XZ-wWv"/>
                                             <constraint firstItem="yrR-ds-RVh" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="leading" id="HW2-Av-xqd"/>
                                             <constraint firstItem="LTb-sf-eM8" firstAttribute="top" secondItem="1Z8-eq-dM3" secondAttribute="bottom" constant="16" id="IJq-em-Tvx"/>
                                             <constraint firstAttribute="centerX" secondItem="YOQ-c3-DGI" secondAttribute="centerX" id="JYP-i0-fTR"/>
@@ -1010,11 +1010,11 @@
                                             <constraint firstItem="pGx-Ys-mJ9" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="leadingMargin" id="WzU-7y-SIO"/>
                                             <constraint firstItem="ELd-I5-WkB" firstAttribute="leading" secondItem="LTb-sf-eM8" secondAttribute="trailing" constant="24" id="XlI-kX-88b"/>
                                             <constraint firstItem="1Z8-eq-dM3" firstAttribute="top" secondItem="4PO-13-tPL" secondAttribute="bottom" id="ZLL-6G-zay"/>
-                                            <constraint firstItem="xT1-Yd-nHU" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="centerX" constant="80" id="drY-J4-0hF"/>
+                                            <constraint firstItem="xT1-Yd-nHU" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="centerX" id="drY-J4-0hF"/>
                                             <constraint firstAttribute="trailing" secondItem="yrR-ds-RVh" secondAttribute="trailing" id="eJA-YC-MsL"/>
                                             <constraint firstItem="4PO-13-tPL" firstAttribute="top" secondItem="TeK-1W-A6W" secondAttribute="bottom" constant="8" id="fZo-iP-aAl"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="05C-aZ-EWJ" secondAttribute="trailing" constant="8" id="ieZ-Le-9Qx"/>
-                                            <constraint firstItem="xT1-Yd-nHU" firstAttribute="centerY" secondItem="05C-aZ-EWJ" secondAttribute="centerY" id="lfb-Rh-Mcq"/>
+                                            <constraint firstItem="xT1-Yd-nHU" firstAttribute="centerY" secondItem="05C-aZ-EWJ" secondAttribute="centerY" constant="-20" id="lfb-Rh-Mcq"/>
                                             <constraint firstItem="ELd-I5-WkB" firstAttribute="top" secondItem="Kbb-Ls-9fb" secondAttribute="bottom" constant="2" id="lnt-DG-Zle"/>
                                             <constraint firstItem="LH3-9V-KCY" firstAttribute="leading" secondItem="PiS-sF-vIY" secondAttribute="leadingMargin" id="t27-hY-CeI"/>
                                             <constraint firstItem="gwT-E9-DmS" firstAttribute="leading" secondItem="Kbb-Ls-9fb" secondAttribute="trailing" constant="2" id="v8N-nB-P2D"/>

@@ -4,7 +4,7 @@ CBToolkit
 
 Meet your new UI. CBToolkit brings your UI to life and thanks to xCodes IB tools, you can do it without a single line of code. All the elements in the kit are designs to be drag and drop replacements for their UIKit ancestors.
 
-<img src="/CBToolkitVideo.gif">
+<img src="/CBIconButton.gif">
 
 <h1>Using CBToolkit</h1>
 Drop the project into your workspace and add the library to your main project's embeded libraries. 
