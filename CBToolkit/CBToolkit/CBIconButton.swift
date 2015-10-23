@@ -40,9 +40,9 @@ public enum CBIconType : NSInteger {
     /// The color of the icon while the button is highlighted
     @IBInspectable public var highlightTintColor: UIColor?
     /// The size of the icon within the button. The icon is always centered
-    @IBInspectable public var iconSize : CGSize!  = CGSize(width: 24, height: 24)
+    @IBInspectable public var iconSize : CGSize  = CGSize(width: 24, height: 24)
     /// The width of each of the bars used to create the icons
-    @IBInspectable public var barWidth : CGFloat! = 2 {
+    @IBInspectable public var barWidth : CGFloat = 2 {
         didSet {
             bar1.lineWidth = barWidth
             bar2.lineWidth = barWidth
@@ -211,29 +211,31 @@ public enum CBIconType : NSInteger {
         var pt1 = pointAtPosition(p1)
         var pt2 = pointAtPosition(p2)
         
+        let adjust = sqrt(max(iconSize.width, iconSize.height))
+        
         if p1 < 3 && p2 < 3 {
-            pt1.y = pt1.y + barWidth
-            pt2.y = pt2.y + barWidth
+            pt1.y = pt1.y + adjust
+            pt2.y = pt2.y + adjust
         }
         else if p1 > 5 && p2 > 5 {
-            pt1.y = pt1.y - barWidth
-            pt2.y = pt2.y - barWidth
+            pt1.y = pt1.y - adjust
+            pt2.y = pt2.y - adjust
         }
         else if (p1 == 0 && p2 == 8) {
-            pt1 = CGPoint(x: pt1.x + barWidth, y: pt1.y + barWidth)
-            pt2 = CGPoint(x: pt2.x - barWidth, y: pt2.y - barWidth)
+            pt1 = CGPoint(x: pt1.x + adjust, y: pt1.y + adjust)
+            pt2 = CGPoint(x: pt2.x - adjust, y: pt2.y - adjust)
         }
         else if (p1 == 8 && p2 == 0) {
-            pt1 = CGPoint(x: pt1.x - barWidth, y: pt1.y - barWidth)
-            pt2 = CGPoint(x: pt2.x + barWidth, y: pt2.y + barWidth)
+            pt1 = CGPoint(x: pt1.x - adjust, y: pt1.y - adjust)
+            pt2 = CGPoint(x: pt2.x + adjust, y: pt2.y + adjust)
         }
         else if (p1 == 6 && p2 == 2) {
-            pt1 = CGPoint(x: pt1.x + barWidth, y: pt1.y - barWidth)
-            pt2 = CGPoint(x: pt2.x - barWidth, y: pt2.y + barWidth)
+            pt1 = CGPoint(x: pt1.x + adjust, y: pt1.y - adjust)
+            pt2 = CGPoint(x: pt2.x - adjust, y: pt2.y + adjust)
         }
         else if (p1 == 2 && p2 == 6) {
-            pt1 = CGPoint(x: pt1.x - barWidth, y: pt1.y + barWidth)
-            pt2 = CGPoint(x: pt2.x + barWidth, y: pt2.y - barWidth)
+            pt1 = CGPoint(x: pt1.x - adjust, y: pt1.y + adjust)
+            pt2 = CGPoint(x: pt2.x + adjust, y: pt2.y - adjust)
         }
         path.moveToPoint(pt1)
         path.addLineToPoint(pt2)
