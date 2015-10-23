@@ -12,10 +12,8 @@ Pod::Spec.new do |s|
         :tag => s.version.to_s
     }
 
-    s.platform          = :ios, '8.0'
+    s.ios.platform          = :ios, '8.0'
     s.source_files      = 'CBToolkit/CBToolkit/*.swift'
     s.requires_arc      = true
-    s.frameworks        = 'UIKit', 'QuartzCore'
-
 
 end 
