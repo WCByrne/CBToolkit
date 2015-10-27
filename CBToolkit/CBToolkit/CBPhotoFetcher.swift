@@ -116,19 +116,17 @@ protocol CBImageFetchRequestDelegate {
 }
 
 
-class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate {
+class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate, NSURLSessionDelegate, NSURLSessionDownloadDelegate {
     
     var baseURL : String!
     var completionBlocks: [CBImageFetchCallback]! = []
     var progressBlocks : [CBProgressBlock]! = []
-    
-    var imgData : NSMutableData!
-    var expectedSize : Int!
+
     var progress: Float = 0
     var startDate = NSDate()
     
     var delegate : CBImageFetchRequestDelegate!
-    var con : NSURLConnection?
+    var sessionTask: NSURLSessionDownloadTask?
     
     init(imageURL: String!, completion: CBImageFetchCallback?, progress: CBProgressBlock? ) {
         super.init()
@@ -151,57 +149,101 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         
         let request = NSMutableURLRequest(URL: url!, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 30)
         request.HTTPMethod = "GET"
-        con = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        con!.start()
+        
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let session = NSURLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+        sessionTask = session.downloadTaskWithRequest(request)
+        sessionTask!.resume()
     }
     
     func cancelRequest() {
-        if con != nil {
-            con!.cancel()
-        }
+        sessionTask?.cancel()
     }
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
-        for cBlock in completionBlocks {
-            cBlock(image: nil, error: error, requestTime: startDate.timeIntervalSinceNow)
-        }
-        delegate.fetchRequestDidFinish(baseURL, image: nil)
-                        debugPrint("CBPhotoFetcher: Fetch error – \(error.localizedDescription)")
-    }
-    
-    
-    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
-        imgData.appendData(data)
-        progress = Float(imgData.length) / Float(expectedSize)
+    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
         
-        for pBlock in progressBlocks {
-            pBlock(progress: progress)
-        }
     }
     
+    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        self.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        dispatch_async(dispatch_get_main_queue(),{
+            for pBlock in self.progressBlocks {
+                pBlock(progress: self.progress)
+            }
+        })
+    }
     
-    func connectionDidFinishLoading(connection: NSURLConnection) {
-        
-        let img = UIImage(data: imgData)
-        var error : NSError? = nil
+    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+        var error : NSError?
+        var img : UIImage?
+        if let imgData = NSData(contentsOfURL: location) {
+            img = UIImage(data: imgData)
+        }
         if img == nil {
             error = NSError(domain: "CBToolkit", code: 2, userInfo: [NSLocalizedDescriptionKey : "Could not procress image data into image."])
         }
-        for cBlock in completionBlocks {
-            cBlock(image: img, error: error, requestTime: startDate.timeIntervalSinceNow)
-        }
-        delegate.fetchRequestDidFinish(baseURL, image: img)
+        dispatch_async(dispatch_get_main_queue(),{
+            for cBlock in self.completionBlocks {
+                cBlock(image: img, error: error, requestTime: self.startDate.timeIntervalSinceNow)
+            }
+            self.delegate.fetchRequestDidFinish(self.baseURL, image: img)
+        })
     }
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        let res = response as! NSHTTPURLResponse
-        let lengthStr = res.allHeaderFields["Content-Length"] as! String
-        
-        let numFormatter = NSNumberFormatter()
-        expectedSize = numFormatter.numberFromString(lengthStr)!.integerValue
-        imgData = NSMutableData(capacity: expectedSize)
-        
+    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
+        if error != nil {
+            dispatch_async(dispatch_get_main_queue(),{
+                for cBlock in self.completionBlocks {
+                    cBlock(image: nil, error: error, requestTime: self.startDate.timeIntervalSinceNow)
+                }
+                self.delegate.fetchRequestDidFinish(self.baseURL, image: nil)
+                debugPrint("CBPhotoFetcher: Fetch error – \(error!.localizedDescription)")
+            })
+        }
     }
+    
+    
+//    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+//        for cBlock in completionBlocks {
+//            cBlock(image: nil, error: error, requestTime: startDate.timeIntervalSinceNow)
+//        }
+//        delegate.fetchRequestDidFinish(baseURL, image: nil)
+//                        debugPrint("CBPhotoFetcher: Fetch error – \(error.localizedDescription)")
+//    }
+//    
+//    
+//    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+//        imgData.appendData(data)
+//        progress = Float(imgData.length) / Float(expectedSize)
+//        
+//        for pBlock in progressBlocks {
+//            pBlock(progress: progress)
+//        }
+//    }
+//    
+//    
+//    func connectionDidFinishLoading(connection: NSURLConnection) {
+//        
+//        let img = UIImage(data: imgData)
+//        var error : NSError? = nil
+//        if img == nil {
+//            error = NSError(domain: "CBToolkit", code: 2, userInfo: [NSLocalizedDescriptionKey : "Could not procress image data into image."])
+//        }
+//        for cBlock in completionBlocks {
+//            cBlock(image: img, error: error, requestTime: startDate.timeIntervalSinceNow)
+//        }
+//        delegate.fetchRequestDidFinish(baseURL, image: img)
+//    }
+//    
+//    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+//        let res = response as! NSHTTPURLResponse
+//        let lengthStr = res.allHeaderFields["Content-Length"] as! String
+//        
+//        let numFormatter = NSNumberFormatter()
+//        expectedSize = numFormatter.numberFromString(lengthStr)!.integerValue
+//        imgData = NSMutableData(capacity: expectedSize)
+//        
+//    }
     
     
     

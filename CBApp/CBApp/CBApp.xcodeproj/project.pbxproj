@@ -11,8 +11,8 @@
 		1C9C5A671B9E269A0004657A /* LoadersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A661B9E269A0004657A /* LoadersCell.swift */; };
 		1C9C5A691B9E45C50004657A /* ViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A681B9E45C50004657A /* ViewCell.swift */; };
 		1C9C5A6B1B9E4BED0004657A /* CVLayoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9C5A6A1B9E4BED0004657A /* CVLayoutCell.swift */; };
-		DE35EF1B1B9F30CA008F21DA /* CBToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE35EF1A1B9F30CA008F21DA /* CBToolkit.framework */; };
-		DE35EF1C1B9F30CA008F21DA /* CBToolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE35EF1A1B9F30CA008F21DA /* CBToolkit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1CA8B6991BDF5DCE0045583D /* CBToolkit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA8B6981BDF5DCE0045583D /* CBToolkit.framework */; };
+		1CA8B69A1BDF5DCE0045583D /* CBToolkit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA8B6981BDF5DCE0045583D /* CBToolkit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DEEBE04A1B9892B600F18093 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0491B9892B600F18093 /* AppDelegate.swift */; };
 		DEEBE04C1B9892B600F18093 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE04B1B9892B600F18093 /* ViewController.swift */; };
 		DEEBE04F1B9892B600F18093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE04D1B9892B600F18093 /* Main.storyboard */; };
@@ -38,7 +38,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DE35EF1C1B9F30CA008F21DA /* CBToolkit.framework in Embed Frameworks */,
+				1CA8B69A1BDF5DCE0045583D /* CBToolkit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -50,7 +50,7 @@
 		1C9C5A661B9E269A0004657A /* LoadersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadersCell.swift; sourceTree = "<group>"; };
 		1C9C5A681B9E45C50004657A /* ViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCell.swift; sourceTree = "<group>"; };
 		1C9C5A6A1B9E4BED0004657A /* CVLayoutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVLayoutCell.swift; sourceTree = "<group>"; };
-		DE35EF1A1B9F30CA008F21DA /* CBToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CBToolkit.framework; path = "/Users/Wes/Library/Developer/Xcode/DerivedData/CBApp-bmwlnkbuhfprbthftiawagqgaroj/Build/Products/Debug-iphoneos/CBToolkit.framework"; sourceTree = "<absolute>"; };
+		1CA8B6981BDF5DCE0045583D /* CBToolkit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = CBToolkit.framework; path = "/Users/mbyrne/Library/Developer/Xcode/DerivedData/CBApp-bzbbgtqelaavfiakdntzxueaecwu/Build/Products/Debug-iphoneos/CBToolkit.framework"; sourceTree = "<absolute>"; };
 		DEEBE0441B9892B600F18093 /* CBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEEBE0481B9892B600F18093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEEBE0491B9892B600F18093 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE35EF1B1B9F30CA008F21DA /* CBToolkit.framework in Frameworks */,
+				1CA8B6991BDF5DCE0045583D /* CBToolkit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +85,7 @@
 		DEEBE03B1B9892B600F18093 = {
 			isa = PBXGroup;
 			children = (
-				DE35EF1A1B9F30CA008F21DA /* CBToolkit.framework */,
+				1CA8B6981BDF5DCE0045583D /* CBToolkit.framework */,
 				DEEBE0461B9892B600F18093 /* CBApp */,
 				DEEBE05C1B9892B600F18093 /* CBAppTests */,
 				DEEBE0451B9892B600F18093 /* Products */,
