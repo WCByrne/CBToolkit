@@ -107,7 +107,6 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
             imageCache.removeObjectForKey(url)
         }
     }
-    
 }
 
 
@@ -201,53 +200,6 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
             })
         }
     }
-    
-    
-//    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
-//        for cBlock in completionBlocks {
-//            cBlock(image: nil, error: error, requestTime: startDate.timeIntervalSinceNow)
-//        }
-//        delegate.fetchRequestDidFinish(baseURL, image: nil)
-//                        debugPrint("CBPhotoFetcher: Fetch error – \(error.localizedDescription)")
-//    }
-//    
-//    
-//    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
-//        imgData.appendData(data)
-//        progress = Float(imgData.length) / Float(expectedSize)
-//        
-//        for pBlock in progressBlocks {
-//            pBlock(progress: progress)
-//        }
-//    }
-//    
-//    
-//    func connectionDidFinishLoading(connection: NSURLConnection) {
-//        
-//        let img = UIImage(data: imgData)
-//        var error : NSError? = nil
-//        if img == nil {
-//            error = NSError(domain: "CBToolkit", code: 2, userInfo: [NSLocalizedDescriptionKey : "Could not procress image data into image."])
-//        }
-//        for cBlock in completionBlocks {
-//            cBlock(image: img, error: error, requestTime: startDate.timeIntervalSinceNow)
-//        }
-//        delegate.fetchRequestDidFinish(baseURL, image: img)
-//    }
-//    
-//    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-//        let res = response as! NSHTTPURLResponse
-//        let lengthStr = res.allHeaderFields["Content-Length"] as! String
-//        
-//        let numFormatter = NSNumberFormatter()
-//        expectedSize = numFormatter.numberFromString(lengthStr)!.integerValue
-//        imgData = NSMutableData(capacity: expectedSize)
-//        
-//    }
-    
-    
-    
-    
 }
 
 

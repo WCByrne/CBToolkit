@@ -31,6 +31,7 @@ public enum CBIconType : NSInteger {
     case AngleRight
     case ArrowLeft
     case ArrowRight
+    case Checkmark
 }
 
 
@@ -179,6 +180,13 @@ public enum CBIconType : NSInteger {
             self.setBarPaths(pathFromPosition(5, toPosition: 7),
                 p2: pathFromPosition(5, toPosition: 3),
                 p3: pathFromPosition(1, toPosition: 5),
+                animated: animated)
+        }
+        else if type == .Checkmark {
+            setBarOpacity(1, o2: 0, o3: 1)
+            self.setBarPaths(pathFromPosition(2, toPosition: 7),
+                p2: pathFromPosition(4, toPosition: 4),
+                p3: pathFromPosition(7, toPosition: 3),
                 animated: animated)
         }
         self._type = type;
