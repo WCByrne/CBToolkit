@@ -95,13 +95,21 @@ public enum CBIconType : NSInteger {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
     }
-    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
+    }
+    
+    func setup() {
         for bar in [bar1, bar2, bar3] {
             bar.lineWidth = barWidth
             bar.lineCap = kCALineCapRound
+            bar.strokeColor = self.tintColor.CGColor
             self.layer.addSublayer(bar)
         }
         setIcon(.Hamburger, animated: false)
