@@ -1,4 +1,4 @@
-//
+//
 //  CHTCollectionViewWaterfallLayout.swift
 //  PinterestSwift
 //
@@ -15,7 +15,9 @@ extension CGPoint  {
     }
 }
 
-
+/**
+ *  The delegate for CBCollectionViewLayout
+ */
 @objc public protocol CBCollectionViewDelegateLayout: UICollectionViewDelegate {
     
     /**
@@ -99,6 +101,8 @@ public struct CBCollectionViewLayoutElementKind {
     public static let SectionFooter: String = "CBCollectionElementKindSectionFooter"
 }
 
+
+/// A feature packed collection view layout with pinterest like layouts, aspect ratio sizing, and drag and drop.
 public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelegate {
     
     public var columnCount : NSInteger = 2 {

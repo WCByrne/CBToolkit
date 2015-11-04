@@ -13,7 +13,7 @@ import UIKit
 public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?, requestTime: NSTimeInterval)->Void
 public typealias CBProgressBlock = (progress: Float)->Void
 
-
+/// An image fetching util for retrieving and caching iamges with a url.
 public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
     
     private var imageCache: NSCache! = NSCache()

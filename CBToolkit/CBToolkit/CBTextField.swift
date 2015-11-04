@@ -10,32 +10,41 @@ import Foundation
 import UIKit
 
 
+/// Add some style to your labels
 @IBDesignable public class CBLabel : UILabel {
     
+    /// The corner radius of the label
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
+    /// Automatically set the corner radius to shortSide/2
     @IBInspectable public var circleCrop : Bool = false {
         didSet {
             self.layoutSubviews()
         }
     }
+    /// The width of the labels border
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
+    /// The color of the labels border
     @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
+    /// The color of the labels shadow
     @IBInspectable public var layerShadowColor: UIColor = UIColor.blackColor() {
         didSet { self.layer.shadowColor = layerShadowColor.CGColor }
     }
+    /// The blur radius of the labels shadow
     @IBInspectable public var layerShadowRadius: CGFloat = 0 {
         didSet { self.layer.shadowRadius = layerShadowRadius }
     }
+    /// The opacity of the labels shadow
     @IBInspectable public var layerShadowOpacity: Float = 0 {
         didSet { self.layer.shadowOpacity = layerShadowOpacity }
     }
+    /// The offset of the labels shadow
     @IBInspectable public var layerShadowOffset: CGSize = CGSizeZero {
         didSet { self.layer.shadowOffset = layerShadowOffset }
     }
@@ -47,7 +56,7 @@ import UIKit
             self.cornerRadius = sSide/2
         }
     }
-    
+    /// Inherit the labels tintColor
     @IBInspectable public var tint : Bool = false {
         didSet {
             if tint {
@@ -62,22 +71,26 @@ import UIKit
     
 }
 
-
+/// Style your text views without a single line. Make your fields stand out right in the storyboard.
 @IBDesignable public class CBTextField : UITextField {
     
+    /// Inset the text from the text fields frame
     @IBInspectable public var textInset: CGPoint = CGPointZero
+    /// Hide the caret
     @IBInspectable public var hideCaret: Bool = false
+    /// The corner radius of the view
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
     
-    
+    /// Draw a border along the bottom edge of the view. This will disable the full border.
     @IBInspectable public var bottomBorder: Bool = false {
         didSet {
             self.layer.borderWidth = 0
             self.layer.borderColor = UIColor.clearColor().CGColor
         }
     }
+    /// The border width for the text fields. If bottomBorder is true, this only applies to the bottom.
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet {
             if bottomBorder == false {
@@ -85,6 +98,7 @@ import UIKit
             }
         }
     }
+    /// The color of the text fields border.
     @IBInspectable public var borderColor: UIColor! = UIColor(white: 0, alpha: 0.5) {
         didSet {
             if bottomBorder == false {
@@ -92,7 +106,7 @@ import UIKit
             }
         }
     }
-    
+    /// The color of the placeholder text
     @IBInspectable public var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
         didSet {
             if (placeholder != nil) {
@@ -102,7 +116,6 @@ import UIKit
             self.setNeedsDisplay()
         }
     }
-    
     override public var placeholder: String? {
         didSet {
             if placeholder != nil {

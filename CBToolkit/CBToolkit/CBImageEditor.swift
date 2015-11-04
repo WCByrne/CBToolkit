@@ -30,7 +30,7 @@ class FilterData {
     }
 }
 
-
+/// A simple photo editor allowing the user to crop, zoom and add filters to an image.
 public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     private var scrollView: UIScrollView!

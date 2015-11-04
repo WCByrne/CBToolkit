@@ -26,7 +26,7 @@ public enum CBRelativeDateStyle: Int {
     case SurroundingWeeks
 }
 
-
+// A collection of helpful date function and formatters.
 public extension NSDate  {
     
     
@@ -213,8 +213,23 @@ public extension NSDate  {
         
     }
     
+    /**
+     Check if the reciever is in the past from now.
+     
+     - returns: True if the date is in the past
+     */
+    func isPast() -> Bool {
+        return self.timeIntervalSinceNow <= 0
+    }
     
-    
+    /**
+     Check if the reciever is in the future from now.
+     
+     - returns: True if the date is in the future
+     */
+    func isFuture() -> Bool {
+        return self.timeIntervalSinceNow > 0
+    }
     
     /*!
     Determines if the reciever is on the same calendar day as the given date.

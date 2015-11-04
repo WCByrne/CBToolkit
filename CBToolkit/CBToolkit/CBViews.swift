@@ -14,33 +14,41 @@ import UIKit
 /// CBView
 @IBDesignable public class CBView: UIView {
     
+    /// The corner radius
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
+    /// Keep the corner radius equal to shortSide/2
     @IBInspectable public var circleCrop : Bool = false {
         didSet { self.layoutSubviews() }
     }
     
+    /// The border width
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
+    /// The border color
     @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
+    /// The color of the view's shadow
     @IBInspectable public var shadowColor: UIColor = UIColor.blackColor() {
         didSet { self.layer.shadowColor = shadowColor.CGColor }
     }
+    /// The shadow radius
     @IBInspectable public var shadowRadius: CGFloat = 0 {
         didSet { self.layer.shadowRadius = shadowRadius }
     }
+    /// The shadow opacity (0-1)
     @IBInspectable public var shadowOpacity: Float = 0 {
         didSet { self.layer.shadowOpacity = shadowOpacity }
     }
+    /// <#Description#>
     @IBInspectable public var shadowOffset: CGSize = CGSizeZero {
         didSet { self.layer.shadowOffset = shadowOffset }
     }
-    
+    /// Rasterize the shadow accounting for screen scale. Can help with performace
     @IBInspectable public var shouldRasterize: Bool = false {
         didSet {
             self.layer.shouldRasterize = shouldRasterize
@@ -48,6 +56,7 @@ import UIKit
         }
     }
     
+    /// Render the shadow using the views frame. Can help with performace.
     @IBInspectable public var useShadowPath: Bool = false
     
     override public func awakeFromNib() {
@@ -77,19 +86,30 @@ import UIKit
     }
 }
 
+/// Draw borders on each side of the view individually
 @IBDesignable public class CBBorderView: UIView {
     
+    /// Draw a border along the top edge (with left and right insets)
     @IBInspectable public var topBorder: Bool = false { didSet{ setNeedsDisplay() }}
+    /// Draw a border along the bottom edge (with left and right insets)
     @IBInspectable public var bottomBorder: Bool = false { didSet{ setNeedsDisplay() }}
+    /// Draw a border along the left edge (with left and right insets)
     @IBInspectable public var leftBorder: Bool = false { didSet{ setNeedsDisplay() }}
+    /// Draw a border along the right edge (with left and right insets)
     @IBInspectable public var rightBorder: Bool = false { didSet{ setNeedsDisplay() }}
     
+    /// Inset the top and bottom borders from the left
     @IBInspectable public var leftInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
+    /// Inset the top and bottom borders from the right
     @IBInspectable public var rightInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
+    /// Inset the left and right borders from the top
     @IBInspectable public var topInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
+    /// Inset the left and right borders from the bottom
     @IBInspectable public var bottomInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
     
+    /// The width of all the borders to be drawn
     @IBInspectable public var borderWidth: CGFloat = 1 { didSet{ setNeedsDisplay() }}
+    /// The color of all the borders to be drawn
     @IBInspectable public var borderColor: UIColor = UIColor.whiteColor() { didSet{ setNeedsDisplay() }}
 
     
@@ -127,18 +147,24 @@ import UIKit
 
 
 
-
+/// Render a gradient with three stages each with individual colors and placement
 @IBDesignable public class CBGradientView: CBBorderView {
     
+    /// The starting color of the gradient
     @IBInspectable public var topColor: UIColor! = UIColor(white: 0, alpha: 1) { didSet{ setNeedsDisplay() }}
+    /// The middle color of the gradient (optional)
     @IBInspectable public var middleColor: UIColor? { didSet{ setNeedsDisplay() }}
+    /// the end color of the gradient
     @IBInspectable public var bottomColor: UIColor! = UIColor(white: 0.2, alpha: 1) { didSet{ setNeedsDisplay() }}
     
+    /// The position to start topColor (0-1)
     @IBInspectable public var topLocation: CGFloat = 0      { didSet{ setNeedsDisplay() }}
+    /// The position of middleColor (0-1)
     @IBInspectable public var middleLocation: CGFloat = 0.5 { didSet{ setNeedsDisplay() }}
+    /// The position of bottomColor (0-1)
     @IBInspectable public var bottomLocation: CGFloat = 1   { didSet{ setNeedsDisplay() }}
     
-     override public func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         let context = UIGraphicsGetCurrentContext();

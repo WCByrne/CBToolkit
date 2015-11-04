@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 
+/// Style your imageViews and even load remote image with a url.
 @IBDesignable public class CBImageView : UIImageView {
     
     private var imageURL: String?
@@ -35,6 +36,7 @@ import UIKit
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
     
+    /// The transition to apply when a remote image is loaded
     public var onLoadTransition: UIViewAnimationOptions = UIViewAnimationOptions.TransitionNone
     
     /// Tint the image with the views tintColor property
@@ -51,6 +53,7 @@ import UIKit
         self.clipsToBounds = true
     }
     
+    /// An image to display if no image is set
     @IBInspectable public var placeholderImage: UIImage? {
         didSet {
             if self.image == nil && placeholderImage != nil {
@@ -90,7 +93,8 @@ import UIKit
     
     /*!
     Set a new image respecting tinting if needed
-    :param: newImage An image to display in this image view
+    
+    - param: newImage An image to display in this image view
     */
      public func updateImage(newImage: UIImage?) {
         if image == nil || tinted == false {
@@ -101,6 +105,12 @@ import UIKit
         }
     }
     
+    /**
+     Load an image at the given URL using CBPhotoFetcher and display it.
+     
+     - parameter imgURL:     The url of the image
+     - parameter completion: A completion handler. If set, the image will not be set in the view when loaded. It is up to you to set it.
+     */
     public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?) {
         imageURL = imgURL
         CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error, requestTime) -> Void in

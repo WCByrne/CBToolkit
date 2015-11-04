@@ -213,6 +213,9 @@ public enum CBIconType : NSInteger {
             bar3.setPathAnimated(p3)
         }
         else {
+            for bar in [bar1, bar2, bar3] {
+                bar.removeAllAnimations()
+            }
             bar1.path = p1
             bar2.path = p2
             bar3.path = p3

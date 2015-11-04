@@ -35,12 +35,15 @@ import UIKit
     }
     /// The maximum height the text view should grow to as text is entered
     @IBInspectable public var maximumHeight: CGFloat = 100
+    /// The corner radius of the text view
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
     }
+    /// The border radius of the text view
     @IBInspectable public var borderWidth: CGFloat = 0 {
         didSet { self.layer.borderWidth = borderWidth }
     }
+    /// The color of the border around the text view
     @IBInspectable public var borderColor: UIColor = UIColor.clearColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
@@ -96,7 +99,7 @@ import UIKit
     func setup() {
         self.translatesAutoresizingMaskIntoConstraints = false
         if placeholderTextView == nil {
-            placeholderTextView = UITextView(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+            placeholderTextView = UITextView(frame: self.bounds)
             self.addSubview(placeholderTextView!)
             placeholderTextView?.font = self.font
             placeholderTextView?.userInteractionEnabled = false

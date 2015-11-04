@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+/// A fully customizable view that allows button type interactions
 @IBDesignable public class CBButtonView: UIControl {
     
     /// If the button view should bouncy in response to touches
@@ -116,7 +116,7 @@ import UIKit
 
 
 
-
+/// A stylish bouncy UIButton
 @IBDesignable public class CBButton: UIButton {
     
     /// If the button view should bouncy in response to touches

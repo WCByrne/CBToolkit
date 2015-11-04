@@ -10,25 +10,28 @@ import Foundation
 import UIKit
 
 
-
+/// A circular progress indicator
 @IBDesignable public class CBProgressView : UIControl {
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
     private let backgroundLayer: CAShapeLayer = CAShapeLayer()
     private var _lineWidth : CGFloat = 2
+    /// The width of the progress line
     @IBInspectable public var lineWidth: CGFloat = 2 {
         didSet { self.setLineWidth(lineWidth, animated: false) }
     }
     
+    /// The start (0) position
     @IBInspectable public var startPosition: CGFloat = 0 {
         didSet { progressLayer.strokeStart = startPosition }
     }
     
     var _progress : CGFloat = 0
+    /// The current progress
     @IBInspectable public var progress: CGFloat = 0 {
         didSet { self.setProgress(progress, animated: false) }
     }
-    
+    /// The background color of the full circle
     @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
         didSet { backgroundLayer.strokeColor = trackColor.CGColor }
     }
@@ -96,6 +99,13 @@ import UIKit
         self.progressLayer.strokeColor = tintColor.CGColor
     }
     
+    
+    /**
+     Set the line width optionally animating the change
+     
+     - parameter width:    The new line width
+     - parameter animated: If the change should be animated
+     */
     public func setLineWidth(width: CGFloat, animated: Bool) {
         if animated {
             self.progressLayer.lineWidth = width
@@ -121,6 +131,12 @@ import UIKit
         self._lineWidth = width
     }
     
+    /**
+     Update the progress of the view from 0 to 1
+     
+     - parameter progress: The new progress (0-1)
+     - parameter animated: If the change should be animated
+     */
     public func setProgress(progress: CGFloat, animated: Bool) {
         if (animated) {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -144,13 +160,21 @@ import UIKit
 
 
 
-
+/// A stylish replacement from UIActivityIndicator
 @IBDesignable public class CBActivityIndicator : UIControl {
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
     private let backgroundLayer: CAShapeLayer = CAShapeLayer()
-    
-    @IBInspectable public var animating: Bool = false
+    @IBInspectable public var animating: Bool = false {
+        didSet {
+            if animating {
+                self.startAnimating();
+            }
+            else {
+                self.stopAnimating()
+            }
+        }
+    }
     @IBInspectable public var hidesWhenStopped: Bool = true
     
     @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
@@ -212,11 +236,7 @@ import UIKit
         self.layer.addSublayer(progressLayer)
         
         drawPath()
-        
-        if animating {
-            startAnimating()
-        }
-        else if hidesWhenStopped {
+        if !animating && hidesWhenStopped {
             progressLayer.strokeEnd = 0
         }
     }
@@ -236,9 +256,11 @@ import UIKit
     }
     
     public func startAnimating() {
+        if animating == false {
+            animating = true
+            return
+        }
         self.progressLayer.removeAllAnimations()
-        
-        animating = true
         let anim = CABasicAnimation(keyPath: "transform.rotation.z")
         anim.duration = CFTimeInterval(rotateDuration)
         anim.removedOnCompletion = false
@@ -266,8 +288,9 @@ import UIKit
     }
     
     public func stopAnimating() {
-        animating = false
-        
+        if animating == true {
+            animating = false
+        }
         if hidesWhenStopped {
             let anim = CABasicAnimation(keyPath: "strokeStart")
             anim.fromValue = NSNumber(int: 0)
