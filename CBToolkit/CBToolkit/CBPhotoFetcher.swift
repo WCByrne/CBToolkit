@@ -16,6 +16,7 @@ public typealias CBProgressBlock = (progress: Float)->Void
 /// An image fetching util for retrieving and caching iamges with a url.
 public class CBPhotoFetcher: NSObject {
     
+    /// If downloaded images should be cached to disk
     public var useDiskCache: Bool = true
     
     private var imageCache: NSCache! = NSCache()
@@ -29,6 +30,7 @@ public class CBPhotoFetcher: NSObject {
         return docs.URLByAppendingPathComponent("CBImageCache", isDirectory: true)
     }()
     
+    /// Access the shared photofetcher to start or cancel download tasks
     public class var sharedFetcher : CBPhotoFetcher {
         struct Static {
             static let instance : CBPhotoFetcher = CBPhotoFetcher()
@@ -41,19 +43,30 @@ public class CBPhotoFetcher: NSObject {
     }
     
     // MARK: - Fetching Images
+    
+    /**
+    Prefetch an image into cache
+    
+    - parameter imgUrl: The url to fetch
+    */
     public func prefetchURL(imgUrl: String!) {
         let hash = imgUrl.cacheHash
-        if imageCache.objectForKey(hash) != nil  {
-            return
+        if inProgress[hash] != nil { return }
+        imageFromCache(imgUrl) { (image) -> Void in
+            if image != nil { return }
+            let request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
+            self.inProgress[hash] = request
+            request.start()
         }
-        if inProgress[hash] != nil {
-            return
-        }
-        let request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
-        inProgress[hash] = request
-        request.start()
     }
     
+    /**
+     Fetch an image at the given url
+     
+     - parameter imgUrl:        The url for the image
+     - parameter completion:    A completion handler when the download finishes
+     - parameter progressBlock: A progress block for download updates
+     */
     public func fetchImageAtURL(imgUrl: String!, completion: CBImageFetchCallback!, progressBlock: CBProgressBlock? = nil) {
         assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
         
@@ -78,6 +91,10 @@ public class CBPhotoFetcher: NSObject {
     
     
     // MARK: - Cancelling Requests
+    
+    /**
+    Cancel all in progress image downloads
+    */
     public func cancelAll() {
         for request in inProgress {
             request.1.cancelRequest()
@@ -93,6 +110,13 @@ public class CBPhotoFetcher: NSObject {
     
     
     // MARK: - Managing Cache
+    
+    /**
+    Clear the image cache
+    
+    - parameter memory: Clear the memory cache
+    - parameter disk:   Clear the disk cache
+    */
     public func clearCache(memory: Bool = true, disk: Bool = true) {
         if memory {
             imageCache.removeAllObjects()
@@ -103,6 +127,11 @@ public class CBPhotoFetcher: NSObject {
         }
     }
     
+    /**
+     Clear memory and disk cache for a given url
+     
+     - parameter imgURL: The url to clear cache for
+     */
     public func clearCacheForURL(imgURL: String) {
         imageCache.removeObjectForKey(imgURL.cacheHash)
         if let filePath = diskCacheURL.URLByAppendingPathComponent(imgURL.cacheHash).path {

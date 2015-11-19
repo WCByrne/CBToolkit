@@ -37,6 +37,12 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         self.scrollDirection = UICollectionViewScrollDirection.Horizontal
     }
     
+    /**
+     Initialize the layout with a collectionView
+     
+     - parameter collectionView: The collectionView to apply the layout to
+     - returns: The intialized layout
+     */
     public convenience init(collectionView: UICollectionView) {
         self.init()
         collectionView.collectionViewLayout = self;

@@ -105,47 +105,54 @@ public struct CBCollectionViewLayoutElementKind {
 /// A feature packed collection view layout with pinterest like layouts, aspect ratio sizing, and drag and drop.
 public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelegate {
     
+    //MARK: - Default layout values
+    
+    /// The default column count
     public var columnCount : NSInteger = 2 {
     didSet{
         invalidateLayout()
     }}
-    
+    /// The spacing between each column
     public var minimumColumnSpacing : CGFloat = 8 {
     didSet{
         invalidateLayout()
     }}
-    
+    /// The vertical spacing between items in the same column
     public var minimumInteritemSpacing : CGFloat = 8 {
     didSet{
         invalidateLayout()
     }}
-    
+    /// The height of section header views
     public var headerHeight : CGFloat = 0.0 {
     didSet{
         invalidateLayout()
     }}
-
+    /// The height of section footer views
     public var footerHeight : CGFloat = 0.0 {
     didSet{
         invalidateLayout()
     }}
-    
+    /// The default height to apply to all items
     public var defaultItemHeight : CGFloat = 50 {
     didSet{
         invalidateLayout()
     }}
-
+    /// Default insets for all sections
     public var sectionInset : UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8) {
     didSet{
         invalidateLayout()
     }}
     
+    // MARK: - Render Options
+    
+    /// A hint as to how to render items when deciding which column to place them in
     public var itemRenderDirection : CBCollectionViewLayoutItemRenderDirection = .LeftToRight {
     didSet{
         invalidateLayout()
     }}
     
     private var _itemWidth : CGFloat = 0
+    /// the calculated width of items based on the total width and number of columns (read only)
     public var itemWidth : CGFloat {
         get {
             return _itemWidth
@@ -163,6 +170,8 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     private var initialPosition : CGPoint! = CGPointZero
     private var selectedIndexPath  : NSIndexPath?
     private var targetIndexPath: NSIndexPath?
+    
+    /// Enable drag and drop
     public var dragEnabled : Bool = false {
         didSet {
             if longPressGesture == nil {
@@ -209,6 +218,13 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     override public init() {
         super.init()
     }
+    
+    /**
+     Initialize the layout with a collectionView
+     
+     - parameter collectionView: The collectionView to apply the layout to
+     - returns: The intialized layout
+     */
     convenience public init(collectionView: UICollectionView!) {
         self.init()
         collectionView.collectionViewLayout = self
@@ -317,9 +333,6 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
 
         })
     }
-    
-    
-    
     
     
     

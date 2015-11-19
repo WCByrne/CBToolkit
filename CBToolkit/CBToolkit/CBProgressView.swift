@@ -165,6 +165,7 @@ import UIKit
     
     private let progressLayer: CAShapeLayer = CAShapeLayer()
     private let backgroundLayer: CAShapeLayer = CAShapeLayer()
+    /// The animation state of the indicator
     @IBInspectable public var animating: Bool = false {
         didSet {
             if animating {
@@ -175,19 +176,23 @@ import UIKit
             }
         }
     }
+    /// Automatically hide the indicator when not animating (does not hide the track)
     @IBInspectable public var hidesWhenStopped: Bool = true
     
+    /// The background color of the full indicator track
     @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
         didSet { backgroundLayer.strokeColor = trackColor.CGColor }
     }
     
     private var _lineWidth: CGFloat = 2
+    /// The width of the indicator
     @IBInspectable public var lineWidth: CGFloat = 2 {
         didSet {
             self.setLineWidth(lineWidth, animated: false)
         }
     }
     
+    /// The duration of a single rotation
     @IBInspectable public var rotateDuration: CGFloat = 1 {
         didSet {
             if self.animating {
@@ -196,6 +201,7 @@ import UIKit
             }
         }
     }
+    /// The size of the indicator around the full circle
     @IBInspectable public var indicatorSize: CGFloat = 0.5 {
         didSet {
             self.progressLayer.strokeEnd = indicatorSize
@@ -254,6 +260,9 @@ import UIKit
         }
     }
     
+    /**
+     Begin the indicators animation
+     */
     public func startAnimating() {
         if animating == false {
             animating = true
@@ -286,6 +295,9 @@ import UIKit
         }
     }
     
+    /**
+     Stop the indicators  animation
+     */
     public func stopAnimating() {
         if animating == true {
             animating = false
@@ -306,6 +318,12 @@ import UIKit
         }
     }
     
+    /**
+     Update the line width optionally animating the change
+     
+     - parameter width:    The new width of the line
+     - parameter animated: If the change should be animated
+     */
     public func setLineWidth(width: CGFloat, animated: Bool) {
         if animated {
             self.progressLayer.lineWidth = width

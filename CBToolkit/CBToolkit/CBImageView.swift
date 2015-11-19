@@ -15,6 +15,8 @@ import UIKit
     
     private var imageURL: String?
     
+    // MARK: - Styling
+    
     // The corner radius of the view. Animateable
     @IBInspectable public var cornerRadius: CGFloat = 0 {
         didSet { self.layer.cornerRadius = cornerRadius }
@@ -35,9 +37,6 @@ import UIKit
     @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
         didSet { self.layer.borderColor = borderColor.CGColor }
     }
-    
-    /// The transition to apply when a remote image is loaded
-    public var onLoadTransition: UIViewAnimationOptions = UIViewAnimationOptions.TransitionNone
     
     /// Tint the image with the views tintColor property
     @IBInspectable public var tinted: Bool = false {
@@ -104,6 +103,11 @@ import UIKit
             self.image = newImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         }
     }
+    
+    // MARK: - Loading images
+    
+    /// The transition to apply when a remote image is loaded
+    public var onLoadTransition: UIViewAnimationOptions = UIViewAnimationOptions.TransitionNone
     
     /**
      Load an image at the given URL using CBPhotoFetcher and display it.
