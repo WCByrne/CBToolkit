@@ -13,7 +13,8 @@
     <a title="CBCollectionViewLayout Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (23% documented)</p>
+        <p><a href="../index.html"> Docs</a></p>
+        <p class="header-right"><a href="https://github.com/WCByrne/CBToolkit"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -51,7 +52,7 @@
                 <a href="../Classes/CBIconButton.html">CBIconButton</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CBImageEditor.html">CBImageEditor</a>
+                <a href="../Classes.html#/s:C9CBToolkit13CBImageEditor">CBImageEditor</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CBImageView.html">CBImageView</a>
@@ -86,16 +87,10 @@
           <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/CBCollectionViewLayoutItemRenderDirection.html">CBCollectionViewLayoutItemRenderDirection</a>
+                <a href="../Enums.html#/s:O9CBToolkit10CBIconType">CBIconType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/CBIconType.html">CBIconType</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/CBImageContentMode.html">CBImageContentMode</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/CBRelativeDateStyle.html">CBRelativeDateStyle</a>
+                <a href="../Enums.html#/s:O9CBToolkit19CBRelativeDateStyle">CBRelativeDateStyle</a>
               </li>
             </ul>
           </li>
@@ -103,25 +98,16 @@
           <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/CAShapeLayer.html">CAShapeLayer</a>
+                <a href="../Extensions.html#/c:objc(cs)CAShapeLayer">CAShapeLayer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Int.html">Int</a>
+                <a href="../Extensions.html#/s:Si">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIAlertController.html">UIAlertController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIImage.html">UIImage</a>
+                <a href="../Extensions.html#/c:objc(cs)UIImage">UIImage</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
           </li>
@@ -129,21 +115,7 @@
           <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/CBCollectionViewDataSource.html">CBCollectionViewDataSource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/CBCollectionViewDelegateLayout.html">CBCollectionViewDelegateLayout</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/CBImageEditorDelegate.html">CBImageEditorDelegate</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Structs.html">Structs</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Structs/CBCollectionViewLayoutElementKind.html">CBCollectionViewLayoutElementKind</a>
               </li>
             </ul>
           </li>
@@ -153,11 +125,24 @@
         <section>
           <section class="section">
             <h1>CBCollectionViewLayout</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CBCollectionViewLayout</span> <span class="p">:</span> <span class="kt">UICollectionViewLayout</span><span class="p">,</span> <span class="kt">UIGestureRecognizerDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>A feature packed collection view layout with pinterest like layouts, aspect ratio sizing, and drag and drop.</p>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Default%20layout%20values"></a>
+                  <a name="//apple_ref/swift/Section/Default layout values" class="dashAnchor"></a>
+                  <a href="#/Default%20layout%20values">
+                    <h3 class="section-name">Default layout values</h3>
+                  </a>
+                </div>
               <ul>
                 <li class="item">
                   <div>
@@ -172,8 +157,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default column count</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">columnCount</span> <span class="p">:</span> <span class="kt">NSInteger</span> <span class="o">=</span> <span class="mi">2</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -191,8 +184,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The spacing between each column</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minimumColumnSpacing</span> <span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -210,8 +211,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The vertical spacing between items in the same column</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">minimumInteritemSpacing</span> <span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">8</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -229,8 +238,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The height of section header views</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">headerHeight</span> <span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.0</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -248,8 +265,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The height of section footer views</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">footerHeight</span> <span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.0</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -267,8 +292,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The default height to apply to all items</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">defaultItemHeight</span> <span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">50</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -286,12 +319,31 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Default insets for all sections</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">sectionInset</span> <span class="p">:</span> <span class="kt">UIEdgeInsets</span> <span class="o">=</span> <span class="kt">UIEdgeInsets</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nv">left</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nv">bottom</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="mi">8</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Render%20Options"></a>
+                  <a name="//apple_ref/swift/Section/Render Options" class="dashAnchor"></a>
+                  <a href="#/Render%20Options">
+                    <h3 class="section-name">Render Options</h3>
+                  </a>
+                </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -305,8 +357,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A hint as to how to render items when deciding which column to place them in</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">itemRenderDirection</span> <span class="p">:</span> <span class="kt">CBCollectionViewLayoutItemRenderDirection</span> <span class="o">=</span> <span class="o">.</span><span class="kt">LeftToRight</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -324,8 +384,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>the calculated width of items based on the total width and number of columns (read only)</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">itemWidth</span> <span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -343,27 +411,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Enable drag and drop</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayoutcFMS0_FT_S0_"></a>
-                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayoutcFMS0_FT_S0_">init()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dragEnabled</span> <span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
 
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -381,178 +438,40 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initialize the layout with a collectionView</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayoutcFMS0_FT5coderCSo7NSCoder_GSqS0__"></a>
-                    <a name="//apple_ref/swift/Method/init(coder:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayoutcFMS0_FT5coderCSo7NSCoder_GSqS0__">init(coder:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="n">convenience</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="o">!</span><span class="p">)</span></code></pre>
 
+                        </div>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout28gestureRecognizerShouldBeginFS0_FCSo19UIGestureRecognizerSb"></a>
-                    <a name="//apple_ref/swift/Method/gestureRecognizerShouldBegin(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout28gestureRecognizerShouldBeginFS0_FCSo19UIGestureRecognizerSb">gestureRecognizerShouldBegin(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>collectionView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The collectionView to apply the layout to</p>
 
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout17gestureRecognizerFS0_FTCSo19UIGestureRecognizer50shouldRecognizeSimultaneouslyWithGestureRecognizerS1__Sb"></a>
-                    <a name="//apple_ref/swift/Method/gestureRecognizer(_:shouldRecognizeSimultaneouslyWithGestureRecognizer:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout17gestureRecognizerFS0_FTCSo19UIGestureRecognizer50shouldRecognizeSimultaneouslyWithGestureRecognizerS1__Sb">gestureRecognizer(_:shouldRecognizeSimultaneouslyWithGestureRecognizer:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout13prepareLayoutFS0_FT_T_"></a>
-                    <a name="//apple_ref/swift/Method/prepareLayout()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout13prepareLayoutFS0_FT_T_">prepareLayout()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout25collectionViewContentSizeFS0_FT_VSC6CGSize"></a>
-                    <a name="//apple_ref/swift/Method/collectionViewContentSize()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout25collectionViewContentSizeFS0_FT_VSC6CGSize">collectionViewContentSize()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout34layoutAttributesForItemAtIndexPathFS0_FCSo11NSIndexPathGSqCSo32UICollectionViewLayoutAttributes_"></a>
-                    <a name="//apple_ref/swift/Method/layoutAttributesForItemAtIndexPath(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout34layoutAttributesForItemAtIndexPathFS0_FCSo11NSIndexPathGSqCSo32UICollectionViewLayoutAttributes_">layoutAttributesForItemAtIndexPath(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout42layoutAttributesForSupplementaryViewOfKindFS0_FTSS11atIndexPathCSo11NSIndexPath_CSo32UICollectionViewLayoutAttributes"></a>
-                    <a name="//apple_ref/swift/Method/layoutAttributesForSupplementaryViewOfKind(_:atIndexPath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout42layoutAttributesForSupplementaryViewOfKindFS0_FTSS11atIndexPathCSo11NSIndexPath_CSo32UICollectionViewLayoutAttributes">layoutAttributesForSupplementaryViewOfKind(_:atIndexPath:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout33layoutAttributesForElementsInRectFS0_FVSC6CGRectGSaCSo32UICollectionViewLayoutAttributes_"></a>
-                    <a name="//apple_ref/swift/Method/layoutAttributesForElementsInRect(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout33layoutAttributesForElementsInRectFS0_FVSC6CGRectGSaCSo32UICollectionViewLayoutAttributes_">layoutAttributesForElementsInRect(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit22CBCollectionViewLayout37shouldInvalidateLayoutForBoundsChangeFS0_FVSC6CGRectSb"></a>
-                    <a name="//apple_ref/swift/Method/shouldInvalidateLayoutForBoundsChange(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit22CBCollectionViewLayout37shouldInvalidateLayoutForBoundsChangeFS0_FVSC6CGRectSb">shouldInvalidateLayoutForBoundsChange(_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The intialized layout</p>
 
                       </div>
                     </section>
@@ -563,7 +482,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-23)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Wes</a>. All rights reserved. (Last updated: 2015-11-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

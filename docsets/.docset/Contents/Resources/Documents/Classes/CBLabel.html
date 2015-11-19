@@ -13,7 +13,8 @@
     <a title="CBLabel Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (23% documented)</p>
+        <p><a href="../index.html"> Docs</a></p>
+        <p class="header-right"><a href="https://github.com/WCByrne/CBToolkit"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -51,7 +52,7 @@
                 <a href="../Classes/CBIconButton.html">CBIconButton</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/CBImageEditor.html">CBImageEditor</a>
+                <a href="../Classes.html#/s:C9CBToolkit13CBImageEditor">CBImageEditor</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/CBImageView.html">CBImageView</a>
@@ -86,16 +87,10 @@
           <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/CBCollectionViewLayoutItemRenderDirection.html">CBCollectionViewLayoutItemRenderDirection</a>
+                <a href="../Enums.html#/s:O9CBToolkit10CBIconType">CBIconType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Enums/CBIconType.html">CBIconType</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/CBImageContentMode.html">CBImageContentMode</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Enums/CBRelativeDateStyle.html">CBRelativeDateStyle</a>
+                <a href="../Enums.html#/s:O9CBToolkit19CBRelativeDateStyle">CBRelativeDateStyle</a>
               </li>
             </ul>
           </li>
@@ -103,25 +98,16 @@
           <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/CAShapeLayer.html">CAShapeLayer</a>
+                <a href="../Extensions.html#/c:objc(cs)CAShapeLayer">CAShapeLayer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Int.html">Int</a>
+                <a href="../Extensions.html#/s:Si">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIAlertController.html">UIAlertController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIImage.html">UIImage</a>
+                <a href="../Extensions.html#/c:objc(cs)UIImage">UIImage</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
           </li>
@@ -129,21 +115,7 @@
           <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/CBCollectionViewDataSource.html">CBCollectionViewDataSource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/CBCollectionViewDelegateLayout.html">CBCollectionViewDelegateLayout</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/CBImageEditorDelegate.html">CBImageEditorDelegate</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Structs.html">Structs</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Structs/CBCollectionViewLayoutElementKind.html">CBCollectionViewLayoutElementKind</a>
               </li>
             </ul>
           </li>
@@ -153,7 +125,13 @@
         <section>
           <section class="section">
             <h1>CBLabel</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">@IBDesignable</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kt">CBLabel</span> <span class="p">:</span> <span class="kt">UILabel</span></code></pre>
+
+                </div>
+              </div>
+            <p>Add some style to your labels</p>
 
           </section>
           <section class="section task-group-section">
@@ -172,8 +150,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The corner radius of the label</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -191,8 +177,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Automatically set the corner radius to shortSide/2</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">circleCrop</span> <span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -210,8 +204,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The width of the labels border</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">borderWidth</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -229,8 +231,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The color of the labels border</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">borderColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">lightGrayColor</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -248,8 +258,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The color of the labels shadow</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">layerShadowColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="kt">UIColor</span><span class="o">.</span><span class="nf">blackColor</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -267,8 +285,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The blur radius of the labels shadow</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">layerShadowRadius</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -286,8 +312,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The opacity of the labels shadow</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">layerShadowOpacity</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">=</span> <span class="mi">0</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -305,27 +339,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The offset of the labels shadow</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit7CBLabel14layoutSubviewsFS0_FT_T_"></a>
-                    <a name="//apple_ref/swift/Method/layoutSubviews()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit7CBLabel14layoutSubviewsFS0_FT_T_">layoutSubviews()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">layerShadowOffset</span><span class="p">:</span> <span class="kt">CGSize</span> <span class="o">=</span> <span class="kt">CGSizeZero</span></code></pre>
 
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -343,27 +366,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Inherit the labels tintColor</p>
 
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC9CBToolkit7CBLabel18tintColorDidChangeFS0_FT_T_"></a>
-                    <a name="//apple_ref/swift/Method/tintColorDidChange()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9CBToolkit7CBLabel18tintColorDidChangeFS0_FT_T_">tintColorDidChange()</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">@IBInspectable</span> <span class="kd">public</span> <span class="k">var</span> <span class="nv">tint</span> <span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span></code></pre>
 
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -373,7 +385,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-23)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Wes</a>. All rights reserved. (Last updated: 2015-11-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

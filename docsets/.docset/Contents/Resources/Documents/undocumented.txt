@@ -1,70 +1,22 @@
 CBProgressView.swift
-	@IBDesignable public class CBProgressView : UIControl
-	@IBInspectable public var lineWidth: CGFloat = 2
-	@IBInspectable public var startPosition: CGFloat = 0
-	@IBInspectable public var progress: CGFloat = 0
-	@IBInspectable public var trackColor: UIColor! = UIColor.clearColor()
 	override public init(frame: CGRect)
 	required public init?(coder aDecoder: NSCoder)
 	override public func awakeFromNib()
 	public override func willMoveToSuperview(newSuperview: UIView?)
 	override public func layoutSubviews()
 	override public func tintColorDidChange()
-	public func setLineWidth(width: CGFloat, animated: Bool)
-	public func setProgress(progress: CGFloat, animated: Bool)
-	@IBDesignable public class CBActivityIndicator : UIControl
-	@IBInspectable public var animating: Bool = false
-	@IBInspectable public var hidesWhenStopped: Bool = true
-	@IBInspectable public var trackColor: UIColor! = UIColor.clearColor()
-	@IBInspectable public var lineWidth: CGFloat = 2
-	@IBInspectable public var rotateDuration: CGFloat = 1
-	@IBInspectable public var indicatorSize: CGFloat = 0.5
 	override public init(frame: CGRect)
 	required public init?(coder aDecoder: NSCoder)
 	override public func awakeFromNib()
 	public override func willMoveToSuperview(newSuperview: UIView?)
 	override public func layoutSubviews()
-	public func startAnimating()
-	public func stopAnimating()
-	public func setLineWidth(width: CGFloat, animated: Bool)
 	override public func tintColorDidChange()
 CBViews.swift
-	@IBInspectable public var cornerRadius: CGFloat = 0
-	@IBInspectable public var circleCrop : Bool = false
-	@IBInspectable public var borderWidth: CGFloat = 0
-	@IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor()
-	@IBInspectable public var shadowColor: UIColor = UIColor.blackColor()
-	@IBInspectable public var shadowRadius: CGFloat = 0
-	@IBInspectable public var shadowOpacity: Float = 0
-	@IBInspectable public var shadowOffset: CGSize = CGSizeZero
-	@IBInspectable public var shouldRasterize: Bool = false
-	@IBInspectable public var useShadowPath: Bool = false
 	override public func awakeFromNib()
 	public override func layoutSubviews()
-	@IBDesignable public class CBBorderView: UIView
-	@IBInspectable public var topBorder: Bool = false { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var bottomBorder: Bool = false { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var leftBorder: Bool = false { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var rightBorder: Bool = false { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var leftInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var rightInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var topInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var bottomInset: CGFloat = 0 { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var borderWidth: CGFloat = 1 { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var borderColor: UIColor = UIColor.whiteColor() { didSet{ setNeedsDisplay() }}
 	override public func drawRect(rect: CGRect)
-	@IBDesignable public class CBGradientView: CBBorderView
-	@IBInspectable public var topColor: UIColor! = UIColor(white: 0, alpha: 1) { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var middleColor: UIColor? { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var bottomColor: UIColor! = UIColor(white: 0.2, alpha: 1) { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var topLocation: CGFloat = 0      { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var middleLocation: CGFloat = 0.5 { didSet{ setNeedsDisplay() }}
-	@IBInspectable public var bottomLocation: CGFloat = 1   { didSet{ setNeedsDisplay() }}
 	override public func drawRect(rect: CGRect)
 CBTextView.swift
-	@IBInspectable public var cornerRadius: CGFloat = 0
-	@IBInspectable public var borderWidth: CGFloat = 0
-	@IBInspectable public var borderColor: UIColor = UIColor.clearColor()
 	override public var text: String!
 	required public init?(coder aDecoder: NSCoder)
 	override public func awakeFromNib()
@@ -72,14 +24,12 @@ CBTextView.swift
 	override public func didMoveToSuperview()
 	public func textDidChange()
 CBButton.swift
-	@IBDesignable public class CBButtonView: UIControl
 	override public var highlighted: Bool
 	override public var selected: Bool
 	public override func layoutSubviews()
 	public override func tintColorDidChange()
 	public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?)
 	public func popAnimation()
-	@IBDesignable public class CBButton: UIButton
 	override public var highlighted: Bool
 	override public var selected: Bool
 	public override func layoutSubviews()
@@ -89,8 +39,6 @@ CBExtensions.swift
 	public static func random(low: Int, high: Int) -> Int
 	public func setPathAnimated(path: CGPath)
 	public enum CBImageContentMode: Int
-	case AspectFill
-	case AspectFit
 	public func crop(frame: CGRect) -> UIImage
 	public func thumbnail(size: Int) ->UIImage
 	public func resize(bounds: CGSize) -> UIImage
@@ -98,19 +46,9 @@ CBExtensions.swift
 	public func fixOrientation() -> UIImage
 	public func roundCorners(radius: Int) -> UIImage
 CBPhotoFetcher.swift
-	public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate
-	public class var sharedFetcher : CBPhotoFetcher
-	public func clearCache()
-	public func cancelAll()
-	public func cacheForURL(imgUrl: String) -> UIImage?
-	public func clearCacheForURL(imgURL: String)
-	public func insertCacheImage(imgURL: String!, image: UIImage!)
 	public func cancelFetchForUrl(url: String)
-	public func prefetchURL(imgUrl: String!)
-	public func fetchImageAtURL(imgUrl: String!, completion: CBImageFetchCallback!, progressBlock: CBProgressBlock? = nil)
 CBSliderCollectionViewLayout.swift
 	public override init()
-	public convenience init(collectionView: UICollectionView)
 	required public init?(coder aDecoder: NSCoder)
 	override public func collectionViewContentSize() -> CGSize
 	override public func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool
@@ -125,26 +63,7 @@ CBDate.swift
 	case FutureWeek
 	case PastWeek
 	case SurroundingWeeks
-	class public func startOfDay(date: NSDate? = NSDate()) -> NSDate!
-	class public func endOfDay(date: NSDate? = NSDate()) -> NSDate!
-	class public func startOfWeek(date: NSDate? = NSDate()) -> NSDate!
-	class public func endOfWeek(date: NSDate? = NSDate()) -> NSDate!
-	public func weekday() -> Int
-	public func hourInTimeZone(inTimezone: NSTimeZone?) -> Int
-	public func minuteInTimeZone(inTimezone: NSTimeZone?) -> Int
-	public func secondsSinceMidnight() -> Int
-	public func absoluteSecondsFromMidnight() -> Int
-	public func isSameDayAsDate(compareDate: NSDate) -> Bool
-	public func isToday() -> Bool
-	public func isYesterday() -> Bool
-	public func isTomorrow() -> Bool
-	public func isThisWeek() -> Bool
-	public func isNextWeek() -> Bool
-	public func isLastWeek() -> Bool
-	public func relativeTimeFromNow(style: CBRelativeDateStyle) -> String
-	public func relativeDayFromNow(style: CBRelativeDateStyle, includeTime: Bool) -> String
 CBCollectionViewLayout.swift
-	@objc public protocol CBCollectionViewDelegateLayout: UICollectionViewDelegate
 	optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 	optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 	optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
@@ -154,28 +73,9 @@ CBCollectionViewLayout.swift
 	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 	@objc public protocol CBCollectionViewDataSource: UICollectionViewDataSource
-	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-	optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
 	public enum CBCollectionViewLayoutItemRenderDirection : NSInteger
-	case ShortestFirst
-	case LeftToRight
-	case RightToLeft
 	public struct CBCollectionViewLayoutElementKind
-	public static let SectionHeader: String = "CBCollectionElementKindSectionHeader"
-	public static let SectionFooter: String = "CBCollectionElementKindSectionFooter"
-	public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognizerDelegate
-	public var columnCount : NSInteger = 2
-	public var minimumColumnSpacing : CGFloat = 8
-	public var minimumInteritemSpacing : CGFloat = 8
-	public var headerHeight : CGFloat = 0.0
-	public var footerHeight : CGFloat = 0.0
-	public var defaultItemHeight : CGFloat = 50
-	public var sectionInset : UIEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-	public var itemRenderDirection : CBCollectionViewLayoutItemRenderDirection = .LeftToRight
-	public var itemWidth : CGFloat
-	public var dragEnabled : Bool = false
 	override public init()
-	convenience public init(collectionView: UICollectionView!)
 	required public init?(coder aDecoder: NSCoder)
 	public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool
 	public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool
@@ -187,9 +87,6 @@ CBCollectionViewLayout.swift
 	override public func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool
 CBImageEditor.swift
 	public protocol CBImageEditorDelegate
-	func imageEditor(editor: CBImageEditor!, didFinishEditingImage original: UIImage!, editedImage: UIImage!)
-	func imageEditorDidCancel(editor: CBImageEditor!)
-	public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 	public var delegate: CBImageEditorDelegate!
 	public var cropRatio: CGSize! = CGSize(width: 1, height: 1)
 	public var circleCrop: Bool = false
@@ -221,26 +118,8 @@ CBImageEditor.swift
 	public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
 	public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
 CBTextField.swift
-	@IBDesignable public class CBLabel : UILabel
-	@IBInspectable public var cornerRadius: CGFloat = 0
-	@IBInspectable public var circleCrop : Bool = false
-	@IBInspectable public var borderWidth: CGFloat = 0
-	@IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor()
-	@IBInspectable public var layerShadowColor: UIColor = UIColor.blackColor()
-	@IBInspectable public var layerShadowRadius: CGFloat = 0
-	@IBInspectable public var layerShadowOpacity: Float = 0
-	@IBInspectable public var layerShadowOffset: CGSize = CGSizeZero
 	public override func layoutSubviews()
-	@IBInspectable public var tint : Bool = false
 	public override func tintColorDidChange()
-	@IBDesignable public class CBTextField : UITextField
-	@IBInspectable public var textInset: CGPoint = CGPointZero
-	@IBInspectable public var hideCaret: Bool = false
-	@IBInspectable public var cornerRadius: CGFloat = 0
-	@IBInspectable public var bottomBorder: Bool = false
-	@IBInspectable public var borderWidth: CGFloat = 0
-	@IBInspectable public var borderColor: UIColor! = UIColor(white: 0, alpha: 0.5)
-	@IBInspectable public var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1)
 	override public var placeholder: String?
 	override public func awakeFromNib()
 	override public func caretRectForPosition(position: UITextPosition) -> CGRect
@@ -248,16 +127,12 @@ CBTextField.swift
 	override public func textRectForBounds(bounds: CGRect) -> CGRect
 	override public func drawRect(rect: CGRect)
 CBImageView.swift
-	@IBDesignable public class CBImageView : UIImageView
 	@IBInspectable public var cornerRadius: CGFloat = 0
 	@IBInspectable public var circleCrop : Bool = false
-	public var onLoadTransition: UIViewAnimationOptions = UIViewAnimationOptions.TransitionNone
 	override public func awakeFromNib()
-	@IBInspectable public var placeholderImage: UIImage?
 	public override func layoutSubviews()
 	override public var image: UIImage?
 	public func updateImage(newImage: UIImage?)
-	public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?)
 CBIconButton.swift
 	case None
 	case Hamburger
@@ -267,7 +142,9 @@ CBIconButton.swift
 	case AngleRight
 	case ArrowLeft
 	case ArrowRight
+	case Checkmark
 	override public var bounds : CGRect
 	override public var highlighted : Bool
 	required public init?(coder aDecoder: NSCoder)
+	public override func awakeFromNib()
 	override public func tintColorDidChange()

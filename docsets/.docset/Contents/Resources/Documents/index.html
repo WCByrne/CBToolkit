@@ -12,7 +12,8 @@
     <a title="  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (23% documented)</p>
+        <p><a href="index.html"> Docs</a></p>
+        <p class="header-right"><a href="https://github.com/WCByrne/CBToolkit"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -50,7 +51,7 @@
                 <a href="Classes/CBIconButton.html">CBIconButton</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/CBImageEditor.html">CBImageEditor</a>
+                <a href="Classes.html#/s:C9CBToolkit13CBImageEditor">CBImageEditor</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/CBImageView.html">CBImageView</a>
@@ -85,16 +86,10 @@
           <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Enums/CBCollectionViewLayoutItemRenderDirection.html">CBCollectionViewLayoutItemRenderDirection</a>
+                <a href="Enums.html#/s:O9CBToolkit10CBIconType">CBIconType</a>
               </li>
               <li class="nav-group-task">
-                <a href="Enums/CBIconType.html">CBIconType</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/CBImageContentMode.html">CBImageContentMode</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Enums/CBRelativeDateStyle.html">CBRelativeDateStyle</a>
+                <a href="Enums.html#/s:O9CBToolkit19CBRelativeDateStyle">CBRelativeDateStyle</a>
               </li>
             </ul>
           </li>
@@ -102,25 +97,16 @@
           <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/CAShapeLayer.html">CAShapeLayer</a>
+                <a href="Extensions.html#/c:objc(cs)CAShapeLayer">CAShapeLayer</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/Int.html">Int</a>
+                <a href="Extensions.html#/s:Si">Int</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/NSDate.html">NSDate</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UIAlertController.html">UIAlertController</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UIImage.html">UIImage</a>
+                <a href="Extensions.html#/c:objc(cs)UIImage">UIImage</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/UIView.html">UIView</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UIViewController.html">UIViewController</a>
               </li>
             </ul>
           </li>
@@ -128,21 +114,7 @@
           <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Protocols/CBCollectionViewDataSource.html">CBCollectionViewDataSource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Protocols/CBCollectionViewDelegateLayout.html">CBCollectionViewDelegateLayout</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/CBImageEditorDelegate.html">CBImageEditorDelegate</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="Structs.html">Structs</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="Structs/CBCollectionViewLayoutElementKind.html">CBCollectionViewLayoutElementKind</a>
               </li>
             </ul>
           </li>
@@ -152,12 +124,99 @@
         <section>
           <section class="section">
             
-            <a href='#authors' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='authors'>Authors</h3>
+            <a href='#cbtoolkit' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='cbtoolkit'>CBToolkit</h1>
+
+<p>Meet your new UI. CBToolkit brings your UI to life and thanks to xCode&rsquo;s IB tools, you can do it without a single line of code. All the elements in the kit are designs to be drag and drop replacements for their UIKit ancestors.</p>
+
+<p><img src="/CBIconButton.gif"></p>
+
+<h2>Adding to your project</h2>
+
+<p><b>Manual</b><br />
+Download or clone the repo and drop CBToolkit/CBToolkit into your project. Your good to go.</p>
+
+<p><b>CocoaPods</b><br />
+CBToolkit is now available on cocoapods 
+Add <code>pod &#39;CBToolkit&#39;, &#39;~&gt; 0.0&#39;</code> to your podfile and run pod update.</p>
+
+<h2>Using the views</h2>
+
+<p>CBToolkit is designed to help you creat great UIs without extra code. Thanks to IBDesignables many visual effects can be set right in the storyboard. Simply drop the appropriate UIKit element (UIView, UIButton, UIImageView&hellip;) into your view controller and change the class to the CB* equivilent.</p>
+
+<p>For example, to add a <code>CBProgressView</code> just drop in a UIVIew, open the attributes inspector in the right utilities panel and set the class to CBProgressView. The custom properties will now be available right along side the standard backgroundColor and such.</p>
+
+<p>And if you really have the urge to type, you can always create CBToolkit views progamratically just like anything else. </p>
+
+<h1>Docs & Examples</h1>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki">View the full docs</a>
+<br />
+<a href="https://www.youtube.com/watch?v=AZnW26m93jc">Example app video</a></p>
+
+<p>An example app is included in the repository to show you how some examples of how you can use CBToolkit in your app.</p>
+
+<h1>Views</h1>
+
+<ul>
+<li><code>CBView</code> : Round those corners, add a border, even drop some shadow all from the storyboard/IB inspector.</li>
+<li><code>CBBorderView</code>: Add borders to each side of a view as needed.</li>
+<li><code>CBGradientView</code>: Draw a gradient as a background or an overlay with zero code.</li>
+<li><code>CBImageView</code>: Style your imageViews and even load remote images with a url.</li>
+</ul>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki/1.-Views">More about views</a></p>
+
+<h1>Buttons</h1>
+
+<ul>
+<li><code>CBButton</code> : Give your buttons some style and bounce.</li>
+<li><code>CBIconButton</code>: From the classic hamburger to arrows, this button render it&rsquo;s icon with seamless transition.</li>
+<li><code>CBButtonView</code>: A custom UIControl so you can turn any view into a button. Ctrl drag to link it to you code.</li>
+</ul>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki/2.-Buttons">More about buttons</a></p>
+
+<h1>TextViews</h1>
+
+<ul>
+<li><code>CBTextField</code> : Style your text views without a single line. Make your fields stand out right in the storyboard.</li>
+<li><code>CBTextView</code>: Let this text view take care of resizing to fit its text. You can also add a placholder</li>
+</ul>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki/3.-Text-Views">More about textview</a></p>
+
+<h1>Loaders</h1>
+
+<ul>
+<li><code>CBActivityIndicator</code> : A clean and customizable replacement for UIActivityIndicator</li>
+<li><code>CBProgressView</code>: Downloading, uploading or doing some background work? Show the prgress in style.</li>
+</ul>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki/4.-Loaders">More about progress views</a></p>
+
+<h1>Collection View Layouts</h1>
+
+<ul>
+<li><code>CBCollectionViewLayout</code> : A full featured layout with pinterest like placement, aspect ratio sizing, drag and drop and more.</li>
+<li><code>CBSliderCollectionViewLayout</code>: A simple full screen horizontal layout with autoscrolling.</li>
+</ul>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki/5.-CollectionView-Layouts">More about collection view layouts</a></p>
+
+<h1>Utils</h1>
+
+<ul>
+<li><code>CBPhotoFetcher</code> : An image fetching util for retrieving and caching iamges with a url.</li>
+<li><code>CBDate</code> extension: A collection of helpful date function and formatters.</li>
+<li><code>CBPhoneNumber</code>: Just initialize with a string, then format or call the number.</li>
+</ul>
+
+<p><a href="https://github.com/WCByrne/CBToolkit/wiki/6.-Utils">More about Utils</a></p>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-23)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external">Wes</a>. All rights reserved. (Last updated: 2015-11-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
