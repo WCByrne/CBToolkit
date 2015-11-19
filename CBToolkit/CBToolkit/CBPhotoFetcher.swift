@@ -10,14 +10,24 @@ import Foundation
 import UIKit
 
 
-public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?, requestTime: NSTimeInterval)->Void
+public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?, fromCache: Bool)->Void
 public typealias CBProgressBlock = (progress: Float)->Void
 
 /// An image fetching util for retrieving and caching iamges with a url.
-public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
+public class CBPhotoFetcher: NSObject {
+    
+    public var useDiskCache: Bool = true
     
     private var imageCache: NSCache! = NSCache()
-    private var inProgress: [String: CBImageFetchRequest]! = [:]
+    var inProgress: [String: CBImageFetchRequest]! = [:]
+    let operationQueue = NSOperationQueue()
+    let fm = NSFileManager.defaultManager()
+    
+    private lazy var diskCacheURL: NSURL! = {
+        let str = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
+        let docs = NSURL(fileURLWithPath: str, isDirectory: true)
+        return docs.URLByAppendingPathComponent("CBImageCache", isDirectory: true)
+    }()
     
     public class var sharedFetcher : CBPhotoFetcher {
         struct Static {
@@ -30,31 +40,50 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         super.init()
     }
     
-    public func clearCache() {
-        imageCache.removeAllObjects()
+    // MARK: - Fetching Images
+    public func prefetchURL(imgUrl: String!) {
+        let hash = imgUrl.cacheHash
+        if imageCache.objectForKey(hash) != nil  {
+            return
+        }
+        if inProgress[hash] != nil {
+            return
+        }
+        let request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
+        inProgress[hash] = request
+        request.start()
     }
     
+    public func fetchImageAtURL(imgUrl: String!, completion: CBImageFetchCallback!, progressBlock: CBProgressBlock? = nil) {
+        assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
+        
+        let hash = imgUrl.cacheHash
+        
+        imageFromCache(imgUrl) { (image) -> Void in
+            if image != nil {
+                completion(image: image, error: nil, fromCache: true)
+                return
+            }
+            if let request = self.inProgress[hash] {
+                request.completionBlocks.append(completion)
+                if progressBlock != nil { request.progressBlocks.append(progressBlock!) }
+                progressBlock?(progress: request.progress)
+                return
+            }
+            let request = CBImageFetchRequest(imageURL: imgUrl, completion: completion, progress: progressBlock)
+            self.inProgress[hash] = request
+            request.start()
+        }
+    }
+    
+    
+    // MARK: - Cancelling Requests
     public func cancelAll() {
+        for request in inProgress {
+            request.1.cancelRequest()
+        }
         inProgress.removeAll(keepCapacity: false)
     }
-    
-    public func cacheForURL(imgUrl: String) -> UIImage? {
-        if let cachedImage = imageCache.objectForKey(imgUrl) as? UIImage  {
-            return cachedImage
-        }
-        return nil
-    }
-    
-    public func clearCacheForURL(imgURL: String) {
-        imageCache.removeObjectForKey(imgURL)
-    }
-    
-    public func insertCacheImage(imgURL: String!, image: UIImage!) {
-        imageCache.setObject(image, forKey: imgURL)
-    }
-    
-    // Clears any callbacks for the url
-    // The image will continue to load and cache for next time
     public func cancelFetchForUrl(url: String) {
         if let request = inProgress[url] {
             request.cancelRequest()
@@ -62,51 +91,66 @@ public class CBPhotoFetcher: NSObject, CBImageFetchRequestDelegate {
         inProgress.removeValueForKey(url)
     }
     
-    public func prefetchURL(imgUrl: String!) {
-        if imageCache.objectForKey(imgUrl) != nil  {
-            return
+    
+    // MARK: - Managing Cache
+    public func clearCache(memory: Bool = true, disk: Bool = true) {
+        if memory {
+            imageCache.removeAllObjects()
         }
-        if inProgress[imgUrl] != nil {
-            return
+        if disk {
+            _ = try? fm.removeItemAtPath(diskCacheURL.path!)
+            checkDiskCache()
         }
-        let request = CBImageFetchRequest(imageURL: imgUrl, completion: nil, progress: nil)
-        inProgress[imgUrl] = request
-        request.delegate = self
-        request.start()
     }
     
-    public func fetchImageAtURL(imgUrl: String!, completion: CBImageFetchCallback!, progressBlock: CBProgressBlock? = nil) {
-        assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
-        
-        // The image is chached
-        if let cachedImage = imageCache.objectForKey(imgUrl) as? UIImage  {
-            completion(image: cachedImage, error: nil, requestTime: 0)
-            return
+    public func clearCacheForURL(imgURL: String) {
+        imageCache.removeObjectForKey(imgURL.cacheHash)
+        if let filePath = diskCacheURL.URLByAppendingPathComponent(imgURL.cacheHash).path {
+            _ = try? fm.removeItemAtPath(filePath)
         }
-        
-        // A request is already going. add it on
-        if let request = inProgress[imgUrl] {
-            request.completionBlocks.append(completion)
-            if progressBlock != nil { request.progressBlocks.append(progressBlock!) }
-            progressBlock?(progress: request.progress)
-            return
-        }
-        
-        let request = CBImageFetchRequest(imageURL: imgUrl, completion: completion, progress: progressBlock)
-        inProgress[imgUrl] = request
-        request.delegate = self
-        request.start()
     }
     
-    func fetchRequestDidFinish(url: String, image: UIImage?) {
-        inProgress.removeValueForKey(url)
-        if image != nil {
-            imageCache.setObject(image!, forKey: url)
-        }
-        else {
-            imageCache.removeObjectForKey(url)
+    
+    // MARK: - Internal
+    private func checkDiskCache() {
+        if !fm.fileExistsAtPath(diskCacheURL.path!) {
+            _ = try? fm.createDirectoryAtPath(diskCacheURL.path!, withIntermediateDirectories: true, attributes: nil)
+            _ = try? diskCacheURL.setResourceValue(NSNumber(bool: true), forKey: NSURLIsExcludedFromBackupKey)
         }
     }
+    
+    func cacheImage(imgURL: String!, image: UIImage!, data: NSData) {
+        operationQueue.addOperationWithBlock { () -> Void in
+            let hash = imgURL.cacheHash
+            self.imageCache.setObject(image, forKey: hash)
+            if self.useDiskCache {
+                self.checkDiskCache()
+                let path = self.diskCacheURL.URLByAppendingPathComponent(hash)
+                data.writeToFile(path.path!, atomically: true)
+            }
+        }
+    }
+    
+    private func imageFromCache(imgURL: String, completion: (image: UIImage?)->Void) {
+        let hash = imgURL.cacheHash
+        if let cachedImage = imageCache.objectForKey(hash) as? UIImage  {
+            completion(image: cachedImage)
+            return
+        }
+        operationQueue.addOperationWithBlock { () -> Void in
+            var img : UIImage?
+            if let path = self.diskCacheURL.URLByAppendingPathComponent(hash).path {
+                img = UIImage(contentsOfFile: path)
+                if img != nil {
+                    self.imageCache.setObject(img!, forKey: hash)
+                }
+            }
+            dispatch_async(dispatch_get_main_queue(),{
+                completion(image: img)
+            })
+        }
+    }
+    
 }
 
 
@@ -120,16 +164,12 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     var baseURL : String!
     var completionBlocks: [CBImageFetchCallback]! = []
     var progressBlocks : [CBProgressBlock]! = []
-
-    var progress: Float = 0
-    var startDate = NSDate()
     
-    var delegate : CBImageFetchRequestDelegate!
+    var progress: Float = 0
     var sessionTask: NSURLSessionDownloadTask?
     
     init(imageURL: String!, completion: CBImageFetchCallback?, progress: CBProgressBlock? ) {
         super.init()
-        
         baseURL = imageURL
         if completion != nil { completionBlocks = [completion!] }
         if progress != nil { progressBlocks = [progress!] }
@@ -140,9 +180,9 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         if url == nil {
             let err = NSError(domain: "CBToolkit", code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid url for image download"])
             for cBlock in completionBlocks {
-                cBlock(image: nil, error: err, requestTime: 0)
+                cBlock(image: nil, error: err, fromCache: false)
             }
-            self.delegate.fetchRequestDidFinish(baseURL, image: nil)
+            self.didFinish()
             return
         }
         
@@ -156,7 +196,13 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     }
     
     func cancelRequest() {
+        self.didFinish()
         sessionTask?.cancel()
+        dispatch_async(dispatch_get_main_queue(),{
+            for cBlock in self.completionBlocks {
+                cBlock(image: nil, error: nil, fromCache: false)
+            }
+        })
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64) {
@@ -175,17 +221,21 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
         var error : NSError?
         var img : UIImage?
+        
         if let imgData = NSData(contentsOfURL: location) {
             img = UIImage(data: imgData)
+            if img != nil {
+                CBPhotoFetcher.sharedFetcher.cacheImage(baseURL, image: img, data: imgData)
+            }
         }
         if img == nil {
             error = NSError(domain: "CBToolkit", code: 2, userInfo: [NSLocalizedDescriptionKey : "Could not procress image data into image."])
         }
+        self.didFinish()
         dispatch_async(dispatch_get_main_queue(),{
             for cBlock in self.completionBlocks {
-                cBlock(image: img, error: error, requestTime: self.startDate.timeIntervalSinceNow)
+                cBlock(image: img, error: error, fromCache: false)
             }
-            self.delegate.fetchRequestDidFinish(self.baseURL, image: img)
         })
     }
     
@@ -193,13 +243,40 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         if error != nil {
             dispatch_async(dispatch_get_main_queue(),{
                 for cBlock in self.completionBlocks {
-                    cBlock(image: nil, error: error, requestTime: self.startDate.timeIntervalSinceNow)
+                    cBlock(image: nil, error: error, fromCache: false)
                 }
-                self.delegate.fetchRequestDidFinish(self.baseURL, image: nil)
+                self.didFinish()
                 debugPrint("CBPhotoFetcher: Fetch error – \(error!.localizedDescription)")
             })
         }
     }
+    
+    func didFinish() {
+        CBPhotoFetcher.sharedFetcher.inProgress.removeValueForKey(baseURL.cacheHash)
+    }
+}
+
+
+extension String {
+    
+    var cacheHash: String {
+        let url = self
+        
+        var hash: UInt32 = 0
+        for (index, codeUnit) in url.utf8.enumerate() {
+            hash += (UInt32(codeUnit) * UInt32(index))
+            hash ^= (hash >> 6)
+        }
+        hash += (hash << 3)
+        hash ^= (hash >> 11)
+        hash += (hash << 15)
+        
+        if let fileExtension = NSURL(string: self)?.pathExtension {
+            return "\(hash).\(fileExtension)"
+        }
+        return "\(hash)"
+    }
+    
 }
 
 

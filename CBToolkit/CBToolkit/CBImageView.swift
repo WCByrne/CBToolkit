@@ -96,7 +96,7 @@ import UIKit
     
     - param: newImage An image to display in this image view
     */
-     public func updateImage(newImage: UIImage?) {
+    public func updateImage(newImage: UIImage?) {
         if image == nil || tinted == false {
             self.image = nil
         }
@@ -113,22 +113,22 @@ import UIKit
      */
     public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?) {
         imageURL = imgURL
-        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error, requestTime) -> Void in
+        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error, fromCache) -> Void in
             if imgURL != self.imageURL {
                 return
             }
             if completion == nil {
-                if self.onLoadTransition == UIViewAnimationOptions.TransitionNone {
+                if self.onLoadTransition == UIViewAnimationOptions.TransitionNone || fromCache {
                     self.image = image
                 }
                 else {
                     UIView.transitionWithView(self, duration: 0.3, options: self.onLoadTransition, animations: { () -> Void in
                         self.image = image
-                    }, completion: nil)
+                        }, completion: nil)
                 }
             }
             else {
-                completion!(image: image, error: error, requestTime: requestTime)
+                completion!(image: image, error: error, fromCache: fromCache)
             }
         })
     }

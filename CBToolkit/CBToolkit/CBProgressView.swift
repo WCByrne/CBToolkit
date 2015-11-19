@@ -198,7 +198,6 @@ import UIKit
     }
     @IBInspectable public var indicatorSize: CGFloat = 0.5 {
         didSet {
-
             self.progressLayer.strokeEnd = indicatorSize
         }
     }
@@ -229,7 +228,7 @@ import UIKit
         
         progressLayer.strokeColor = tintColor.CGColor
         progressLayer.strokeStart = 0
-        progressLayer.strokeEnd = 1
+        progressLayer.strokeEnd = self.indicatorSize
         progressLayer.fillColor = nil
         progressLayer.lineWidth = lineWidth
         progressLayer.anchorPoint = CGPointMake(0.5, 0.5)
