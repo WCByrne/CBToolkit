@@ -12,6 +12,7 @@ import UIKit
 
 public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?, fromCache: Bool)->Void
 public typealias CBProgressBlock = (progress: Float)->Void
+public typealias CBNetworkActivityCountChangedBlock = (change: Int, total: Int)->Void
 
 /// An image fetching util for retrieving and caching iamges with a url.
 public class CBPhotoFetcher: NSObject {
@@ -23,6 +24,10 @@ public class CBPhotoFetcher: NSObject {
     var inProgress: [String: CBImageFetchRequest]! = [:]
     let operationQueue = NSOperationQueue()
     let fm = NSFileManager.defaultManager()
+    var networkCount = 0 {
+        didSet { self.networdCountBlock?(change: oldValue - networkCount, total: self.networkCount) }
+    }
+    var networdCountBlock : CBNetworkActivityCountChangedBlock?
     
     private lazy var diskCacheURL: NSURL! = {
         let str = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
@@ -40,6 +45,10 @@ public class CBPhotoFetcher: NSObject {
     
     override init() {
         super.init()
+    }
+    
+    public func setNetworkActivityBlock(block: CBNetworkActivityCountChangedBlock?) {
+        self.networdCountBlock = block
     }
     
     // MARK: - Fetching Images
