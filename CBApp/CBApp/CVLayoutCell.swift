@@ -39,6 +39,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         layout.minimumInteritemSpacing = 2
         layout.itemRenderDirection = CBCollectionViewLayoutItemRenderDirection.ShortestFirst
         layout.sectionInset = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
+        contentCollectionView.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 0, right: 0)
         
     }
     

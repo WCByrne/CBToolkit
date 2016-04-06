@@ -30,6 +30,7 @@
 		1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01C1A7D8A8B00D7677B /* CBDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0121A7D8A8B00D7677B /* CBDate.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		1CDBB01D1A7D8A8B00D7677B /* CBPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE266BD81CB4EBED00B98237 /* CBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE266BD71CB4EBED00B98237 /* CBLogger.swift */; };
 		DE3BD2371BD9C0900061EBE5 /* CBIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3BD2361BD9C0900061EBE5 /* CBIconButton.swift */; };
 		DEEBE0381B98801200F18093 /* CBImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0371B98801200F18093 /* CBImageEditor.swift */; };
 		DEEBE03A1B98822900F18093 /* CBSliderCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */; };
@@ -63,6 +64,7 @@
 		1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
 		1CDBB0121A7D8A8B00D7677B /* CBDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDate.swift; sourceTree = "<group>"; };
 		1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhoneNumber.swift; sourceTree = "<group>"; };
+		DE266BD71CB4EBED00B98237 /* CBLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBLogger.swift; sourceTree = "<group>"; };
 		DE3BD2361BD9C0900061EBE5 /* CBIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBIconButton.swift; sourceTree = "<group>"; };
 		DEEBE0371B98801200F18093 /* CBImageEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageEditor.swift; sourceTree = "<group>"; };
 		DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBSliderCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				1C13DC861B3F776900CD0236 /* CBCollectionViewLayout.swift */,
 				DEEBE0391B98822900F18093 /* CBSliderCollectionViewLayout.swift */,
 				DEEBE0371B98801200F18093 /* CBImageEditor.swift */,
+				DE266BD71CB4EBED00B98237 /* CBLogger.swift */,
 				1CDBAFF11A7D8A7200D7677B /* Supporting Files */,
 			);
 			path = CBToolkit;
@@ -284,6 +287,7 @@
 				DEEBE0381B98801200F18093 /* CBImageEditor.swift in Sources */,
 				1CDBB0161A7D8A8B00D7677B /* CBTextField.swift in Sources */,
 				1CDBB01B1A7D8A8B00D7677B /* CBImageView.swift in Sources */,
+				DE266BD81CB4EBED00B98237 /* CBLogger.swift in Sources */,
 				DE3BD2371BD9C0900061EBE5 /* CBIconButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

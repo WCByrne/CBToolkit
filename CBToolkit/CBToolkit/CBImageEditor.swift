@@ -170,7 +170,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         cancelButton.setTitle("Cancel", forState: UIControlState.Normal)
         cancelButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 18)
         cancelButton.tintColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 0.9 : 0.1, alpha: 1)
-        cancelButton.addTarget(self, action: "cancel", forControlEvents: UIControlEvents.TouchUpInside)
+        cancelButton.addTarget(self, action: #selector(CBImageEditor.cancel), forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(cancelButton)
         
         cancelButton.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 44))
@@ -183,7 +183,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         saveButton.setTitle("Save", forState: UIControlState.Normal)
         saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
         saveButton.tintColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 0.9 : 0.1, alpha: 1)
-        saveButton.addTarget(self, action: "finish", forControlEvents: UIControlEvents.TouchUpInside)
+        saveButton.addTarget(self, action: #selector(CBImageEditor.finish), forControlEvents: UIControlEvents.TouchUpInside)
         headerView.addSubview(saveButton)
         
         saveButton.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 44))
@@ -214,7 +214,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         verticalButton = CBButton(type: UIButtonType.System)
         verticalButton.translatesAutoresizingMaskIntoConstraints = false
-        verticalButton.addTarget(self, action: "setVerticalCrop", forControlEvents: UIControlEvents.TouchUpInside)
+        verticalButton.addTarget(self, action: #selector(CBImageEditor.setVerticalCrop), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(verticalButton)
         verticalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
         verticalButton.layer.borderWidth = 2
@@ -226,7 +226,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         horizontalButton = CBButton(type: UIButtonType.System)
         horizontalButton.translatesAutoresizingMaskIntoConstraints = false
-        horizontalButton.addTarget(self, action: "setHorizontalCrop", forControlEvents: UIControlEvents.TouchUpInside)
+        horizontalButton.addTarget(self, action: #selector(CBImageEditor.setHorizontalCrop), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(horizontalButton)
         horizontalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
         horizontalButton.layer.borderWidth = 2
@@ -238,7 +238,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         squareButton = CBButton(type: UIButtonType.System)
         squareButton.translatesAutoresizingMaskIntoConstraints = false
-        squareButton.addTarget(self, action: "setSquareCrop", forControlEvents: UIControlEvents.TouchUpInside)
+        squareButton.addTarget(self, action: #selector(CBImageEditor.setSquareCrop), forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(squareButton)
         squareButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.Dark ? 1 : 0, alpha: 0.6).CGColor
         squareButton.layer.borderWidth = 2
@@ -335,7 +335,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
                     self.filterCV.reloadItemsAtIndexPaths([NSIndexPath(forRow: i, inSection: 0)])
                 })
 
-                i++
+                i += 1
             }
         })
     }

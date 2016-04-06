@@ -175,9 +175,9 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     public var dragEnabled : Bool = false {
         didSet {
             if longPressGesture == nil {
-                longPressGesture = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+                longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(CBCollectionViewLayout.handleLongPress(_:)))
                 longPressGesture?.delegate = self
-                panGesture = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+                panGesture = UIPanGestureRecognizer(target: self, action: #selector(CBCollectionViewLayout.handlePanGesture(_:)))
                 panGesture?.maximumNumberOfTouches = 1
                 panGesture?.delegate = self
                 
@@ -208,10 +208,10 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     private weak var dataSource : CBCollectionViewDataSource? { get { return self.collectionView!.dataSource as? CBCollectionViewDataSource }}
     
     private var columnHeights : [[CGFloat]]! = []
-    private var sectionItemAttributes = NSMutableArray()
-    private var allItemAttributes = NSMutableArray()
-    private var headersAttributes = NSMutableDictionary()
-    private var footersAttributes = NSMutableDictionary()
+    private var sectionItemAttributes : [[UICollectionViewLayoutAttributes]] = []
+    private var allItemAttributes : [UICollectionViewLayoutAttributes] = []
+    private var headersAttributes : [Int:UICollectionViewLayoutAttributes] = [:]
+    private var footersAttributes : [Int:UICollectionViewLayoutAttributes] = [:]
     private var unionRects = NSMutableArray()
     private let unionSize = 20
     
@@ -357,12 +357,12 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             return
         }
         
-        self.headersAttributes.removeAllObjects()
-        self.footersAttributes.removeAllObjects()
+        self.headersAttributes.removeAll()
+        self.footersAttributes.removeAll(keepCapacity: false)
         self.unionRects.removeAllObjects()
         self.columnHeights.removeAll(keepCapacity: false)
-        self.allItemAttributes.removeAllObjects()
-        self.sectionItemAttributes.removeAllObjects()
+        self.allItemAttributes.removeAll()
+        self.sectionItemAttributes.removeAll()
         
         // Create default column heights for each section
         for sec in 0...self.numSections-1 {
@@ -373,7 +373,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         var top : CGFloat = 0.0
         var attributes = UICollectionViewLayoutAttributes()
         
-        for var section = 0; section < numberOfSections; ++section{
+        for section in 0..<numberOfSections {
             
             /*
             * 1. Get section-specific metrics (minimumInteritemSpacing, sectionInset)
@@ -395,13 +395,13 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             if heightHeader > 0 {
                 attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CBCollectionViewLayoutElementKind.SectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
                 attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, heightHeader)
-                self.headersAttributes.setObject(attributes, forKey: (section))
-                self.allItemAttributes.addObject(attributes)
+                self.headersAttributes[section] = attributes
+                self.allItemAttributes.append(attributes)
                 top = CGRectGetMaxY(attributes.frame)
             }
             
             top += sectionInsets.top
-            for var idx = 0; idx < colCount; idx++ {
+            for idx in 0..<colCount {
                 self.columnHeights[section][idx] = top;
             }
             
@@ -409,10 +409,10 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             * 3. Section items
             */
             let itemCount = self.collectionView!.numberOfItemsInSection(section)
-            let itemAttributes = NSMutableArray(capacity: itemCount)
+            var itemAttributes : [UICollectionViewLayoutAttributes] = []
 
             // Item will be put into shortest column.
-            for var idx = 0; idx < itemCount; idx++ {
+            for idx in 0..<itemCount {
                 let indexPath = NSIndexPath(forItem: idx, inSection: section)
                 
                 let columnIndex = self.nextColumnIndexForItem(indexPath)
@@ -431,11 +431,11 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
                 attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
                 attributes.alpha = indexPath.isEqual(targetIndexPath) ? 0.3 : 1
                 attributes.frame = CGRectMake(xOffset, CGFloat(yOffset), itemWidth, itemHeight)
-                itemAttributes.addObject(attributes)
-                self.allItemAttributes.addObject(attributes)
+                itemAttributes.append(attributes)
+                self.allItemAttributes.append(attributes)
                 self.columnHeights[section][columnIndex] = CGRectGetMaxY(attributes.frame) + itemSpacing;
             }
-            self.sectionItemAttributes.addObject(itemAttributes)
+            self.sectionItemAttributes.append(itemAttributes)
             
             /*
             * 4. Section footer
@@ -447,12 +447,12 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             if footerHeight > 0 {
                 attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CBCollectionViewLayoutElementKind.SectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
                 attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, footerHeight)
-                self.footersAttributes.setObject(attributes, forKey: section)
-                self.allItemAttributes.addObject(attributes)
+                self.footersAttributes[section] = attributes
+                self.allItemAttributes.append(attributes)
                 top = CGRectGetMaxY(attributes.frame)
             }
             
-            for var idx = 0; idx < colCount; idx++ {
+            for idx in 0..<colCount {
                 self.columnHeights[section][idx] = top
             }
         }
@@ -460,11 +460,11 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         var idx = 0;
         let itemCounts = self.allItemAttributes.count
         while(idx < itemCounts){
-            let rect1 = self.allItemAttributes.objectAtIndex(idx).frame as CGRect
+            let rect1 = self.allItemAttributes[idx].frame as CGRect
             idx = min(idx + unionSize, itemCounts) - 1
-            let rect2 = self.allItemAttributes.objectAtIndex(idx).frame as CGRect
+            let rect2 = self.allItemAttributes[idx].frame as CGRect
             self.unionRects.addObject(NSValue(CGRect:CGRectUnion(rect1,rect2)))
-            idx++
+            idx += 1
         }
     }
     
@@ -483,19 +483,19 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         if indexPath.section >= self.sectionItemAttributes.count{
             return nil
         }
-        if indexPath.item >= self.sectionItemAttributes.objectAtIndex(indexPath.section).count{
+        if indexPath.item >= self.sectionItemAttributes[indexPath.section].count{
             return nil;
         }
-        let list = self.sectionItemAttributes.objectAtIndex(indexPath.section) as! NSArray
-        return (list.objectAtIndex(indexPath.item) as! UICollectionViewLayoutAttributes)
+        let list = self.sectionItemAttributes[indexPath.section]
+        return list[indexPath.item]
     }
     
-    override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes{
+    override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
         var attribute = UICollectionViewLayoutAttributes()
         if elementKind == CBCollectionViewLayoutElementKind.SectionHeader {
-            attribute = self.headersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
-        }else if elementKind == CBCollectionViewLayoutElementKind.SectionFooter {
-            attribute = self.footersAttributes.objectForKey(indexPath.section) as! UICollectionViewLayoutAttributes
+            attribute = self.headersAttributes[indexPath.section]!
+        } else if elementKind == CBCollectionViewLayoutElementKind.SectionFooter {
+            attribute = self.footersAttributes[indexPath.section]!
         }
         return attribute
     }
@@ -504,20 +504,20 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         var begin = 0, end = self.unionRects.count
         let attrs = NSMutableArray()
         
-        for var i = 0; i < end; i++ {
+        for i in 0..<end {
             if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue){
                 begin = i * unionSize;
                 break
             }
         }
-        for var i = self.unionRects.count - 1; i>=0; i-- {
+        for i in (self.unionRects.count - 1).stride(to: 0, by: -1) {
             if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue){
                 end = min((i+1)*unionSize,self.allItemAttributes.count)
                 break
             }
         }
-        for var i = begin; i < end; i++ {
-            let attr = self.allItemAttributes.objectAtIndex(i) as! UICollectionViewLayoutAttributes
+        for i in begin..<end {
+            let attr = self.allItemAttributes[i]
             if CGRectIntersectsRect(rect, attr.frame) {
                 attrs.addObject(attr)
             }

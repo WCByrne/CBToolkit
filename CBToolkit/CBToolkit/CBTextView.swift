@@ -116,7 +116,7 @@ import UIKit
             NSNotificationCenter.defaultCenter().removeObserver(self)
         }
         else {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange", name: UITextViewTextDidChangeNotification, object: self)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CBTextView.textDidChange), name: UITextViewTextDidChangeNotification, object: self)
             self.superview?.translatesAutoresizingMaskIntoConstraints = false
         }
     }

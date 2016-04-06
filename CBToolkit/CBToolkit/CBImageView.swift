@@ -6,6 +6,12 @@
 //  Copyright (c) 2014 Type 2 Designs. All rights reserved.
 //
 
+/*
+ Adapted from SwiftyBeaver
+ https://github.com/SwiftyBeaver/SwiftyBeaver
+ Copyright (c) 2015 Sebastian Kreutzberger
+ */
+
 import Foundation
 import UIKit
 
