@@ -510,7 +510,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
                 break
             }
         }
-        for i in (self.unionRects.count - 1).stride(to: 0, by: -1) {
+        for i in (self.unionRects.count - 1).stride(through: 0, by: -1) {
             if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue){
                 end = min((i+1)*unionSize,self.allItemAttributes.count)
                 break
