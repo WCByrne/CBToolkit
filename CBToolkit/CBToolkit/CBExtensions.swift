@@ -31,10 +31,10 @@ public extension UIViewController {
      */
     func popOrDismiss(animated: Bool) {
         if self.isModal() {
-            self.dismissViewControllerAnimated(animated, completion: nil)
+            self.dismiss(animated: animated, completion: nil)
         }
         else {
-            self.navigationController?.popViewControllerAnimated(animated)
+            self.navigationController?.popViewController(animated: animated)
         }   
     }
     
@@ -59,10 +59,12 @@ public extension UIView {
      */
     func addConstraintsToMatchParent(insets: UIEdgeInsets? = nil) -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         if let sv = self.superview {
-            let top = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: insets?.top ?? 0)
-            let right = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: insets?.right ?? 0)
-            let bottom = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: insets?.bottom ?? 0)
-            let left = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: insets?.left ?? 0)
+            let top = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal
+                
+                , toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: insets?.top ?? 0)
+            let right = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: insets?.right ?? 0)
+            let bottom = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: insets?.bottom ?? 0)
+            let left = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1, constant: insets?.left ?? 0)
             sv.addConstraints([top, bottom, right, left])
             self.translatesAutoresizingMaskIntoConstraints = false
             return (top, right, bottom, left)
@@ -90,8 +92,8 @@ public extension UIAlertController {
      - returns: The UIAlertController initialized with the provided properties.
      */
     public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String!) -> UIAlertController  {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.Default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
     
@@ -101,7 +103,7 @@ public extension UIAlertController {
      - parameter viewController: The UIViewController to present the UIAlertController in.
      */
     public func show(viewController: UIViewController) {
-        viewController.presentViewController(self, animated: true, completion: nil)
+        viewController.present(self, animated: true, completion: nil)
     }
 }
 
@@ -118,17 +120,17 @@ public extension Int {
 
 
 public extension CAShapeLayer {
-    public func setPathAnimated(path: CGPath) {
+    public func setPathAnimated(_ path: CGPath) {
         self.path = path
         let anim = CABasicAnimation(keyPath: "path")
         anim.duration = 0.2
-        anim.fromValue = self.presentationLayer()?.valueForKeyPath("path")
+        anim.fromValue = self.presentation()?.value(forKeyPath: "path")
         anim.toValue = path
         anim.fillMode = kCAFillModeBoth
-        anim.additive = true
-        anim.removedOnCompletion = false
+        anim.isAdditive = true
+        anim.isRemovedOnCompletion = false
         anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        self.addAnimation(anim, forKey: "animatePath")
+        self.add(anim, forKey: "animatePath")
     }
 }
 
@@ -142,155 +144,155 @@ public enum CBImageContentMode: Int {
 public extension UIImage {
     
     public func crop(frame: CGRect) -> UIImage {
-        let  imageRef = CGImageCreateWithImageInRect(self.CGImage, frame);
-        return UIImage(CGImage: imageRef!)
+        let  imageRef = self.cgImage!.cropping(to: frame);
+        return UIImage(cgImage: imageRef!)
     }
     
     public func thumbnail(size: Int) ->UIImage {
         return resize(CGSize(width: size, height: size), contentMode: CBImageContentMode.AspectFill)
     }
     
-    public func resize(bounds: CGSize) -> UIImage {
+    public func resize(_ bounds: CGSize) -> UIImage {
         let drawTransposed  = (
-            self.imageOrientation == .Left ||
-                self.imageOrientation == .LeftMirrored ||
-                self.imageOrientation == .Right ||
-                self.imageOrientation == .RightMirrored
+            self.imageOrientation == .left ||
+                self.imageOrientation == .leftMirrored ||
+                self.imageOrientation == .right ||
+                self.imageOrientation == .rightMirrored
         )
-        return self.resize(bounds, transpose: drawTransposed, transform: self.orientationTransforForSize(bounds))
+        return self.resize(bounds, transpose: drawTransposed, transform: self.orientationTransform(for: bounds))
     }
     
-    public func resize(bounds: CGSize,  contentMode: CBImageContentMode!) -> UIImage {
+    public func resize(_ bounds: CGSize,  contentMode: CBImageContentMode!) -> UIImage {
         let horizontalRatio = bounds.width / self.size.width;
         let verticalRatio = bounds.height / self.size.height;
         let ratio = contentMode == .AspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
         
-        let newSize = CGSizeMake(self.size.width * ratio, self.size.height * ratio);
+        let newSize = CGSize(width: self.size.width * ratio, height: self.size.height * ratio);
         return self.resize(newSize)
     }
     
     public func fixOrientation() -> UIImage {
-        if (self.imageOrientation == UIImageOrientation.Up) { return self }
+        if (self.imageOrientation == UIImageOrientation.up) { return self }
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale);
-        self.drawInRect(CGRectMake(0,0, self.size.width, self.size.height))
+        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
         let normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        return normalizedImage;
+        return normalizedImage!;
     }
     
     public func roundCorners(radius: Int) -> UIImage {
         let image = self.imageWithAlpha()
-        let context = CGBitmapContextCreate(nil,
-            Int(image.size.width),
-            Int(image.size.height),
-            CGImageGetBitsPerComponent(image.CGImage),
-            0,
-            CGImageGetColorSpace(image.CGImage),
-            CGImageGetBitmapInfo(image.CGImage).rawValue)!;
+        let context = CGContext(data: nil,
+            width: Int(image.size.width),
+            height: Int(image.size.height),
+            bitsPerComponent: image.cgImage!.bitsPerComponent,
+            bytesPerRow: 0,
+            space: image.cgImage!.colorSpace!,
+            bitmapInfo: image.cgImage!.bitmapInfo.rawValue)!;
         
         // Create a clipping path with rounded corners
-        CGContextBeginPath(context);
-        self.addRoundedRectToPath(CGRectMake(0, 0, image.size.width, image.size.height), context: context, ovalWidth: CGFloat(radius), ovalHeight: CGFloat(radius))
+        context.beginPath();
+        self.addRoundedRectToPath(rect: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height), context: context, ovalWidth: CGFloat(radius), ovalHeight: CGFloat(radius))
         
-        CGContextClosePath(context)
-        CGContextClip(context)
-        CGContextDrawImage(context, CGRectMake(0, 0, image.size.width, image.size.height), image.CGImage)
-        let clippedImage = CGBitmapContextCreateImage(context)
-        let roundedImage = UIImage(CGImage: clippedImage!)
+        context.closePath()
+        context.clip()
+        context.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height), image: image.cgImage!)
+        let clippedImage = context.makeImage()
+        let roundedImage = UIImage(cgImage: clippedImage!)
         return roundedImage;
     }
     
-    private func addRoundedRectToPath(rect:CGRect, context:CGContextRef, ovalWidth:CGFloat, ovalHeight:CGFloat) {
+    private func addRoundedRectToPath(rect:CGRect, context:CGContext, ovalWidth:CGFloat, ovalHeight:CGFloat) {
         if (ovalWidth == 0 || ovalHeight == 0) {
-            CGContextAddRect(context, rect);
+            context.addRect(rect);
             return;
         }
-        CGContextSaveGState(context);
-        CGContextTranslateCTM(context, CGRectGetMinX(rect), CGRectGetMinY(rect));
-        CGContextScaleCTM(context, ovalWidth, ovalHeight);
-        let fw: CGFloat = CGRectGetWidth(rect) / ovalWidth;
-        let fh: CGFloat = CGRectGetHeight(rect) / ovalHeight;
-        CGContextMoveToPoint(context, fw, fh/2);
-        CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
-        CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
-        CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1);
-        CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
-        CGContextClosePath(context);
-        CGContextRestoreGState(context);
+        context.saveGState();
+        context.translateBy(x: rect.minX, y: rect.minY);
+        context.scaleBy(x: ovalWidth, y: ovalHeight);
+        let fw: CGFloat = rect.width / ovalWidth;
+        let fh: CGFloat = rect.height / ovalHeight;
+        context.moveTo(x: fw, y: fh/2);
+        context.addArc(x1: fw, y1: fh, x2: fw/2, y2: fh, radius: 1);
+        context.addArc(x1: 0, y1: fh, x2: 0, y2: fh/2, radius: 1);
+        context.addArc(x1: 0, y1: 0, x2: fw/2, y2: 0, radius: 1);
+        context.addArc(x1: fw, y1: 0, x2: fw, y2: fh/2, radius: 1);
+        context.closePath();
+        context.restoreGState();
     }
     
     private func hasAlpha() -> Bool {
-        let alpha = CGImageGetAlphaInfo(self.CGImage);
-        return (alpha == CGImageAlphaInfo.First ||
-            alpha == CGImageAlphaInfo.Last ||
-            alpha == CGImageAlphaInfo.PremultipliedFirst ||
-            alpha == CGImageAlphaInfo.PremultipliedLast);
+        let alpha = self.cgImage!.alphaInfo;
+        return (alpha == CGImageAlphaInfo.first ||
+            alpha == CGImageAlphaInfo.last ||
+            alpha == CGImageAlphaInfo.premultipliedFirst ||
+            alpha == CGImageAlphaInfo.premultipliedLast);
     }
     
     private func imageWithAlpha() -> UIImage {
         if self.hasAlpha() {
             return self;
         }
-        let imageRef = self.CGImage;
-        let width = CGImageGetWidth(imageRef);
-        let height = CGImageGetHeight(imageRef);
-        let bInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.PremultipliedFirst.rawValue)
-        let offscreenContext = CGBitmapContextCreate(nil,
-            width,
-            height,
-            8,
-            0,
-            CGImageGetColorSpace(imageRef),
-             CGBitmapInfo.ByteOrderDefault.union(bInfo).rawValue);
+        let imageRef = self.cgImage;
+        let width = imageRef!.width;
+        let height = imageRef!.height;
+        let bInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
+        let offscreenContext = CGContext(data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: 0,
+            space: imageRef!.colorSpace!,
+             bitmapInfo: bInfo.rawValue)
         
-        CGContextDrawImage(offscreenContext, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), imageRef)
-        let imageRefWithAlpha = CGBitmapContextCreateImage(offscreenContext)
-        let imageWithAlpha = UIImage(CGImage:imageRefWithAlpha!)
+        offscreenContext!.draw(in: CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)), image: imageRef!)
+        let imageRefWithAlpha = offscreenContext!.makeImage()
+        let imageWithAlpha = UIImage(cgImage:imageRefWithAlpha!)
         return imageWithAlpha;
     }
     
     
-    private func resize(newSize: CGSize, transpose: Bool, transform: CGAffineTransform) -> UIImage {
-        let newRect = CGRectIntegral(CGRectMake(0, 0, newSize.width, newSize.height));
-        let transposedRect = CGRectMake(0, 0, newRect.size.height, newRect.size.width);
-        let imageRef = self.CGImage;
-        let bitmap = CGBitmapContextCreate(nil,
-            Int(newRect.size.width),
-            Int(newRect.size.height),
-            CGImageGetBitsPerComponent(imageRef),
-            0,
-            CGImageGetColorSpace(imageRef),
-            CGImageGetBitmapInfo(imageRef).rawValue);
+    private func resize(_ newSize: CGSize, transpose: Bool, transform: CGAffineTransform) -> UIImage {
+        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral;
+        let transposedRect = CGRect(x: 0, y: 0, width: newRect.size.height, height: newRect.size.width);
+        let imageRef = self.cgImage;
+        let bitmap = CGContext(data: nil,
+            width: Int(newRect.size.width),
+            height: Int(newRect.size.height),
+            bitsPerComponent: imageRef!.bitsPerComponent,
+            bytesPerRow: 0,
+            space: imageRef!.colorSpace!,
+            bitmapInfo: imageRef!.bitmapInfo.rawValue);
         
-        CGContextConcatCTM(bitmap, transform);
-        CGContextSetInterpolationQuality(bitmap, CGInterpolationQuality.Medium);
-        CGContextDrawImage(bitmap, transpose ? transposedRect : newRect, imageRef);
-        let newImageRef = CGBitmapContextCreateImage(bitmap)!
-        let newImage = UIImage(CGImage: newImageRef)
+        bitmap!.concatenate(transform);
+        bitmap!.interpolationQuality = CGInterpolationQuality.medium;
+        bitmap!.draw(in: transpose ? transposedRect : newRect, image: imageRef!);
+        let newImageRef = bitmap!.makeImage()!
+        let newImage = UIImage(cgImage: newImageRef)
         return newImage
     }
     
     
-    private func orientationTransforForSize(newSize: CGSize) -> CGAffineTransform {
-        var transform = CGAffineTransformIdentity
+    private func orientationTransform(for size: CGSize) -> CGAffineTransform {
+        var transform = CGAffineTransform.identity
         
         switch (self.imageOrientation) {
-        case UIImageOrientation.Down,            // EXIF = 3
-        UIImageOrientation.DownMirrored:   // EXIF = 4
-            transform = CGAffineTransformTranslate(transform, newSize.width, newSize.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI))
+        case UIImageOrientation.down,            // EXIF = 3
+        UIImageOrientation.downMirrored:   // EXIF = 4
+            transform = transform.translatedBy(x: size.width, y: size.height)
+            transform = transform.rotated(by: CGFloat(M_PI))
             break;
             
-        case UIImageOrientation.Left,           // EXIF = 6
-        UIImageOrientation.LeftMirrored:   // EXIF = 5
-            transform = CGAffineTransformTranslate(transform, newSize.width, 0)
-            transform = CGAffineTransformRotate(transform, CGFloat(M_PI_2))
+        case UIImageOrientation.left,           // EXIF = 6
+        UIImageOrientation.leftMirrored:   // EXIF = 5
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.rotated(by: CGFloat(M_PI_2))
             break;
             
-        case UIImageOrientation.Right,          // EXIF = 8
-        UIImageOrientation.RightMirrored:  // EXIF = 7
-            transform = CGAffineTransformTranslate(transform, 0, newSize.height)
-            transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
+        case UIImageOrientation.right,          // EXIF = 8
+        UIImageOrientation.rightMirrored:  // EXIF = 7
+            transform = transform.translatedBy(x: 0, y: size.height)
+            transform = transform.rotated(by: CGFloat(-M_PI_2))
             break
         default :
             break
@@ -299,16 +301,16 @@ public extension UIImage {
         
         
         switch (self.imageOrientation) {
-        case UIImageOrientation.UpMirrored,     // EXIF = 2
-        UIImageOrientation.DownMirrored:   // EXIF = 4
-            transform = CGAffineTransformTranslate(transform, newSize.width, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case UIImageOrientation.upMirrored,     // EXIF = 2
+        UIImageOrientation.downMirrored:   // EXIF = 4
+            transform = transform.translatedBy(x: size.width, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
             break;
             
-        case UIImageOrientation.LeftMirrored,   // EXIF = 5
-        UIImageOrientation.RightMirrored:  // EXIF = 7
-            transform = CGAffineTransformTranslate(transform, newSize.height, 0)
-            transform = CGAffineTransformScale(transform, -1, 1)
+        case UIImageOrientation.leftMirrored,   // EXIF = 5
+        UIImageOrientation.rightMirrored:  // EXIF = 7
+            transform = transform.translatedBy(x: size.height, y: 0)
+            transform = transform.scaledBy(x: -1, y: 1)
             break;
             
         default :

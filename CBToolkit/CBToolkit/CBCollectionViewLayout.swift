@@ -29,8 +29,8 @@ extension CGPoint  {
      
      - returns: The height for the item
      */
-    optional func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
-        heightForItemAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    @objc optional func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
+        heightForItemAtIndexPath indexPath: IndexPath) -> CGFloat
     
     /**
      The aspect ration for the item at the given indexPath (Priority 1). Width and height must be greater than 0.
@@ -41,26 +41,26 @@ extension CGPoint  {
      
      - returns: The aspect ration for the item
      */
-    optional func collectionView (collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
-        aspectRatioForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    @objc optional func collectionView (_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout,
+        aspectRatioForItemAtIndexPath indexPath: IndexPath) -> CGSize
     
-    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         heightForHeaderInSection section: NSInteger) -> CGFloat
     
-    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         heightForFooterInSection section: NSInteger) -> CGFloat
     
-    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         numberOfColumnsInSection section: Int) -> Int
     
-    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAtIndex section: NSInteger) -> UIEdgeInsets
     
     // Between to items in the same column
-    optional func collectionView (collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    @objc optional func collectionView (_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAtIndex section: NSInteger) -> CGFloat
 
-    optional func collectionview(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    @objc optional func collectionview(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         minimumColumnSpacingForSectionAtIndex: NSInteger) -> CGFloat
     
     /*!
@@ -74,19 +74,19 @@ extension CGPoint  {
     
     :returns: The indexPath that the cell should be moved to.
     */
-    optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        shouldMoveItemAtIndexPath originalIndexPath: NSIndexPath,
-        currentIndexPath : NSIndexPath,
-        toProposedIndexPath proposedIndexPath: NSIndexPath) -> NSIndexPath
-    optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        didFinishMovingCellFrom originalIndexPath: NSIndexPath, finalIndexPath: NSIndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        shouldMoveItemAtIndexPath originalIndexPath: IndexPath,
+        currentIndexPath : IndexPath,
+        toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath
+    @objc optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        didFinishMovingCellFrom originalIndexPath: IndexPath, finalIndexPath: IndexPath)
 }
 
 @objc public protocol CBCollectionViewDataSource: UICollectionViewDataSource {
-    optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        canMoveItemAtIndexPath indexPath: NSIndexPath) -> Bool
-    optional func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        moveItemAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath : NSIndexPath)
+    @objc optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        canMoveItemAtIndexPath indexPath: IndexPath) -> Bool
+    @objc optional func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        moveItemAtIndexPath sourceIndexPath: IndexPath, toIndexPath : IndexPath)
 }
 
 
@@ -160,31 +160,31 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     }
     
     
-    private var numSections : Int { get { return self.collectionView!.numberOfSections() }}
-    private func columnsInSection(section : Int) -> Int {
+    private var numSections : Int { get { return self.collectionView!.numberOfSections }}
+    private func columns(in section: Int) -> Int {
         return self.delegate?.collectionView?(self.collectionView!, layout: self, numberOfColumnsInSection: section) ?? self.columnCount
     }
     private var longPressGesture : UILongPressGestureRecognizer?
     private var panGesture : UIPanGestureRecognizer?
     private var dragView : UIView?
-    private var initialPosition : CGPoint! = CGPointZero
-    private var selectedIndexPath  : NSIndexPath?
-    private var targetIndexPath: NSIndexPath?
+    private var initialPosition : CGPoint! = CGPoint.zero
+    private var selectedIndexPath  : IndexPath?
+    private var targetIndexPath: IndexPath?
     
     /// Enable drag and drop
     public var dragEnabled : Bool = false {
         didSet {
             if longPressGesture == nil {
-                longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(CBCollectionViewLayout.handleLongPress(_:)))
+                longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(CBCollectionViewLayout.handleLongPress(gesture:)))
                 longPressGesture?.delegate = self
-                panGesture = UIPanGestureRecognizer(target: self, action: #selector(CBCollectionViewLayout.handlePanGesture(_:)))
+                panGesture = UIPanGestureRecognizer(target: self, action: #selector(CBCollectionViewLayout.handlePanGesture(gesture:)))
                 panGesture?.maximumNumberOfTouches = 1
                 panGesture?.delegate = self
                 
                 if let gestures = self.collectionView!.gestureRecognizers {
                     for gesture in gestures {
                         if let g = gesture as? UILongPressGestureRecognizer {
-                            g.requireGestureRecognizerToFail(longPressGesture!)
+                            g.require(toFail: longPressGesture!)
                         }
                     }
                 }
@@ -192,8 +192,8 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
                 collectionView!.addGestureRecognizer(panGesture!)
             }
             
-            self.panGesture?.enabled = dragEnabled
-            self.longPressGesture?.enabled = dragEnabled
+            self.panGesture?.isEnabled = dragEnabled
+            self.longPressGesture?.isEnabled = dragEnabled
             if !dragEnabled {
                 dragView?.removeFromSuperview()
                 dragView = nil
@@ -212,7 +212,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     private var allItemAttributes : [UICollectionViewLayoutAttributes] = []
     private var headersAttributes : [Int:UICollectionViewLayoutAttributes] = [:]
     private var footersAttributes : [Int:UICollectionViewLayoutAttributes] = [:]
-    private var unionRects = NSMutableArray()
+    private var unionRects = [CGRect]()
     private let unionSize = 20
     
     override public init() {
@@ -234,12 +234,12 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isEqual(panGesture) { return selectedIndexPath != nil }
         return true
     }
     
-    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer.isEqual(longPressGesture) {
             return otherGestureRecognizer.isEqual(panGesture)
         }
@@ -251,27 +251,27 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     
     
     func handleLongPress(gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .Began {
-            let indexPath = self.collectionView?.indexPathForItemAtPoint(gesture.locationInView(self.collectionView!))
+        if gesture.state == .began {
+            let indexPath = self.collectionView?.indexPathForItem(at: gesture.location(in: self.collectionView!))
             if indexPath == nil { return }
             let canMove = self.dataSource?.collectionView?(self.collectionView!, layout: self, canMoveItemAtIndexPath: indexPath!) ?? true
             if canMove == false { return }
             
             self.selectedIndexPath = indexPath
-            let cell = self.collectionView!.cellForItemAtIndexPath(indexPath!)!
+            let cell = self.collectionView!.cellForItem(at: indexPath!)!
             
-            dragView = cell.snapshotViewAfterScreenUpdates(false)
+            dragView = cell.snapshotView(afterScreenUpdates: false)
             self.collectionView!.addSubview(dragView!)
             initialPosition = cell.center
             dragView!.frame = cell.frame
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
-                self.dragView!.transform = CGAffineTransformMakeScale(1.05, 1.05)
+            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                self.dragView!.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
                 cell.alpha = 0.3
             })
         }
         // If long press ends and pan was never started, return the view to it's pace
-        else if panGesture!.state != .Possible  && (gesture.state == .Ended || gesture.state == .Cancelled){
-            finishDrag(nil)
+        else if panGesture!.state != .possible  && (gesture.state == .ended || gesture.state == .cancelled){
+            finishDrag(velocity: nil)
         }
     }
     
@@ -279,29 +279,29 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         // just for
         if selectedIndexPath == nil { return }
         
-        if gesture.state == .Changed || gesture.state == .Began {
-            let offset = gesture.translationInView(self.collectionView!)
-            let newCenter = initialPosition.add(offset)
+        if gesture.state == .changed || gesture.state == .began {
+            let offset = gesture.translation(in: self.collectionView!)
+            let newCenter = initialPosition.add(point: offset)
             
             dragView?.center = newCenter
             
-            let newIP = self.collectionView!.indexPathForItemAtPoint(newCenter)
+            let newIP = self.collectionView!.indexPathForItem(at: newCenter)
             if newIP == nil { return }
             
             let currentIP = targetIndexPath ?? selectedIndexPath!
-            if newIP!.isEqual(currentIP) { return }
+            if newIP == currentIP { return }
             
             let adjustedIP = self.delegate?.collectionView?(self.collectionView!, layout: self,
                 shouldMoveItemAtIndexPath: self.selectedIndexPath!,
                 currentIndexPath : currentIP,
                 toProposedIndexPath: newIP!) ?? newIP!
             
-            if adjustedIP.isEqual(currentIP) { return }
+            if adjustedIP == currentIP { return }
             self.targetIndexPath = adjustedIP
             self.dataSource?.collectionView?(self.collectionView!, layout: self, moveItemAtIndexPath: currentIP, toIndexPath: adjustedIP)
         }
-        else if gesture.state == .Ended {
-            finishDrag(gesture.velocityInView(self.collectionView!))
+        else if gesture.state == .ended {
+            finishDrag(velocity: gesture.velocity(in: self.collectionView!))
         }
     }
     
@@ -310,21 +310,21 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         if dragView == nil { return }
         let finalIndexPath = targetIndexPath ?? selectedIndexPath!
         
-        let attr = self.layoutAttributesForItemAtIndexPath(finalIndexPath)
+        let attr = self.layoutAttributesForItem(at: finalIndexPath as IndexPath)
         let oldView = dragView!
         dragView = nil
         
-        if !finalIndexPath.isEqual(selectedIndexPath) {
+        if finalIndexPath != selectedIndexPath {
             self.delegate?.collectionView?(self.collectionView!, layout: self, didFinishMovingCellFrom: selectedIndexPath!, finalIndexPath: finalIndexPath)
         }
         
         self.selectedIndexPath = nil
         self.targetIndexPath = nil
         
-//        let v = velocity ?? CGPointZero
+//        let v = velocity ?? CGPoint.zero
         
-        let cell = self.collectionView?.cellForItemAtIndexPath(finalIndexPath)
-        UIView.animateWithDuration(0.35, delay: 0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+        let cell = self.collectionView?.cellForItem(at: finalIndexPath as IndexPath)
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
             oldView.frame = attr!.frame
             cell?.alpha = 1
             }, completion: { (fin) -> Void in
@@ -349,29 +349,29 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         return floor((width - (spaceColumCount*self.minimumColumnSpacing)) / CGFloat(colCount))
     }
     
-    override public func prepareLayout(){
-        super.prepareLayout()
+    override public func prepare(){
+        super.prepare()
         
-        let numberOfSections = self.collectionView!.numberOfSections()
+        let numberOfSections = self.collectionView!.numberOfSections
         if numberOfSections == 0 {
             return
         }
         
         self.headersAttributes.removeAll()
-        self.footersAttributes.removeAll(keepCapacity: false)
-        self.unionRects.removeAllObjects()
-        self.columnHeights.removeAll(keepCapacity: false)
+        self.footersAttributes.removeAll(keepingCapacity: false)
+        self.unionRects.removeAll()
+        self.columnHeights.removeAll(keepingCapacity: false)
         self.allItemAttributes.removeAll()
         self.sectionItemAttributes.removeAll()
         
         // Create default column heights for each section
         for sec in 0...self.numSections-1 {
-            let colCount = self.columnsInSection(sec)
-            columnHeights.append([CGFloat](count: colCount, repeatedValue: 0))
+            let colCount = self.columns(in: sec)
+            columnHeights.append([CGFloat](repeating: 0, count: colCount))
         }
         
         var top : CGFloat = 0.0
-        var attributes = UICollectionViewLayoutAttributes()
+//        var attributes = UICollectionViewLayoutAttributes()
         
         for section in 0..<numberOfSections {
             
@@ -393,11 +393,11 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             */
             let heightHeader : CGFloat = self.delegate?.collectionView?(self.collectionView!, layout: self, heightForHeaderInSection: section) ?? self.headerHeight
             if heightHeader > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CBCollectionViewLayoutElementKind.SectionHeader, withIndexPath: NSIndexPath(forRow: 0, inSection: section))
-                attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, heightHeader)
+                let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CBCollectionViewLayoutElementKind.SectionHeader, with: IndexPath(item: 0, section: section))
+                attributes.frame = CGRect(x: 0, y: top, width: self.collectionView!.bounds.size.width, height: heightHeader)
                 self.headersAttributes[section] = attributes
                 self.allItemAttributes.append(attributes)
-                top = CGRectGetMaxY(attributes.frame)
+                top = attributes.frame.maxY
             }
             
             top += sectionInsets.top
@@ -408,14 +408,14 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             /*
             * 3. Section items
             */
-            let itemCount = self.collectionView!.numberOfItemsInSection(section)
+            let itemCount = self.collectionView!.numberOfItems(inSection: section)
             var itemAttributes : [UICollectionViewLayoutAttributes] = []
 
             // Item will be put into shortest column.
             for idx in 0..<itemCount {
-                let indexPath = NSIndexPath(forItem: idx, inSection: section)
+                let indexPath = IndexPath(item: idx, section: section)
                 
-                let columnIndex = self.nextColumnIndexForItem(indexPath)
+                let columnIndex = self.nextColumn(forItem: indexPath)
                 let xOffset = sectionInsets.left + (itemWidth + colSpacing) * CGFloat(columnIndex)
                 let yOffset = self.columnHeights[section][columnIndex]
                 var itemHeight : CGFloat = 0
@@ -428,28 +428,28 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
                     itemHeight = self.delegate?.collectionView?(self.collectionView!, layout: self, heightForItemAtIndexPath: indexPath) ?? self.defaultItemHeight
                 }
                 
-                attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath)
-                attributes.alpha = indexPath.isEqual(targetIndexPath) ? 0.3 : 1
-                attributes.frame = CGRectMake(xOffset, CGFloat(yOffset), itemWidth, itemHeight)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+                attributes.alpha = indexPath == targetIndexPath ? 0.3 : 1
+                attributes.frame = CGRect(x: xOffset, y: CGFloat(yOffset), width: itemWidth, height: itemHeight)
                 itemAttributes.append(attributes)
                 self.allItemAttributes.append(attributes)
-                self.columnHeights[section][columnIndex] = CGRectGetMaxY(attributes.frame) + itemSpacing;
+                self.columnHeights[section][columnIndex] = attributes.frame.maxY + itemSpacing;
             }
             self.sectionItemAttributes.append(itemAttributes)
             
             /*
             * 4. Section footer
             */
-            let columnIndex  = self.longestColumnIndexInSection(section)
+            let columnIndex  = self.longestColumn(in: section)
             top = self.columnHeights[section][columnIndex] - itemSpacing + sectionInsets.bottom
     
             let footerHeight = self.delegate?.collectionView?(self.collectionView!, layout: self, heightForFooterInSection: section) ?? self.footerHeight
             if footerHeight > 0 {
-                attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: CBCollectionViewLayoutElementKind.SectionFooter, withIndexPath: NSIndexPath(forItem: 0, inSection: section))
-                attributes.frame = CGRectMake(0, top, self.collectionView!.bounds.size.width, footerHeight)
+                let attributes = UICollectionViewLayoutAttributes (forSupplementaryViewOfKind: CBCollectionViewLayoutElementKind.SectionFooter, with: IndexPath(item: 0, section: section))
+                attributes.frame = CGRect(x: 0, y: top, width: self.collectionView!.bounds.size.width, height:footerHeight)
                 self.footersAttributes[section] = attributes
                 self.allItemAttributes.append(attributes)
-                top = CGRectGetMaxY(attributes.frame)
+                top = attributes.frame.maxY
             }
             
             for idx in 0..<colCount {
@@ -463,15 +463,15 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             let rect1 = self.allItemAttributes[idx].frame as CGRect
             idx = min(idx + unionSize, itemCounts) - 1
             let rect2 = self.allItemAttributes[idx].frame as CGRect
-            self.unionRects.addObject(NSValue(CGRect:CGRectUnion(rect1,rect2)))
+            self.unionRects.append(rect1.union(rect2))
             idx += 1
         }
     }
     
-    override public func collectionViewContentSize() -> CGSize{
-        let numberOfSections = self.collectionView!.numberOfSections()
+    override public var collectionViewContentSize : CGSize{
+        let numberOfSections = self.collectionView!.numberOfSections
         if numberOfSections == 0{
-            return CGSizeZero
+            return CGSize.zero
         }
         var contentSize = self.collectionView!.bounds.size as CGSize
         let height = self.columnHeights.last?.first ?? 0
@@ -479,7 +479,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         return  contentSize
     }
     
-    override public func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes?{
+    public override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         if indexPath.section >= self.sectionItemAttributes.count{
             return nil
         }
@@ -490,7 +490,8 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         return list[indexPath.item]
     }
     
-    override public func layoutAttributesForSupplementaryViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes {
+    
+    public override func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         var attribute = UICollectionViewLayoutAttributes()
         if elementKind == CBCollectionViewLayoutElementKind.SectionHeader {
             attribute = self.headersAttributes[indexPath.section]!
@@ -500,34 +501,35 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         return attribute
     }
     
-    override public func layoutAttributesForElementsInRect (rect : CGRect) -> [UICollectionViewLayoutAttributes] {
+    
+    override public func layoutAttributesForElements (in rect : CGRect) -> [UICollectionViewLayoutAttributes] {
         var begin = 0, end = self.unionRects.count
-        let attrs = NSMutableArray()
+        var attrs : [UICollectionViewLayoutAttributes] = []
         
         for i in 0..<end {
-            if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue){
+            if rect.intersects(unionRects[i]){
                 begin = i * unionSize;
                 break
             }
         }
-        for i in (self.unionRects.count - 1).stride(through: 0, by: -1) {
-            if CGRectIntersectsRect(rect, self.unionRects.objectAtIndex(i).CGRectValue){
+        for i in stride(from: self.unionRects.count - 1, through: 0, by: -1) {
+            if rect.intersects(unionRects[i]){
                 end = min((i+1)*unionSize,self.allItemAttributes.count)
                 break
             }
         }
         for i in begin..<end {
             let attr = self.allItemAttributes[i]
-            if CGRectIntersectsRect(rect, attr.frame) {
-                attrs.addObject(attr)
+            if rect.intersects(attr.frame) {
+                attrs.append(attr)
             }
         }
-        return Array(attrs) as! [UICollectionViewLayoutAttributes]
+        return attrs
     }
     
-    override public func shouldInvalidateLayoutForBoundsChange (newBounds : CGRect) -> Bool {
+    override public func shouldInvalidateLayout (forBoundsChange newBounds : CGRect) -> Bool {
         let oldBounds = self.collectionView!.bounds
-        if CGRectGetWidth(newBounds) != CGRectGetWidth(oldBounds){
+        if newBounds.width != oldBounds.width{
             return true
         }
         return false
@@ -541,9 +543,9 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     :param: section The section to find the shortest column for.
     :returns: The index of the shortest column in the given section
     */
-    func shortestColumnIndexInSection(section: Int) -> NSInteger {
-        let min =  self.columnHeights[section].minElement()!
-        return self.columnHeights[section].indexOf(min)!
+    func shortestColumn(in section: Int) -> NSInteger {
+        let min =  self.columnHeights[section].min()!
+        return self.columnHeights[section].index(of: min)!
     }
     
     /*!
@@ -552,9 +554,9 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     :param: section The section to find the longest column for.
     :returns: The index of the longest column in the given section
     */
-    func longestColumnIndexInSection(section: Int) -> NSInteger {
-        let max =  self.columnHeights[section].maxElement()!
-        return self.columnHeights[section].indexOf(max)!
+    func longestColumn(in section: Int) -> NSInteger {
+        let max =  self.columnHeights[section].max()!
+        return self.columnHeights[section].index(of: max)!
     }
 
     /*!
@@ -563,16 +565,16 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     :param: The indexPath of the section to look ahead of
     :returns: The index of the next column
     */
-    func nextColumnIndexForItem (indexPath : NSIndexPath) -> Int {
-        let colCount = self.delegate?.collectionView?(self.collectionView!, layout: self, numberOfColumnsInSection: indexPath.section) ?? self.columnCount
+    func nextColumn(forItem atIndexPath : IndexPath) -> Int {
+        let colCount = self.delegate?.collectionView?(self.collectionView!, layout: self, numberOfColumnsInSection: atIndexPath.section) ?? self.columnCount
         var index = 0
         switch (self.itemRenderDirection){
         case .ShortestFirst :
-            index = self.shortestColumnIndexInSection(indexPath.section)
+            index = self.shortestColumn(in: atIndexPath.section)
         case .LeftToRight :
-            index = (indexPath.item%colCount)
+            index = (atIndexPath.item%colCount)
         case .RightToLeft:
-            index = (colCount - 1) - (indexPath.item % colCount);
+            index = (colCount - 1) - (atIndexPath.item % colCount);
         }
         return index
     }

@@ -17,7 +17,7 @@ import UIKit
         didSet {
             if autoExpand {
                 if heightConstraint == nil {
-                    _heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: minimumHeight)
+                    _heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: minimumHeight)
                     heightConstraint!.priority = 1000
                     self.addConstraint(heightConstraint!)
                     self.layoutIfNeeded()
@@ -44,11 +44,11 @@ import UIKit
         didSet { self.layer.borderWidth = borderWidth }
     }
     /// The color of the border around the text view
-    @IBInspectable public var borderColor: UIColor = UIColor.clearColor() {
-        didSet { self.layer.borderColor = borderColor.CGColor }
+    @IBInspectable public var borderColor: UIColor = UIColor.clear {
+        didSet { self.layer.borderColor = borderColor.cgColor }
     }
     /// The color of the placeholder text
-    @IBInspectable public var placeholderColor: UIColor = UIColor.lightGrayColor() {
+    @IBInspectable public var placeholderColor: UIColor = UIColor.lightGray {
         didSet { self.placeholderTextView?.textColor = placeholderColor }
     }
     /// The placeholder text to display if no text is entered
@@ -102,21 +102,21 @@ import UIKit
             placeholderTextView = UITextView(frame: self.bounds)
             self.addSubview(placeholderTextView!)
             placeholderTextView?.font = self.font
-            placeholderTextView?.userInteractionEnabled = false
+            placeholderTextView?.isUserInteractionEnabled = false
             placeholderTextView?.textColor = placeholderColor
             placeholderTextView?.textContainerInset = self.textContainerInset
             placeholderTextView?.text = self.placeholder
-            placeholderTextView?.backgroundColor = UIColor.clearColor()
+            placeholderTextView?.backgroundColor = UIColor.clear
         }
     }
     
-    override public func willMoveToSuperview(newSuperview: UIView?) {
-        super.willMoveToSuperview(newSuperview)
+    override public func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
         if newSuperview == nil {
-            NSNotificationCenter.defaultCenter().removeObserver(self)
+            NotificationCenter.default.removeObserver(self)
         }
         else {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CBTextView.textDidChange), name: UITextViewTextDidChangeNotification, object: self)
+            NotificationCenter.default.addObserver(self, selector: #selector(CBTextView.textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
             self.superview?.translatesAutoresizingMaskIntoConstraints = false
         }
     }
@@ -132,7 +132,7 @@ import UIKit
         let size = self.contentSize
         
         if placeholderTextView?.alpha != (self.text.isEmpty ? 1 : 0) {
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
+            UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 self.placeholderTextView?.alpha = self.text.isEmpty ? 1 : 0
             })
         }
@@ -153,7 +153,7 @@ import UIKit
         self.layoutIfNeeded()
         self.superview?.layoutIfNeeded()
         if size.height > self.minimumHeight && size.height < self.maximumHeight {
-            self.contentOffset = CGPointMake(0, 8)
+            self.contentOffset = CGPoint(x: 0, y: 8)
         }
         //        }
     }

@@ -11,7 +11,7 @@ import UIKit
 import CBToolkit
 
 protocol GalleryDelegate {
-    func openImageEditor(image: UIImage)
+    func openImageEditor(_ image: UIImage)
 }
 
 
@@ -43,7 +43,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
@@ -60,35 +60,35 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     NOTE: width of the cell is always determined by the number of columns/spacing
     */
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, aspectRatioForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if indexPath.row % 4 == 0 {
-            return CGSizeMake(3, 2)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, aspectRatioForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        if (indexPath as NSIndexPath).row % 4 == 0 {
+            return CGSize(width: 3, height: 2)
         }
-        if indexPath.row % 3 == 0 {
-            return CGSizeMake(2, 3)
+        if (indexPath as NSIndexPath).row % 3 == 0 {
+            return CGSize(width: 2, height: 3)
         }
-        return CGSizeMake(1, 1)
+        return CGSize(width: 1, height: 1)
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1000
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("GalleryCell", forIndexPath: indexPath) as! GalleryCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCell", for: indexPath) as! GalleryCell
         
-        let imgIndex = indexPath.row % imgURLs.count
+        let imgIndex = (indexPath as NSIndexPath).row % imgURLs.count
         let url = imgURLs[imgIndex]
-        cell.imageView.onLoadTransition = UIViewAnimationOptions.TransitionCrossDissolve
-        cell.imageView.loadImageAtURL(url, completion: nil)
+        cell.imageView.onLoadTransition = UIViewAnimationOptions.transitionCrossDissolve
+        cell.imageView.loadImage(at: url, completion: nil)
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let imgIndex = indexPath.row % imgURLs.count
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imgIndex = (indexPath as NSIndexPath).row % imgURLs.count
         let url = imgURLs[imgIndex]
-        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(url, completion: { (image, error, requestTime) -> Void in
+        CBPhotoFetcher.sharedFetcher.fetchImage(at: url, completion: { (image, error, requestTime) -> Void in
             if image != nil {
                 self.delegate?.openImageEditor(image!)
             }

@@ -32,8 +32,8 @@ import UIKit
         didSet { self.setProgress(progress, animated: false) }
     }
     /// The background color of the full circle
-    @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
-        didSet { backgroundLayer.strokeColor = trackColor.CGColor }
+    @IBInspectable public var trackColor: UIColor! = UIColor.clear {
+        didSet { backgroundLayer.strokeColor = trackColor.cgColor }
     }
     
     override public init(frame: CGRect) {
@@ -51,24 +51,24 @@ import UIKit
     }
     
     func prepareView() {
-        backgroundLayer.strokeColor = trackColor.CGColor
+        backgroundLayer.strokeColor = trackColor.cgColor
         backgroundLayer.strokeStart = 0
         backgroundLayer.strokeEnd = 1
         backgroundLayer.fillColor = nil
         backgroundLayer.lineWidth = lineWidth
         self.layer.addSublayer(backgroundLayer)
         
-        progressLayer.strokeColor = tintColor.CGColor
+        progressLayer.strokeColor = tintColor.cgColor
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = progress
         progressLayer.fillColor = nil
         progressLayer.lineWidth = lineWidth
         self.layer.addSublayer(progressLayer)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
-    public override func willMoveToSuperview(newSuperview: UIView?) {
+    public override func willMove(toSuperview newSuperview: UIView?) {
         if newSuperview != nil {
             self.updatePath()
         }
@@ -77,26 +77,26 @@ import UIKit
     override public func layoutSubviews() {
         super.layoutSubviews()
         if progressLayer.frame.size != self.frame.size {
-            progressLayer.frame = CGRectInset(self.bounds, 0, 0)
-            backgroundLayer.frame = CGRectInset(self.bounds, 0, 0)
+            progressLayer.frame = self.bounds.insetBy(dx: 0, dy: 0)
+            backgroundLayer.frame = self.bounds.insetBy(dx: 0, dy: 0)
             updatePath()
         }
     }
     
     private func updatePath() {
-        let center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+        let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY);
         let radius = (self.bounds.size.width / 2) - lineWidth/2
         let startAngle = CGFloat(2 * M_PI * Double(startPosition) - M_PI_2)
         let endAngle = startAngle + CGFloat(2 * M_PI)
         
-        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).CGPath
-        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
+        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).cgPath
+        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).cgPath
     }
     
     override public func tintColorDidChange() {
         super.tintColorDidChange()
         
-        self.progressLayer.strokeColor = tintColor.CGColor
+        self.progressLayer.strokeColor = tintColor.cgColor
     }
     
     
@@ -106,21 +106,21 @@ import UIKit
      - parameter width:    The new line width
      - parameter animated: If the change should be animated
      */
-    public func setLineWidth(width: CGFloat, animated: Bool) {
+    public func setLineWidth(_ width: CGFloat, animated: Bool) {
         if animated {
             self.progressLayer.lineWidth = width
             self.backgroundLayer.lineWidth = width
             var animation: CABasicAnimation?
             animation = CABasicAnimation(keyPath: "lineWidth")
             animation!.fromValue = _lineWidth
-            animation!.toValue = NSNumber(float: Float(width))
+            animation!.toValue = NSNumber(value: Float(width))
             animation!.duration = 0.2;
-            self.backgroundLayer.addAnimation(animation!, forKey: "lineWidthAnimation")
-            self.progressLayer.addAnimation(animation!, forKey: "lineWidthAnimation")
+            self.backgroundLayer.add(animation!, forKey: "lineWidthAnimation")
+            self.progressLayer.add(animation!, forKey: "lineWidthAnimation")
         }
         else {
-            self.backgroundLayer.removeAnimationForKey("lineWidthAnimation")
-            self.progressLayer.removeAnimationForKey("lineWidthAnimation")
+            self.backgroundLayer.removeAnimation(forKey: "lineWidthAnimation")
+            self.progressLayer.removeAnimation(forKey: "lineWidthAnimation")
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             self.progressLayer.lineWidth = width
@@ -137,17 +137,17 @@ import UIKit
      - parameter progress: The new progress (0-1)
      - parameter animated: If the change should be animated
      */
-    public func setProgress(progress: CGFloat, animated: Bool) {
+    public func setProgress(_ progress: CGFloat, animated: Bool) {
         if (animated) {
             let animation = CABasicAnimation(keyPath: "strokeEnd")
-            animation.fromValue = NSNumber(float: Float(self._progress));
-            animation.toValue = NSNumber(float: Float(progress))
+            animation.fromValue = NSNumber(value: Float(self._progress));
+            animation.toValue = NSNumber(value: Float(progress))
             let change = Float(abs(self._progress - progress))
             animation.duration = CFTimeInterval(change*2);
             self.progressLayer.strokeEnd = progress + startPosition;
-            self.progressLayer.addAnimation(animation, forKey: "progressAnimation")
+            self.progressLayer.add(animation, forKey: "progressAnimation")
         } else {
-            self.progressLayer.removeAnimationForKey("progressAnimation")
+            self.progressLayer.removeAnimation(forKey: "progressAnimation")
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             self.progressLayer.strokeEnd = progress;
@@ -180,8 +180,8 @@ import UIKit
     @IBInspectable public var hidesWhenStopped: Bool = true
     
     /// The background color of the full indicator track
-    @IBInspectable public var trackColor: UIColor! = UIColor.clearColor() {
-        didSet { backgroundLayer.strokeColor = trackColor.CGColor }
+    @IBInspectable public var trackColor: UIColor! = UIColor.clear {
+        didSet { backgroundLayer.strokeColor = trackColor.cgColor }
     }
     
     private var _lineWidth: CGFloat = 2
@@ -223,21 +223,21 @@ import UIKit
     }
     
     func prepareView() {
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
         
-        backgroundLayer.strokeColor = trackColor.CGColor
+        backgroundLayer.strokeColor = trackColor.cgColor
         backgroundLayer.strokeStart = 0
         backgroundLayer.strokeEnd = 1
         backgroundLayer.fillColor = nil
         backgroundLayer.lineWidth = lineWidth
         self.layer.addSublayer(backgroundLayer)
         
-        progressLayer.strokeColor = tintColor.CGColor
+        progressLayer.strokeColor = tintColor.cgColor
         progressLayer.strokeStart = 0
         progressLayer.strokeEnd = self.indicatorSize
         progressLayer.fillColor = nil
         progressLayer.lineWidth = lineWidth
-        progressLayer.anchorPoint = CGPointMake(0.5, 0.5)
+        progressLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.layer.addSublayer(progressLayer)
         
         drawPath()
@@ -246,7 +246,7 @@ import UIKit
         }
     }
     
-    public override func willMoveToSuperview(newSuperview: UIView?) {
+    public override func willMove(toSuperview newSuperview: UIView?) {
         if newSuperview != nil {
             self.drawPath()
         }
@@ -255,7 +255,7 @@ import UIKit
     override public func layoutSubviews() {
         super.layoutSubviews()
         if progressLayer.frame.size != self.frame.size {
-            progressLayer.frame = CGRectInset(self.bounds, 0, 0)
+            progressLayer.frame = self.bounds
             drawPath()
         }
     }
@@ -271,11 +271,11 @@ import UIKit
         self.progressLayer.removeAllAnimations()
         let anim = CABasicAnimation(keyPath: "transform.rotation.z")
         anim.duration = CFTimeInterval(rotateDuration)
-        anim.removedOnCompletion = false
-        anim.fromValue = NSNumber(float: 0)
-        anim.toValue = NSNumber(float: 6.28318531)
+        anim.isRemovedOnCompletion = false
+        anim.fromValue = NSNumber(value: 0)
+        anim.toValue = NSNumber(value: 6.28318531)
         anim.repeatCount = MAXFLOAT
-        progressLayer.addAnimation(anim, forKey: "spin")
+        progressLayer.add(anim, forKey: "spin")
         
         if hidesWhenStopped {
             CATransaction.begin()
@@ -285,13 +285,13 @@ import UIKit
             CATransaction.commit()
             
             let anim = CABasicAnimation(keyPath: "strokeEnd")
-            anim.fromValue = NSNumber(int: 0)
-            anim.toValue = NSNumber(float: Float(indicatorSize))
+            anim.fromValue = NSNumber(value: 0)
+            anim.toValue = NSNumber(value: Float(indicatorSize))
             anim.duration = CFTimeInterval(0.5)
-            anim.removedOnCompletion = false
+            anim.isRemovedOnCompletion = false
             self.progressLayer.strokeEnd = self.indicatorSize
             progressLayer.strokeEnd = self.indicatorSize
-            progressLayer.addAnimation(anim, forKey: "show")
+            progressLayer.add(anim, forKey: "show")
         }
     }
     
@@ -304,15 +304,17 @@ import UIKit
         }
         if hidesWhenStopped {
             let anim = CABasicAnimation(keyPath: "strokeStart")
-            anim.fromValue = NSNumber(int: 0)
-            anim.toValue = NSNumber(float: Float(self.indicatorSize))
+            anim.fromValue = NSNumber(value: 0)
+            anim.toValue = NSNumber(value: Float(self.indicatorSize))
             anim.duration = CFTimeInterval(0.5)
-            anim.removedOnCompletion = false
+            anim.isRemovedOnCompletion = false
             progressLayer.strokeStart = self.indicatorSize
-            progressLayer.addAnimation(anim, forKey: "hide")
+            progressLayer.add(anim, forKey: "hide")
         }
         else {
-            let rotation = self.progressLayer.presentationLayer()!.rotation
+            
+            
+            let rotation = self.progressLayer.presentation()!.value(forKey: "transform.rotation.z")
             self.progressLayer.removeAllAnimations()
             self.progressLayer.setValue(rotation, forKey: "transform.rotation.z")
         }
@@ -324,21 +326,21 @@ import UIKit
      - parameter width:    The new width of the line
      - parameter animated: If the change should be animated
      */
-    public func setLineWidth(width: CGFloat, animated: Bool) {
+    public func setLineWidth(_ width: CGFloat, animated: Bool) {
         if animated {
             self.progressLayer.lineWidth = width
             self.backgroundLayer.lineWidth = width
             var animation: CABasicAnimation?
             animation = CABasicAnimation(keyPath: "lineWidth")
             animation!.fromValue = _lineWidth
-            animation!.toValue = NSNumber(float: Float(width))
+            animation!.toValue = NSNumber(value: Float(width))
             animation!.duration = 0.2;
-            self.backgroundLayer.addAnimation(animation!, forKey: "lineWidthAnimation")
-            self.progressLayer.addAnimation(animation!, forKey: "lineWidthAnimation")
+            self.backgroundLayer.add(animation!, forKey: "lineWidthAnimation")
+            self.progressLayer.add(animation!, forKey: "lineWidthAnimation")
         }
         else {
-            self.backgroundLayer.removeAnimationForKey("lineWidthAnimation")
-            self.progressLayer.removeAnimationForKey("lineWidthAnimation")
+            self.backgroundLayer.removeAnimation(forKey: "lineWidthAnimation")
+            self.progressLayer.removeAnimation(forKey: "lineWidthAnimation")
             CATransaction.begin()
             CATransaction.setDisableActions(true)
             self.progressLayer.lineWidth = width
@@ -352,17 +354,19 @@ import UIKit
     
     override public func tintColorDidChange() {
         super.tintColorDidChange()
-        self.progressLayer.strokeColor = tintColor.CGColor
+        self.progressLayer.strokeColor = tintColor.cgColor
+        
     }
     
     private func drawPath() {
-        let center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+        
+        let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
         let radius = (self.bounds.size.width / 2) - lineWidth/2
         
-        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
-        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).CGPath
+        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).cgPath
+        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).cgPath
         
-        progressLayer.anchorPoint = CGPointMake(0.5, 0.5)
+        progressLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.progressLayer.frame = self.bounds
     }
 }

@@ -16,6 +16,7 @@ import Foundation
 import UIKit
 
 
+
 /// Style your imageViews and even load remote image with a url.
 @IBDesignable public class CBImageView : UIImageView {
     
@@ -40,15 +41,15 @@ import UIKit
     }
     
     /// The color of the border. Animateable
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
-        didSet { self.layer.borderColor = borderColor.CGColor }
+    @IBInspectable public var borderColor: UIColor = UIColor.lightGray {
+        didSet { self.layer.borderColor = borderColor.cgColor }
     }
     
     /// Tint the image with the views tintColor property
     @IBInspectable public var tinted: Bool = false {
         didSet {
             if self.image != nil {
-                self.image = self.image?.imageWithRenderingMode(tinted ? UIImageRenderingMode.AlwaysTemplate : UIImageRenderingMode.Automatic)
+                self.image = self.image?.withRenderingMode(tinted ? UIImageRenderingMode.alwaysTemplate : UIImageRenderingMode.automatic)
             }
         }
     }
@@ -63,7 +64,7 @@ import UIKit
         didSet {
             if self.image == nil && placeholderImage != nil {
                 if tinted {
-                    self.image = placeholderImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                    self.image = placeholderImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
                 }
                 else {
                     self.image = placeholderImage
@@ -85,7 +86,7 @@ import UIKit
             self.layer.removeAllAnimations()
             if image == nil && self.placeholderImage != nil {
                 if tinted {
-                    self.image = placeholderImage?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                    self.image = placeholderImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
                 }
                 else {
                     self.image = placeholderImage
@@ -101,19 +102,19 @@ import UIKit
     
     - param: newImage An image to display in this image view
     */
-    public func updateImage(newImage: UIImage?) {
+    public func updateImage(_ newImage: UIImage?) {
         if image == nil || tinted == false {
             self.image = nil
         }
         else if image != nil {
-            self.image = newImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+            self.image = newImage!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         }
     }
     
     // MARK: - Loading images
     
     /// The transition to apply when a remote image is loaded
-    public var onLoadTransition: UIViewAnimationOptions = UIViewAnimationOptions.TransitionNone
+    public var onLoadTransition: UIViewAnimationOptions = []
     
     /**
      Load an image at the given URL using CBPhotoFetcher and display it.
@@ -121,18 +122,18 @@ import UIKit
      - parameter imgURL:     The url of the image
      - parameter completion: A completion handler. If set, the image will not be set in the view when loaded. It is up to you to set it.
      */
-    public func loadImageAtURL(imgURL: String!, completion: CBImageFetchCallback?) {
-        imageURL = imgURL
-        CBPhotoFetcher.sharedFetcher.fetchImageAtURL(imgURL, completion: { (image, error, fromCache) -> Void in
-            if imgURL != self.imageURL {
+    public func loadImage(at url: String!, completion: CBImageFetchCallback?) {
+        imageURL = url
+        CBPhotoFetcher.sharedFetcher.fetchImage(at: url, completion: { (image, error, fromCache) -> Void in
+            if url != self.imageURL {
                 return
             }
             if completion == nil {
-                if self.onLoadTransition == UIViewAnimationOptions.TransitionNone || fromCache {
+                if self.onLoadTransition == [] || fromCache {
                     self.image = image
                 }
                 else {
-                    UIView.transitionWithView(self, duration: 0.3, options: self.onLoadTransition, animations: { () -> Void in
+                    UIView.transition(with: self, duration: 0.3, options: self.onLoadTransition, animations: { () -> Void in
                         self.image = image
                         }, completion: nil)
                 }

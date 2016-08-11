@@ -19,37 +19,37 @@ class ViewCell : UICollectionViewCell {
     
 
     
-    @IBAction func updateCornerRadius(sender: UISlider) {
+    @IBAction func updateCornerRadius(_ sender: UISlider) {
         basicView.cornerRadius = CGFloat(sender.value)
     }
-    @IBAction func updateBorder(sender: UISlider) {
+    @IBAction func updateBorder(_ sender: UISlider) {
         basicView.borderWidth = CGFloat(sender.value)
         borderView.borderWidth = CGFloat(sender.value)
     }
-    @IBAction func updateShadowRadius(sender: UISlider) {
+    @IBAction func updateShadowRadius(_ sender: UISlider) {
          basicView.shadowRadius = CGFloat(sender.value)
     }
-    @IBAction func updateShadowOpacity(sender: UISlider) {
+    @IBAction func updateShadowOpacity(_ sender: UISlider) {
         basicView.shadowOpacity = sender.value
     }
     
-    @IBAction func updateGradientTop(sender: UISlider) {
+    @IBAction func updateGradientTop(_ sender: UISlider) {
         gradientview.topColor = UIColor(white: 0, alpha: CGFloat(sender.value))
     }
-    @IBAction func updateGradientBottom(sender: UISlider) {
+    @IBAction func updateGradientBottom(_ sender: UISlider) {
         gradientview.bottomColor = UIColor(white: 0, alpha: CGFloat(sender.value))
     }
     
-    @IBAction func topBorder(sender: UISwitch) {
-        borderView.topBorder = sender.on
+    @IBAction func topBorder(_ sender: UISwitch) {
+        borderView.topBorder = sender.isOn
     }
-    @IBAction func bottomBorder(sender: UISwitch) {
-        borderView.bottomBorder = sender.on
+    @IBAction func bottomBorder(_ sender: UISwitch) {
+        borderView.bottomBorder = sender.isOn
     }
-    @IBAction func leftBorder(sender: UISwitch) {
-        borderView.leftBorder = sender.on
+    @IBAction func leftBorder(_ sender: UISwitch) {
+        borderView.leftBorder = sender.isOn
     }
-    @IBAction func rightBorder(sender: UISwitch) {
-        borderView.rightBorder = sender.on
+    @IBAction func rightBorder(_ sender: UISwitch) {
+        borderView.rightBorder = sender.isOn
     }
 }

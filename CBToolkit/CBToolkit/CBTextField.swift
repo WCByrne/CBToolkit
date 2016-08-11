@@ -28,13 +28,13 @@ import UIKit
         didSet { self.layer.borderWidth = borderWidth }
     }
     /// The color of the labels border
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
-        didSet { self.layer.borderColor = borderColor.CGColor }
+    @IBInspectable public var borderColor: UIColor = UIColor.lightGray {
+        didSet { self.layer.borderColor = borderColor.cgColor }
     }
     
     /// The color of the labels shadow
-    @IBInspectable public var layerShadowColor: UIColor = UIColor.blackColor() {
-        didSet { self.layer.shadowColor = layerShadowColor.CGColor }
+    @IBInspectable public var layerShadowColor: UIColor = UIColor.black {
+        didSet { self.layer.shadowColor = layerShadowColor.cgColor }
     }
     /// The blur radius of the labels shadow
     @IBInspectable public var layerShadowRadius: CGFloat = 0 {
@@ -45,7 +45,7 @@ import UIKit
         didSet { self.layer.shadowOpacity = layerShadowOpacity }
     }
     /// The offset of the labels shadow
-    @IBInspectable public var layerShadowOffset: CGSize = CGSizeZero {
+    @IBInspectable public var layerShadowOffset: CGSize = CGSize.zero {
         didSet { self.layer.shadowOffset = layerShadowOffset }
     }
     
@@ -75,7 +75,7 @@ import UIKit
 @IBDesignable public class CBTextField : UITextField {
     
     /// Inset the text from the text fields frame
-    @IBInspectable public var textInset: CGPoint = CGPointZero
+    @IBInspectable public var textInset: CGPoint = CGPoint.zero
     /// Hide the caret
     @IBInspectable public var hideCaret: Bool = false
     /// The corner radius of the view
@@ -87,7 +87,7 @@ import UIKit
     @IBInspectable public var bottomBorder: Bool = false {
         didSet {
             self.layer.borderWidth = 0
-            self.layer.borderColor = UIColor.clearColor().CGColor
+            self.layer.borderColor = UIColor.clear.cgColor
         }
     }
     /// The border width for the text fields. If bottomBorder is true, this only applies to the bottom.
@@ -102,7 +102,7 @@ import UIKit
     @IBInspectable public var borderColor: UIColor! = UIColor(white: 0, alpha: 0.5) {
         didSet {
             if bottomBorder == false {
-                self.layer.borderColor = borderColor.CGColor
+                self.layer.borderColor = borderColor.cgColor
             }
         }
     }
@@ -136,35 +136,34 @@ import UIKit
         }
     }
     
-        
-    override public func caretRectForPosition(position: UITextPosition) -> CGRect {
-        if (hideCaret) { return CGRectZero }
-        return super.caretRectForPosition(position)
+    public override func caretRect(for position: UITextPosition) -> CGRect {
+        if (hideCaret) { return CGRect.zero }
+        return super.caretRect(for: position)
     }
     
     
     // Text inset
-    override public func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, textInset.x, textInset.y)
+    override public func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: textInset.x, dy: textInset.y)
     }
     
-    override public func textRectForBounds(bounds: CGRect) -> CGRect {
-        return CGRectInset(bounds, textInset.x, textInset.y)
+    override public func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.insetBy(dx: textInset.x, dy: textInset.y)
     }
     
-    override public func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override public func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if (bottomBorder) {
             let context = UIGraphicsGetCurrentContext();
             
-            CGContextSetLineWidth(context, borderWidth);
-            CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
+            context!.setLineWidth(borderWidth);
+            context!.setStrokeColor(borderColor.cgColor)
             
-            CGContextMoveToPoint(context, 0, self.bounds.size.height);
-            CGContextAddLineToPoint(context, self.bounds.size.width, self.bounds.size.height);
+            context!.moveTo(x: 0, y: self.bounds.size.height);
+            context!.addLineTo(x: self.bounds.size.width, y: self.bounds.size.height);
             
-            CGContextStrokePath(context);
+            context!.strokePath();
         }
     }
 }

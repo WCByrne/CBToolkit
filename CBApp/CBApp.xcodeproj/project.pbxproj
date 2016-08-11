@@ -29,13 +29,6 @@
 			remoteGlobalIDString = 1CDBAFEE1A7D8A7200D7677B;
 			remoteInfo = CBToolkit;
 		};
-		DE266BE01CB4F28B00B98237 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DE933ED81BE1AB1F00547B2B /* CBToolkit.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1CDBAFF91A7D8A7200D7677B;
-			remoteInfo = CBToolkitTests;
-		};
 		DE266BE71CB4F2CC00B98237 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE933ED81BE1AB1F00547B2B /* CBToolkit.xcodeproj */;
@@ -107,7 +100,6 @@
 			isa = PBXGroup;
 			children = (
 				DE266BDF1CB4F28B00B98237 /* CBToolkit.framework */,
-				DE266BE11CB4F28B00B98237 /* CBToolkitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,9 +219,11 @@
 					DEEBE0431B9892B600F18093 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 33W8XH2WT5;
+						LastSwiftMigration = 0800;
 					};
 					DEEBE0581B9892B600F18093 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = DEEBE0431B9892B600F18093;
 					};
 				};
@@ -265,13 +259,6 @@
 			fileType = wrapper.framework;
 			path = CBToolkit.framework;
 			remoteRef = DE266BDE1CB4F28B00B98237 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		DE266BE11CB4F28B00B98237 /* CBToolkitTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CBToolkitTests.xctest;
-			remoteRef = DE266BE01CB4F28B00B98237 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -454,6 +441,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wcbmedia.CBApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -475,6 +463,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = wcbmedia.CBApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -493,6 +482,7 @@
 				INFOPLIST_FILE = CBAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CBApp.app/CBApp";
 			};
 			name = Debug;
@@ -508,6 +498,7 @@
 				INFOPLIST_FILE = CBAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CBApp.app/CBApp";
 			};
 			name = Release;

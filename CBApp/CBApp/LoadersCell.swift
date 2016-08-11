@@ -21,45 +21,45 @@ class LoadersCell : UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.progressCompleteImageView.alpha = 0
-        self.progressCompleteImageView.transform = CGAffineTransformMakeScale(0, 0)
+        self.progressCompleteImageView.transform = CGAffineTransform(scaleX: 0, y: 0)
     }
     
-    @IBAction func toggleActivityIndicator(sender: CBButton) {
+    @IBAction func toggleActivityIndicator(_ sender: CBButton) {
         if activityIndicator.animating {
             activityIndicator.stopAnimating()
-            sender.setTitle("Start", forState: UIControlState.Normal)
-            sender.tintColor = UIColor.whiteColor()
+            sender.setTitle("Start", for: UIControlState.normal)
+            sender.tintColor = UIColor.white
         }
         else {
             activityIndicator.startAnimating()
-            sender.setTitle("Stop", forState: UIControlState.Normal)
-            sender.tintColor = UIColor.redColor()
+            sender.setTitle("Stop", for: UIControlState.normal)
+            sender.tintColor = UIColor.red
         }
     }
     
-    @IBAction func updateActivityWidth(sender: UISlider) {
+    @IBAction func updateActivityWidth(_ sender: UISlider) {
         activityIndicator.lineWidth = CGFloat(sender.value)
         activityIndicator.layoutSubviews()
     }
     
-    @IBAction func updateActivtySize(sender: UISlider) {
+    @IBAction func updateActivtySize(_ sender: UISlider) {
         activityIndicator.indicatorSize = CGFloat(sender.value)
     }
     
-    @IBAction func updateActivtySpeed(sender: UISlider) {
+    @IBAction func updateActivtySpeed(_ sender: UISlider) {
         activityIndicator.rotateDuration = CGFloat(sender.value)
     }
-    @IBAction func updateActivityTrackColor(sender: UISlider) {
+    @IBAction func updateActivityTrackColor(_ sender: UISlider) {
         self.activityIndicator.trackColor = UIColor(white: 0, alpha: CGFloat(sender.value))
     }
     
     
-    @IBAction func progressButtonSelected(sender: CBButtonView) {
+    @IBAction func progressButtonSelected(_ sender: CBButtonView) {
         if progress == 0 {
             progressView.setProgress(0, animated: false)
             progressView.setLineWidth(10, animated: true)
             progressView.setProgress(0.05, animated: true)
-            self.uploadButtonView.enabled = false
+            self.uploadButtonView.isEnabled = false
             self.incrementProgress()
         }
     }
@@ -68,16 +68,15 @@ class LoadersCell : UICollectionViewCell {
         self.uploadButtonView.popAnimation()
         self.progressView.setLineWidth(0, animated: true)
         self.progress = 0
-        self.uploadButtonView.enabled = true
-        self.progressCompleteImageView.transform = CGAffineTransformMakeScale(0, 0)
-        UIView.animateWithDuration(0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+        self.uploadButtonView.isEnabled = true
+        self.progressCompleteImageView.transform = CGAffineTransform(scaleX: 0, y: 0)
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
             self.progressCompleteImageView.alpha = 1
-            self.progressCompleteImageView.transform = CGAffineTransformMakeScale(1, 1)
+            self.progressCompleteImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }) { (fin) -> Void in
-            let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(1 * Double(NSEC_PER_SEC)))
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                UIView.animateWithDuration(0.5, animations: { () -> Void in
+            let delayTime = DispatchTime.now() + Double(Int64(1 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                UIView.animate(withDuration: 0.5, animations: { () -> Void in
                     self.progressCompleteImageView.alpha = 0
                 })
                 return
@@ -88,9 +87,8 @@ class LoadersCell : UICollectionViewCell {
     
     
     func incrementProgress() {
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-            Int64(0.2 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        let delayTime = DispatchTime.now() + Double(Int64(0.2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.progress = self.progress + 0.1
             if self.progress >= 1 { self.progress = 1 }
             self.progressView.setProgress(self.progress, animated: true)

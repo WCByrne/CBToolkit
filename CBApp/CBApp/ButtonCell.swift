@@ -18,22 +18,22 @@ class ButtonCell : UICollectionViewCell {
     @IBOutlet weak var popScaleLabel: UILabel!
     
     
-    @IBAction func popButtonSelected(sender: CBButton) {
-        sender.selected = !sender.selected
+    @IBAction func popButtonSelected(_ sender: CBButton) {
+        sender.isSelected = !sender.isSelected
     }
 
-    @IBAction func updateShrinkScale(sender: UISlider) {
+    @IBAction func updateShrinkScale(_ sender: UISlider) {
         basicButton.shrinkscale = CGFloat(sender.value)
         popButton.shrinkscale = CGFloat(sender.value)
     }
 
-    @IBAction func updateDamping(sender: UISlider) {
+    @IBAction func updateDamping(_ sender: UISlider) {
         basicButton.damping = CGFloat(sender.value)
         popButton.damping = CGFloat(sender.value)
         
     }
     
-    @IBAction func adjustPopScale(sender: UIStepper) {
+    @IBAction func adjustPopScale(_ sender: UIStepper) {
         popButton.popScale = CGFloat(sender.value)
         popScaleLabel.text = "\(sender.value)"
         popButton.popAnimation()
@@ -42,13 +42,13 @@ class ButtonCell : UICollectionViewCell {
     var randomize = false;
     var iconTypes : [CBIconType] = [.Hamburger, .Close, .Add, .AngleLeft, .AngleRight, .ArrowLeft, .ArrowRight];
     
-    @IBAction func iconButtonSelected(sender: CBIconButton) {
+    @IBAction func iconButtonSelected(_ sender: CBIconButton) {
         
         if randomize {
             let icon = sender.iconType
             var newIcon = sender.iconType
             while icon == newIcon {
-                let rand = Int.random(0, high: iconTypes.count - 1)
+                let rand = Int.random(low: 0, high: iconTypes.count - 1)
                 newIcon = iconTypes[rand]
             }
             sender.setIcon(newIcon, animated: true)

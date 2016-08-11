@@ -50,15 +50,15 @@ public class CBLogger {
     }
     
     class func threadName() -> String {
-        if NSThread.isMainThread() {
+        if Thread.isMainThread {
             return "main"
         } else {
-            if let threadName = NSThread.currentThread().name where !threadName.isEmpty {
+            if let threadName = Thread.current.name where !threadName.isEmpty {
                 return threadName
-            } else if let queueName = String(UTF8String: dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)) where !queueName.isEmpty {
-                return queueName
+//            } else if let queueName = String(UTF8String: DispatchQueue.global() dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)) where !queueName.isEmpty {
+//                return queueName
             } else {
-                return String(format: "%p", NSThread.currentThread())
+                return String(format: "%p", Thread.current)
             }
         }
     }
@@ -85,15 +85,15 @@ public class CBLogger {
     }
     
     /// internal helper which dispatches send to dedicated queue if minLevel is ok
-    class func dispatch_send(level: CBLogger.LogLevel, msg: Any, thread: String, path: String, function: String, line: Int) {
+    class func dispatch_send(_ level: CBLogger.LogLevel, msg: Any, thread: String, path: String, function: String, line: Int) {
         for dest in destinations {
             if let queue = dest.queue {
-                if dest.shouldLevelBeLogged(level, path: path, function: function) && dest.queue != nil {
+                if dest.shouldLevelBeLogged(level: level, path: path, function: function) && dest.queue != nil {
                     // try to convert msg object to String and put it on queue
                     let msgStr = "\(msg)"
                     if msgStr.characters.count > 0 {
-                        dispatch_async(queue, {
-                            dest.send(level, msg: msgStr, thread: thread, path: path, function: function, line: line)
+                        queue.async(execute: { 
+                            dest.send(level: level, msg: msgStr, thread: thread, path: path, function: function, line: line)
                         })
                     }
                 }
@@ -101,18 +101,19 @@ public class CBLogger {
         }
     }
     
-    public class func flush(secondTimeout: Int64) -> Bool {
-        let grp = dispatch_group_create();
+    public class func flush(secondTimeout: UInt64) -> Bool {
+        let grp = DispatchGroup();
         for dest in destinations {
             if let queue = dest.queue {
-                dispatch_group_enter(grp)
-                dispatch_async(queue, {
-                    dispatch_group_leave(grp)
+                grp.enter()
+                queue.async(execute: {
+                    grp.leave()
                 })
             }
         }
-        let waitUntil = dispatch_time(DISPATCH_TIME_NOW, secondTimeout * 1000000000)
-        return dispatch_group_wait(grp, waitUntil) == 0
+        
+        let waitUntil = DispatchTime(uptimeNanoseconds:DispatchTime.now().uptimeNanoseconds + (secondTimeout * UInt64(1000000000)))
+        return grp.wait(timeout: waitUntil) == .success
     }
 }
 
@@ -145,7 +146,7 @@ public class BaseDestination: Hashable, Equatable {
         public var Error = "ERROR"
     }
     
-    let formatter = NSDateFormatter()
+    let formatter = DateFormatter()
     
     // For a colored log level word in a logged line
     // XCode RGB colors
@@ -163,21 +164,21 @@ public class BaseDestination: Hashable, Equatable {
     lazy public var hashValue: Int = self.defaultHashValue
     public var defaultHashValue: Int {return 0}
     
-    var queue: dispatch_queue_t?
+    var queue: DispatchQueue?
     
     init() {
-        let uuid = NSUUID().UUIDString
+        let uuid = NSUUID().uuidString
         let queueLabel = "cblogger-queue-" + uuid
-        queue = dispatch_queue_create(queueLabel, nil)
+        queue = DispatchQueue(__label: queueLabel, attr: nil)
     }
     
     func send(level: CBLogger.LogLevel, msg: String, thread: String, path: String, function: String, line: Int) -> String? {
         var dateStr = ""
         var str = ""
-        let levelStr = formattedLevel(level)
+        let levelStr = formattedLevel(level: level)
         
-        dateStr = formattedDate(dateFormat)
-        str = formattedMessage(dateStr, levelString: levelStr, msg: msg, thread: thread, path: path,
+        dateStr = formattedDate(dateFormat: dateFormat)
+        str = formattedMessage(dateString: dateStr, levelString: levelStr, msg: msg, thread: thread, path: path,
                                function: function, line: line)
         return str
     }
@@ -185,7 +186,7 @@ public class BaseDestination: Hashable, Equatable {
     func formattedDate(dateFormat: String) -> String {
         //formatter.timeZone = NSTimeZone(abbreviation: "UTC")
         formatter.dateFormat = dateFormat
-        let dateStr = formatter.stringFromDate(NSDate())
+        let dateStr = formatter.string(from: NSDate() as Date)
         return dateStr
     }
     
@@ -227,7 +228,7 @@ public class BaseDestination: Hashable, Equatable {
     func formattedMessage(dateString: String, levelString: String, msg: String,
                           thread: String, path: String, function: String, line: Int) -> String {
         // just use the file name of the path and remove suffix
-        let file = path.componentsSeparatedByString("/").last!.componentsSeparatedByString(".").first!
+        let file = path.components(separatedBy: "/").last!.components(separatedBy: ".").first!
         
         var str = ""
         if log_Date && !dateString.isEmpty {
@@ -250,7 +251,7 @@ public class BaseDestination: Hashable, Equatable {
         }
         
         if self.log_maxMessage > 100 && msg.characters.count > self.log_maxMessage {
-            str += "\(levelString): \(msg.substringToIndex(msg.startIndex.advancedBy(self.log_maxMessage)))"
+            str += "\(levelString): \(msg.substring(to: msg.index(msg.startIndex, offsetBy: self.log_maxMessage)))"
         }
         else {
             str += "\(levelString): \(msg)"
@@ -281,7 +282,7 @@ public class ConsoleDestination: BaseDestination {
     
     // print to Xcode Console. uses full base class functionality
     override func send(level: CBLogger.LogLevel, msg: String, thread: String, path: String, function: String, line: Int) -> String? {
-        let formattedString = super.send(level, msg: msg, thread: thread, path: path, function: function, line: line)
+        let formattedString = super.send(level: level, msg: msg, thread: thread, path: path, function: function, line: line)
         if let str = formattedString {
             print(str)
         }
@@ -297,14 +298,14 @@ public class FileDestination: BaseDestination {
     public var logFileURL: NSURL
     
     override public var defaultHashValue: Int {return 2}
-    let fileManager = NSFileManager.defaultManager()
+    let fileManager = FileManager.default
     
     public init(fileURL: NSURL? = nil) {
         if let url = fileURL {
             logFileURL = url
         }
-        else if let url = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first {
-            logFileURL = url.URLByAppendingPathComponent("swiftybeaver.log", isDirectory: false)
+        else if let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+            logFileURL = url.appendingPathComponent("swiftybeaver.log", isDirectory: false)
         } else {
             logFileURL = NSURL()
         }
@@ -326,10 +327,10 @@ public class FileDestination: BaseDestination {
     
     // append to file. uses full base class functionality
     override func send(level: CBLogger.LogLevel, msg: String, thread: String, path: String, function: String, line: Int) -> String? {
-        let formattedString = super.send(level, msg: msg, thread: thread, path: path, function: function, line: line)
+        let formattedString = super.send(level: level, msg: msg, thread: thread, path: path, function: function, line: line)
         
         if let str = formattedString {
-            saveToFile(str, url: logFileURL)
+            saveToFile(str: str, url: logFileURL)
         }
         return formattedString
     }
@@ -338,17 +339,18 @@ public class FileDestination: BaseDestination {
     /// returns boolean about success
     func saveToFile(str: String, url: NSURL) -> Bool {
         do {
-            if fileManager.fileExistsAtPath(url.path!) == false {
+            if fileManager.fileExists(atPath: url.path!) == false {
                 // create file if not existing
                 let line = str + "\n"
-                try line.writeToURL(url, atomically: true, encoding: NSUTF8StringEncoding)
+                try line.write(to: url as URL, atomically: true, encoding: String.Encoding.utf8)
             } else {
                 // append to end of file
-                let fileHandle = try NSFileHandle(forWritingToURL: url)
+                
+                let fileHandle = try FileHandle(forWritingTo: url as URL)
                 fileHandle.seekToEndOfFile()
                 let line = str + "\n"
-                let data = line.dataUsingEncoding(NSUTF8StringEncoding)!
-                fileHandle.writeData(data)
+                let data = line.data(using: String.Encoding.utf8)!
+                fileHandle.write(data)
                 fileHandle.closeFile()
             }
             return true

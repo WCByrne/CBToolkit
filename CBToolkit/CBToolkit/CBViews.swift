@@ -28,13 +28,13 @@ import UIKit
         didSet { self.layer.borderWidth = borderWidth }
     }
     /// The border color
-    @IBInspectable public var borderColor: UIColor = UIColor.lightGrayColor() {
-        didSet { self.layer.borderColor = borderColor.CGColor }
+    @IBInspectable public var borderColor: UIColor = UIColor.lightGray {
+        didSet { self.layer.borderColor = borderColor.cgColor }
     }
     
     /// The color of the view's shadow
-    @IBInspectable public var shadowColor: UIColor = UIColor.blackColor() {
-        didSet { self.layer.shadowColor = shadowColor.CGColor }
+    @IBInspectable public var shadowColor: UIColor = UIColor.black {
+        didSet { self.layer.shadowColor = shadowColor.cgColor }
     }
     /// The shadow radius
     @IBInspectable public var shadowRadius: CGFloat = 0 {
@@ -45,14 +45,14 @@ import UIKit
         didSet { self.layer.shadowOpacity = shadowOpacity }
     }
     /// <#Description#>
-    @IBInspectable public var shadowOffset: CGSize = CGSizeZero {
+    @IBInspectable public var shadowOffset: CGSize = CGSize.zero {
         didSet { self.layer.shadowOffset = shadowOffset }
     }
     /// Rasterize the shadow accounting for screen scale. Can help with performace
     @IBInspectable public var shouldRasterize: Bool = false {
         didSet {
             self.layer.shouldRasterize = shouldRasterize
-            self.layer.rasterizationScale = UIScreen.mainScreen().scale
+            self.layer.rasterizationScale = UIScreen.main.scale
         }
     }
     
@@ -62,13 +62,13 @@ import UIKit
     override public func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.shadowColor = shadowColor.CGColor
+        self.layer.shadowColor = shadowColor.cgColor
         self.layer.shadowRadius = shadowRadius
         self.layer.shadowOpacity = shadowOpacity
         self.layer.shadowOffset = shadowOffset
         if shouldRasterize == true {
             self.layer.shouldRasterize = true
-            self.layer.rasterizationScale = UIScreen.mainScreen().scale
+            self.layer.rasterizationScale = UIScreen.main.scale
         }
         
     }
@@ -80,8 +80,8 @@ import UIKit
             self.cornerRadius = sSide/2
         }
         if useShadowPath {
-            let rect = CGRectOffset(self.bounds, shadowOffset.width, shadowOffset.height)
-            self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.cornerRadius).CGPath
+            let rect = self.bounds.offsetBy(dx: shadowOffset.width, dy: shadowOffset.height)
+            self.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: self.cornerRadius).cgPath
         }
     }
 }
@@ -110,36 +110,36 @@ import UIKit
     /// The width of all the borders to be drawn
     @IBInspectable public var borderWidth: CGFloat = 1 { didSet{ setNeedsDisplay() }}
     /// The color of all the borders to be drawn
-    @IBInspectable public var borderColor: UIColor = UIColor.whiteColor() { didSet{ setNeedsDisplay() }}
+    @IBInspectable public var borderColor: UIColor = UIColor.white { didSet{ setNeedsDisplay() }}
 
     
-    override public func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override public func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         let context = UIGraphicsGetCurrentContext();
         
-        CGContextSetLineWidth(context, CGFloat(borderWidth));
-        CGContextSetStrokeColorWithColor(context, borderColor.CGColor)
+        context?.setLineWidth(borderWidth)
+        context?.setStrokeColor(borderColor.cgColor)
         
         if topBorder == true {
-            CGContextMoveToPoint(context, leftInset, 0);
-            CGContextAddLineToPoint(context, self.bounds.size.width - rightInset, 0);
-            CGContextStrokePath(context);
+            context?.moveTo(x: leftInset, y: 0)
+            context?.addLineTo(x: self.bounds.size.width - rightInset, y: 0)
+            context?.strokePath()
         }
         if leftBorder == true {
-            CGContextMoveToPoint(context, 0, topInset);
-            CGContextAddLineToPoint(context, 0, self.frame.size.height - bottomInset);
-            CGContextStrokePath(context);
+            context?.moveTo(x: 0, y: topInset)
+            context?.addLineTo(x: 0, y: self.bounds.size.height - bottomInset)
+            context?.strokePath()
         }
         if rightBorder == true {
-            CGContextMoveToPoint(context, self.frame.size.width, topInset);
-            CGContextAddLineToPoint(context, self.bounds.size.width, self.frame.size.height - bottomInset);
-            CGContextStrokePath(context);
+            context?.moveTo(x: self.bounds.size.width, y: topInset)
+            context?.addLineTo(x: self.bounds.size.width, y: self.bounds.size.height - bottomInset)
+            context?.strokePath()
         }
         if bottomBorder == true {
-            CGContextMoveToPoint(context, leftInset, self.frame.size.height);
-            CGContextAddLineToPoint(context, self.bounds.size.width - rightInset, self.frame.size.height);
-            CGContextStrokePath(context);
+            context?.moveTo(x: leftInset, y: self.bounds.size.height)
+            context?.addLineTo(x: self.bounds.size.width - rightInset, y: self.bounds.size.height)
+            context?.strokePath()
         }
     }
 }
@@ -163,9 +163,10 @@ import UIKit
     @IBInspectable public var middleLocation: CGFloat = 0.5 { didSet{ setNeedsDisplay() }}
     /// The position of bottomColor (0-1)
     @IBInspectable public var bottomLocation: CGFloat = 1   { didSet{ setNeedsDisplay() }}
+    @IBInspectable public var angle: CGFloat = 1   { didSet{ setNeedsDisplay() }}
     
-    override public func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override public func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         let context = UIGraphicsGetCurrentContext();
         
@@ -182,17 +183,21 @@ import UIKit
             colors = [topColor, middleColor!, bottomColor];
         }
         
-        let mGradientColors = colors.map {(color: UIColor!) -> AnyObject! in return color.CGColor as AnyObject! } as NSArray
-        let mGradient = CGGradientCreateWithColors(colorSpace, mGradientColors, locations);
+        let mGradientColors = colors.map {(color: UIColor!) -> AnyObject! in return color.cgColor as AnyObject! } as NSArray
+        let mGradient = CGGradient(colorsSpace: colorSpace, colors: mGradientColors, locations: locations);
         
-        let mStartPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-        let mEndPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
+        var mStartPoint = CGPoint(x: rect.midX, y: rect.minY);
+        var mEndPoint = CGPoint(x: rect.midX, y: rect.maxY);
         
-        CGContextSaveGState(context);
-        CGContextAddRect(context, rect);
-        CGContextClip(context);
-        CGContextDrawLinearGradient(context, mGradient, mStartPoint, mEndPoint, CGGradientDrawingOptions(rawValue: 0))
-        CGContextRestoreGState(context);
+        if angle >= 90 {
+            mStartPoint = CGPoint(x: rect.minX, y: rect.midY);
+            mEndPoint = CGPoint(x: rect.maxX, y: rect.midY);
+        }
+        
+        context!.saveGState();
+        context!.addRect(rect);
+        context!.clip();
+        context!.drawLinearGradient(mGradient!, start: mStartPoint, end: mEndPoint, options: CGGradientDrawingOptions(rawValue: 0))
+        context!.restoreGState();
     }
 }
-

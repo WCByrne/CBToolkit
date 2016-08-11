@@ -40,8 +40,8 @@ public class CBPhoneNumber {
         if string != nil {
             let string = NSString(string: string!)
             
-            let comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
-            baseString = comps.componentsJoinedByString("")
+            let comps = NSArray(array: string.components(separatedBy: NSCharacterSet.decimalDigits.inverted))
+            baseString = comps.componentsJoined(by: "")
         }
     }
     
@@ -51,9 +51,9 @@ public class CBPhoneNumber {
      - parameter string: The string to append.
      */
     public func appendString(string: String!) {
-        let comps = NSArray(array: string.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet))
-        let addedString = comps.componentsJoinedByString("")
-        baseString = baseString.stringByAppendingString(addedString)
+        let comps = NSArray(array: string.components(separatedBy: NSCharacterSet.decimalDigits.inverted))
+        let addedString = comps.componentsJoined(by: "")
+        baseString = baseString.appending(addedString)
     }
     
     
@@ -62,7 +62,7 @@ public class CBPhoneNumber {
      */
     public func removeLastCharacter() {
         if baseString.length > 0 {
-            baseString = baseString.substringToIndex(baseString.length-1)
+            baseString = baseString.substring(to: baseString.length-1)
         }
     }
     
@@ -80,13 +80,13 @@ public class CBPhoneNumber {
             return baseString as String
         }
         
-        var  prefix: String? = baseString.substringToIndex(1)
+        var  prefix: String? = baseString.substring(to: 1)
         var string: NSString! = baseString
         if prefix != "1" {
             prefix = nil
         }
         else {
-            string = baseString.substringFromIndex(1)
+            string = baseString.substring(from: 1)
         }
         
         let length = string.length
@@ -96,12 +96,12 @@ public class CBPhoneNumber {
             }
         }
         else if length <= 7  {
-            let firstThree = string.substringToIndex(3)
-            var partial = string.substringWithRange(NSMakeRange(3, length-3)) as NSString
+            let firstThree = string.substring(to: 3)
+            var partial = string.substring(with: NSMakeRange(3, length-3)) as NSString
             
             if prefix != nil{
                 if partial.length == 4 {
-                    partial = "\(partial.substringToIndex(3))-\(partial.substringFromIndex(3))"
+                    partial = "\(partial.substring(to: 3))-\(partial.substring(from: 3))"
                 }
                 
                 string = "(\(firstThree)) \(partial)"
@@ -111,17 +111,17 @@ public class CBPhoneNumber {
             }
         }
         else if length <= 10 {
-            let areaCode = string.substringToIndex(3)
-            let firstThree = string.substringWithRange(NSMakeRange(3, 3))
-            let lastFour = string.substringWithRange(NSMakeRange(6, length-6))
+            let areaCode = string.substring(to: 3)
+            let firstThree = string.substring(with: NSMakeRange(3, 3))
+            let lastFour = string.substring(with: NSMakeRange(6, length-6))
             
             string = "(\(areaCode)) \(firstThree)-\(lastFour)"
         }
         else {
-            let prefix = string.substringToIndex(length-10)
-            let areaCode = string.substringWithRange(NSMakeRange(length-10, 3))
-            let firstThree = string.substringWithRange(NSMakeRange(length-7, 3))
-            let lastFour = string.substringWithRange(NSMakeRange(length-4, 4))
+            let prefix = string.substring(to: length-10)
+            let areaCode = string.substring(with: NSMakeRange(length-10, 3))
+            let firstThree = string.substring(with: NSMakeRange(length-7, 3))
+            let lastFour = string.substring(with: NSMakeRange(length-4, 4))
             
             string = "+\(prefix) (\(areaCode)) \(firstThree)-\(lastFour)"
         }
@@ -130,7 +130,7 @@ public class CBPhoneNumber {
             string = "+\(prefix!) \(string)"
         }
         
-        return string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
     
     
@@ -141,8 +141,8 @@ public class CBPhoneNumber {
      */
     public func callNumber() -> Bool {
         let phoneURL : NSURL = NSURL(string:"telprompt:\(baseString)")!
-        if UIApplication.sharedApplication().canOpenURL(phoneURL) {
-            UIApplication.sharedApplication().openURL(phoneURL)
+        if UIApplication.shared.canOpenURL(phoneURL as URL) {
+            UIApplication.shared.openURL(phoneURL as URL)
             return true
         }
         return false
