@@ -49,6 +49,7 @@
 		1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageView.swift; sourceTree = "<group>"; };
 		1CDBB0121A7D8A8B00D7677B /* CBDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBDate.swift; sourceTree = "<group>"; };
 		1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhoneNumber.swift; sourceTree = "<group>"; };
+		DE19611D1D6D003F00ABFC55 /* CBPhotoFetcher_modiied.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBPhotoFetcher_modiied.swift; sourceTree = "<group>"; };
 		DE266BD71CB4EBED00B98237 /* CBLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBLogger.swift; sourceTree = "<group>"; };
 		DE3BD2361BD9C0900061EBE5 /* CBIconButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBIconButton.swift; sourceTree = "<group>"; };
 		DEEBE0371B98801200F18093 /* CBImageEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBImageEditor.swift; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 				1CDBB00E1A7D8A8B00D7677B /* CBViews.swift */,
 				1CDBB00F1A7D8A8B00D7677B /* CBProgressView.swift */,
 				1CDBB0101A7D8A8B00D7677B /* CBPhotoFetcher.swift */,
+				DE19611D1D6D003F00ABFC55 /* CBPhotoFetcher_modiied.swift */,
 				1CDBB0111A7D8A8B00D7677B /* CBImageView.swift */,
 				1CDBB0121A7D8A8B00D7677B /* CBDate.swift */,
 				1CDBB0131A7D8A8B00D7677B /* CBPhoneNumber.swift */,
