@@ -53,7 +53,7 @@ public class CBLogger {
         if Thread.isMainThread {
             return "main"
         } else {
-            if let threadName = Thread.current.name where !threadName.isEmpty {
+            if let threadName = Thread.current.name , !threadName.isEmpty {
                 return threadName
 //            } else if let queueName = String(UTF8String: DispatchQueue.global() dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL)) where !queueName.isEmpty {
 //                return queueName
@@ -126,7 +126,7 @@ public class CBLogger {
 public class BaseDestination: Hashable, Equatable {
     
     //    public var detailOutput = true
-    public var colored = true
+//    public var colored = true
     
     public var log_File = true
     public var log_Function = false
@@ -150,15 +150,15 @@ public class BaseDestination: Hashable, Equatable {
     
     // For a colored log level word in a logged line
     // XCode RGB colors
-    var blue = "fg0,0,255;"
-    var green = "fg0,255,0;"
-    var yellow = "fg255,255,0;"
-    var red = "fg255,0,0;"
-    var magenta = "fg255,0,255;"
-    var cyan = "fg0,255,255;"
-    var silver = "fg200,200,200;"
-    var reset = "\u{001b}[;"
-    var escape = "\u{001b}["
+//    var blue = "fg0,0,255;"
+//    var green = "fg0,255,0;"
+//    var yellow = "fg255,255,0;"
+//    var red = "fg255,0,0;"
+//    var magenta = "fg255,0,255;"
+//    var cyan = "fg0,255,255;"
+//    var silver = "fg200,200,200;"
+//    var reset = "\u{001b}[;"
+//    var escape = "\u{001b}["
     
     
     lazy public var hashValue: Int = self.defaultHashValue
@@ -197,31 +197,30 @@ public class BaseDestination: Hashable, Equatable {
         
         switch level {
         case CBLogger.LogLevel.Debug:
-            color = blue
-            levelStr = levelNames.Debug
+//            color = blue
+            return levelNames.Debug
             
         case CBLogger.LogLevel.Info:
-            color = green
-            levelStr = levelNames.Info
+//            color = green
+            return levelNames.Info
             
         case CBLogger.LogLevel.Warning:
-            color = yellow
-            levelStr = levelNames.Warning
+//            color = yellow
+            return levelNames.Warning
             
         case CBLogger.LogLevel.Error:
-            color = red
-            levelStr = levelNames.Error
+//            color = red
+            return levelNames.Error
             
         default:
             // Verbose is default
-            color = silver
-            levelStr = levelNames.Verbose
+//            color = silver
+            return levelNames.Verbose
         }
-        
-        if colored {
-            levelStr = escape + color + levelStr + reset
-        }
-        return levelStr
+//        if colored {
+//            levelStr = escape + color + levelStr + reset
+//        }
+//        return levelStr
     }
     
     /// returns the formatted log message
@@ -295,34 +294,33 @@ public class ConsoleDestination: BaseDestination {
 
 public class FileDestination: BaseDestination {
     
-    public var logFileURL: NSURL
+    public var logFileURL: URL
     
     override public var defaultHashValue: Int {return 2}
     let fileManager = FileManager.default
     
-    public init(fileURL: NSURL? = nil) {
-        if let url = fileURL {
-            logFileURL = url
-        }
-        else if let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-            logFileURL = url.appendingPathComponent("swiftybeaver.log", isDirectory: false)
-        } else {
-            logFileURL = NSURL()
-        }
+    public init(fileURL: URL) {
+        logFileURL = fileURL
+//        }
+//        else if let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
+//            logFileURL = url.appendingPathComponent("swiftybeaver.log", isDirectory: false)
+//        } else {
+//            logFileURL = NSURL()
+//        }
         super.init()
         self.log_maxMessage = 2000
         self.log_Function = true
         
         // bash font color, first value is intensity, second is color
         // see http://bit.ly/1Otu3Zr to learn more
-        blue = "0;34m"  // replace first 0 with 1 to make it bold
-        green = "0;32m"
-        yellow = "0;33m"
-        red = "0;31m"
-        magenta = "0;35m"
-        cyan = "0;36m"
-        silver = "0;37m"
-        reset = "\u{001b}[0m"
+//        blue = "0;34m"  // replace first 0 with 1 to make it bold
+//        green = "0;32m"
+//        yellow = "0;33m"
+//        red = "0;31m"
+//        magenta = "0;35m"
+//        cyan = "0;36m"
+//        silver = "0;37m"
+//        reset = "\u{001b}[0m"
     }
     
     // append to file. uses full base class functionality
@@ -330,19 +328,19 @@ public class FileDestination: BaseDestination {
         let formattedString = super.send(level: level, msg: msg, thread: thread, path: path, function: function, line: line)
         
         if let str = formattedString {
-            saveToFile(str: str, url: logFileURL)
+           _ = saveToFile(str: str, url: logFileURL)
         }
         return formattedString
     }
     
     /// appends a string as line to a file.
     /// returns boolean about success
-    func saveToFile(str: String, url: NSURL) -> Bool {
+    func saveToFile(str: String, url: URL) -> Bool {
         do {
-            if fileManager.fileExists(atPath: url.path!) == false {
+            if fileManager.fileExists(atPath: url.path) == false {
                 // create file if not existing
                 let line = str + "\n"
-                try line.write(to: url as URL, atomically: true, encoding: String.Encoding.utf8)
+                try line.write(to: url, atomically: true, encoding: String.Encoding.utf8)
             } else {
                 // append to end of file
                 

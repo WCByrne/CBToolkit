@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 
 
-public typealias CBImageFetchCallback = (image: UIImage?, error: NSError?, fromCache: Bool)->Void
-public typealias CBProgressBlock = (progress: Float)->Void
-public typealias CBNetworkActivityCountChangedBlock = (change: Int, total: Int)->Void
+public typealias CBImageFetchCallback = (_ image: UIImage?, _ error: Error?, _ fromCache: Bool)->Void
+public typealias CBProgressBlock = (_ progress: Float)->Void
+public typealias CBNetworkActivityCountChangedBlock = (_ change: Int, _ total: Int)->Void
 
 /// An image fetching util for retrieving and caching iamges with a url.
 public class CBPhotoFetcher: NSObject {
@@ -25,7 +25,7 @@ public class CBPhotoFetcher: NSObject {
     let operationQueue = OperationQueue()
     let fm = FileManager.default
     var networkCount = 0 {
-        didSet { self.networdCountBlock?(change: oldValue - networkCount, total: self.networkCount) }
+        didSet { self.networdCountBlock?(oldValue - networkCount, self.networkCount) }
     }
     var networdCountBlock : CBNetworkActivityCountChangedBlock?
     
@@ -85,13 +85,13 @@ public class CBPhotoFetcher: NSObject {
         
         imageFromCache(url) { (image) -> Void in
             if image != nil {
-                completion(image: image, error: nil, fromCache: true)
+                completion(image, nil, true)
                 return
             }
             if let request = self.inProgress[hash] {
                 request.completionBlocks.append(completion)
                 if progressBlock != nil { request.progressBlocks.append(progressBlock!) }
-                progressBlock?(progress: request.progress)
+                progressBlock?(request.progress)
                 return
             }
             let request = CBImageFetchRequest(imageURL: url, completion: completion, progress: progressBlock)
@@ -144,7 +144,7 @@ public class CBPhotoFetcher: NSObject {
      - parameter imgURL: The url to clear cache for
      */
     public func clearCache(for url: String) {
-        imageCache.removeObject(forKey: url.cacheHash)
+        imageCache.removeObject(forKey: url.cacheHash as NSString)
         do {
             let filePath = diskCacheURL.appendingPathComponent(url.cacheHash)
             _ = try fm.removeItem(at: filePath)
@@ -167,7 +167,7 @@ public class CBPhotoFetcher: NSObject {
     func cacheImage(imgURL: String!, image: UIImage!, data: Data) {
         operationQueue.addOperation { () -> Void in
             let hash = imgURL.cacheHash
-            self.imageCache.setObject(image, forKey: hash)
+            self.imageCache.setObject(image, forKey: hash as NSString)
             if self.useDiskCache {
                 self.checkDiskCache()
                 let path = self.diskCacheURL.appendingPathComponent(hash)
@@ -179,10 +179,10 @@ public class CBPhotoFetcher: NSObject {
         }
     }
     
-    private func imageFromCache(_ imgURL: String, completion: (image: UIImage?)->Void) {
+    private func imageFromCache(_ imgURL: String, completion: @escaping (_ image: UIImage?)->Void) {
         let hash = imgURL.cacheHash
-        if let cachedImage = imageCache.object(forKey: hash) as? UIImage  {
-            completion(image: cachedImage)
+        if let cachedImage = imageCache.object(forKey: hash  as NSString) as? UIImage  {
+            completion(cachedImage)
             return
         }
         operationQueue.addOperation { () -> Void in
@@ -190,10 +190,10 @@ public class CBPhotoFetcher: NSObject {
                 let path = self.diskCacheURL.appendingPathComponent(hash).path
                 img = UIImage(contentsOfFile: path)
                 if img != nil {
-                    self.imageCache.setObject(img!, forKey: hash)
+                    self.imageCache.setObject(img!, forKey: hash  as NSString)
                 }
                 DispatchQueue.main.async(execute: {
-                    completion(image: img)
+                    completion(img)
                 })
         }
     }
@@ -226,7 +226,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         guard let url = URL(string: baseURL) else {
             let err = NSError(domain: "CBToolkit", code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid url for image download"])
             for cBlock in completionBlocks {
-                cBlock(image: nil, error: err, fromCache: false)
+                cBlock(nil, err, false)
             }
             self.didFinish()
             return
@@ -247,7 +247,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         sessionTask?.cancel()
         DispatchQueue.main.async(execute: {
             for cBlock in self.completionBlocks {
-                cBlock(image: nil, error: nil, fromCache: false)
+                cBlock(nil, nil, false)
             }
         })
     }
@@ -262,7 +262,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         self.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
         DispatchQueue.main.async(execute: {
             for pBlock in self.progressBlocks {
-                pBlock(progress: self.progress)
+                pBlock(self.progress)
             }
         })
 
@@ -288,7 +288,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         self.didFinish()
         DispatchQueue.main.async(execute: {
             for cBlock in self.completionBlocks {
-                cBlock(image: img, error: error, fromCache: false)
+                cBlock(img, error, false)
             }
         })
     }
@@ -298,7 +298,7 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         if error != nil {
             DispatchQueue.main.async(execute: {
                 for cBlock in self.completionBlocks {
-                    cBlock(image: nil, error: error, fromCache: false)
+                    cBlock(nil, error, false)
                 }
                 self.didFinish()
                 debugPrint("CBPhotoFetcher: Fetch error – \(error!.localizedDescription)")
