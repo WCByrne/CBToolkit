@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+/*
 public typealias CBImageFetchCallback = (_ image: UIImage?, _ error: Error?, _ fromCache: Bool)->Void
 public typealias CBProgressBlock = (_ progress: Float)->Void
 public typealias CBNetworkActivityCountChangedBlock = (_ change: Int, _ total: Int)->Void
@@ -422,6 +422,6 @@ class AsyncOperation: Operation {
         }
     }
 }
-
+*/
 
 
