@@ -309,12 +309,12 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         // Filters
         let thumb = originalImage.thumbnail(size: 200)
         filters = [
-            FilterData(key: "CIVignette", previewImage: thumb, name: "Vignette", params: [kCIInputIntensityKey : NSNumber(value: 1)]),
+            FilterData(key: "CIVignette", previewImage: thumb, name: "Vignette", params: [kCIInputIntensityKey as NSString : NSNumber(value: 1)]),
             FilterData(key: "CIPhotoEffectChrome", previewImage: thumb, name: "Chrome"),
             FilterData(key: "CIPhotoEffectTransfer", previewImage: thumb, name: "Transfer"),
             FilterData(key: "CIPhotoEffectInstant", previewImage: thumb, name: "Instant"),
             FilterData(key: "CIPhotoEffectProcess", previewImage: thumb, name: "Process"),
-            FilterData(key: "CISepiaTone", previewImage: thumb, name: "Sepia", params: [kCIInputIntensityKey : NSNumber(value: 0.8)]),
+            FilterData(key: "CISepiaTone", previewImage: thumb, name: "Sepia", params: [kCIInputIntensityKey as NSString : NSNumber(value: 0.8)]),
             FilterData(key: "CIPhotoEffectTonal", previewImage: thumb, name: "B&W"),
             FilterData(key: "CIPhotoEffectNoir", previewImage: thumb, name: "Noir"),
         ]
@@ -543,7 +543,7 @@ class CropperFilterCell : UICollectionViewCell {
         imageView = CBImageView()
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         self.addSubview(imageView)
-        imageView.addConstraintsToMatchParent()
+        _ = imageView.addConstraintsToMatchParent()
     }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

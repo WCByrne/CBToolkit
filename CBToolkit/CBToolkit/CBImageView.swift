@@ -139,7 +139,7 @@ import UIKit
                 }
             }
             else {
-                completion!(image: image, error: error, fromCache: fromCache)
+                completion!(image, error, fromCache)
             }
         })
     }

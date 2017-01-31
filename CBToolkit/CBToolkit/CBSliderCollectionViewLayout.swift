@@ -71,10 +71,13 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
     }
     
     internal func animateScroll() {
-        if self.collectionView?.numberOfSections == 0 { return }
-        else if self.collectionView?.numberOfItems(inSection: 0) == 0 { return }
+        guard let cv = self.collectionView,
+         cv.numberOfSections > 0,
+        cv.numberOfItems(inSection: 0) > 0
+        else { return }
+        
         currentIndex += 1
-        if currentIndex >= self.collectionView?.numberOfItems(inSection: 0) {
+        if currentIndex >= cv.numberOfItems(inSection: 0) {
             currentIndex = 0
         }
         

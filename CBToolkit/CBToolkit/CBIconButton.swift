@@ -182,9 +182,9 @@ public enum CBIconType : NSInteger {
             let p3 = CGPoint(x: iFrame.midX + offset + 2, y: iFrame.maxY)
             
             let path = CGMutablePath()
-            path.moveTo(nil, x: p1.x, y: p1.y)
-            path.addLineTo(nil, x: p2.x, y: p2.y)
-            path.addLineTo(nil, x: p3.x, y: p3.y)
+            path.move(to: CGPoint(x: p1.x, y: p1.y))
+            path.addLine(to: CGPoint(x: p2.x, y: p2.y))
+            path.addLine(to: CGPoint(x: p3.x, y: p3.y))
             
             setBarPaths(path,
                         p2: pathFromPosition(4, toPosition: 4),
@@ -200,12 +200,12 @@ public enum CBIconType : NSInteger {
             let p3 = CGPoint(x: iFrame.midX - offset + 2, y: iFrame.maxY)
             
             let path1 = CGMutablePath()
-            path1.moveTo(nil, x: p1.x, y: p1.y)
-            path1.addLineTo(nil, x: p2.x, y: p2.y)
+            path1.move(to: CGPoint(x: p1.x, y: p1.y))
+            path1.addLine(to: CGPoint(x: p2.x, y: p2.y))
             
             let path2 = CGMutablePath()
-            path2.moveTo(nil, x: p2.x, y: p2.y)
-            path2.addLineTo(nil, x: p3.x, y: p3.y)
+            path2.move(to: CGPoint(x: p2.x, y: p2.y))
+            path2.addLine(to: CGPoint(x: p3.x, y: p3.y))
             
             setBarPaths(path1,
                         p2: pathFromPosition(4, toPosition: 4),
@@ -234,9 +234,9 @@ public enum CBIconType : NSInteger {
             let p3 = CGPoint(x: iFrame.maxX, y: iFrame.midY - (iFrame.size.height/4))
             
             let path = CGMutablePath()
-            path.moveTo(nil, x: p1.x, y: p1.y)
-            path.addLineTo(nil, x: p2.x, y: p2.y)
-            path.addLineTo(nil, x: p3.x, y: p3.y)
+            path.move(to: CGPoint(x: p1.x, y: p1.y))
+            path.addLine(to: CGPoint(x: p2.x, y: p2.y))
+            path.addLine(to: CGPoint(x: p3.x, y: p3.y))
             
             setBarPaths(path,
                         p2: pathFromPosition(4, toPosition: 4),
@@ -251,9 +251,9 @@ public enum CBIconType : NSInteger {
             let p3 = CGPoint(x: iFrame.maxX, y: iFrame.midY + (iFrame.size.height/4))
             
             let path = CGMutablePath()
-            path.moveTo(nil, x: p1.x, y: p1.y)
-            path.addLineTo(nil, x: p2.x, y: p2.y)
-            path.addLineTo(nil, x: p3.x, y: p3.y)
+            path.move(to: CGPoint(x: p1.x, y: p1.y))
+            path.addLine(to: CGPoint(x: p2.x, y: p2.y))
+            path.addLine(to: CGPoint(x: p3.x, y: p3.y))
             
             setBarPaths(path,
                         p2: pathFromPosition(4, toPosition: 4),
@@ -268,9 +268,9 @@ public enum CBIconType : NSInteger {
             let p3 = CGPoint(x: iFrame.maxX, y: iFrame.midY - (iFrame.size.height/4))
             
             let path = CGMutablePath()
-            path.moveTo(nil, x: p1.x, y: p1.y)
-            path.addLineTo(nil, x: p2.x, y: p2.y)
-            path.addLineTo(nil, x: p3.x, y: p3.y)
+            path.move(to: CGPoint(x: p1.x, y: p1.y))
+            path.addLine(to: CGPoint(x: p2.x, y: p2.y))
+            path.addLine(to: CGPoint(x: p3.x, y: p3.y))
             
             self.setBarPaths(path,
                              p2: pathFromPosition(4, toPosition: 4),

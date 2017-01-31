@@ -34,7 +34,7 @@ public extension UIViewController {
             self.dismiss(animated: animated, completion: nil)
         }
         else {
-            self.navigationController?.popViewController(animated: animated)
+            _ = self.navigationController?.popViewController(animated: animated)
         }   
     }
     
@@ -196,7 +196,7 @@ public extension UIImage {
         
         context.closePath()
         context.clip()
-        context.draw(in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height), image: image.cgImage!)
+        context.draw(image.cgImage!, in: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
         let clippedImage = context.makeImage()
         let roundedImage = UIImage(cgImage: clippedImage!)
         return roundedImage;
@@ -204,19 +204,26 @@ public extension UIImage {
     
     private func addRoundedRectToPath(rect:CGRect, context:CGContext, ovalWidth:CGFloat, ovalHeight:CGFloat) {
         if (ovalWidth == 0 || ovalHeight == 0) {
-            context.addRect(rect);
+            context.addRect(rect)
             return;
         }
-        context.saveGState();
-        context.translateBy(x: rect.minX, y: rect.minY);
-        context.scaleBy(x: ovalWidth, y: ovalHeight);
-        let fw: CGFloat = rect.width / ovalWidth;
-        let fh: CGFloat = rect.height / ovalHeight;
-        context.moveTo(x: fw, y: fh/2);
-        context.addArc(x1: fw, y1: fh, x2: fw/2, y2: fh, radius: 1);
-        context.addArc(x1: 0, y1: fh, x2: 0, y2: fh/2, radius: 1);
-        context.addArc(x1: 0, y1: 0, x2: fw/2, y2: 0, radius: 1);
-        context.addArc(x1: fw, y1: 0, x2: fw, y2: fh/2, radius: 1);
+        context.saveGState()
+        context.translateBy(x: rect.minX, y: rect.minY)
+        context.scaleBy(x: ovalWidth, y: ovalHeight)
+        let fw: CGFloat = rect.width / ovalWidth
+        let fh: CGFloat = rect.height / ovalHeight
+        context.move(to: CGPoint(x: fw, y: fh/2))
+        context.addArc(tangent1End: CGPoint(x: fw, y: fh), tangent2End: CGPoint(x: fw/2, y: fh), radius: 1)
+        // context.addArc(x1: , y1: fh, x2: fw/2, y2: fh, radius: 1)
+        
+        context.addArc(tangent1End: CGPoint(x: 0, y: fh), tangent2End: CGPoint(x: 0, y: fh/2), radius: 1)
+        // context.addArc(x1: 0, y1: fh, x2: 0, y2: fh/2, radius: 1)
+        
+        context.addArc(tangent1End: CGPoint(x: 0, y: 0), tangent2End: CGPoint(x: fw/2, y: 0), radius: 1)
+        // context.addArc(x1: 0, y1: 0, x2: fw/2, y2: 0, radius: 1)
+        
+        context.addArc(tangent1End: CGPoint(x: fw, y: 0), tangent2End: CGPoint(x: fw, y: fh/2), radius: 1)
+        // context.addArc(x1: fw, y1: 0, x2: fw, y2: fh/2, radius: 1)
         context.closePath();
         context.restoreGState();
     }
@@ -245,7 +252,8 @@ public extension UIImage {
             space: imageRef!.colorSpace!,
              bitmapInfo: bInfo.rawValue)
         
-        offscreenContext!.draw(in: CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)), image: imageRef!)
+        offscreenContext?.draw(imageRef!, in: CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)))
+        // offscreenContext!.draw(in: , image: imageRef!)
         let imageRefWithAlpha = offscreenContext!.makeImage()
         let imageWithAlpha = UIImage(cgImage:imageRefWithAlpha!)
         return imageWithAlpha;
@@ -253,20 +261,21 @@ public extension UIImage {
     
     
     private func resize(_ newSize: CGSize, transpose: Bool, transform: CGAffineTransform) -> UIImage {
-        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral;
-        let transposedRect = CGRect(x: 0, y: 0, width: newRect.size.height, height: newRect.size.width);
-        let imageRef = self.cgImage;
+        let newRect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height).integral
+        let transposedRect = CGRect(x: 0, y: 0, width: newRect.size.height, height: newRect.size.width)
+        let imageRef = self.cgImage
         let bitmap = CGContext(data: nil,
             width: Int(newRect.size.width),
             height: Int(newRect.size.height),
             bitsPerComponent: imageRef!.bitsPerComponent,
             bytesPerRow: 0,
             space: imageRef!.colorSpace!,
-            bitmapInfo: imageRef!.bitmapInfo.rawValue);
+            bitmapInfo: imageRef!.bitmapInfo.rawValue)
         
-        bitmap!.concatenate(transform);
-        bitmap!.interpolationQuality = CGInterpolationQuality.medium;
-        bitmap!.draw(in: transpose ? transposedRect : newRect, image: imageRef!);
+        bitmap!.concatenate(transform)
+        bitmap!.interpolationQuality = CGInterpolationQuality.medium
+        bitmap!.draw(imageRef!, in: transpose ? transposedRect : newRect)
+        // bitmap!.draw(in: , image: imageRef!);
         let newImageRef = bitmap!.makeImage()!
         let newImage = UIImage(cgImage: newImageRef)
         return newImage

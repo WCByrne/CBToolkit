@@ -10,25 +10,59 @@ import Foundation
 import UIKit
 
 
+extension String {
+    
+    var numericString : String {
+        let set = CharacterSet(charactersIn: "0123456789.")
+        return self.stringByValidatingCharactersInSet(set)
+    }
+    
+    func stringByValidatingCharactersInSet(_ set: CharacterSet) -> String {
+        let comps = self.components(separatedBy: set.inverted)
+        return comps.joined(separator: "")
+    }
+    
+    func sub(to: Int) -> String {
+        let idx = self.index(self.startIndex,
+                             offsetBy: to)
+        return self.substring(to: idx)
+    }
+    
+    func sub(from: Int) -> String {
+        let idx = self.index(self.startIndex,
+                             offsetBy: from)
+        return self.substring(from: idx)
+    }
+    
+    func sub(from: Int, to: Int) -> String {
+        let start = self.index(self.startIndex, offsetBy: from)
+        let end = self.index(self.startIndex, offsetBy: to)
+        return self[start..<end]
+    }
+    
+}
+
+
 /// A utitility class for validating and formatting phone numbers
 public class CBPhoneNumber {
     
-    private var baseString: NSString! = NSString()
+    fileprivate var baseString: String = ""
     /// The numeric string of the phone number
     public var numericString: String! {
         get { return baseString as String }
     }
     
     /// Returns true if the phone number is a partially valid phone number
-    public var isPartiallyValid: Bool {
-        get { return baseString.length <= 1 }
+    open var isPartiallyValid: Bool {
+        get { return baseString.characters.count <= 1 }
     }
     
     /// True if the phone number is valid length phone number
-    public var isValid : Bool {
-        let length = baseString.length
+    open var isValid : Bool {
+        let length = baseString.characters.count
         return (length == 7 || length >= 10)
     }
+    
     
     /**
      Initialize a CBPhoneNumber with a string. Non numberic characters will be removed.
@@ -37,11 +71,10 @@ public class CBPhoneNumber {
      - returns: A new CBPhoneNumber
      */
     public init(string : String?) {
-        if string != nil {
-            let string = NSString(string: string!)
+        if let str = string {
             
-            let comps = NSArray(array: string.components(separatedBy: NSCharacterSet.decimalDigits.inverted))
-            baseString = comps.componentsJoined(by: "")
+            let comps = str.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            baseString = comps.joined(separator: "")
         }
     }
     
@@ -51,7 +84,7 @@ public class CBPhoneNumber {
      - parameter string: The string to append.
      */
     public func appendString(string: String!) {
-        let comps = NSArray(array: string.components(separatedBy: NSCharacterSet.decimalDigits.inverted))
+        let comps = NSArray(array: string.components(separatedBy: CharacterSet.decimalDigits.inverted))
         let addedString = comps.componentsJoined(by: "")
         baseString = baseString.appending(addedString)
     }
@@ -61,8 +94,8 @@ public class CBPhoneNumber {
      Remove the last number from the phone number
      */
     public func removeLastCharacter() {
-        if baseString.length > 0 {
-            baseString = baseString.substring(to: baseString.length-1)
+        if baseString.characters.count > 0 {
+            baseString = baseString.sub(to: baseString.characters.count-1)
         }
     }
     
@@ -71,37 +104,37 @@ public class CBPhoneNumber {
      
      - returns: A formatted phone number. This can be partial
      */
-    public func formattedNumber() -> String! {
+    open func formattedNumber() -> String {
         
-        if baseString.length == 0 {
-            return baseString as String
+        if baseString.characters.count == 0 {
+            return baseString
         }
-        else if baseString.length > 11 {
-            return baseString as String
+        else if baseString.characters.count > 11 {
+            return baseString
         }
         
-        var  prefix: String? = baseString.substring(to: 1)
-        var string: NSString! = baseString
+        var  prefix: String? = baseString.sub(to: 1)
+        var string = baseString
         if prefix != "1" {
             prefix = nil
         }
         else {
-            string = baseString.substring(from: 1)
+            string = baseString.sub(from: 1)
         }
         
-        let length = string.length
+        let length = string.characters.count
         if length <= 3 {
             if length > 0 && prefix != nil {
                 string = "(\(string))"
             }
         }
         else if length <= 7  {
-            let firstThree = string.substring(to: 3)
-            var partial = string.substring(with: NSMakeRange(3, length-3)) as NSString
+            let firstThree = string.sub(to: 3)
+            var partial = string.sub(from: 3,  to: length-3)
             
             if prefix != nil{
-                if partial.length == 4 {
-                    partial = "\(partial.substring(to: 3))-\(partial.substring(from: 3))"
+                if partial.characters.count == 4 {
+                    partial = "\(partial.sub(to: 3))-\(partial.sub(from: 3))"
                 }
                 
                 string = "(\(firstThree)) \(partial)"
@@ -111,17 +144,17 @@ public class CBPhoneNumber {
             }
         }
         else if length <= 10 {
-            let areaCode = string.substring(to: 3)
-            let firstThree = string.substring(with: NSMakeRange(3, 3))
-            let lastFour = string.substring(with: NSMakeRange(6, length-6))
+            let areaCode = string.sub(to: 3)
+            let firstThree = string.sub(from: 3, to: 6)
+            let lastFour = string.sub(from: 6, to: length-6)
             
             string = "(\(areaCode)) \(firstThree)-\(lastFour)"
         }
         else {
-            let prefix = string.substring(to: length-10)
-            let areaCode = string.substring(with: NSMakeRange(length-10, 3))
-            let firstThree = string.substring(with: NSMakeRange(length-7, 3))
-            let lastFour = string.substring(with: NSMakeRange(length-4, 4))
+            let prefix = string.sub(to: length-10)
+            let areaCode = string.sub(from: length-10, to : length - 7)
+            let firstThree = string.sub(from: length-7, to: length - 10)
+            let lastFour = string.sub(from: length-4)
             
             string = "+\(prefix) (\(areaCode)) \(firstThree)-\(lastFour)"
         }
@@ -130,7 +163,7 @@ public class CBPhoneNumber {
             string = "+\(prefix!) \(string)"
         }
         
-        return string.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        return string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
     

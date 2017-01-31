@@ -503,9 +503,19 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     
     
     override public func layoutAttributesForElements (in rect : CGRect) -> [UICollectionViewLayoutAttributes] {
-        var begin = 0, end = self.unionRects.count
-        var attrs : [UICollectionViewLayoutAttributes] = []
         
+        var attrs = [UICollectionViewLayoutAttributes]()
+        
+        for attr in allItemAttributes {
+            if attr.frame.intersects(rect) {
+                attrs.append(attr)
+            }
+        }
+        return attrs
+        /*
+        // This logic is flawed, the temporary fix above is not the more efficient solution
+         
+        var begin = 0, end = self.unionRects.count
         for i in 0..<end {
             if rect.intersects(unionRects[i]){
                 begin = i * unionSize;
@@ -525,6 +535,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
             }
         }
         return attrs
+        */
     }
     
     override public func shouldInvalidateLayout (forBoundsChange newBounds : CGRect) -> Bool {

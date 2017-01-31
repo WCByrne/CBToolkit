@@ -160,8 +160,8 @@ import UIKit
             context!.setLineWidth(borderWidth);
             context!.setStrokeColor(borderColor.cgColor)
             
-            context!.moveTo(x: 0, y: self.bounds.size.height);
-            context!.addLineTo(x: self.bounds.size.width, y: self.bounds.size.height);
+            context!.move(to: CGPoint(x: 0, y: self.bounds.size.height))
+            context!.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height))
             
             context!.strokePath();
         }

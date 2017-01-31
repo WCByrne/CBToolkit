@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -21,7 +25,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jcr-jf-Bwu">
                                 <rect key="frame" x="0.0" y="0.0" width="2000" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6ir-hk-idM">
                                     <size key="itemSize" width="330" height="630"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -38,20 +42,20 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XpQ-aC-IK8" customClass="CBGradientView" customModule="CBToolkit">
                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="630"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Views" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkM-kB-dyu">
                                                     <rect key="frame" x="16" y="52" width="298" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKr-Xz-CrJ" customClass="CBBorderView" customModule="CBToolkit">
@@ -60,11 +64,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tap-8b-cSm">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="Tap-8b-cSm" secondAttribute="bottom" constant="4" id="W1N-Sp-br1"/>
                                                         <constraint firstAttribute="trailing" secondItem="Tap-8b-cSm" secondAttribute="trailing" id="ZHc-zJ-q3u"/>
@@ -77,20 +81,20 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lRX-SP-vKE" customClass="CBView" customModule="CBToolkit">
                                                     <rect key="frame" x="129" y="151" width="70" height="70"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="70" id="KXl-hz-n5Q"/>
                                                         <constraint firstAttribute="width" constant="70" id="dXO-YS-Bo7"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="value" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="2"/>
@@ -102,7 +106,7 @@
                                                             <real key="value" value="0.29999999999999999"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                             <size key="value" width="0.0" height="0.0"/>
@@ -118,20 +122,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="06L-Dh-9KJ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="z7i-5B-eR2">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479999999" green="0.42754349580000001" blue="0.49250431379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateCornerRadius:" destination="Bku-9W-nos" eventType="valueChanged" id="1c9-Se-Bda"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="z7i-5B-eR2" firstAttribute="leading" secondItem="bKq-5L-txB" secondAttribute="trailing" constant="8" id="7Oy-zL-JJh"/>
                                                         <constraint firstItem="z7i-5B-eR2" firstAttribute="top" secondItem="rf9-Kf-E7c" secondAttribute="top" id="9A4-Nz-M7b"/>
@@ -145,7 +149,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -161,20 +165,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="u2t-8K-1yW"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="e8R-wm-uHD">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479999999" green="0.42754349580000001" blue="0.49250431379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateBorder:" destination="Bku-9W-nos" eventType="valueChanged" id="Poe-2m-Y6X"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="e8R-wm-uHD" firstAttribute="top" secondItem="gQa-Iu-jVc" secondAttribute="top" id="29h-fT-mZW"/>
                                                         <constraint firstItem="e8R-wm-uHD" firstAttribute="leading" secondItem="T7R-MT-Mlt" secondAttribute="trailing" constant="8" id="7gY-Yi-a2v"/>
@@ -188,7 +192,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -204,20 +208,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="TZ8-xS-i2u"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="5" minValue="0.0" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="RHK-5u-FJG">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479999999" green="0.42754349580000001" blue="0.49250431379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateShadowRadius:" destination="Bku-9W-nos" eventType="valueChanged" id="lxf-jC-VN0"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="RHK-5u-FJG" firstAttribute="leading" secondItem="Vxu-jM-V4U" secondAttribute="trailing" constant="8" id="7Ph-yz-87o"/>
                                                         <constraint firstAttribute="height" constant="40" id="B2E-1m-dxe"/>
@@ -231,7 +235,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -247,20 +251,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="Vft-fz-A9v"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Q0P-Gz-oFt">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479999999" green="0.42754349580000001" blue="0.49250431379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateShadowOpacity:" destination="Bku-9W-nos" eventType="valueChanged" id="t1H-z0-Sxb"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="e8V-Xe-EO7" firstAttribute="top" secondItem="fqX-0f-mJU" secondAttribute="top" id="2OO-Q9-GdQ"/>
                                                         <constraint firstAttribute="bottom" secondItem="e8V-Xe-EO7" secondAttribute="bottom" id="Dh9-Nn-Uaa"/>
@@ -274,7 +278,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -287,11 +291,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBGradientView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWa-1W-pr2">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="yWa-1W-pr2" secondAttribute="trailing" id="7fe-Sy-7TY"/>
                                                         <constraint firstAttribute="bottom" secondItem="yWa-1W-pr2" secondAttribute="bottom" constant="4" id="X33-pK-ydI"/>
@@ -304,7 +308,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -317,20 +321,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="HCp-cw-sTV"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ucc-Su-1SR">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479999999" green="0.42754349580000001" blue="0.49250431379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateGradientTop:" destination="Bku-9W-nos" eventType="valueChanged" id="8IF-hD-lXl"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="FaY-xC-qI6" firstAttribute="leading" secondItem="NXf-9P-0Se" secondAttribute="leading" constant="8" id="4h7-dT-tSw"/>
                                                         <constraint firstItem="ucc-Su-1SR" firstAttribute="leading" secondItem="FaY-xC-qI6" secondAttribute="trailing" constant="8" id="8uJ-rb-fOD"/>
@@ -344,7 +348,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -360,20 +364,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="o4b-27-pJr"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.10000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="GO4-x9-Hic">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479999999" green="0.42754349580000001" blue="0.49250431379999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateGradientBottom:" destination="Bku-9W-nos" eventType="valueChanged" id="sjY-Yc-V67"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="GO4-x9-Hic" firstAttribute="top" secondItem="rOX-eA-rCR" secondAttribute="top" id="O62-Qh-Sgt"/>
                                                         <constraint firstItem="j1b-9T-hZB" firstAttribute="top" secondItem="rOX-eA-rCR" secondAttribute="top" id="QGf-0Q-mUO"/>
@@ -387,7 +391,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -400,11 +404,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBBorderView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i7Q-wq-YMT">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="i7Q-wq-YMT" secondAttribute="trailing" id="Tko-VZ-cep"/>
                                                         <constraint firstItem="i7Q-wq-YMT" firstAttribute="top" secondItem="WNG-Ph-eQA" secondAttribute="top" id="bcr-j2-yu9"/>
@@ -417,7 +421,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -433,7 +437,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Left" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NbV-Ho-p2Z">
                                                             <rect key="frame" x="229" y="8" width="51" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Q6m-P1-lO0">
@@ -445,7 +449,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Right" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utn-A1-IWF">
                                                             <rect key="frame" x="110" y="8" width="30" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rpY-kt-OY6">
@@ -457,7 +461,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Top" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UIu-fa-5OH">
                                                             <rect key="frame" x="49" y="8" width="21" height="16"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uB8-aj-HX9">
@@ -469,11 +473,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bottom" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ngc-i2-8Zi">
                                                             <rect key="frame" x="164" y="8" width="51" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.20000000000000001" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="uB8-aj-HX9" secondAttribute="bottom" constant="8" id="05V-J4-Q4h"/>
                                                         <constraint firstItem="8HD-d3-RAq" firstAttribute="top" secondItem="ngc-i2-8Zi" secondAttribute="bottom" constant="2" id="2iT-hh-BDR"/>
@@ -494,20 +498,18 @@
                                                         <constraint firstAttribute="centerX" secondItem="rpY-kt-OY6" secondAttribute="trailing" constant="8" id="yfR-RN-iWd"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="value" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="4"/>
                                                         </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="leftBorder" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.36398425698280334" green="0.76456129550933838" blue="0.48526716232299805" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.36398425698280334" green="0.76456129550933838" blue="0.48526716232299805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="CSZ-ki-4z2" firstAttribute="leading" secondItem="Bku-9W-nos" secondAttribute="leadingMargin" id="1Ly-ck-JWo"/>
                                             <constraint firstItem="rf9-Kf-E7c" firstAttribute="trailing" secondItem="Bku-9W-nos" secondAttribute="trailingMargin" id="2M9-ds-gb9"/>
@@ -564,20 +566,20 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yrR-ds-RVh" customClass="CBGradientView" customModule="CBToolkit">
                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="526"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buttons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="05C-aZ-EWJ">
                                                     <rect key="frame" x="16" y="108" width="298" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pGx-Ys-mJ9" customClass="CBBorderView" customModule="CBToolkit">
@@ -586,11 +588,11 @@
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBButton" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kh2-xt-dYq">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="kh2-xt-dYq" firstAttribute="top" secondItem="pGx-Ys-mJ9" secondAttribute="top" id="LDl-5G-JRA"/>
                                                         <constraint firstAttribute="bottom" secondItem="kh2-xt-dYq" secondAttribute="bottom" constant="4" id="SRk-bv-Krl"/>
@@ -603,19 +605,19 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeK-1W-A6W" customClass="CBButton" customModule="CBToolkit">
                                                     <rect key="frame" x="55" y="200" width="160" height="35"/>
-                                                    <color key="backgroundColor" white="0.95000000000000007" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="51V-md-t6V"/>
                                                         <constraint firstAttribute="width" constant="160" id="i20-N4-g5t"/>
                                                     </constraints>
                                                     <state key="normal" title="Standard CBButton">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -625,7 +627,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.75" green="0.75" blue="0.75" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </button>
@@ -638,20 +640,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="GIJ-2U-zyn"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.90000000000000002" minValue="0.10000000000000001" maxValue="0.98999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="JUg-vH-kQz">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479458216" green="0.42754349577317546" blue="0.49250431381598891" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateShrinkScale:" destination="PiS-sF-vIY" eventType="valueChanged" id="U9p-E0-0hD"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="4Do-lH-Uig"/>
                                                         <constraint firstAttribute="bottom" secondItem="uQU-y4-Jxs" secondAttribute="bottom" id="4Yh-jU-sDi"/>
@@ -665,7 +667,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -681,20 +683,20 @@
                                                                 <constraint firstAttribute="width" constant="90" id="nhu-YY-LCH"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.10000000000000001" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OSe-rT-0mD">
                                                             <rect key="frame" x="104" y="0.0" width="204" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.20337730649999999" green="0.58433622119999995" blue="0.6859055758" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479458216" green="0.42754349577317546" blue="0.49250431381598891" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.16862747073173523" green="0.51372551918029785" blue="0.62352943420410156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31685274839401245" green="0.35072022676467896" blue="0.41679090261459351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateDamping:" destination="PiS-sF-vIY" eventType="valueChanged" id="FB0-Nu-454"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="BFC-o0-LPD" firstAttribute="leading" secondItem="1Z8-eq-dM3" secondAttribute="leading" constant="8" id="0Pk-iw-i9J"/>
                                                         <constraint firstItem="OSe-rT-0mD" firstAttribute="top" secondItem="1Z8-eq-dM3" secondAttribute="top" id="61n-Gp-ZCA"/>
@@ -708,7 +710,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -717,13 +719,13 @@
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LTb-sf-eM8" customClass="CBButton" customModule="CBToolkit">
                                                     <rect key="frame" x="65" y="339" width="100" height="100"/>
-                                                    <color key="backgroundColor" white="0.94999999999999996" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="100" id="ktS-eq-Jke"/>
                                                         <constraint firstAttribute="width" constant="100" id="vLV-wR-38y"/>
                                                     </constraints>
                                                     <state key="normal" title="POP">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -733,7 +735,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="0.80000000000000004" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="popWhenSelected" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="circleCrop" value="NO"/>
@@ -744,7 +746,7 @@
                                                 </button>
                                                 <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.2" minimumValue="1.1000000000000001" maximumValue="2" stepValue="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="ELd-I5-WkB">
                                                     <rect key="frame" x="189" y="314" width="94" height="29"/>
-                                                    <color key="tintColor" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
                                                         <action selector="adjustPopScale:" destination="PiS-sF-vIY" eventType="valueChanged" id="Ad9-Gk-Lnn"/>
                                                     </connections>
@@ -752,13 +754,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="pop scale:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-Ls-9fb">
                                                     <rect key="frame" x="192" y="296" width="63" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1.2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwT-E9-DmS">
                                                     <rect key="frame" x="257" y="296" width="19" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tX5-4F-Jlp" customClass="CBBorderView" customModule="CBToolkit">
@@ -767,11 +769,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBButtonView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJ2-WX-s9e">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="kJ2-WX-s9e" firstAttribute="top" secondItem="tX5-4F-Jlp" secondAttribute="top" id="CvF-Tz-rGD"/>
                                                         <constraint firstItem="kJ2-WX-s9e" firstAttribute="leading" secondItem="tX5-4F-Jlp" secondAttribute="leading" id="M9J-wa-Mjb"/>
@@ -784,7 +786,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -804,7 +806,7 @@
                                                                             <real key="value" value="5"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                            <color key="value" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                                                            <color key="value" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
@@ -813,7 +815,7 @@
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="Idx-X8-lBV" customClass="CBImageView" customModule="CBToolkit">
                                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="24" id="Nrm-ob-LaF"/>
                                                                                 <constraint firstAttribute="height" constant="24" id="eef-3e-Yjc"/>
@@ -823,8 +825,8 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="24" id="0Yf-aC-FlN"/>
                                                                         <constraint firstAttribute="trailing" secondItem="Idx-X8-lBV" secondAttribute="trailing" id="6i1-U2-aBl"/>
@@ -835,7 +837,7 @@
                                                                     </constraints>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                                             <real key="value" value="5"/>
@@ -849,7 +851,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="yUp-Lj-AGs" firstAttribute="leading" secondItem="TLp-It-g3i" secondAttribute="leading" id="8LM-o2-95d"/>
                                                                 <constraint firstAttribute="bottom" secondItem="2u1-jp-OQq" secondAttribute="bottom" constant="8" id="BJx-mQ-Grh"/>
@@ -865,7 +867,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="TLp-It-g3i" secondAttribute="trailing" id="6e7-6r-ThZ"/>
                                                         <constraint firstAttribute="width" constant="100" id="C02-cC-xq9"/>
@@ -876,7 +878,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                             <real key="value" value="10"/>
@@ -892,7 +894,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Create a button with a custom arrangment of subviews then just link to an IBAction." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LH3-9V-KCY">
                                                     <rect key="frame" x="8" y="537" width="314" height="34"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xT1-Yd-nHU" customClass="CBIconButton" customModule="CBToolkit">
@@ -901,7 +903,7 @@
                                                         <constraint firstAttribute="width" constant="100" id="Xjz-Zk-wp3"/>
                                                         <constraint firstAttribute="height" constant="100" id="lWw-3F-tdA"/>
                                                     </constraints>
-                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="size" keyPath="iconSize">
                                                             <size key="value" width="80" height="80"/>
@@ -910,7 +912,7 @@
                                                             <real key="value" value="2"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="highlightTintColor">
-                                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
@@ -918,9 +920,8 @@
                                                     </connections>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.24313725489999999" green="0.82352941180000006" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.21442523598670959" green="0.78487622737884521" blue="0.95943212509155273" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="1Z8-eq-dM3" firstAttribute="trailing" secondItem="PiS-sF-vIY" secondAttribute="trailingMargin" id="1dg-mN-A3Z"/>
                                             <constraint firstItem="pGx-Ys-mJ9" firstAttribute="top" secondItem="05C-aZ-EWJ" secondAttribute="bottom" constant="16" id="3Cd-Md-Hm0"/>
@@ -974,20 +975,20 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="krv-xK-g4C" customClass="CBGradientView" customModule="CBToolkit">
                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="600"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loaders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ex-HE-dxL">
                                                     <rect key="frame" x="16" y="52" width="298" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K31-t0-xlx" customClass="CBBorderView" customModule="CBToolkit">
@@ -996,11 +997,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity Indicator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w3-4Z-97n">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="6w3-4Z-97n" secondAttribute="bottom" constant="4" id="1al-fU-vGB"/>
                                                         <constraint firstItem="6w3-4Z-97n" firstAttribute="top" secondItem="K31-t0-xlx" secondAttribute="top" id="7vf-ZR-AYm"/>
@@ -1013,20 +1014,20 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MjZ-eL-Jkv" customClass="CBButton" customModule="CBToolkit">
                                                     <rect key="frame" x="173" y="144" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="Gs2-SI-dcF"/>
                                                         <constraint firstAttribute="width" constant="50" id="KJb-Kw-rfS"/>
                                                     </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Start">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1036,7 +1037,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="circleCrop" value="NO"/>
                                                     </userDefinedRuntimeAttributes>
@@ -1046,8 +1047,8 @@
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O74-MT-EV3" customClass="CBActivityIndicator" customModule="CBToolkit">
                                                     <rect key="frame" x="107" y="144" width="50" height="50"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="4Xa-Td-LkB"/>
                                                         <constraint firstAttribute="height" constant="50" id="h2Z-Ev-h4C"/>
@@ -1061,7 +1062,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
-                                                            <color key="value" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -1074,20 +1075,20 @@
                                                                 <constraint firstAttribute="width" constant="75" id="KS8-q6-8Bt"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="kGu-BH-unK">
                                                             <rect key="frame" x="87" y="0.0" width="221" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479458216" green="0.42754349577317546" blue="0.47563695907592773" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31689766049385071" green="0.3513786792755127" blue="0.39979660511016846" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateActivityWidth:" destination="mNb-Wu-TKS" eventType="valueChanged" id="2Ta-SB-KpL"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="kGu-BH-unK" firstAttribute="top" secondItem="OT9-pn-ZUp" secondAttribute="top" id="G2h-wN-dsI"/>
                                                         <constraint firstAttribute="bottom" secondItem="BFw-tc-c82" secondAttribute="bottom" id="Jd5-bZ-GbC"/>
@@ -1101,7 +1102,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -1117,20 +1118,20 @@
                                                                 <constraint firstAttribute="width" constant="75" id="ESa-et-Di3"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.90000000000000002" minValue="0.050000000000000003" maxValue="0.94999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="2zz-DW-GM5">
                                                             <rect key="frame" x="88" y="0.0" width="220" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479458216" green="0.42754349577317546" blue="0.47563695907592773" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31689766049385071" green="0.3513786792755127" blue="0.39979660511016846" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateActivtySize:" destination="mNb-Wu-TKS" eventType="valueChanged" id="PUb-T3-f0g"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="3cI-0f-7ip"/>
                                                         <constraint firstAttribute="trailing" secondItem="2zz-DW-GM5" secondAttribute="trailing" constant="8" id="6GO-K2-GCw"/>
@@ -1144,7 +1145,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -1160,20 +1161,20 @@
                                                                 <constraint firstAttribute="width" constant="75" id="PiG-He-sKX"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.5" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="U1A-Bc-Clp">
                                                             <rect key="frame" x="88" y="0.0" width="220" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479458216" green="0.42754349577317546" blue="0.47563695907592773" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31689766049385071" green="0.3513786792755127" blue="0.39979660511016846" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateActivtySpeed:" destination="mNb-Wu-TKS" eventType="valueChanged" id="GCb-dL-J7l"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="U1A-Bc-Clp" firstAttribute="leading" secondItem="k8Y-57-giN" secondAttribute="trailing" constant="8" id="5hQ-6S-4H6"/>
                                                         <constraint firstAttribute="bottom" secondItem="U1A-Bc-Clp" secondAttribute="bottom" id="AfB-Rf-Zxp"/>
@@ -1187,7 +1188,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -1203,20 +1204,20 @@
                                                                 <constraint firstAttribute="width" constant="75" id="ut3-Mr-cGc"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Axi-Qf-kD1">
                                                             <rect key="frame" x="89" y="0.0" width="219" height="41"/>
-                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="maximumTrackTintColor" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
-                                                            <color key="thumbTintColor" red="0.38971140479458216" green="0.42754349577317546" blue="0.47563695907592773" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="minimumTrackTintColor" red="0.74679332971572876" green="0.20262712240219116" blue="0.27800524234771729" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="maximumTrackTintColor" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="thumbTintColor" red="0.31689766049385071" green="0.3513786792755127" blue="0.39979660511016846" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <connections>
                                                                 <action selector="updateActivityTrackColor:" destination="mNb-Wu-TKS" eventType="valueChanged" id="uvY-gB-jSm"/>
                                                             </connections>
                                                         </slider>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="Axi-Qf-kD1" firstAttribute="leading" secondItem="pMI-Er-9r5" secondAttribute="trailing" constant="8" id="Ca9-6m-Fb5"/>
                                                         <constraint firstAttribute="bottom" secondItem="Axi-Qf-kD1" secondAttribute="bottom" id="EmR-e1-QNU"/>
@@ -1230,7 +1231,7 @@
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                             <real key="value" value="1"/>
@@ -1243,11 +1244,11 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CBButtonView" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KtA-ac-ajB">
                                                             <rect key="frame" x="0.0" y="0.0" width="314" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="KtA-ac-ajB" secondAttribute="trailing" id="0PL-s0-8LE"/>
                                                         <constraint firstAttribute="bottom" secondItem="KtA-ac-ajB" secondAttribute="bottom" constant="4" id="9fx-HM-OC0"/>
@@ -1260,7 +1261,7 @@
                                                             <real key="value" value="1"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                            <color key="value" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -1271,21 +1272,21 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                    <color key="value" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                                                    <color key="value" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="c4q-3C-34J" customClass="CBImageView" customModule="CBToolkit">
                                                             <rect key="frame" x="8" y="8" width="84" height="84"/>
-                                                            <color key="tintColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tinted" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZi-Cd-qQH" customClass="CBProgressView" customModule="CBToolkit">
                                                             <rect key="frame" x="-3" y="-3" width="106" height="106"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <color key="tintColor" white="1" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
                                                                     <real key="value" value="3"/>
@@ -1299,7 +1300,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="7WF-e1-gml"/>
                                                         <constraint firstItem="CZi-Cd-qQH" firstAttribute="leading" secondItem="sCy-cf-9pb" secondAttribute="leading" constant="-3" id="9Ul-40-CdD"/>
@@ -1329,15 +1330,14 @@
                                                     </connections>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An example usave of CBProgressView. Tap the image." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQz-9M-NLl">
-                                                    <rect key="frame" x="8" y="524" width="314" height="34"/>
+                                                    <rect key="frame" x="8" y="524" width="314" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="0.90000000000000002" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="0JL-05-eeK" firstAttribute="top" secondItem="OT9-pn-ZUp" secondAttribute="bottom" id="0wW-un-t1Y"/>
                                             <constraint firstItem="ihz-dv-wbd" firstAttribute="top" secondItem="0JL-05-eeK" secondAttribute="bottom" id="1ya-Uj-8HX"/>
@@ -1390,7 +1390,7 @@
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uMq-GS-L6l">
                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="630"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <inset key="scrollIndicatorInsets" minX="0.0" minY="80" maxX="0.0" maxY="0.0"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dH9-mv-a87">
                                                         <size key="itemSize" width="188" height="162"/>
@@ -1410,9 +1410,8 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="188" height="162"/>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
-                                                            <color key="backgroundColor" white="0.90000000000000002" alpha="0.69999999999999996" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.89999997615814209" green="0.89999997615814209" blue="0.89999997615814209" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="pPF-ww-Fdg" secondAttribute="bottom" id="3g3-br-X5O"/>
                                                                 <constraint firstItem="pPF-ww-Fdg" firstAttribute="top" secondItem="Hn6-2v-nZh" secondAttribute="top" id="8kR-81-93F"/>
@@ -1438,11 +1437,11 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CollectionView Layout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTL-tm-waJ">
                                                                     <rect key="frame" x="0.0" y="0.0" width="330" height="24"/>
                                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="24"/>
-                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="TTL-tm-waJ" firstAttribute="top" secondItem="3sA-GA-Oij" secondAttribute="top" id="MFJ-Z9-7IS"/>
                                                                 <constraint firstAttribute="bottom" secondItem="TTL-tm-waJ" secondAttribute="bottom" id="R7A-vf-Pol"/>
@@ -1457,7 +1456,7 @@
                                                                     <real key="value" value="0.5"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                    <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                                                                     <size key="value" width="0.0" height="1"/>
@@ -1465,7 +1464,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="3sA-GA-Oij" firstAttribute="leading" secondItem="ryf-Yj-V6f" secondAttribute="leading" id="3E7-Y3-iFS"/>
                                                         <constraint firstAttribute="bottom" secondItem="3sA-GA-Oij" secondAttribute="bottom" constant="12" id="E3S-At-7eX"/>
@@ -1474,10 +1473,10 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                                            <color key="value" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                                            <color key="value" white="0.95433505640000005" alpha="0.69663275189999996" colorSpace="calibratedWhite"/>
+                                                            <color key="value" red="0.95433503389358521" green="0.95433503389358521" blue="0.95433503389358521" alpha="0.69663275189999996" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="bottomLocation">
                                                             <real key="value" value="1"/>
@@ -1488,9 +1487,8 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.94999998807907104" green="0.94999998807907104" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="ryf-Yj-V6f" firstAttribute="top" secondItem="uw9-c8-gXS" secondAttribute="top" id="36n-Bs-mHn"/>
                                             <constraint firstAttribute="trailing" secondItem="ryf-Yj-V6f" secondAttribute="trailing" id="5Q2-53-CDj"/>
@@ -1512,15 +1510,15 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ce6-ap-Qb7" customClass="CBButton" customModule="CBToolkit">
                                 <rect key="frame" x="8" y="20" width="77" height="22"/>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="7F5-RT-CMm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="tintColor" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                                 <state key="normal" title="Autoscroll">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1532,7 +1530,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ce6-ap-Qb7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="JeO-zf-F4Z"/>
                             <constraint firstAttribute="trailing" secondItem="jcr-jf-Bwu" secondAttribute="trailing" id="N3S-5z-gMt"/>

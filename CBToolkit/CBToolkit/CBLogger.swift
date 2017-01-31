@@ -93,7 +93,7 @@ public class CBLogger {
                     let msgStr = "\(msg)"
                     if msgStr.characters.count > 0 {
                         queue.async(execute: { 
-                            dest.send(level: level, msg: msgStr, thread: thread, path: path, function: function, line: line)
+                            _ = dest.send(level: level, msg: msgStr, thread: thread, path: path, function: function, line: line)
                         })
                     }
                 }
@@ -192,8 +192,8 @@ public class BaseDestination: Hashable, Equatable {
     
     func formattedLevel(level: CBLogger.LogLevel) -> String {
         // optionally wrap the level string in color
-        var color = ""
-        var levelStr = ""
+        // var color = ""
+        // var levelStr = ""
         
         switch level {
         case CBLogger.LogLevel.Debug:

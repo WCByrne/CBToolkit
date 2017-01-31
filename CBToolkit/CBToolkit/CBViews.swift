@@ -122,23 +122,23 @@ import UIKit
         context?.setStrokeColor(borderColor.cgColor)
         
         if topBorder == true {
-            context?.moveTo(x: leftInset, y: 0)
-            context?.addLineTo(x: self.bounds.size.width - rightInset, y: 0)
+            context?.move(to: CGPoint(x: leftInset, y: 0))
+            context?.addLine(to: CGPoint(x: self.bounds.size.width - rightInset, y: 0))
             context?.strokePath()
         }
         if leftBorder == true {
-            context?.moveTo(x: 0, y: topInset)
-            context?.addLineTo(x: 0, y: self.bounds.size.height - bottomInset)
+            context?.move(to: CGPoint(x: 0, y: topInset))
+            context?.addLine(to: CGPoint(x: 0, y: self.bounds.size.height - bottomInset))
             context?.strokePath()
         }
         if rightBorder == true {
-            context?.moveTo(x: self.bounds.size.width, y: topInset)
-            context?.addLineTo(x: self.bounds.size.width, y: self.bounds.size.height - bottomInset)
+            context?.move(to: CGPoint(x: self.bounds.size.width, y: topInset))
+            context?.addLine(to: CGPoint(x: self.bounds.size.width, y: self.bounds.size.height - bottomInset))
             context?.strokePath()
         }
         if bottomBorder == true {
-            context?.moveTo(x: leftInset, y: self.bounds.size.height)
-            context?.addLineTo(x: self.bounds.size.width - rightInset, y: self.bounds.size.height)
+            context?.move(to: CGPoint(x: leftInset, y: self.bounds.size.height))
+            context?.addLine(to: CGPoint(x: self.bounds.size.width - rightInset, y: self.bounds.size.height))
             context?.strokePath()
         }
     }
