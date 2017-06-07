@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name              = "CBToolkit"
-    s.version           = "0.1.0"
+    s.version           = "0.2.0"
     s.summary           = "A UI and utility Toolkit for iOS"
     s.homepage          = "https://github.com/WCByrne/CBToolkit"
     s.license           = "MIT"
