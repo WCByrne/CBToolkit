@@ -1,8 +1,7 @@
-//  SupportSliderCell.swift
-//  MobileMenuManager
+//  CBSliderCell.swift
 //
 //  Created by Wes Byrne on 2/11/15.
-//  Copyright (c) 2015 Type 2 Designs. All rights reserved.
+//  Copyright (c) 2015 WCBMedia. All rights reserved.
 //
 
 import Foundation
@@ -70,7 +69,7 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         autoScrollTimer = nil
     }
     
-    internal func animateScroll() {
+    @objc internal func animateScroll() {
         guard let cv = self.collectionView,
          cv.numberOfSections > 0,
         cv.numberOfItems(inSection: 0) > 0

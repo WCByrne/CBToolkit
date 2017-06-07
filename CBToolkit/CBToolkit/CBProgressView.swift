@@ -86,11 +86,11 @@ import UIKit
     private func updatePath() {
         let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY);
         let radius = (self.bounds.size.width / 2) - lineWidth/2
-        let startAngle = CGFloat(2 * M_PI * Double(startPosition) - M_PI_2)
-        let endAngle = startAngle + CGFloat(2 * M_PI)
+        let startAngle = CGFloat(2 * Double.pi * Double(startPosition) - (.pi / 2))
+        let endAngle = startAngle + CGFloat(2 * Double.pi)
         
         self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true).cgPath
-        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).cgPath
+        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: true).cgPath
     }
     
     override public func tintColorDidChange() {
@@ -363,8 +363,8 @@ import UIKit
         let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
         let radius = (self.bounds.size.width / 2) - lineWidth/2
         
-        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).cgPath
-        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true).cgPath
+        self.progressLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: true).cgPath
+        self.backgroundLayer.path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: CGFloat(2 * Double.pi), clockwise: true).cgPath
         
         progressLayer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         self.progressLayer.frame = self.bounds

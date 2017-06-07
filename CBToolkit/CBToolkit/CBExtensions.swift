@@ -1,9 +1,8 @@
 //
 //  ViewController.swift
-//  MobileMenuManager
 //
 //  Created by Wes Byrne on 1/12/15.
-//  Copyright (c) 2015 Type 2 Designs. All rights reserved.
+//  Copyright (c) 2015 WCBMedia. All rights reserved.
 //
 
 import Foundation
@@ -110,7 +109,7 @@ public extension UIAlertController {
 
 public extension Int {
     public var degreesToRadians : CGFloat {
-        return CGFloat(self) * CGFloat(M_PI) / 180.0
+        return CGFloat(self) * CGFloat(Double.pi) / 180.0
     }
     
     public static func random(low: Int, high: Int) -> Int {
@@ -289,19 +288,19 @@ public extension UIImage {
         case UIImageOrientation.down,            // EXIF = 3
         UIImageOrientation.downMirrored:   // EXIF = 4
             transform = transform.translatedBy(x: size.width, y: size.height)
-            transform = transform.rotated(by: CGFloat(M_PI))
+            transform = transform.rotated(by: CGFloat(Double.pi))
             break;
             
         case UIImageOrientation.left,           // EXIF = 6
         UIImageOrientation.leftMirrored:   // EXIF = 5
             transform = transform.translatedBy(x: size.width, y: 0)
-            transform = transform.rotated(by: CGFloat(M_PI_2))
+            transform = transform.rotated(by: CGFloat((Double.pi / 2)))
             break;
             
         case UIImageOrientation.right,          // EXIF = 8
         UIImageOrientation.rightMirrored:  // EXIF = 7
             transform = transform.translatedBy(x: 0, y: size.height)
-            transform = transform.rotated(by: CGFloat(-M_PI_2))
+            transform = transform.rotated(by: CGFloat(-(Double.pi / 2)))
             break
         default :
             break

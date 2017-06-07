@@ -115,7 +115,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
         
         let widthConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
-        widthConstraint.priority = 250
+        widthConstraint.priority = UILayoutPriority(rawValue: 250)
         self.view.addConstraint(widthConstraint)
         
         editingImage = originalImage
@@ -163,7 +163,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         titleLabel.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 44))
         headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
         headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-        titleLabel.setContentCompressionResistancePriority(250, for: UILayoutConstraintAxis.horizontal)
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 250), for: UILayoutConstraintAxis.horizontal)
         
         cancelButton = CBButton(type: UIButtonType.system)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
@@ -406,11 +406,11 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
     }
     
-    func cancel() {
+    @objc func cancel() {
         self.delegate.imageEditorDidCancel(self)
     }
     
-    public func finish() {
+    @objc public func finish() {
         var rect = self.view.convert(cropRect, to: imageView)
         
         let scale = (originalImage.size.width/imageView.frame.size.width)
@@ -428,7 +428,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     }
     
     
-    public func setSquareCrop() {
+    @objc public func setSquareCrop() {
         if ratioConstraint != nil {
             self.view.removeConstraint(ratioConstraint!)
         }
@@ -443,7 +443,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         horizontalButton.backgroundColor = UIColor.clear
         
     }
-    public func setHorizontalCrop() {
+    @objc public func setHorizontalCrop() {
         circleCrop = false
         if ratioConstraint != nil {
             self.view.removeConstraint(ratioConstraint!)
@@ -459,7 +459,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         horizontalButton.backgroundColor = horizontalButton.borderColor
     }
     
-    public func setVerticalCrop() {
+    @objc public func setVerticalCrop() {
         circleCrop = false
         if ratioConstraint != nil {
             self.view.removeConstraint(ratioConstraint!)

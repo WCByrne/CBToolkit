@@ -250,7 +250,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
     }
     
     
-    func handleLongPress(gesture: UILongPressGestureRecognizer) {
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             let indexPath = self.collectionView?.indexPathForItem(at: gesture.location(in: self.collectionView!))
             if indexPath == nil { return }
@@ -275,7 +275,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
         }
     }
     
-    func handlePanGesture(gesture: UIPanGestureRecognizer) {
+    @objc func handlePanGesture(gesture: UIPanGestureRecognizer) {
         // just for
         if selectedIndexPath == nil { return }
         

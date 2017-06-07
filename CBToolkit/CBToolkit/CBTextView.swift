@@ -18,7 +18,7 @@ import UIKit
             if autoExpand {
                 if heightConstraint == nil {
                     _heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: minimumHeight)
-                    heightConstraint!.priority = 1000
+                    heightConstraint!.priority = UILayoutPriority(rawValue: 1000)
                     self.addConstraint(heightConstraint!)
                     self.layoutIfNeeded()
                 }
@@ -128,7 +128,7 @@ import UIKit
         }
     }
     
-    public func textDidChange() {
+    @objc public func textDidChange() {
         let size = self.contentSize
         
         if placeholderTextView?.alpha != (self.text.isEmpty ? 1 : 0) {

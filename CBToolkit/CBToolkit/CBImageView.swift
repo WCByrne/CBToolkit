@@ -1,9 +1,8 @@
 //
 //  CBImageView.swift
-//  MobileMenuManager
 //
 //  Created by Wes Byrne on 12/10/14.
-//  Copyright (c) 2014 Type 2 Designs. All rights reserved.
+//  Copyright (c) 2014 WCBMedia. All rights reserved.
 //
 
 /*
