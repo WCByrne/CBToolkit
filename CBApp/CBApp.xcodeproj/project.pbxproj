@@ -18,7 +18,6 @@
 		DEEBE04F1B9892B600F18093 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE04D1B9892B600F18093 /* Main.storyboard */; };
 		DEEBE0511B9892B600F18093 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE0501B9892B600F18093 /* Images.xcassets */; };
 		DEEBE0541B9892B600F18093 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEEBE0521B9892B600F18093 /* LaunchScreen.xib */; };
-		DEEBE0601B9892B600F18093 /* CBAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEBE05F1B9892B600F18093 /* CBAppTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,13 +34,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1CDBAFED1A7D8A7200D7677B;
 			remoteInfo = CBToolkit;
-		};
-		DEEBE05A1B9892B600F18093 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DEEBE03C1B9892B600F18093 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DEEBE0431B9892B600F18093;
-			remoteInfo = CBApp;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -72,7 +64,6 @@
 		DEEBE04E1B9892B600F18093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DEEBE0501B9892B600F18093 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DEEBE0531B9892B600F18093 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		DEEBE0591B9892B600F18093 /* CBAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEEBE05E1B9892B600F18093 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEEBE05F1B9892B600F18093 /* CBAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBAppTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,13 +74,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE266BE51CB4F2CC00B98237 /* CBToolkit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DEEBE0561B9892B600F18093 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				DEEBE0441B9892B600F18093 /* CBApp.app */,
-				DEEBE0591B9892B600F18093 /* CBAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,24 +170,6 @@
 			productReference = DEEBE0441B9892B600F18093 /* CBApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DEEBE0581B9892B600F18093 /* CBAppTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DEEBE0661B9892B600F18093 /* Build configuration list for PBXNativeTarget "CBAppTests" */;
-			buildPhases = (
-				DEEBE0551B9892B600F18093 /* Sources */,
-				DEEBE0561B9892B600F18093 /* Frameworks */,
-				DEEBE0571B9892B600F18093 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DEEBE05B1B9892B600F18093 /* PBXTargetDependency */,
-			);
-			name = CBAppTests;
-			productName = CBAppTests;
-			productReference = DEEBE0591B9892B600F18093 /* CBAppTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -220,11 +185,6 @@
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
-					};
-					DEEBE0581B9892B600F18093 = {
-						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0900;
-						TestTargetID = DEEBE0431B9892B600F18093;
 					};
 				};
 			};
@@ -248,7 +208,6 @@
 			projectRoot = "";
 			targets = (
 				DEEBE0431B9892B600F18093 /* CBApp */,
-				DEEBE0581B9892B600F18093 /* CBAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -274,13 +233,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DEEBE0571B9892B600F18093 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -297,14 +249,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DEEBE0551B9892B600F18093 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DEEBE0601B9892B600F18093 /* CBAppTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -312,11 +256,6 @@
 			isa = PBXTargetDependency;
 			name = CBToolkit;
 			targetProxy = DE266BE71CB4F2CC00B98237 /* PBXContainerItemProxy */;
-		};
-		DEEBE05B1B9892B600F18093 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DEEBE0431B9892B600F18093 /* CBApp */;
-			targetProxy = DEEBE05A1B9892B600F18093 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -390,7 +329,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -437,7 +376,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -495,46 +434,6 @@
 			};
 			name = Release;
 		};
-		DEEBE0671B9892B600F18093 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CBAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "type2designs.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CBApp.app/CBApp";
-			};
-			name = Debug;
-		};
-		DEEBE0681B9892B600F18093 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = CBAppTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "type2designs.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CBApp.app/CBApp";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -552,15 +451,6 @@
 			buildConfigurations = (
 				DEEBE0641B9892B600F18093 /* Debug */,
 				DEEBE0651B9892B600F18093 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DEEBE0661B9892B600F18093 /* Build configuration list for PBXNativeTarget "CBAppTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DEEBE0671B9892B600F18093 /* Debug */,
-				DEEBE0681B9892B600F18093 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
