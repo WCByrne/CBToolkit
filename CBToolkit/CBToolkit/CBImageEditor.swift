@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 
 public protocol CBImageEditorDelegate {
-    func imageEditor(_ editor: CBImageEditor!, didFinishEditingImage original: UIImage!, editedImage: UIImage!)
-    func imageEditorDidCancel(_ editor: CBImageEditor!)
+    func imageEditor(_ editor: CBImageEditor, didFinishEditingImage original: UIImage, editedImage: UIImage)
+    func imageEditorDidCancel(_ editor: CBImageEditor)
 }
 
 

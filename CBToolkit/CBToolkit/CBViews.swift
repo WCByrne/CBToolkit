@@ -183,7 +183,7 @@ import UIKit
             colors = [topColor, middleColor!, bottomColor];
         }
         
-        let mGradientColors = colors.map {(color: UIColor!) -> AnyObject! in return color.cgColor as AnyObject! } as NSArray
+        let mGradientColors = colors.map {(color: UIColor) -> AnyObject in return color.cgColor as AnyObject } as NSArray
         let mGradient = CGGradient(colorsSpace: colorSpace, colors: mGradientColors, locations: locations);
         
         var mStartPoint = CGPoint(x: rect.midX, y: rect.minY);

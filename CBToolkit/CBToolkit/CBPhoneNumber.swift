@@ -83,7 +83,7 @@ public class CBPhoneNumber {
      
      - parameter string: The string to append.
      */
-    public func appendString(string: String!) {
+    public func append(_ string: String) {
         let comps = NSArray(array: string.components(separatedBy: CharacterSet.decimalDigits.inverted))
         let addedString = comps.componentsJoined(by: "")
         baseString = baseString.appending(addedString)
@@ -93,7 +93,7 @@ public class CBPhoneNumber {
     /**
      Remove the last number from the phone number
      */
-    public func removeLastCharacter() {
+    public func removeLast() {
         if baseString.characters.count > 0 {
             baseString = baseString.sub(to: baseString.characters.count-1)
         }
@@ -104,7 +104,7 @@ public class CBPhoneNumber {
      
      - returns: A formatted phone number. This can be partial
      */
-    open func formattedNumber() -> String {
+    open var formattedString : String {
         
         if baseString.characters.count == 0 {
             return baseString
@@ -172,7 +172,7 @@ public class CBPhoneNumber {
      
      - returns: True if the system can call the number otherwise false.
      */
-    public func callNumber() -> Bool {
+    public func call() -> Bool {
         let phoneURL : NSURL = NSURL(string:"telprompt:\(baseString)")!
         if UIApplication.shared.canOpenURL(phoneURL as URL) {
             UIApplication.shared.openURL(phoneURL as URL)

@@ -90,7 +90,7 @@ public extension UIAlertController {
      
      - returns: The UIAlertController initialized with the provided properties.
      */
-    public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String!) -> UIAlertController  {
+    public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil))
         return alert
@@ -161,7 +161,7 @@ public extension UIImage {
         return self.resize(bounds, transpose: drawTransposed, transform: self.orientationTransform(for: bounds))
     }
     
-    public func resize(_ bounds: CGSize,  contentMode: CBImageContentMode!) -> UIImage {
+    public func resize(_ bounds: CGSize,  contentMode: CBImageContentMode) -> UIImage {
         let horizontalRatio = bounds.width / self.size.width;
         let verticalRatio = bounds.height / self.size.height;
         let ratio = contentMode == .AspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)

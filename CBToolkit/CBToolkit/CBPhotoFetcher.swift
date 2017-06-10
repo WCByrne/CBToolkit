@@ -20,19 +20,19 @@ public class CBPhotoFetcher: NSObject {
     /// If downloaded images should be cached to disk
     public var useDiskCache: Bool = true
     
-    private var imageCache: NSCache! = NSCache<AnyObject,AnyObject>()
-    var inProgress: [String: CBImageFetchRequest]! = [:]
-    let operationQueue = OperationQueue()
+    private let imageCache: NSCache = NSCache<AnyObject,AnyObject>()
+    fileprivate var inProgress: [String: CBImageFetchRequest]! = [:]
+    fileprivate let operationQueue = OperationQueue()
     let fm = FileManager.default
     var networkCount = 0 {
         didSet { self.networdCountBlock?(oldValue - networkCount, self.networkCount) }
     }
     var networdCountBlock : CBNetworkActivityCountChangedBlock?
     
-    private lazy var diskCacheURL: URL! = {
+    private lazy var diskCacheURL: URL = {
         
         let str = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        let docs = NSURL(fileURLWithPath: str, isDirectory: true)
+        let docs = URL(fileURLWithPath: str, isDirectory: true)
         return docs.appendingPathComponent("CBImageCache", isDirectory: true)
     }()
     
@@ -60,7 +60,7 @@ public class CBPhotoFetcher: NSObject {
     
     - parameter imgUrl: The url to fetch
     */
-    public func prefetch(url: String!) {
+    public func prefetchImage(at url: URL) {
         let hash = url.cacheHash
         if inProgress[hash] != nil { return }
         imageFromCache(url) { (image) -> Void in
@@ -78,9 +78,7 @@ public class CBPhotoFetcher: NSObject {
      - parameter completion:    A completion handler when the download finishes
      - parameter progressBlock: A progress block for download updates
      */
-    public func fetchImage(at url: String!, completion: CBImageFetchCallback!, progressBlock: CBProgressBlock? = nil) {
-        assert(completion != nil, "CBPhotoFetcher Error: You must suppy a completion block when loading an image")
-        
+    public func fetchImage(at url: URL, completion: @escaping CBImageFetchCallback, progressBlock: CBProgressBlock? = nil) {
         let hash = url.cacheHash
         
         imageFromCache(url) { (image) -> Void in
@@ -112,11 +110,11 @@ public class CBPhotoFetcher: NSObject {
         }
         inProgress.removeAll(keepingCapacity: false)
     }
-    public func cancelFetch(for url: String) {
-        if let request = inProgress[url] {
+    public func cancelFetch(for url: URL) {
+        let hash = url.cacheHash
+        if let request = inProgress.removeValue(forKey: hash) {
             request.cancelRequest()
         }
-        inProgress.removeValue(forKey: url)
     }
     
     
@@ -143,7 +141,7 @@ public class CBPhotoFetcher: NSObject {
      
      - parameter imgURL: The url to clear cache for
      */
-    public func clearCache(for url: String) {
+    public func clearCache(for url: URL) {
         imageCache.removeObject(forKey: url.cacheHash as NSString)
         do {
             let filePath = diskCacheURL.appendingPathComponent(url.cacheHash)
@@ -164,7 +162,7 @@ public class CBPhotoFetcher: NSObject {
         }
     }
     
-    func cacheImage(imgURL: String!, image: UIImage!, data: Data) {
+    func cacheImage(_ image: UIImage, for imgURL: URL, data: Data) {
         operationQueue.addOperation { () -> Void in
             let hash = imgURL.cacheHash
             self.imageCache.setObject(image, forKey: hash as NSString)
@@ -179,7 +177,7 @@ public class CBPhotoFetcher: NSObject {
         }
     }
     
-    private func imageFromCache(_ imgURL: String, completion: @escaping (_ image: UIImage?)->Void) {
+    private func imageFromCache(_ imgURL: URL, completion: @escaping (_ image: UIImage?)->Void) {
         let hash = imgURL.cacheHash
         if let cachedImage = imageCache.object(forKey: hash  as NSString) as? UIImage  {
             completion(cachedImage)
@@ -208,32 +206,23 @@ protocol CBImageFetchRequestDelegate {
 
 class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate, URLSessionDelegate, URLSessionDownloadDelegate {
     
-    var baseURL : String!
+    var baseURL : URL
     var completionBlocks: [CBImageFetchCallback]! = []
     var progressBlocks : [CBProgressBlock]! = []
     
     var progress: Float = 0
     var sessionTask: URLSessionDownloadTask?
     
-    init(imageURL: String!, completion: CBImageFetchCallback?, progress: CBProgressBlock? ) {
-        super.init()
+    init(imageURL: URL, completion: CBImageFetchCallback?, progress: CBProgressBlock? ) {
         baseURL = imageURL
+        super.init()
         if completion != nil { completionBlocks = [completion!] }
         if progress != nil { progressBlocks = [progress!] }
     }
     
     func start() {
-        guard let url = URL(string: baseURL) else {
-            let err = NSError(domain: "CBToolkit", code: 100, userInfo: [NSLocalizedDescriptionKey: "Invalid url for image download"])
-            for cBlock in completionBlocks {
-                cBlock(nil, err, false)
-            }
-            self.didFinish()
-            return
-        }
         
-        
-        var request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30)
+        var request = URLRequest(url: baseURL, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30)
         request.httpMethod = "GET"
         
         let sessionConfig = URLSessionConfiguration.default
@@ -275,9 +264,9 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
         var imgData : Data
         do {
             try imgData = Data(contentsOf: location)
-            img = UIImage(data: imgData)
-            if img != nil {
-                CBPhotoFetcher.sharedFetcher.cacheImage(imgURL: baseURL, image: img, data: imgData)
+            if let i = UIImage(data: imgData) {
+                img = i
+                CBPhotoFetcher.sharedFetcher.cacheImage(i, for: baseURL, data: imgData)
             }
         }
         catch { }
@@ -313,13 +302,13 @@ class CBImageFetchRequest : NSObject, NSURLConnectionDelegate, NSURLConnectionDa
 }
 
 
-extension String {
+extension URL {
     
     var cacheHash: String {
-        let url = self
+        let str = self.absoluteString
         
         var hash: UInt32 = 0
-        for (index, codeUnit) in url.utf8.enumerated() {
+        for (index, codeUnit) in str.utf8.enumerated() {
             hash += (UInt32(codeUnit) * UInt32(index))
             hash ^= (hash >> 6)
         }
@@ -327,8 +316,8 @@ extension String {
         hash ^= (hash >> 11)
         hash += (hash << 15)
         
-        if let fileExtension = NSURL(string: self)?.pathExtension {
-            return "\(hash).\(fileExtension)"
+        if self.pathExtension.count > 0 {
+            return "\(hash).\(self.pathExtension.count)"
         }
         return "\(hash)"
     }

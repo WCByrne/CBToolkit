@@ -19,7 +19,7 @@ import UIKit
 /// Style your imageViews and even load remote image with a url.
 @IBDesignable public class CBImageView : UIImageView {
     
-    private var imageURL: String?
+    private var imageURL: URL?
     
     // MARK: - Styling
     
@@ -121,7 +121,7 @@ import UIKit
      - parameter imgURL:     The url of the image
      - parameter completion: A completion handler. If set, the image will not be set in the view when loaded. It is up to you to set it.
      */
-    public func loadImage(at url: String!, completion: CBImageFetchCallback?) {
+    public func loadImage(at url: URL, completion: CBImageFetchCallback?) {
         imageURL = url
         CBPhotoFetcher.sharedFetcher.fetchImage(at: url, completion: { (image, error, fromCache) -> Void in
             if url != self.imageURL {
