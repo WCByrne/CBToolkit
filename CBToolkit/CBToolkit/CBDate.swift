@@ -369,10 +369,10 @@ public extension Date  {
         public var years = "y"
         public var shouldPluralize : Bool = false
         
-        static var short: AggregationNames {
+        public static var short: AggregationNames {
             return AggregationNames()
         }
-        static var long: AggregationNames {
+        public static var long: AggregationNames {
             return AggregationNames(seconds: " second", minutes: " minute", hours: " hour", days: " day", weeks: " week", years: " year", shouldPluralize: true)
         }
         
