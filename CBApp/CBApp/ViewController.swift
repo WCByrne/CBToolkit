@@ -69,11 +69,11 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         self.present(editor, animated: true, completion: nil)
     }
     
-    func imageEditor(_ editor: CBImageEditor!, didFinishEditingImage original: UIImage!, editedImage: UIImage!) {
+    func imageEditor(_ editor: CBImageEditor, didFinishEditingImage original: UIImage, editedImage: UIImage) {
         editor.dismiss(animated: true, completion: nil)
     }
     
-    func imageEditorDidCancel(_ editor: CBImageEditor!) {
+    func imageEditorDidCancel(_ editor: CBImageEditor) {
         editor.dismiss(animated: true, completion: nil)
     }
     
