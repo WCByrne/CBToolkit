@@ -16,13 +16,13 @@ public protocol CBImageEditorDelegate {
 
 
 class FilterData {
-    var key: String!
-    var previewImage: UIImage!
-    var name : String!
+    let key: String
+    var previewImage: UIImage
+    let name : String
     var params: [NSObject:AnyObject]!
     var image: UIImage?
     
-    init(key: String!, previewImage: UIImage!, name: String!, params: [NSObject:AnyObject]? = nil) {
+    init(key: String, previewImage: UIImage, name: String, params: [NSObject:AnyObject]? = nil) {
         self.key = key
         self.previewImage = previewImage
         self.name = name
@@ -322,7 +322,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             var i = 0
             for filter in self.filters {
 
-                let image = CIImage(cgImage: filter.previewImage!.cgImage!)
+                let image = CIImage(cgImage: filter.previewImage.cgImage!)
                 var params = filter.params as! [String:AnyObject]
                 params[kCIInputImageKey] = image
                 let ciFilter = CIFilter(name: filter.key, withInputParameters: params)
