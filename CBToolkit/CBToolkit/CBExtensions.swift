@@ -90,7 +90,7 @@ public extension UIAlertController {
      
      - returns: The UIAlertController initialized with the provided properties.
      */
-    public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
+    public class func alertWithTitle(_ title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil))
         return alert
@@ -101,7 +101,7 @@ public extension UIAlertController {
      
      - parameter viewController: The UIViewController to present the UIAlertController in.
      */
-    public func show(viewController: UIViewController) {
+    public func show(in viewController: UIViewController) {
         viewController.present(self, animated: true, completion: nil)
     }
 }
@@ -135,20 +135,20 @@ public extension CAShapeLayer {
 
 
 public enum CBImageContentMode: Int {
-    case AspectFill
-    case AspectFit
+    case aspectFill
+    case aspectFit
 }
 
 
 public extension UIImage {
     
-    public func crop(frame: CGRect) -> UIImage {
+    public func crop(to frame: CGRect) -> UIImage {
         let  imageRef = self.cgImage!.cropping(to: frame);
         return UIImage(cgImage: imageRef!)
     }
     
-    public func thumbnail(size: Int) ->UIImage {
-        return resize(CGSize(width: size, height: size), contentMode: CBImageContentMode.AspectFill)
+    public func thumbnail(in size: Int) ->UIImage {
+        return resize(CGSize(width: size, height: size), contentMode: CBImageContentMode.aspectFill)
     }
     
     public func resize(_ bounds: CGSize) -> UIImage {
@@ -164,7 +164,7 @@ public extension UIImage {
     public func resize(_ bounds: CGSize,  contentMode: CBImageContentMode) -> UIImage {
         let horizontalRatio = bounds.width / self.size.width;
         let verticalRatio = bounds.height / self.size.height;
-        let ratio = contentMode == .AspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
+        let ratio = contentMode == .aspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
         
         let newSize = CGSize(width: self.size.width * ratio, height: self.size.height * ratio);
         return self.resize(newSize)

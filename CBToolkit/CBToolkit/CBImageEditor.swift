@@ -83,7 +83,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         self.delegate = delegate
         self.originalImage = image
         if image.size.width > 3000 || image.size.height > 3000 {
-            self.originalImage = image.resize(CGSize(width: 3000, height: 3000), contentMode: CBImageContentMode.AspectFit)
+            self.originalImage = image.resize(CGSize(width: 3000, height: 3000), contentMode: CBImageContentMode.aspectFit)
         }
         
         self.view.backgroundColor = style == UIBlurEffectStyle.dark ? UIColor(white: 0.2, alpha: 1) : UIColor(white: 0.9, alpha: 1)
@@ -307,7 +307,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     
     private func processFilters() {
         // Filters
-        let thumb = originalImage.thumbnail(size: 200)
+        let thumb = originalImage.thumbnail(in: 200)
         filters = [
             FilterData(key: "CIVignette", previewImage: thumb, name: "Vignette", params: [kCIInputIntensityKey as NSString : NSNumber(value: 1)]),
             FilterData(key: "CIPhotoEffectChrome", previewImage: thumb, name: "Chrome"),
@@ -419,9 +419,9 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         rect.size.width = (rect.size.width * scale) * scrollView.zoomScale
         rect.size.height = (rect.size.height * scale) * scrollView.zoomScale
         
-        var croppedImage = editingImage.crop(frame: rect)
+        var croppedImage = editingImage.crop(to: rect)
         if finalSize != nil {
-            croppedImage = croppedImage.resize(finalSize!, contentMode: CBImageContentMode.AspectFit)
+            croppedImage = croppedImage.resize(finalSize!, contentMode: CBImageContentMode.aspectFit)
         }
 
         self.delegate.imageEditor(self, didFinishEditingImage: self.originalImage, editedImage: croppedImage)
