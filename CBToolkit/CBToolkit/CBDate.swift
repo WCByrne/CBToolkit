@@ -99,19 +99,6 @@ public extension Date  {
         return cal.date(from: comps)!
     }
     
-    
-    /**
-     Initialized a new date for the given hour and minute on the current day
-     
-     - parameter hour:   The hour of the date
-     - parameter minute: The minute of the date
-     
-     - returns: A new NSDate set with the given hour and minute on today
-     */
-    public static func dateWithHour(_ hour: Int, minute: Int) -> Date {
-        return dateWithHour(hour, minute: minute, inTimezone: nil)
-    }
-    
     /**
      Inititialize a new date for the given hour and minute on the current day in a given timezone
      
@@ -121,10 +108,17 @@ public extension Date  {
      
      - returns: A new NSDate set with the given parameters
      */
-    public static func dateWithHour(_ hour: Int, minute: Int, inTimezone: TimeZone?) -> Date {
+    public static func dateWithHour(_ hour: Int, minute: Int, in timezone: TimeZone = TimeZone.current) -> Date {
         var cal = Calendar.current
-        cal.timeZone = TimeZone(secondsFromGMT: 0)!
+        cal.timeZone = timezone
         return (cal as NSCalendar).date(bySettingHour: hour, minute: minute, second: 0, of: Date(), options: NSCalendar.Options.matchFirst)!
+    }
+    
+    public static func dateWithSecondsSinceMidnight(_ seconds: Int, in timezone: TimeZone = TimeZone.current) -> Date {
+        let _minutes = Int(seconds/60)
+        let hours = Int(_minutes/60)
+        let minutes = _minutes - (hours * 60)
+        return dateWithHour(hours, minute: minutes, in: timezone)
     }
     
     
@@ -154,6 +148,8 @@ public extension Date  {
         return cal.date(from: comps)!
     }
     
+    
+
     
     /**
      Retrieve the current calendar components of the reciever
@@ -206,7 +202,6 @@ public extension Date  {
         cal.timeZone = TimeZone(secondsFromGMT: 0)!
         let comps = (cal as NSCalendar).components([NSCalendar.Unit.hour, NSCalendar.Unit.minute], from: self)
         return ((comps.hour! * 60) + comps.minute!) * 60
-        
     }
     
     /**
@@ -381,7 +376,7 @@ public extension Date  {
     }
     
     public func aggregateTimeSinceNow(_ names: AggregationNames = AggregationNames.short) -> String {
-        let sinceNow = abs(self.timeIntervalSinceNow)
+        let sinceNow = abs(self.timeIntervalSinceNow + 1)
         
         if sinceNow < 60 {
             return names.label(names.seconds, forValue: Int(sinceNow))
