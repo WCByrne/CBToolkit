@@ -91,7 +91,7 @@ public class CBLogger {
                 if dest.shouldLevelBeLogged(level: level, path: path, function: function) && dest.queue != nil {
                     // try to convert msg object to String and put it on queue
                     let msgStr = "\(msg)"
-                    if msgStr.characters.count > 0 {
+                    if msgStr.count > 0 {
                         queue.async(execute: { 
                             _ = dest.send(level: level, msg: msgStr, thread: thread, path: path, function: function, line: line)
                         })
@@ -249,8 +249,8 @@ public class BaseDestination: Hashable, Equatable {
             str += "\(function) "
         }
         
-        if self.log_maxMessage > 100 && msg.characters.count > self.log_maxMessage {
-            str += "\(levelString): \(msg.substring(to: msg.index(msg.startIndex, offsetBy: self.log_maxMessage)))"
+        if self.log_maxMessage > 100 && msg.count > self.log_maxMessage {
+            str += "\(levelString): \(msg[msg.startIndex..<msg.index(msg.startIndex, offsetBy: self.log_maxMessage)])"
         }
         else {
             str += "\(levelString): \(msg)"

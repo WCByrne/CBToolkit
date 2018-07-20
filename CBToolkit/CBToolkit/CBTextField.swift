@@ -110,7 +110,7 @@ import UIKit
     @IBInspectable public var placeholderColor: UIColor! = UIColor(white: 1, alpha: 1) {
         didSet {
             if (placeholder != nil) {
-                let attrs: [NSAttributedStringKey:AnyObject]  = [NSAttributedStringKey.foregroundColor: self.placeholderColor, NSAttributedStringKey.font : self.font!]
+                let attrs: [NSAttributedString.Key:AnyObject]  = [NSAttributedString.Key.foregroundColor: self.placeholderColor, NSAttributedString.Key.font : self.font!]
                 attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: attrs)
             }
             self.setNeedsDisplay()
@@ -119,8 +119,8 @@ import UIKit
     override public var placeholder: String? {
         didSet {
             if placeholder != nil {
-                attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSAttributedStringKey.foregroundColor: placeholderColor,
-                    NSAttributedStringKey.font : self.font!])
+                attributedPlaceholder = NSAttributedString(string: placeholder!, attributes: [NSAttributedString.Key.foregroundColor: placeholderColor,
+                    NSAttributedString.Key.font : self.font!])
             }
             self.setNeedsDisplay()
         }

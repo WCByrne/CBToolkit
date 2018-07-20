@@ -22,22 +22,22 @@ extension String {
         return comps.joined(separator: "")
     }
     
-    func sub(to: Int) -> String {
+    func sub(to: Int) -> Substring {
         let idx = self.index(self.startIndex,
                              offsetBy: to)
-        return self.substring(to: idx)
+        return self[self.startIndex..<idx]
     }
     
-    func sub(from: Int) -> String {
+    func sub(from: Int) -> Substring {
         let idx = self.index(self.startIndex,
                              offsetBy: from)
-        return self.substring(from: idx)
+        return self[idx..<endIndex]
     }
     
-    func sub(from: Int, to: Int) -> String {
+    func sub(from: Int, to: Int) -> Substring {
         let start = self.index(self.startIndex, offsetBy: from)
         let end = self.index(self.startIndex, offsetBy: to)
-        return String(self[start..<end])
+        return self[start..<end]
     }
     
 }
@@ -54,12 +54,12 @@ public class CBPhoneNumber {
     
     /// Returns true if the phone number is a partially valid phone number
     open var isPartiallyValid: Bool {
-        get { return baseString.characters.count <= 1 }
+        get { return baseString.count <= 1 }
     }
     
     /// True if the phone number is valid length phone number
     open var isValid : Bool {
-        let length = baseString.characters.count
+        let length = baseString.count
         return (length == 7 || length >= 10)
     }
     
@@ -94,8 +94,8 @@ public class CBPhoneNumber {
      Remove the last number from the phone number
      */
     public func removeLast() {
-        if baseString.characters.count > 0 {
-            baseString = baseString.sub(to: baseString.characters.count-1)
+        if baseString.count > 0 {
+            baseString = String(baseString.sub(to: baseString.count-1))
         }
     }
     
@@ -106,23 +106,23 @@ public class CBPhoneNumber {
      */
     open var formattedString : String {
         
-        if baseString.characters.count == 0 {
+        if baseString.count == 0 {
             return baseString
         }
-        else if baseString.characters.count > 11 {
+        else if baseString.count > 11 {
             return baseString
         }
         
-        var  prefix: String? = baseString.sub(to: 1)
+        var  prefix: String? = String(baseString.sub(to: 1))
         var string = baseString
         if prefix != "1" {
             prefix = nil
         }
         else {
-            string = baseString.sub(from: 1)
+            string = String(baseString.sub(from: 1))
         }
         
-        let length = string.characters.count
+        let length = string.count
         if length <= 3 {
             if length > 0 && prefix != nil {
                 string = "(\(string))"
@@ -130,10 +130,10 @@ public class CBPhoneNumber {
         }
         else if length <= 7  {
             let firstThree = string.sub(to: 3)
-            var partial = string.sub(from: 3,  to: length-3)
+            var partial = String(string.sub(from: 3,  to: length-3))
             
             if prefix != nil{
-                if partial.characters.count == 4 {
+                if partial.count == 4 {
                     partial = "\(partial.sub(to: 3))-\(partial.sub(from: 3))"
                 }
                 

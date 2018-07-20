@@ -110,7 +110,7 @@ public enum CBIconType : NSInteger {
     func setup() {
         for bar in [bar1, bar2, bar3] {
             bar.lineWidth = barWidth
-            bar.lineCap = kCALineCapRound
+            bar.lineCap = CAShapeLayerLineCap.round
             bar.fillColor = UIColor.clear.cgColor
             bar.strokeColor = self.tintColor.cgColor
             self.layer.addSublayer(bar)

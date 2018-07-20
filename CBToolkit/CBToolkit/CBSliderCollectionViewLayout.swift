@@ -33,7 +33,7 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.minimumInteritemSpacing = 0
         self.minimumLineSpacing = 0
-        self.scrollDirection = UICollectionViewScrollDirection.horizontal
+        self.scrollDirection = UICollectionView.ScrollDirection.horizontal
     }
     
     /**
@@ -81,7 +81,7 @@ public class CBSliderCollectionViewLayout : UICollectionViewFlowLayout {
         }
         
         
-        self.collectionView?.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: UICollectionViewScrollPosition.left, animated: true)
+        self.collectionView?.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: UICollectionView.ScrollPosition.left, animated: true)
     }
  
     

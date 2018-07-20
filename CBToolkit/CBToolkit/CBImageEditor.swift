@@ -78,7 +78,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
     private var headerHeight: NSLayoutConstraint!
     private var filterHeightConstraint: NSLayoutConstraint!
     
-    public init(image: UIImage!, style: UIBlurEffectStyle, delegate: CBImageEditorDelegate) {
+    public init(image: UIImage!, style: UIBlurEffect.Style, delegate: CBImageEditorDelegate) {
         super.init(nibName: nil, bundle: nil)
         self.delegate = delegate
         self.originalImage = image
@@ -86,7 +86,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
             self.originalImage = image.resize(CGSize(width: 3000, height: 3000), contentMode: CBImageContentMode.AspectFit)
         }
         
-        self.view.backgroundColor = style == UIBlurEffectStyle.dark ? UIColor(white: 0.2, alpha: 1) : UIColor(white: 0.9, alpha: 1)
+        self.view.backgroundColor = style == UIBlurEffect.Style.dark ? UIColor(white: 0.2, alpha: 1) : UIColor(white: 0.9, alpha: 1)
         self.view.clipsToBounds = true
         
         scrollView = UIScrollView(frame: cropRect)
@@ -106,22 +106,22 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         let isPad = UI_USER_INTERFACE_IDIOM() == .pad
         
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 10))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -10))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: isPad ? -70 : -62))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: scrollView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: isPad ? 70 : 62))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 10))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -10))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: isPad ? -70 : -62))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: isPad ? 70 : 62))
         
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0))
         
-        let widthConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.width, multiplier: 1, constant: 0)
         widthConstraint.priority = UILayoutPriority(rawValue: 250)
         self.view.addConstraint(widthConstraint)
         
         editingImage = originalImage
         imageView = UIImageView(frame: CGRect.zero)
         imageView.image = editingImage
-        imageView.contentMode = UIViewContentMode.scaleToFill
+        imageView.contentMode = UIView.ContentMode.scaleToFill
         scrollView.addSubview(imageView)
         
         let effect =  UIBlurEffect(style: style)
@@ -133,10 +133,10 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         self.view.addSubview(blurView)
         
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: blurView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: blurView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: blurView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: blurView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: blurView, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: blurView, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: blurView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: blurView, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
         
         
         // Title, Save, & Cancel
@@ -146,54 +146,54 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         headerView.backgroundColor = UIColor(white: 0.5, alpha: 0.1)
         self.view.addSubview(headerView)
         
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: headerView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: headerView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: headerView, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 0))
-        headerHeight = NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60)
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: headerView, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: headerView, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: headerView, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0))
+        headerHeight = NSLayoutConstraint(item: headerView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 60)
         headerView.addConstraint(headerHeight)
         
         titleLabel = UILabel(frame: CGRect.zero)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont(name: "Avenir-Medium", size: 22)
-        titleLabel.textColor = style == UIBlurEffectStyle.dark ? UIColor.white : UIColor.black
+        titleLabel.textColor = style == UIBlurEffect.Style.dark ? UIColor.white : UIColor.black
         titleLabel.textAlignment = NSTextAlignment.center
         titleLabel.text = "Adjust your Photo"
         headerView.addSubview(titleLabel)
         
-        titleLabel.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 44))
-        headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0))
-        headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: titleLabel, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-        titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 250), for: UILayoutConstraintAxis.horizontal)
+        titleLabel.addConstraint(NSLayoutConstraint(item: titleLabel, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 44))
+        headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutConstraint.Attribute.centerX, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.centerX, multiplier: 1, constant: 0))
+        headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriority(rawValue: 250), for: NSLayoutConstraint.Axis.horizontal)
         
-        cancelButton = CBButton(type: UIButtonType.system)
+        cancelButton = CBButton(type: UIButton.ButtonType.system)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        cancelButton.setTitle("Cancel", for: UIControlState.normal)
+        cancelButton.setTitle("Cancel", for: UIControl.State.normal)
         cancelButton.titleLabel?.font = UIFont(name: "Avenir-Book", size: 18)
-        cancelButton.tintColor = UIColor(white: style == UIBlurEffectStyle.dark ? 0.9 : 0.1, alpha: 1)
-        cancelButton.addTarget(self, action: #selector(CBImageEditor.cancel), for: UIControlEvents.touchUpInside)
+        cancelButton.tintColor = UIColor(white: style == UIBlurEffect.Style.dark ? 0.9 : 0.1, alpha: 1)
+        cancelButton.addTarget(self, action: #selector(CBImageEditor.cancel), for: UIControl.Event.touchUpInside)
         headerView.addSubview(cancelButton)
         
-        cancelButton.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 44))
-        headerView.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.lessThanOrEqual, toItem: titleLabel, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -8))
-        headerView.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: headerView, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 8))
-        headerView.addConstraint(NSLayoutConstraint(item:  headerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: cancelButton, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
+        cancelButton.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 44))
+        headerView.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.lessThanOrEqual, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -8))
+        headerView.addConstraint(NSLayoutConstraint(item: cancelButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: headerView, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: 8))
+        headerView.addConstraint(NSLayoutConstraint(item:  headerView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: cancelButton, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
         
-        saveButton = CBButton(type: UIButtonType.system)
+        saveButton = CBButton(type: UIButton.ButtonType.system)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.setTitle("Save", for: UIControlState.normal)
+        saveButton.setTitle("Save", for: UIControl.State.normal)
         saveButton.titleLabel?.font = UIFont(name: "Avenir-Medium", size: 18)
-        saveButton.tintColor = UIColor(white: style == UIBlurEffectStyle.dark ? 0.9 : 0.1, alpha: 1)
-        saveButton.addTarget(self, action: #selector(CBImageEditor.finish), for: UIControlEvents.touchUpInside)
+        saveButton.tintColor = UIColor(white: style == UIBlurEffect.Style.dark ? 0.9 : 0.1, alpha: 1)
+        saveButton.addTarget(self, action: #selector(CBImageEditor.finish), for: UIControl.Event.touchUpInside)
         headerView.addSubview(saveButton)
         
-        saveButton.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 44))
-        headerView.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: headerView, attribute: NSLayoutAttribute.right, multiplier: 1, constant: -8))
-        headerView.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.greaterThanOrEqual, toItem: titleLabel, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 8))
-        headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: saveButton, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
+        saveButton.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 44))
+        headerView.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: headerView, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: -8))
+        headerView.addConstraint(NSLayoutConstraint(item: saveButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.greaterThanOrEqual, toItem: titleLabel, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 8))
+        headerView.addConstraint(NSLayoutConstraint(item: headerView, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: saveButton, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
         
         
         let cvLayout = UICollectionViewFlowLayout()
-        cvLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        cvLayout.scrollDirection = UICollectionView.ScrollDirection.horizontal
         cvLayout.minimumInteritemSpacing = 4
         cvLayout.minimumLineSpacing = 4
         filterCV = UICollectionView(frame: CGRect.zero, collectionViewLayout: cvLayout)
@@ -206,47 +206,47 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         
         self.view.addSubview(filterCV)
         
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: filterCV, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: filterCV, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 0))
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: filterCV, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 0))
-        filterHeightConstraint = NSLayoutConstraint(item: filterCV, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 60 )
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterCV, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterCV, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: filterCV, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 0))
+        filterHeightConstraint = NSLayoutConstraint(item: filterCV, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 60 )
         filterCV.addConstraint(filterHeightConstraint)
         
-        verticalButton = CBButton(type: UIButtonType.system)
+        verticalButton = CBButton(type: UIButton.ButtonType.system)
         verticalButton.translatesAutoresizingMaskIntoConstraints = false
-        verticalButton.addTarget(self, action: #selector(CBImageEditor.setVerticalCrop), for: UIControlEvents.touchUpInside)
+        verticalButton.addTarget(self, action: #selector(CBImageEditor.setVerticalCrop), for: UIControl.Event.touchUpInside)
         self.view.addSubview(verticalButton)
-        verticalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.dark ? 1 : 0, alpha: 0.6).cgColor
+        verticalButton.layer.borderColor = UIColor(white: style == UIBlurEffect.Style.dark ? 1 : 0, alpha: 0.6).cgColor
         verticalButton.layer.borderWidth = 2
         
-        self.view.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self.view, attribute: NSLayoutAttribute.left, multiplier: 1, constant: 8))
-        self.view.addConstraint(NSLayoutConstraint(item: filterCV, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: verticalButton, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 8))
-        verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 18))
-        verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 26))
+        self.view.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self.view, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: 8))
+        self.view.addConstraint(NSLayoutConstraint(item: filterCV, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: verticalButton, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: 8))
+        verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 18))
+        verticalButton.addConstraint(NSLayoutConstraint(item: verticalButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 26))
         
-        horizontalButton = CBButton(type: UIButtonType.system)
+        horizontalButton = CBButton(type: UIButton.ButtonType.system)
         horizontalButton.translatesAutoresizingMaskIntoConstraints = false
-        horizontalButton.addTarget(self, action: #selector(CBImageEditor.setHorizontalCrop), for: UIControlEvents.touchUpInside)
+        horizontalButton.addTarget(self, action: #selector(CBImageEditor.setHorizontalCrop), for: UIControl.Event.touchUpInside)
         self.view.addSubview(horizontalButton)
-        horizontalButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.dark ? 1 : 0, alpha: 0.6).cgColor
+        horizontalButton.layer.borderColor = UIColor(white: style == UIBlurEffect.Style.dark ? 1 : 0, alpha: 0.6).cgColor
         horizontalButton.layer.borderWidth = 2
         
-        self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: verticalButton, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 8))
-        horizontalButton.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 26))
-        horizontalButton.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 18))
-        self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: verticalButton, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: verticalButton, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 8))
+        horizontalButton.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 26))
+        horizontalButton.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 18))
+        self.view.addConstraint(NSLayoutConstraint(item: horizontalButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: verticalButton, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0))
         
-        squareButton = CBButton(type: UIButtonType.system)
+        squareButton = CBButton(type: UIButton.ButtonType.system)
         squareButton.translatesAutoresizingMaskIntoConstraints = false
-        squareButton.addTarget(self, action: #selector(CBImageEditor.setSquareCrop), for: UIControlEvents.touchUpInside)
+        squareButton.addTarget(self, action: #selector(CBImageEditor.setSquareCrop), for: UIControl.Event.touchUpInside)
         self.view.addSubview(squareButton)
-        squareButton.layer.borderColor = UIColor(white: style == UIBlurEffectStyle.dark ? 1 : 0, alpha: 0.6).cgColor
+        squareButton.layer.borderColor = UIColor(white: style == UIBlurEffect.Style.dark ? 1 : 0, alpha: 0.6).cgColor
         squareButton.layer.borderWidth = 2
         
-        self.view.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: horizontalButton, attribute: NSLayoutAttribute.right, multiplier: 1, constant: 8))
-        squareButton.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20))
-        squareButton.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20))
-        self.view.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: verticalButton, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0))
+        self.view.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: horizontalButton, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: 8))
+        squareButton.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20))
+        squareButton.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 20))
+        self.view.addConstraint(NSLayoutConstraint(item: squareButton, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: verticalButton, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: 0))
         
         self.enableFilters(true, animated: false)
         
@@ -295,7 +295,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         }
         
         if animated {
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.allowUserInteraction, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.allowUserInteraction, animations: { () -> Void in
                 self.view.layoutIfNeeded()
                 }, completion: nil)
         }
@@ -325,7 +325,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
                 let image = CIImage(cgImage: filter.previewImage!.cgImage!)
                 var params = filter.params as! [String:AnyObject]
                 params[kCIInputImageKey] = image
-                let ciFilter = CIFilter(name: filter.key, withInputParameters: params)
+                let ciFilter = CIFilter(name: filter.key, parameters: params)
                 let outImage = ciFilter!.outputImage
                 let cgImage = self.imageContext.createCGImage(outImage!, from: outImage!.extent)
                 let img = UIImage(cgImage: cgImage!)
@@ -393,7 +393,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         if layerMask == nil {
             let fillLayer = CAShapeLayer()
             fillLayer.path = path.cgPath
-            fillLayer.fillRule = kCAFillRuleEvenOdd
+            fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
             blurView.layer.mask = fillLayer
         }
         else {
@@ -432,9 +432,9 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         if ratioConstraint != nil {
             self.view.removeConstraint(ratioConstraint!)
         }
-        ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
+        ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.height, multiplier: 1, constant: 0)
         self.view.addConstraint(ratioConstraint!)
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.curveEaseInOut, UIViewAnimationOptions.allowUserInteraction], animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIView.AnimationOptions.curveEaseInOut, UIView.AnimationOptions.allowUserInteraction], animations: { () -> Void in
                 self.view.layoutIfNeeded()
         }, completion: nil)
         
@@ -448,9 +448,9 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         if ratioConstraint != nil {
             self.view.removeConstraint(ratioConstraint!)
         }
-        ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.height, multiplier: horizontalRatio.width/horizontalRatio.height, constant: 0)
+        ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.height, multiplier: horizontalRatio.width/horizontalRatio.height, constant: 0)
         self.view.addConstraint(ratioConstraint!)
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.curveEaseInOut, UIViewAnimationOptions.allowUserInteraction], animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIView.AnimationOptions.curveEaseInOut, UIView.AnimationOptions.allowUserInteraction], animations: { () -> Void in
             self.view.layoutIfNeeded()
             }, completion: nil)
         
@@ -464,9 +464,9 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
         if ratioConstraint != nil {
             self.view.removeConstraint(ratioConstraint!)
         }
-        ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: scrollView, attribute: NSLayoutAttribute.height, multiplier: verticalRatio.width/verticalRatio.height, constant: 0)
+        ratioConstraint = NSLayoutConstraint(item: scrollView, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: scrollView, attribute: NSLayoutConstraint.Attribute.height, multiplier: verticalRatio.width/verticalRatio.height, constant: 0)
         self.view.addConstraint(ratioConstraint!)
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIViewAnimationOptions.curveEaseInOut, UIViewAnimationOptions.allowUserInteraction], animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: [UIView.AnimationOptions.curveEaseInOut, UIView.AnimationOptions.allowUserInteraction], animations: { () -> Void in
             self.view.layoutIfNeeded()
             }, completion: nil)
         
@@ -517,7 +517,7 @@ public class CBImageEditor: UIViewController, UIScrollViewDelegate,  UICollectio
                 let image = CIImage(cgImage: originalImage.cgImage!)
                 var params = filter.params as! [String:AnyObject]
                 params[kCIInputImageKey] = image
-                let ciFilter = CIFilter(name: filter.key, withInputParameters: params)
+                let ciFilter = CIFilter(name: filter.key, parameters: params)
                 let outImage = ciFilter!.outputImage
                 let cgImage = imageContext.createCGImage(outImage!, from: outImage!.extent)
                 let img = UIImage(cgImage: cgImage!)
@@ -541,7 +541,7 @@ class CropperFilterCell : UICollectionViewCell {
         self.layer.cornerRadius = 2
         self.clipsToBounds = true
         imageView = CBImageView()
-        imageView.contentMode = UIViewContentMode.scaleAspectFill
+        imageView.contentMode = UIView.ContentMode.scaleAspectFill
         self.addSubview(imageView)
         _ = imageView.addConstraintsToMatchParent()
     }

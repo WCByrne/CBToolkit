@@ -48,7 +48,7 @@ import UIKit
     @IBInspectable public var tinted: Bool = false {
         didSet {
             if self.image != nil {
-                self.image = self.image?.withRenderingMode(tinted ? UIImageRenderingMode.alwaysTemplate : UIImageRenderingMode.automatic)
+                self.image = self.image?.withRenderingMode(tinted ? UIImage.RenderingMode.alwaysTemplate : UIImage.RenderingMode.automatic)
             }
         }
     }
@@ -63,7 +63,7 @@ import UIKit
         didSet {
             if self.image == nil && placeholderImage != nil {
                 if tinted {
-                    self.image = placeholderImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+                    self.image = placeholderImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
                 }
                 else {
                     self.image = placeholderImage
@@ -85,7 +85,7 @@ import UIKit
             self.layer.removeAllAnimations()
             if image == nil && self.placeholderImage != nil {
                 if tinted {
-                    self.image = placeholderImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+                    self.image = placeholderImage?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
                 }
                 else {
                     self.image = placeholderImage
@@ -106,14 +106,14 @@ import UIKit
             self.image = nil
         }
         else if image != nil {
-            self.image = newImage!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+            self.image = newImage!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         }
     }
     
     // MARK: - Loading images
     
     /// The transition to apply when a remote image is loaded
-    public var onLoadTransition: UIViewAnimationOptions = []
+    public var onLoadTransition: UIView.AnimationOptions = []
     
     /**
      Load an image at the given URL using CBPhotoFetcher and display it.

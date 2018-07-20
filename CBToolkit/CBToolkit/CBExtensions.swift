@@ -58,12 +58,12 @@ public extension UIView {
      */
     func addConstraintsToMatchParent(insets: UIEdgeInsets? = nil) -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         if let sv = self.superview {
-            let top = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal
+            let top = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal
                 
-                , toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: insets?.top ?? 0)
-            let right = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: insets?.right ?? 0)
-            let bottom = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.bottom, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: insets?.bottom ?? 0)
-            let left = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1, constant: insets?.left ?? 0)
+                , toItem: self, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: insets?.top ?? 0)
+            let right = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: insets?.right ?? 0)
+            let bottom = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.bottom, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.bottom, multiplier: 1, constant: insets?.bottom ?? 0)
+            let left = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: insets?.left ?? 0)
             sv.addConstraints([top, bottom, right, left])
             self.translatesAutoresizingMaskIntoConstraints = false
             return (top, right, bottom, left)
@@ -91,8 +91,8 @@ public extension UIAlertController {
      - returns: The UIAlertController initialized with the provided properties.
      */
     public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: button, style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
     
@@ -125,10 +125,10 @@ public extension CAShapeLayer {
         anim.duration = 0.2
         anim.fromValue = self.presentation()?.value(forKeyPath: "path")
         anim.toValue = path
-        anim.fillMode = kCAFillModeBoth
+        anim.fillMode = CAMediaTimingFillMode.both
         anim.isAdditive = true
         anim.isRemovedOnCompletion = false
-        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         self.add(anim, forKey: "animatePath")
     }
 }
@@ -171,7 +171,7 @@ public extension UIImage {
     }
     
     public func fixOrientation() -> UIImage {
-        if (self.imageOrientation == UIImageOrientation.up) { return self }
+        if (self.imageOrientation == UIImage.Orientation.up) { return self }
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale);
         self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
         let normalizedImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -285,20 +285,20 @@ public extension UIImage {
         var transform = CGAffineTransform.identity
         
         switch (self.imageOrientation) {
-        case UIImageOrientation.down,            // EXIF = 3
-        UIImageOrientation.downMirrored:   // EXIF = 4
+        case UIImage.Orientation.down,            // EXIF = 3
+        UIImage.Orientation.downMirrored:   // EXIF = 4
             transform = transform.translatedBy(x: size.width, y: size.height)
             transform = transform.rotated(by: CGFloat(Double.pi))
             break;
             
-        case UIImageOrientation.left,           // EXIF = 6
-        UIImageOrientation.leftMirrored:   // EXIF = 5
+        case UIImage.Orientation.left,           // EXIF = 6
+        UIImage.Orientation.leftMirrored:   // EXIF = 5
             transform = transform.translatedBy(x: size.width, y: 0)
             transform = transform.rotated(by: CGFloat((Double.pi / 2)))
             break;
             
-        case UIImageOrientation.right,          // EXIF = 8
-        UIImageOrientation.rightMirrored:  // EXIF = 7
+        case UIImage.Orientation.right,          // EXIF = 8
+        UIImage.Orientation.rightMirrored:  // EXIF = 7
             transform = transform.translatedBy(x: 0, y: size.height)
             transform = transform.rotated(by: CGFloat(-(Double.pi / 2)))
             break
@@ -309,14 +309,14 @@ public extension UIImage {
         
         
         switch (self.imageOrientation) {
-        case UIImageOrientation.upMirrored,     // EXIF = 2
-        UIImageOrientation.downMirrored:   // EXIF = 4
+        case UIImage.Orientation.upMirrored,     // EXIF = 2
+        UIImage.Orientation.downMirrored:   // EXIF = 4
             transform = transform.translatedBy(x: size.width, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
             break;
             
-        case UIImageOrientation.leftMirrored,   // EXIF = 5
-        UIImageOrientation.rightMirrored:  // EXIF = 7
+        case UIImage.Orientation.leftMirrored,   // EXIF = 5
+        UIImage.Orientation.rightMirrored:  // EXIF = 7
             transform = transform.translatedBy(x: size.height, y: 0)
             transform = transform.scaledBy(x: -1, y: 1)
             break;

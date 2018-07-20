@@ -27,12 +27,12 @@ class LoadersCell : UICollectionViewCell {
     @IBAction func toggleActivityIndicator(_ sender: CBButton) {
         if activityIndicator.animating {
             activityIndicator.stopAnimating()
-            sender.setTitle("Start", for: UIControlState.normal)
+            sender.setTitle("Start", for: UIControl.State.normal)
             sender.tintColor = UIColor.white
         }
         else {
             activityIndicator.startAnimating()
-            sender.setTitle("Stop", for: UIControlState.normal)
+            sender.setTitle("Stop", for: UIControl.State.normal)
             sender.tintColor = UIColor.red
         }
     }
@@ -70,7 +70,7 @@ class LoadersCell : UICollectionViewCell {
         self.progress = 0
         self.uploadButtonView.isEnabled = true
         self.progressCompleteImageView.transform = CGAffineTransform(scaleX: 0, y: 0)
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseOut, animations: { () -> Void in
             self.progressCompleteImageView.alpha = 1
             self.progressCompleteImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }) { (fin) -> Void in

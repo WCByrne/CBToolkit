@@ -17,7 +17,7 @@ import UIKit
         didSet {
             if autoExpand {
                 if heightConstraint == nil {
-                    _heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: minimumHeight)
+                    _heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: minimumHeight)
                     heightConstraint!.priority = UILayoutPriority(rawValue: 1000)
                     self.addConstraint(heightConstraint!)
                     self.layoutIfNeeded()
@@ -116,7 +116,7 @@ import UIKit
             NotificationCenter.default.removeObserver(self)
         }
         else {
-            NotificationCenter.default.addObserver(self, selector: #selector(CBTextView.textDidChange), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+            NotificationCenter.default.addObserver(self, selector: #selector(CBTextView.textDidChange), name: UITextView.textDidChangeNotification, object: self)
             self.superview?.translatesAutoresizingMaskIntoConstraints = false
         }
     }

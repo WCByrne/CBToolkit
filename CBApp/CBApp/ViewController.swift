@@ -10,7 +10,7 @@ import UIKit
 import CBToolkit
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GalleryDelegate, CBImageEditorDelegate {
-
+    
     @IBOutlet weak var contentCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -65,19 +65,17 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     
     func openImageEditor(_ image: UIImage) {
-        let editor = CBImageEditor(image: image, style: UIBlurEffectStyle.light, delegate: self)
+        let editor = CBImageEditor(image: image, style: UIBlurEffect.Style.light, delegate: self)
         self.present(editor, animated: true, completion: nil)
     }
     
-    func imageEditor(_ editor: CBImageEditor!, didFinishEditingImage original: UIImage!, editedImage: UIImage!) {
+    func imageEditor(_ editor: CBImageEditor, didFinishEditingImage original: UIImage, editedImage: UIImage) {
         editor.dismiss(animated: true, completion: nil)
     }
     
-    func imageEditorDidCancel(_ editor: CBImageEditor!) {
+    func imageEditorDidCancel(_ editor: CBImageEditor) {
         editor.dismiss(animated: true, completion: nil)
     }
     
-    
-
 }
 

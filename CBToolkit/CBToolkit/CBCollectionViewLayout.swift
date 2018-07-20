@@ -324,7 +324,7 @@ public class CBCollectionViewLayout : UICollectionViewLayout, UIGestureRecognize
 //        let v = velocity ?? CGPoint.zero
         
         let cell = self.collectionView?.cellForItem(at: finalIndexPath as IndexPath)
-        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
+        UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.95, initialSpringVelocity: 0, options: UIView.AnimationOptions.beginFromCurrentState, animations: { () -> Void in
             oldView.frame = attr!.frame
             cell?.alpha = 1
             }, completion: { (fin) -> Void in
