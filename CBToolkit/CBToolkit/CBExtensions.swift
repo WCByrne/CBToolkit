@@ -95,15 +95,15 @@ public extension UIView {
     
     func addVerticalCenterConstraint(_ offset: CGFloat, left: CGFloat? = nil, right: CGFloat? = nil) {
         if let sv = self.superview {
-            let centerY = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: offset)
+            let centerY = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.centerY, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.centerY, multiplier: 1, constant: offset)
             sv.addConstraint(centerY)
             
             if let r = right {
-                let rightConstraint = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: r)
+                let rightConstraint = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.right, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.right, multiplier: 1, constant: r)
                 sv.addConstraint(rightConstraint)
             }
             if let l = left {
-                let leftConstraint = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -l)
+                let leftConstraint = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.left, relatedBy: NSLayoutConstraint.Relation.equal, toItem: self, attribute: NSLayoutConstraint.Attribute.left, multiplier: 1, constant: -l)
                 sv.addConstraint(leftConstraint)
             }
             self.translatesAutoresizingMaskIntoConstraints = false
@@ -132,8 +132,8 @@ public extension UIAlertController {
      - returns: The UIAlertController initialized with the provided properties.
      */
     public class func alertWithTitle(_ title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil))
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: button, style: UIAlertAction.Style.default, handler: nil))
         return alert
     }
     

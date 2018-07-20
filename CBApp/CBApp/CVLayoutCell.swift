@@ -78,7 +78,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GalleryCell", for: indexPath) as! GalleryCell
         
         let imgIndex = (indexPath as NSIndexPath).row % imgURLs.count
-        let url = URL(string: imgURLs[imgIndex])!
+        let url = imgURLs[imgIndex]
         cell.imageView.onLoadTransition = UIView.AnimationOptions.transitionCrossDissolve
         cell.imageView.loadImage(at: url, completion: nil)
         
@@ -87,7 +87,7 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let imgIndex = (indexPath as NSIndexPath).row % imgURLs.count
-        let url = URL(string: imgURLs[imgIndex])!
+        let url = imgURLs[imgIndex]
         CBPhotoFetcher.sharedFetcher.fetchImage(at: url, completion: { (image, error, requestTime) -> Void in
             if image != nil {
                 self.delegate?.openImageEditor(image!)
