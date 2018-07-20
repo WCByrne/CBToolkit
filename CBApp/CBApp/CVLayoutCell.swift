@@ -20,15 +20,15 @@ class CVLayoutCell : UICollectionViewCell, UICollectionViewDataSource, UICollect
     @IBOutlet weak var contentCollectionView: UICollectionView!
     var delegate: GalleryDelegate?
     
-    var imgURLs : [String] = [
-        "http://cdn.playbuzz.com/cdn/0079c830-3406-4c05-a5c1-bc43e8f01479/7dd84d70-768b-492b-88f7-a6c70f2db2e9.jpg",
-        "https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg",
-        "http://dreamatico.com/data_images/cat/cat-8.jpg",
-        "http://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg",
-        "https://timedotcom.files.wordpress.com/2014/06/cat-hugs.jpg?quality=65&strip=color&w=1012",
-        "http://i.telegraph.co.uk/multimedia/archive/03414/cats_2763799b_3414767a.jpg",
-        "http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg",
-        "http://theyoutubebuzz.com/site/wp-content/uploads/2014/11/cat4.jpg",
+    var imgURLs : [URL] = [
+        URL(string: "http://cdn.playbuzz.com/cdn/0079c830-3406-4c05-a5c1-bc43e8f01479/7dd84d70-768b-492b-88f7-a6c70f2db2e9.jpg")!,
+        URL(string: "https://pbs.twimg.com/profile_images/378800000532546226/dbe5f0727b69487016ffd67a6689e75a.jpeg")!,
+        URL(string: "http://dreamatico.com/data_images/cat/cat-8.jpg")!,
+        URL(string: "http://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg")!,
+        URL(string: "https://timedotcom.files.wordpress.com/2014/06/cat-hugs.jpg?quality=65&strip=color&w=1012")!,
+        URL(string: "http://i.telegraph.co.uk/multimedia/archive/03414/cats_2763799b_3414767a.jpg")!,
+        URL(string: "http://www.petsworld.in/blog/wp-content/uploads/2014/09/cute-kittens.jpg")!,
+        URL(string: "http://theyoutubebuzz.com/site/wp-content/uploads/2014/11/cat4.jpg")!
     ]
     
     override func awakeFromNib() {

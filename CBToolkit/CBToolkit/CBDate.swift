@@ -35,9 +35,9 @@ public extension Date  {
      - param: date Any date to use as a base
      - returns: A new NSDate representing the start of the day for the supplied date
      */
-    static public func startOfDay(_ date: Date = Date()) -> Date {
+    public func startOfDay() -> Date {
         let cal = Calendar.current
-        let comps = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day], from: date)
+        let comps = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day], from: self)
         return cal.date(from: comps)!
     }
     
@@ -47,8 +47,8 @@ public extension Date  {
      - param: date Any date to use as a base
      - returns: A new NSDate representing the end of the day for the suppied date.
      */
-    static public func endOfDay(_ date: Date = Date()) -> Date {
-        let endDate = date.addingTimeInterval(60*60*24)
+    public func endOfDay() -> Date {
+        let endDate = self.addingTimeInterval(60*60*24)
         let cal = Calendar.current
         let comps = (cal as NSCalendar).components([NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.day], from: endDate)
         return cal.date(from: comps)!
@@ -61,9 +61,9 @@ public extension Date  {
      - param: date Any date to use as a base
      - returns: A new NSDate representing the start of the week containing the date.
      */
-    static public func startOfWeek(_ date: Date = Date()) -> Date {
+    public func startOfWeek() -> Date {
         let cal = Calendar.current
-        var comps = (cal as NSCalendar).components([NSCalendar.Unit.calendar, NSCalendar.Unit.timeZone, NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.weekOfYear, NSCalendar.Unit.weekday, NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second], from: date.addingTimeInterval(60*60))
+        var comps = (cal as NSCalendar).components([NSCalendar.Unit.calendar, NSCalendar.Unit.timeZone, NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.weekOfYear, NSCalendar.Unit.weekday, NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second], from: self.addingTimeInterval(60*60))
         
         comps.weekday = 1
         comps.second = 0
@@ -78,9 +78,9 @@ public extension Date  {
      :param: date Any date to use as a base
      :returns: A new NSDate representing the end of the week containing the date.
      */
-    static public func endOfWeek(_ date: Date = Date()) -> Date {
-        let nextWeek = date.addingTimeInterval(60*60*24*7)
-        return Date.startOfWeek(nextWeek).addingTimeInterval(-1)
+    public func endOfWeek() -> Date {
+        let nextWeek = self.addingTimeInterval(60*60*24*7)
+        return nextWeek.startOfWeek().addingTimeInterval(-1)
     }
     
     /**
@@ -89,27 +89,14 @@ public extension Date  {
      - parameter date: Any date to calculate the next whole hour from
      - returns: Returns a new NSDate set the the next whole hour from the provided date.
      */
-    static public func dateForNextHour(_ date: Date = Date()) -> Date {
+    public var nextHour : Date {
         
         let cal = Calendar.current
-        var comps = (cal as NSCalendar).components([NSCalendar.Unit.calendar, NSCalendar.Unit.timeZone, NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.weekOfYear, NSCalendar.Unit.weekday, NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second], from: date.addingTimeInterval(60*60))
+        var comps = (cal as NSCalendar).components([NSCalendar.Unit.calendar, NSCalendar.Unit.timeZone, NSCalendar.Unit.year, NSCalendar.Unit.month, NSCalendar.Unit.weekOfYear, NSCalendar.Unit.weekday, NSCalendar.Unit.hour, NSCalendar.Unit.minute, NSCalendar.Unit.second], from: self.addingTimeInterval(60*60))
         
         comps.second = 0
         comps.minute = 0
         return cal.date(from: comps)!
-    }
-    
-    
-    /**
-     Initialized a new date for the given hour and minute on the current day
-     
-     - parameter hour:   The hour of the date
-     - parameter minute: The minute of the date
-     
-     - returns: A new NSDate set with the given hour and minute on today
-     */
-    public static func dateWithHour(_ hour: Int, minute: Int) -> Date {
-        return dateWithHour(hour, minute: minute, inTimezone: nil)
     }
     
     /**
@@ -121,10 +108,17 @@ public extension Date  {
      
      - returns: A new NSDate set with the given parameters
      */
-    public static func dateWithHour(_ hour: Int, minute: Int, inTimezone: TimeZone?) -> Date {
+    public static func dateWithHour(_ hour: Int, minute: Int, in timezone: TimeZone = TimeZone.current) -> Date {
         var cal = Calendar.current
-        cal.timeZone = TimeZone(secondsFromGMT: 0)!
+        cal.timeZone = timezone
         return (cal as NSCalendar).date(bySettingHour: hour, minute: minute, second: 0, of: Date(), options: NSCalendar.Options.matchFirst)!
+    }
+    
+    public static func dateWithSecondsSinceMidnight(_ seconds: Int, in timezone: TimeZone = TimeZone.current) -> Date {
+        let _minutes = Int(seconds/60)
+        let hours = Int(_minutes/60)
+        let minutes = _minutes - (hours * 60)
+        return dateWithHour(hours, minute: minutes, in: timezone)
     }
     
     
@@ -155,6 +149,8 @@ public extension Date  {
     }
     
     
+
+    
     /**
      Retrieve the current calendar components of the reciever
      
@@ -176,26 +172,23 @@ public extension Date  {
      
      - returns: An Int for the day of the week sunday == 1, saturday == 7
      */
-    public func weekday() -> Int {
-        let comps = (Calendar.current as NSCalendar).components(NSCalendar.Unit.weekday, from: self)
-        return comps.weekday!
+    public func weekday(in timezone: TimeZone = TimeZone.autoupdatingCurrent) -> Int {
+        var cal = Calendar.current
+        cal.timeZone = timezone
+        return cal.component(.weekday, from: self)
     }
     
     
-    public func hourInTimeZone(_ inTimezone: TimeZone?) -> Int {
-        let tz: TimeZone = inTimezone ?? TimeZone.autoupdatingCurrent
+    public func hour(in timezone: TimeZone = TimeZone.autoupdatingCurrent) -> Int {
         var cal = Calendar.current
-        cal.timeZone = tz
-        let comps = (cal as NSCalendar).components(NSCalendar.Unit.hour, from: self)
-        return comps.hour!
+        cal.timeZone = timezone
+        return cal.component(.hour, from: self)
     }
     
-    public func minuteInTimeZone(_ inTimezone: TimeZone?) -> Int {
-        let tz: TimeZone = inTimezone ?? TimeZone.autoupdatingCurrent
+    public func minute(in timezone: TimeZone = TimeZone.autoupdatingCurrent) -> Int {
         var cal = Calendar.current
-        cal.timeZone = tz
-        let comps = (cal as NSCalendar).components(NSCalendar.Unit.minute, from: self)
-        return comps.minute!
+        cal.timeZone = timezone
+        return cal.component(.minute, from: self)
     }
     
     
@@ -209,7 +202,6 @@ public extension Date  {
         cal.timeZone = TimeZone(secondsFromGMT: 0)!
         let comps = (cal as NSCalendar).components([NSCalendar.Unit.hour, NSCalendar.Unit.minute], from: self)
         return ((comps.hour! * 60) + comps.minute!) * 60
-        
     }
     
     /**
@@ -217,14 +209,14 @@ public extension Date  {
      
      - returns: True if the date is in the past
      */
-    func isPast() -> Bool {
+    public var isPast : Bool {
         return self.timeIntervalSinceNow <= 0
     }
     
-    func isBefore(_ date: Date) -> Bool {
+    public func isBefore(_ date: Date) -> Bool {
         return self.compare(date) == .orderedAscending
     }
-    func isAfter(_ date: Date) -> Bool {
+    public func isAfter(_ date: Date) -> Bool {
         return self.compare(date) == .orderedDescending
     }
     
@@ -233,7 +225,7 @@ public extension Date  {
      
      - returns: True if the date is in the future
      */
-    func isFuture() -> Bool {
+    public var isFuture : Bool {
         return self.timeIntervalSinceNow > 0
     }
     
@@ -384,7 +376,7 @@ public extension Date  {
     }
     
     public func aggregateTimeSinceNow(_ names: AggregationNames = AggregationNames.short) -> String {
-        let sinceNow = abs(self.timeIntervalSinceNow)
+        let sinceNow = abs(self.timeIntervalSinceNow + 1)
         
         if sinceNow < 60 {
             return names.label(names.seconds, forValue: Int(sinceNow))

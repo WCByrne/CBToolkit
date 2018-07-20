@@ -42,9 +42,12 @@ public extension UIViewController {
      
      - returns: The top, right, bottom, and left contraints
      */
-    func addConstraintsToMatchParent() -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
+    @discardableResult func addConstraintsToMatchParent() -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         return self.view.addConstraintsToMatchParent()
     }
+    
+    
+   
 }
 
 
@@ -56,7 +59,7 @@ public extension UIView {
      - parameter insets: Insets to apply to the constraints for Top, Right, Bottom, and Left.
      - returns: The Top, Right, Bottom, and Top constraint added to the view.
      */
-    func addConstraintsToMatchParent(insets: UIEdgeInsets? = nil) -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
+    @discardableResult func addConstraintsToMatchParent(insets: UIEdgeInsets? = nil) -> (top: NSLayoutConstraint, right: NSLayoutConstraint, bottom: NSLayoutConstraint, left: NSLayoutConstraint)? {
         if let sv = self.superview {
             let top = NSLayoutConstraint(item: sv, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal
                 
@@ -73,6 +76,44 @@ public extension UIView {
         }
         return nil
     }
+    
+    @discardableResult func addConstraints(width: CGFloat?, height: CGFloat?) -> (width: NSLayoutConstraint?, height: NSLayoutConstraint?) {
+        var _width: NSLayoutConstraint?
+        var _height: NSLayoutConstraint?
+        
+        if let w = width, w > 0 {
+            _width = NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: w)
+            self.addConstraint(_width!)
+        }
+        if let h = height, h > 0 {
+            _height = NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: h)
+            self.addConstraint(_height!)
+        }
+        return (_width, _height)
+    }
+    
+    
+    func addVerticalCenterConstraint(_ offset: CGFloat, left: CGFloat? = nil, right: CGFloat? = nil) {
+        if let sv = self.superview {
+            let centerY = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: offset)
+            sv.addConstraint(centerY)
+            
+            if let r = right {
+                let rightConstraint = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.right, multiplier: 1, constant: r)
+                sv.addConstraint(rightConstraint)
+            }
+            if let l = left {
+                let leftConstraint = NSLayoutConstraint(item: sv, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.left, multiplier: 1, constant: -l)
+                sv.addConstraint(leftConstraint)
+            }
+            self.translatesAutoresizingMaskIntoConstraints = false
+        }
+        else {
+            debugPrint("CBToolkit Warning: Attempt to add contraints to match parent but the view had not superview.")
+        }
+    }
+    
+    
 }
 
 
@@ -90,9 +131,9 @@ public extension UIAlertController {
      
      - returns: The UIAlertController initialized with the provided properties.
      */
-    public class func alertWithTitle(title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: button, style: UIAlertAction.Style.default, handler: nil))
+    public class func alertWithTitle(_ title: String?, message: String?, cancelButtonTitle button: String) -> UIAlertController  {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil))
         return alert
     }
     
@@ -101,7 +142,7 @@ public extension UIAlertController {
      
      - parameter viewController: The UIViewController to present the UIAlertController in.
      */
-    public func show(viewController: UIViewController) {
+    public func show(in viewController: UIViewController) {
         viewController.present(self, animated: true, completion: nil)
     }
 }
@@ -135,20 +176,20 @@ public extension CAShapeLayer {
 
 
 public enum CBImageContentMode: Int {
-    case AspectFill
-    case AspectFit
+    case aspectFill
+    case aspectFit
 }
 
 
 public extension UIImage {
     
-    public func crop(frame: CGRect) -> UIImage {
+    public func crop(to frame: CGRect) -> UIImage {
         let  imageRef = self.cgImage!.cropping(to: frame);
         return UIImage(cgImage: imageRef!)
     }
     
-    public func thumbnail(size: Int) ->UIImage {
-        return resize(CGSize(width: size, height: size), contentMode: CBImageContentMode.AspectFill)
+    public func thumbnail(in size: Int) ->UIImage {
+        return resize(CGSize(width: size, height: size), contentMode: CBImageContentMode.aspectFill)
     }
     
     public func resize(_ bounds: CGSize) -> UIImage {
@@ -164,7 +205,7 @@ public extension UIImage {
     public func resize(_ bounds: CGSize,  contentMode: CBImageContentMode) -> UIImage {
         let horizontalRatio = bounds.width / self.size.width;
         let verticalRatio = bounds.height / self.size.height;
-        let ratio = contentMode == .AspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
+        let ratio = contentMode == .aspectFill ? max(horizontalRatio, verticalRatio) : min(horizontalRatio, verticalRatio)
         
         let newSize = CGSize(width: self.size.width * ratio, height: self.size.height * ratio);
         return self.resize(newSize)

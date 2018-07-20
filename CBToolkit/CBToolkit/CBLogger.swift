@@ -21,7 +21,7 @@ public class CBLogger {
     static var destinations = Set<BaseDestination>()
     
     /// returns boolean about success
-    public class func addDestination(destination: AnyObject) -> Bool {
+    public class func addDestination(_ destination: AnyObject) -> Bool {
         guard let dest = destination as? BaseDestination else {
             print("CBLogger: Failed to add destination")
             return false
@@ -31,7 +31,7 @@ public class CBLogger {
         
     }
 
-    public class func removeDestination(destination: AnyObject) -> Bool {
+    public class func removeDestination(_ destination: AnyObject) -> Bool {
         guard let dest = destination as? BaseDestination else {
             print("CBLogger: Failed to remove log destination")
             return false
@@ -64,23 +64,23 @@ public class CBLogger {
     }
     
     // MARK: Levels
-    public class func verbose(msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
+    public class func verbose(_ msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
         dispatch_send(LogLevel.Verbose, msg: msg, thread: threadName(), path: path, function: function, line: line)
     }
     
-    public class func debug(msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
+    public class func debug(_ msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
         dispatch_send(LogLevel.Debug, msg: msg, thread: threadName(), path: path, function: function, line: line)
     }
     
-    public class func info(msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
+    public class func info(_ msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
         dispatch_send(LogLevel.Info, msg: msg, thread: threadName(), path: path, function: function, line: line)
     }
     
-    public class func warning(msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
+    public class func warning(_ msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
         dispatch_send(LogLevel.Warning, msg: msg, thread: threadName(), path: path, function: function, line: line)
     }
     
-    public class func error(msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
+    public class func error(_ msg: Any, _ path: String = #file, _ function: String = #function, line: Int = #line) {
         dispatch_send(LogLevel.Error, msg: msg, thread: threadName(), path: path, function: function, line: line)
     }
     
